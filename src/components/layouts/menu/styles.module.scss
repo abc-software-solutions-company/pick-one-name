@@ -1,0 +1,101 @@
+.menu :global {
+  @apply sticky top-0 z-50 bg-abc-blue lg:relative;
+  .container {
+    @apply overflow-hidden;
+  }
+  .inner {
+    @apply flex h-[74px] items-center justify-between text-white md:h-[135px] lg:h-[82px];
+  }
+  .logo {
+    @apply flex w-[80px] items-center md:w-[149px] lg:w-[100px];
+  }
+  nav {
+    @apply hidden h-full text-sm font-semibold uppercase lg:block;
+    ul {
+      @apply flex h-full;
+    }
+    li {
+      &:hover,
+      &.active {
+        a {
+          @apply after:opacity-100;
+        }
+      }
+      &:last-child {
+        a {
+          @apply mr-0;
+        }
+      }
+    }
+    a {
+      @apply relative mx-6 flex h-full items-center text-white no-underline after:absolute after:bottom-0 after:left-0 after:h-1 after:w-full after:bg-white after:opacity-0 after:transition-all after:duration-300 after:content-[''];
+    }
+  }
+}
+.menu-mobile :global {
+  @apply flex flex-col justify-between bg-abc-blue text-white lg:hidden;
+  @apply fixed top-0 z-40;
+  @apply transition-all duration-300;
+  @apply h-full w-full pt-[74px] md:pt-[135px];
+  .line {
+    @apply -mt-3 h-3 shadow-lg shadow-sky-500;
+  }
+  nav {
+    @apply mt-6 text-base2 font-semibold uppercase md:text-base;
+    li {
+      @apply py-2;
+      &:hover,
+      &.active {
+        a {
+          @apply border-l-4 border-white;
+        }
+      }
+    }
+    a {
+      @apply relative block border-l-4 border-transparent px-3 py-1 text-white no-underline transition-all duration-300;
+    }
+  }
+  .bottom {
+    @apply flex bg-abc-dark-blue;
+  }
+}
+.hamburger :global {
+  @apply -mr-[11px] flex items-center md:-mr-4 lg:hidden;
+  svg {
+    @apply w-14 md:w-20;
+  }
+  .active .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+  }
+  .active .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+  }
+  .active .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+  }
+  .line {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+      stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+  }
+  .line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+  }
+  .line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+  }
+}

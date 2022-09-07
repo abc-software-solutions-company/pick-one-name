@@ -1,0 +1,6 @@
+.form-input {
+  @apply h-[57px] w-full rounded border border-abc-dark-blue bg-gray-100 placeholder:text-base placeholder:font-medium placeholder:text-gray-500 focus:border-abc-dark-blue focus:bg-white focus:ring-0 focus:ring-abc-dark-blue;
+  &.error {
+    @apply border-abc-dark-red;
+  }
+}

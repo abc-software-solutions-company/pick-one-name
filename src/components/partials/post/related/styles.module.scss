@@ -1,0 +1,48 @@
+.article-related :global {
+  @apply py-12 text-white;
+  .article-title {
+    @apply mb-6 text-black lg:col-span-5;
+    h2 {
+      @apply pt-2 pb-[27px] text-h2 font-bold text-abc-dark-red;
+    }
+    p {
+      @apply font-medium;
+    }
+  }
+  .article-item {
+    @apply pointer-events-auto relative col-span-12 flex h-[300px] cursor-pointer flex-col justify-end overflow-hidden rounded-xl bg-black/[0.15] md:h-[318px] lg:h-[400px];
+    &-1 {
+      @apply lg:col-span-6;
+    }
+    &-2 {
+      @apply bg-gradient-to-r from-red-400 via-orange-500 to-orange-400 lg:col-span-6;
+    }
+    &-3 {
+      @apply bg-gradient-to-r from-sky-500 via-cyan-400 to-sky-500 lg:col-span-4;
+    }
+    &-4 {
+      @apply md:col-span-6 lg:col-span-4;
+    }
+  }
+  .info {
+    @apply absolute bottom-0 left-0 z-10 p-8 px-[30px] pb-[30px] md:pb-[38px] md:pr-[248px] lg:pt-[51px] lg:pl-[41px] lg:pb-[57px] lg:pr-[93px];
+  }
+  .category {
+    @apply font-medium;
+  }
+  .title {
+    @apply mt-2 text-h4 font-bold line-clamp-3 md:text-h3 lg:mt-[17px] lg:text-h2;
+  }
+  .view-more {
+    @apply flex items-end gap-x-20 md:col-span-6 md:justify-end lg:col-span-4;
+  }
+  .link {
+    @apply flex items-end text-black;
+  }
+  .text {
+    @apply mb-[-6px] w-[190px] text-h2 font-extrabold text-black;
+  }
+  .icon {
+    @apply ml-2;
+  }
+}

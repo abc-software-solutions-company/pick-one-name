@@ -1,0 +1,28 @@
+.contact-form :global {
+  .heading {
+    @apply mb-8 flex items-center justify-center text-center text-h2 font-bold;
+    svg {
+      @apply mr-3;
+    }
+  }
+  .inner {
+    @apply mx-auto max-w-[997px] py-10 lg:py-20;
+  }
+  .grid {
+    @apply gap-3 lg:grid-cols-2 lg:gap-x-11;
+  }
+  .input-group {
+    @apply relative;
+  }
+  .desc {
+    textarea {
+      @apply min-h-[210px];
+    }
+  }
+  button[type='submit'] {
+    @apply mt-5 flex w-full justify-center transition duration-150 ease-in-out;
+  }
+  .confirmation {
+    @apply whitespace-pre-line;
+  }
+}
