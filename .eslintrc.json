@@ -18,10 +18,7 @@
 
   "overrides": [
     {
-      "files": [
-        "src/__tests__/*.test.[jt]s?(x)",
-        "src/**/?(*.)+(spec|test).[jt]s?(x)"
-      ],
+      "files": ["src/__tests__/*.test.[jt]s?(x)", "src/**/?(*.)+(spec|test).[jt]s?(x)"],
       "plugins": ["jest", "jest-formatting", "testing-library", "jest-dom"],
       "extends": [
         "plugin:jest/recommended",

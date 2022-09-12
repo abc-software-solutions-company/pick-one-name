@@ -6,13 +6,7 @@ interface SeoProps extends NextSeoProps {
   images?: ReadonlyArray<OpenGraphMedia>;
 }
 
-const Seo: React.FC<SeoProps> = ({
-  title,
-  description,
-  images,
-  url,
-  ...rest
-}: SeoProps) => {
+const Seo: React.FC<SeoProps> = ({title, description, images, url, ...rest}: SeoProps) => {
   return (
     <NextSeo
       title={title}
@@ -21,9 +15,7 @@ const Seo: React.FC<SeoProps> = ({
         title,
         description,
         images,
-        url: url
-          ? `${process.env.NEXT_PUBLIC_SITE_URL}${url}`
-          : process.env.NEXT_PUBLIC_SITE_URL
+        url: url ? `${process.env.NEXT_PUBLIC_SITE_URL}${url}` : process.env.NEXT_PUBLIC_SITE_URL
       }}
       {...rest}
     />

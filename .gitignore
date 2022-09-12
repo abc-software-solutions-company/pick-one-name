@@ -13,6 +13,8 @@
 .swc/
 /out/
 
+/public/fonts
+
 # misc
 .DS_Store
 *.pem

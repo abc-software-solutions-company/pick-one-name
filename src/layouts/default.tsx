@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {PropsWithChildren} from 'react';
 
-import SiteLayout from '@/components/layouts/layout';
+import Header from '@/components/header';
 
-type Props = {
+import styles from './style.module.scss';
+
+interface IDefaultLayoutProps {
   className?: string;
-};
+}
 
-export default function LayoutDefault({
-  children
-}: React.PropsWithChildren<Props>) {
-  return <SiteLayout>{children}</SiteLayout>;
+export default function LayoutDefault({children}: PropsWithChildren<IDefaultLayoutProps>) {
+  return (
+    <div className={styles['layout-default']}>
+      <Header />
+      <main>{children}</main>
+    </div>
+  );
 }

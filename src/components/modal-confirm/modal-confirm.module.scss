@@ -1,0 +1,11 @@
+.confirm-box :global {
+  .abc-modal-content {
+    @apply bg-slate-800/[1];
+  }
+  .buttons {
+    @apply relative z-20 mx-auto flex gap-3;
+    &.vertical {
+      @apply max-w-xs flex-col;
+    }
+  }
+}

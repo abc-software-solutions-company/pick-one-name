@@ -16,12 +16,7 @@ module.exports = {
   // Code coverage config
   // collectCoverage: true,
   coverageDirectory: '<rootDir>/coverage/',
-  collectCoverageFrom: [
-    '<rootDir>/src/**/*.{js,jsx,ts,tsx}',
-    '!**/*.d.ts',
-    '!**/node_modules/**',
-    '!**/__mocks__/**'
-  ],
+  collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx,ts,tsx}', '!**/*.d.ts', '!**/node_modules/**', '!**/__mocks__/**'],
   coverageReporters: ['html', 'text', 'text-summary', 'cobertura', 'lcov'],
   reporters: [
     'default',
@@ -60,10 +55,7 @@ module.exports = {
 
   testMatch: ['<rootDir>/**/*.test.{js,jsx,ts,tsx}'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
-  transformIgnorePatterns: [
-    '/node_modules/',
-    '^.+\\.module\\.(css|sass|scss)$'
-  ],
+  transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
 
   verbose: true,
   testTimeout: 30000

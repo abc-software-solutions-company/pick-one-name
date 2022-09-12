@@ -1,0 +1,24 @@
+.drawer-container {
+  @apply pointer-events-none ml-auto h-full max-w-[300px];
+  @apply fixed z-drawer;
+  @apply transition-all duration-300;
+  &.right {
+    @apply top-0 -right-[300px];
+    &.show {
+      @apply right-0;
+    }
+  }
+  .drawer-content {
+    @apply pointer-events-auto flex h-full w-full flex-col bg-gray-700;
+    @apply relative z-drawer;
+    .drawer-header {
+      @apply relative;
+      button {
+        @apply absolute top-2 right-3 z-20;
+      }
+    }
+    .drawer-body {
+      @apply relative h-full flex-grow px-3 py-5;
+    }
+  }
+}

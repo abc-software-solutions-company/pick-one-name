@@ -1,8 +1,22 @@
 {
   "prettier.useEditorConfig": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll": true
   },
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "eslint.validate": ["typescript"],
+  "files.exclude": {
+    "nginx/": true,
+    ".swc/": true,
+    "tsconfig.tsbuildinfo": true,
+    ".yarnrc": true,
+    ".editorconfig": true,
+    ".node-version": true,
+    ".nvmrc": true,
+    ".releaserc": true,
+    "LICENSE": true,
+    "Makefile": true,
+    "CHANGELOG.md": true
+  }
 }

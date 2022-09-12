@@ -12,12 +12,8 @@ const ErrorInformation: React.FC = () => {
   return (
     <div className="grid min-h-screen place-items-center p-4 sm:p-8">
       <div className="text-center">
-        <p className="text-body-dark mb-4 text-sm uppercase tracking-widest sm:mb-5">
-          {t('404-heading')}
-        </p>
-        <h1 className="text-bolder mb-5 text-2xl font-bold leading-normal sm:text-3xl">
-          {t('404-sub-heading')}
-        </h1>
+        <p className="text-body-dark mb-4 text-sm uppercase tracking-widest sm:mb-5">{t('404-heading')}</p>
+        <h1 className="text-bolder mb-5 text-2xl font-bold leading-normal sm:text-3xl">{t('404-sub-heading')}</h1>
         <div className="mb-11">
           <Image src={noResult} alt={t('404-heading')} />
         </div>

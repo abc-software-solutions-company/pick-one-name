@@ -1,4 +1,7 @@
+const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 const withPlugins = require('next-compose-plugins');
+// const withFonts = require('next-fonts');
 const {i18n} = require('./next-i18next.config');
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -7,14 +10,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // env: {
-  //   NEXT_PUBLIC_STRAPI_API_URL: process.env.NEXT_PUBLIC_STRAPI_API_URL || '',
-  //   NEXT_PUBLIC_MAILCHIMP_URL: process.env.NEXT_PUBLIC_MAILCHIMP_URL || '',
-  //   NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || '',
-  //   NEXT_PUBLIC_WEBHOOK_TOKEN: process.env.NEXT_PUBLIC_WEBHOOK_TOKEN || '',
-  //   NEXT_PUBLIC_NO_INDEX: process.env.NEXT_PUBLIC_NO_INDEX || ''
-  // },
-  reactStrictMode: false,
+  reactStrictMode: true,
   i18n,
   images: {
     domains: [
@@ -27,7 +23,49 @@ const nextConfig = {
       'abc-cms-production.s3.ap-southeast-1.amazonaws.com'
     ]
   },
-  output: 'standalone'
+  output: 'standalone',
+  webpack(config, {isServer}) {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false
+      };
+
+      // config.module.rules.push({
+      //   test: /\.(woff|woff2|ttf|eot)$/,
+      //   type: 'asset/resource',
+      //   generator: {
+      //     filename: `${path.join(__dirname, './public/fonts')}/[name][ext]`
+      //   }
+      // });
+
+      // config.module.rules.push({
+      //   test: /\.(woff|woff2|ttf|eot)$/,
+      //   use: {
+      //     loader: 'url-loader',
+      //     options: {
+      //       limit: 0,
+      //       name: './public/fonts/[name].[ext]'
+      //     },
+      //   },
+      //   type: 'javascript/auto'
+      // });
+
+      config.plugins.push(
+        new CopyPlugin({
+          patterns: [
+            {
+              from: path.join(__dirname, './src/vendors/abc-icons/dist'),
+              to: path.join(__dirname, './public/fonts'),
+              noErrorOnMissing: true
+            }
+          ]
+        })
+      );
+    }
+
+    return config;
+  }
 };
 
 module.exports = withPlugins([[withBundleAnalyzer]], nextConfig);

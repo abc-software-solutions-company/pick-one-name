@@ -9,11 +9,6 @@
     "isolatedModules": false,
     "allowJs": true
   },
-  "include": [
-    "./node_modules/cypress",
-    "../tsconfig.json",
-    "../package.json",
-    "./**/*.ts"
-  ],
+  "include": ["./node_modules/cypress", "../tsconfig.json", "../package.json", "./**/*.ts"],
   "exclude": []
 }

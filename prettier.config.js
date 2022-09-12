@@ -1,11 +1,10 @@
 module.exports = {
   arrowParens: 'avoid',
   bracketSpacing: false,
-  endOfLine: 'lf',
   htmlWhitespaceSensitivity: 'css',
   insertPragma: false,
   jsxSingleQuote: false,
-  printWidth: 80,
+  printWidth: 120,
   proseWrap: 'always',
   quoteProps: 'as-needed',
   requirePragma: false,
@@ -30,7 +29,6 @@ module.exports = {
       options: {parser: 'markdown'}
     }
   ],
-
   // tailwind
   tailwindConfig: './tailwind.config.js',
   plugins: [require('prettier-plugin-tailwindcss')]

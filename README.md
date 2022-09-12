@@ -22,8 +22,7 @@ Second, run the development server:
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the
-result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Folder structure
 
@@ -65,8 +64,8 @@ result.
 
 > ### New feature
 >
-> If we need to do a feature, we branch from `main`. When feature is done, we
-> rebase `main` before create a PR against `main`.
+> If we need to do a feature, we branch from `main`. When feature is done, we rebase `main` before create a PR against
+> `main`.
 
 Example git flows:
 

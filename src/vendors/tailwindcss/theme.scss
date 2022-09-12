@@ -1,0 +1,17 @@
+// Custom Theme
+
+// Button
+.abc-btn.contained:disabled.primary,
+.abc-btn.contained.disabled.primary {
+  @apply bg-slate-500 text-slate-400;
+}
+
+.abc-btn.outlined.primary,
+.abc-btn.outlined.primary {
+  @apply text-slate-400 ring-slate-500;
+}
+.abc-btn.outlined:not(:disabled, .disabled):hover {
+  &.primary {
+    @apply bg-slate-500/[0.3];
+  }
+}

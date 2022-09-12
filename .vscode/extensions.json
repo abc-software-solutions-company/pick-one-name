@@ -1,11 +1,27 @@
 {
   "recommendations": [
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "ms-azuretools.vscode-docker",
     "EditorConfig.EditorConfig",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
     "oderwat.indent-rainbow",
+    "PKief.material-icon-theme",
+    "christian-kohler.npm-intellisense",
+    "ronnidc.nunjucks",
+    "okitavera.vscode-nunjucks-formatter",
+    "quicktype.quicktype",
+    "christian-kohler.path-intellisense",
+    "zobo.php-intellisense",
+    "kokororin.vscode-phpfmt",
+    "esbenp.prettier-vscode",
+    "ms-vscode-remote.remote-containers",
+    "mrmlnc.vscode-scss",
+    "standard.vscode-standard",
+    "bradlc.vscode-tailwindcss",
+    "Gruntfuggly.todo-tree",
+    "shardulm94.trailing-spaces",
     "ChakrounAnas.turbo-console-log",
-    "VisualStudioExptTeam.vscodeintellicode",
-    "PKief.material-icon-theme"
+    "redhat.vscode-yaml"
   ]
 }
