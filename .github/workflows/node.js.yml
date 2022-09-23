@@ -26,4 +26,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install -g yarn
       - run: yarn
+      - run: yarn genfont
       - run: yarn build
