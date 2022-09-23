@@ -1,6 +1,6 @@
 {
   "name": "abc-website",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 8080",
+    "start": "next start",
     "start-dev": "docker-compose up && yarn dev",
     "build-stats": "cross-env ANALYZE=true yarn build",
     "lint": "next lint",
