@@ -16,7 +16,7 @@ const Header: FC<IProps> = ({className}) => {
           {/* <a className="logo-abc" href="https://abcsoftwarecompany.com/" target="_blank" rel="noreferrer">
             <LogoABC />
           </a> */}
-          <h1>ABC LUCKY WHEEL</h1>
+          <h1>ABC1 LUCKY WHEEL</h1>
         </div>
       </div>
     </div>
