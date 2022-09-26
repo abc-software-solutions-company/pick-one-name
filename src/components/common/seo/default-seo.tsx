@@ -81,41 +81,41 @@ const DefaultSeo: React.FC = () => {
       additionalLinkTags={[
         {
           rel: 'manifest',
-          href: '/favicon/manifest.json'
+          href: '/manifest.json'
         },
         {
           rel: 'shortcut icon',
           type: 'image/x-icon',
-          href: '/favicon/favicon.ico'
+          href: '/favicon.ico'
         },
         {
           rel: 'icon',
           type: 'image/x-icon',
-          href: '/favicon/favicon.ico'
+          href: '/favicon.ico'
         },
         {
           rel: 'icon',
           sizes: '16x16',
           type: 'image/png',
-          href: '/favicon/favicon-16x16.png'
+          href: '/favicon-16x16.png'
         },
         {
           rel: 'icon',
           sizes: '32x32',
           type: 'image/png',
-          href: '/favicon/favicon-32x32.png'
+          href: '/favicon-32x32.png'
         },
 
         // apple icon
         {
           rel: 'apple-touch-icon',
           sizes: '180x180',
-          href: '/favicon/apple-touch-icon.png'
+          href: '/apple-touch-icon.png'
         },
         {
           rel: 'mask-icon',
           color: '#5bbad5',
-          href: '/favicon/safari-pinned-tab.svg'
+          href: '/safari-pinned-tab.svg'
         }
       ]}
     />
