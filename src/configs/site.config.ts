@@ -6,20 +6,18 @@ const organizationDefault = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   founder: 'Khanh Mai',
-  defaultLanguage: 'en',
-  logo: {
-    url: 'https://abcsoftwarecompany.com/android-chrome-512x512.png',
-    alt: 'Pick One Name',
-    width: 512,
-    height: 512
-  },
+  logo: 'https://abcsoftwarecompany.com/android-chrome-512x512.png',
   url: 'https://abcsoftwarecompany.com',
+  image: 'https://abcsoftwarecompany.com/og-abc.png',
+  description: 'Simple solutions for complex problems. Improve work performance every day for your company',
   address: {
     '@type': 'PostalAddress',
-    addressCountry: 'Viet Nam',
-    addressRegion: 'Nha Trang',
+    addressCountry: 'Vietnam',
+    addressRegion: 'Khanh Hoa',
+    addressLocality: 'Nha Trang',
     postalCode: '650000'
-  }
+  },
+  openingHours: 'Mo 08:00-17:00 Tu 08:00-17:00 We 08:00-17:00 Th 08:00-17:00 Fr 08:00-17:00'
 };
 
 const websiteDefault = {

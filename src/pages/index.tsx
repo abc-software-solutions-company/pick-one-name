@@ -113,7 +113,6 @@ export default function PageHome() {
   return (
     <div className={styles['page-index']}>
       <Seo
-        title="Home"
         description="A free wheel spinner for a random picker, free random spinner wheels to help make decisions. Enter choices and spin the wheel to decide a random result."
         images={[
           {
