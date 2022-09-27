@@ -31,16 +31,6 @@ const websiteDefault = {
   ]
 };
 
-const socialNetworkDefault = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  url: websiteUrl,
-  sameAs: [
-    'https://www.facebook.com/abcsoftwaresolutionscompany',
-    'https://www.linkedin.com/company/abc-software-solutions-company'
-  ]
-};
-
 export const siteSettings = {
   name: 'Pick One Name',
   logo: 'https://pickonename.com/android-chrome-512x512.png',
@@ -58,7 +48,6 @@ export const siteSettings = {
   },
   schemaJsonLd: {
     organization: merge(organizationDefault, {name: 'ABC Software Solution'}),
-    website: merge(websiteDefault, {name: 'Pick One Name'}),
-    social: merge(socialNetworkDefault, {name: 'ABC Software Solution'})
+    website: merge(websiteDefault, {name: 'Pick One Name'})
   }
 };
