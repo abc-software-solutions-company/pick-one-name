@@ -34,6 +34,8 @@ const websiteDefault = {
 export const siteSettings = {
   name: 'Pick One Name',
   logo: 'https://pickonename.com/android-chrome-512x512.png',
+  cover: 'https://pickonename.com/og-abc.png',
+  url: 'https://abcsoftwarecompany.com',
   defaultLanguage: 'en',
   description:
     'A free wheel spinner for a random picker, free random spinner wheels to help make decisions. Enter choices and spin the wheel to decide a random result.',

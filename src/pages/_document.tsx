@@ -29,7 +29,7 @@ export default class CustomDocument extends Document {
             dangerouslySetInnerHTML={{__html: JSON.stringify(siteSettings.schemaJsonLd.website)}}
           />
         </Head>
-        <body className="h-full overflow-hidden bg-slate-700 text-slate-300">
+        <body className="scrollbar h-full bg-slate-700 text-slate-300">
           <Main />
           <NextScript />
           <div id="react-modal-root"></div>

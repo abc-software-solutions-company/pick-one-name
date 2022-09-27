@@ -1,5 +1,6 @@
 import React, {PropsWithChildren} from 'react';
 
+import Footer from '@/components/footer';
 import Header from '@/components/header';
 
 import styles from './style.module.scss';
@@ -13,6 +14,7 @@ export default function LayoutDefault({children}: PropsWithChildren<IDefaultLayo
     <div className={styles['layout-default']}>
       <Header />
       <main>{children}</main>
+      <Footer />
     </div>
   );
 }
