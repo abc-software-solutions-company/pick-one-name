@@ -31,32 +31,34 @@ const websiteDefault = {
   ]
 };
 
+const socialNetworkDefault = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  url: websiteUrl,
+  sameAs: [
+    'https://www.facebook.com/abcsoftwaresolutionscompany',
+    'https://www.linkedin.com/company/abc-software-solutions-company'
+  ]
+};
+
 export const siteSettings = {
   name: 'Pick One Name',
+  logo: 'https://pickonename.com/android-chrome-512x512.png',
+  defaultLanguage: 'en',
   description:
     'A free wheel spinner for a random picker, free random spinner wheels to help make decisions. Enter choices and spin the wheel to decide a random result.',
   author: {
     name: 'ABC Software Solutions',
     websiteUrl: 'https://www.abcsoftwarecompany.com'
   },
-  logo: {
-    url: 'https://pickonename.com/android-chrome-512x512.png',
-    alt: 'Pick One Name',
-    width: 512,
-    height: 512
-  },
-  defaultLanguage: 'en',
   facebookUrl: 'https://www.facebook.com/abcsoftwaresolutionscompany',
   linkedInUrl: 'https://www.linkedin.com/company/abc-software-solutions-company',
   contact: {
     email: 'hello@abcsoftwarecompany.com'
   },
   schemaJsonLd: {
-    organization: merge(organizationDefault, {
-      name: 'ABC Software Solution'
-    }),
-    website: merge(websiteDefault, {
-      name: 'Pick One Name'
-    })
+    organization: merge(organizationDefault, {name: 'ABC Software Solution'}),
+    website: merge(websiteDefault, {name: 'Pick One Name'}),
+    social: merge(socialNetworkDefault, {name: 'ABC Software Solution'})
   }
 };

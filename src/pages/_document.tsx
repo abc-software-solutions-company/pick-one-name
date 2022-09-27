@@ -28,6 +28,10 @@ export default class CustomDocument extends Document {
             type="application/ld+json"
             dangerouslySetInnerHTML={{__html: JSON.stringify(siteSettings.schemaJsonLd.website)}}
           />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{__html: JSON.stringify(siteSettings.schemaJsonLd.social)}}
+          />
         </Head>
         <body className="h-full overflow-hidden bg-slate-700 text-slate-300">
           <Main />
