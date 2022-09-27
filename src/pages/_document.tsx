@@ -1,6 +1,7 @@
 import Document, {DocumentContext, Head, Html, Main, NextScript} from 'next/document';
 
 import {mediaStyles} from '@/components/media';
+import {siteSettings} from '@/configs/site.config';
 
 export default class CustomDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -19,6 +20,14 @@ export default class CustomDocument extends Document {
             rel="stylesheet"
           />
           <style type="text/css" dangerouslySetInnerHTML={{__html: mediaStyles}} />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{__html: JSON.stringify(siteSettings.schemaJsonLd.organization)}}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{__html: JSON.stringify(siteSettings.schemaJsonLd.website)}}
+          />
         </Head>
         <body className="h-full overflow-hidden bg-slate-700 text-slate-300">
           <Main />

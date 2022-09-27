@@ -1,6 +1,6 @@
 {
-    "name": "Lucky Wheel",
-    "short_name": "LW",
+    "name": "Pick One Name",
+    "short_name": "PON",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

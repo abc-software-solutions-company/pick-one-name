@@ -19,7 +19,7 @@ const DefaultSeo: React.FC = () => {
             url: '/og-abc.png',
             width: 1200,
             height: 630,
-            alt: 'Wheel Of Fortune'
+            alt: 'Pick One Name'
           }
         ]
       }}
@@ -43,7 +43,8 @@ const DefaultSeo: React.FC = () => {
         },
         {
           name: 'keywords',
-          content: 'Wheel Of Fortune, Wheel Of Decide'
+          content:
+            'pick one name, wheel of decide, lucky wheel, wheel of fortune, random spin wheel, abc software solutions'
         },
         {
           name: 'application-name',
@@ -105,8 +106,6 @@ const DefaultSeo: React.FC = () => {
           type: 'image/png',
           href: '/favicon-32x32.png'
         },
-
-        // apple icon
         {
           rel: 'apple-touch-icon',
           sizes: '180x180',

@@ -6,7 +6,7 @@ set -xe
 
 # Set environmentable to detect your project source code folder in EC2/VMware Instance
 # Change project name here
-PROJECT_NAME=lucky-draw-website-test2
+PROJECT_NAME=pick-one-name
 
 echo "This script will set up your server to be listenning GitHub Action and pull code Automatically when main branch or master branch change"
 mkdir actions-runner && cd actions-runner
