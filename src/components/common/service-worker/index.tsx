@@ -6,7 +6,7 @@ const ServiceWorker = () => {
 
   return (
     <>
-      <button id="install">Install</button>
+      {/* <button id="install">Install</button> */}
       <Script strategy="afterInteractive" id="svcworker">
         {`
           if ('serviceWorker' in navigator) {

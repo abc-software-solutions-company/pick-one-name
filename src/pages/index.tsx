@@ -20,7 +20,6 @@ import styles from './index.module.scss';
 
 const db = new Database('lucky.db');
 const playerCollection = new CollectionPlayer(db);
-const DEFAULT_PLAYERS = Array(8).fill({name: '', visible: true});
 
 export default function PageHome() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
@@ -74,7 +73,7 @@ export default function PageHome() {
     playerCollection.update(player);
     setIsWin(false);
     getPlayers();
-    toast.show({type: 'info', title: '', content: `Player "${player.name}" is now hidden`});
+    toast.show({type: 'info', title: '', content: `Player "${player.name}" is now hidden.`});
   };
 
   const run = () => {
@@ -120,7 +119,7 @@ export default function PageHome() {
             <div className="flex flex-grow flex-col items-center overflow-hidden">
               <LuckyWheel
                 className="m-auto"
-                players={players.length > 0 ? players : DEFAULT_PLAYERS}
+                players={players}
                 winner={winner}
                 onComplete={onPlayerWin}
                 trigger={

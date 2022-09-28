@@ -3,6 +3,7 @@ import {gsap} from 'gsap';
 import React, {FC, memo, ReactNode, useEffect, useRef, useState} from 'react';
 
 import {IPlayer} from '@/utils/players';
+import {rangeInt} from '@/utils/random';
 
 import WheelAnchor from './indicator';
 import styles from './lucky-wheel.module.scss';
@@ -61,9 +62,7 @@ COLORS = COLORS.concat([
   '#f19f9f'
 ]);
 COLORS = COLORS.concat(...Array(20).fill(COLORS));
-
-let rotateCD: any;
-let firstTime = true;
+const DEFAULT_PLAYERS = Array(8).fill({name: '', visible: true});
 
 const LuckyWheel: FC<IWheelOfFortuneProps> = ({
   className,
@@ -78,10 +77,13 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
   const indicatorRef = useRef<HTMLDivElement>(null);
   const wheelRef = useRef<HTMLDivElement>(null);
 
+  if (!players.length) players = DEFAULT_PLAYERS;
+
   players = players.filter(x => x.visible);
 
   // #region Wheel
   const step = 360 / players.length;
+  const indicatorDegree = 43;
   const wheelWidth = wheelRef.current?.clientWidth || size;
 
   let polygon = '';
@@ -106,34 +108,37 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
 
   useEffect(() => {
     if (winner) {
-      console.log('winner', winner);
-      // const winnerIndex = players.indexOf(winner);
+      const winnerIndex = players.indexOf(winner);
       const element = wheelRef.current;
 
       if (element) {
-        if (firstTime) {
-          rotateCD = gsap
-            .to(element, {rotation: 360 * 7, duration: 7, repeat: 0, ease: 'none', paused: true})
-            .timeScale(0);
-          firstTime = false;
-        }
-        gsap.to(rotateCD, {timeScale: 1, duration: 3});
-        gsap.to(rotateCD, {
-          delay: 2,
-          timeScale: 0,
-          duration: 10,
-          rotation: 0,
-          // onStart: function () {
-          //   const currentRotation = gsap.getProperty(element, 'rotation') as number;
-          //   console.log(currentRotation, Math.round(currentRotation) % (360 / players.length));
-          // },
+        // gsap.set(element, {clearProps: 'all'});
+        const stopAt = players.length <= 10 ? rangeInt(-15, 15) : 0;
+        const currentRotation = gsap.getProperty(element, 'rotation') as number;
+        gsap.to(element, {
+          rotation: 360 + currentRotation,
+          duration: 2,
+          ease: 'power2.in',
           onComplete: function () {
-            rotateCD.pause();
-            onComplete?.();
+            gsap.set(element, {clearProps: 'all'});
+            gsap.to(element, {
+              rotation: 360 * 5,
+              duration: 3,
+              ease: 'none',
+              onComplete: function () {
+                gsap.set(element, {clearProps: 'all'});
+                gsap.to(element, {
+                  rotation: 1440 - winnerIndex * step - indicatorDegree + stopAt,
+                  duration: 10,
+                  ease: 'power4.out',
+                  onComplete: function () {
+                    onComplete?.();
+                  }
+                });
+              }
+            });
           }
         });
-
-        rotateCD.play();
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

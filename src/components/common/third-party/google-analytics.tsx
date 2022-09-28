@@ -8,7 +8,8 @@ const GoogleAnalytics = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const handleRouteChange = (url: string) => gtag.pageview(url);
+    // const handleRouteChange = (url: string) => gtag.pageview(url);
+    const handleRouteChange = (url: string) => console.log('tracking', url);
 
     router.events.on('routeChangeComplete', handleRouteChange);
 
