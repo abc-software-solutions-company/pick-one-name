@@ -1,12 +1,22 @@
 import classnames from 'classnames';
 import {gsap} from 'gsap';
-import CustomEase from 'gsap/dist/CustomEase';
 import React, {FC, memo, ReactNode, useEffect, useRef, useState} from 'react';
 
 import {IPlayer} from '@/utils/players';
+import {rangeInt} from '@/utils/random';
 
 import WheelAnchor from './indicator';
 import styles from './lucky-wheel.module.scss';
+
+interface IWheelOfFortuneProps {
+  className?: string;
+  players: IPlayer[];
+  winner?: IPlayer;
+  size?: number;
+  colors?: string;
+  trigger?: ReactNode;
+  onComplete?: () => void;
+}
 
 let COLORS: string[] = [];
 COLORS = COLORS.concat([
@@ -52,17 +62,8 @@ COLORS = COLORS.concat([
   '#f19f9f'
 ]);
 COLORS = COLORS.concat(...Array(20).fill(COLORS));
+const DEFAULT_PLAYERS = Array(8).fill({name: '', visible: true});
 
-interface IWheelOfFortuneProps {
-  className?: string;
-  players: IPlayer[];
-  winner?: IPlayer;
-  size?: number;
-  colors?: string;
-  trigger?: ReactNode;
-  onComplete?: () => void;
-}
-// '#EC6E81', '#f29aa7', '#f7c5cd', '#5CC1B1', '#D9B872', '#5CC1B1', '#fda14d', '#fc7800', '#56c0f0', '#0ea5e9'
 const LuckyWheel: FC<IWheelOfFortuneProps> = ({
   className,
   players,
@@ -76,10 +77,13 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
   const indicatorRef = useRef<HTMLDivElement>(null);
   const wheelRef = useRef<HTMLDivElement>(null);
 
+  if (!players.length) players = DEFAULT_PLAYERS;
+
   players = players.filter(x => x.visible);
 
   // #region Wheel
   const step = 360 / players.length;
+  const indicatorDegree = 43;
   const wheelWidth = wheelRef.current?.clientWidth || size;
 
   let polygon = '';
@@ -104,21 +108,36 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
 
   useEffect(() => {
     if (winner) {
-      console.log('winner', winner);
-
       const winnerIndex = players.indexOf(winner);
       const element = wheelRef.current;
 
       if (element) {
-        gsap.set(element, {clearProps: 'all'});
+        // gsap.set(element, {clearProps: 'all'});
+        const stopAt = players.length <= 10 ? rangeInt(-15, 15) : 0;
+        const currentRotation = gsap.getProperty(element, 'rotation') as number;
         gsap.to(element, {
-          duration: 5,
-          rotation: -2202 - winnerIndex * step,
-          ease: CustomEase.create(
-            'custom',
-            'M0,0 C0.081,0 0.17,0.042 0.232,0.096 0.27,0.129 0.312,0.212 0.35,0.298 0.368,0.338 0.441,0.557 0.534,0.728 0.59,0.831 0.664,0.904 0.71,0.932 0.792,0.982 0.869,1 1,1'
-          ),
-          onComplete
+          rotation: 360 + currentRotation,
+          duration: 2,
+          ease: 'power2.in',
+          onComplete: function () {
+            gsap.set(element, {clearProps: 'all'});
+            gsap.to(element, {
+              rotation: 360 * 5,
+              duration: 3,
+              ease: 'none',
+              onComplete: function () {
+                gsap.set(element, {clearProps: 'all'});
+                gsap.to(element, {
+                  rotation: 1440 - winnerIndex * step - indicatorDegree + stopAt,
+                  duration: 10,
+                  ease: 'power4.out',
+                  onComplete: function () {
+                    onComplete?.();
+                  }
+                });
+              }
+            });
+          }
         });
       }
     }

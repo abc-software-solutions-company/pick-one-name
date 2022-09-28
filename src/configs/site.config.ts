@@ -16,8 +16,7 @@ const organizationDefault = {
     addressRegion: 'Khanh Hoa',
     addressLocality: 'Nha Trang',
     postalCode: '650000'
-  },
-  openingHours: 'Mo 08:00-17:00 Tu 08:00-17:00 We 08:00-17:00 Th 08:00-17:00 Fr 08:00-17:00'
+  }
 };
 
 const websiteDefault = {

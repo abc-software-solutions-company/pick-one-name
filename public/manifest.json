@@ -1,19 +1,24 @@
 {
     "name": "Pick One Name",
     "short_name": "Pick One Name",
+    "description": "A free wheel spinner for a random picker, free random spinner wheels to help make decisions. Enter choices and spin the wheel to decide a random result.",
+    "theme_color": "#4b9ae8",
+    "background_color": "#334155",
+    "orientation": "portrait-primary",
+    "display": "standalone",
+    "start_url": "/",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         },
         {
             "src": "/android-chrome-512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         }
-    ],
-    "theme_color": "#4b9ae8",
-    "background_color": "#334155",
-    "display": "standalone"
+    ]
 }
