@@ -9,6 +9,7 @@ import {appWithTranslation} from 'next-i18next';
 import React from 'react';
 
 import DefaultSeo from '@/components/common/seo/default-seo';
+import ServiceWorker from '@/components/common/service-worker';
 
 const Noop: React.FC = ({children}: React.PropsWithChildren<any>) => <>{children}</>;
 
@@ -19,6 +20,7 @@ const CustomApp = ({Component, pageProps}: AppProps) => {
 
   return (
     <>
+      <ServiceWorker />
       <DefaultSeo />
       <Layout pageProps={pageProps}>
         <Component {...pageProps} key={router.route} />

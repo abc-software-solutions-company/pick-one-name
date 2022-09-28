@@ -20,6 +20,7 @@ import styles from './index.module.scss';
 
 const db = new Database('lucky.db');
 const playerCollection = new CollectionPlayer(db);
+const DEFAULT_PLAYERS = Array(8).fill({name: '', visible: true});
 
 export default function PageHome() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
@@ -104,9 +105,6 @@ export default function PageHome() {
 
   useEffect(() => {
     import(/* webpackChunkName: "vendor.lottie-player" */ '@lottiefiles/lottie-player');
-  }, []);
-
-  useEffect(() => {
     getPlayers();
   }, []);
 
@@ -114,14 +112,7 @@ export default function PageHome() {
     <div className={styles['page-index']}>
       <Seo
         description="A free wheel spinner for a random picker, free random spinner wheels to help make decisions. Enter choices and spin the wheel to decide a random result."
-        images={[
-          {
-            url: '/luckydraw.jpg',
-            width: 1200,
-            height: 630,
-            alt: 'Pick One Name'
-          }
-        ]}
+        images={[{url: '/luckydraw.jpg', width: 1200, height: 630, alt: 'Pick One Name'}]}
       />
       <div className="container">
         <div className="page-index-inner">
@@ -129,20 +120,7 @@ export default function PageHome() {
             <div className="flex flex-grow flex-col items-center overflow-hidden">
               <LuckyWheel
                 className="m-auto"
-                players={
-                  players.length > 0
-                    ? players
-                    : [
-                        {name: '', visible: true},
-                        {name: '', visible: true},
-                        {name: '', visible: true},
-                        {name: '', visible: true},
-                        {name: '', visible: true},
-                        {name: '', visible: true},
-                        {name: '', visible: true},
-                        {name: '', visible: true}
-                      ]
-                }
+                players={players.length > 0 ? players : DEFAULT_PLAYERS}
                 winner={winner}
                 onComplete={onPlayerWin}
                 trigger={
