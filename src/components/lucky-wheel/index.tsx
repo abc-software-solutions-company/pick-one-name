@@ -5,6 +5,7 @@ import React, {FC, memo, ReactNode, useEffect, useRef, useState} from 'react';
 import {IPlayer} from '@/utils/players';
 import {rangeInt} from '@/utils/random';
 
+import constant from './contanst';
 import WheelAnchor from './indicator';
 import styles from './lucky-wheel.module.scss';
 
@@ -18,51 +19,9 @@ interface IWheelOfFortuneProps {
   onComplete?: () => void;
 }
 
-let COLORS: string[] = [];
-COLORS = COLORS.concat([
-  '#7aabce',
-  '#f7b2bc',
-  '#8dd3c8',
-  '#dfc181',
-  '#cabbee',
-  '#f7caeb',
-  '#c5e4c6',
-  '#e5c8c4',
-  '#cdbeab',
-  '#bbc9d6',
-  '#ffd7c2',
-  '#f7caca'
-]);
-COLORS = COLORS.concat([
-  '#689fc7',
-  '#f59ca9',
-  '#7bcdc0',
-  '#dab86d',
-  '#bba8e9',
-  '#f4b5e3',
-  '#b5dcb6',
-  '#ddb8b4',
-  '#c4b39c',
-  '#acbccd',
-  '#ffc8aa',
-  '#f4b5b5'
-]);
-COLORS = COLORS.concat([
-  '#5794c1',
-  '#f38596',
-  '#69c6b7',
-  '#d6ae5a',
-  '#ac94e4',
-  '#f19fdb',
-  '#a4d4a6',
-  '#d5a8a3',
-  '#bba78d',
-  '#9cb0c4',
-  '#ffb892',
-  '#f19f9f'
-]);
-COLORS = COLORS.concat(...Array(20).fill(COLORS));
-const DEFAULT_PLAYERS = Array(8).fill({name: '', visible: true});
+let firstRun = true;
+let bgMusic: HTMLAudioElement;
+let winSound: HTMLAudioElement;
 
 const LuckyWheel: FC<IWheelOfFortuneProps> = ({
   className,
@@ -70,14 +29,14 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
   winner,
   trigger,
   size = 700,
-  colors = COLORS,
+  colors = constant.colors,
   onComplete
 }) => {
   const [redraw, setRedraw] = useState(0);
   const indicatorRef = useRef<HTMLDivElement>(null);
   const wheelRef = useRef<HTMLDivElement>(null);
 
-  if (!players.length) players = DEFAULT_PLAYERS;
+  if (!players.length) players = constant.defaultPlayers;
 
   // #region Wheel
   const step = 360 / players.length;
@@ -99,6 +58,11 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
   // #endregion
 
   useEffect(() => {
+    bgMusic = new Audio('/music.mp3');
+    winSound = new Audio('/win.mp3');
+  }, []);
+
+  useEffect(() => {
     const handleRedraw = () => setRedraw(redraw + 1);
     window.addEventListener('resize', handleRedraw, false);
     return () => window.removeEventListener('resize', handleRedraw, false);
@@ -110,10 +74,19 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
       const element = wheelRef.current;
 
       if (element) {
-        const stopAt = players.length <= 10 ? rangeInt(-15, 15) : 0;
+        const generateStopPoint = (len: number) => (len < 10 ? 50 - 5 * (len - 1) : 0);
+        const stopPoint = generateStopPoint(players.length);
+        const stopAt = rangeInt(-stopPoint, stopPoint);
         const currentRotation = gsap.getProperty(element, 'rotation') as number;
+        const rotateCount = 360 * 7;
+        const remainDegreeAfterSpin = rotateCount - currentRotation;
+
+        if (bgMusic.paused) gsap.set(bgMusic, {volume: 0});
+        gsap.to(bgMusic, {volume: 1, duration: 3});
+        bgMusic.play();
+
         gsap.to(element, {
-          rotation: 360 + currentRotation,
+          rotation: firstRun ? 360 : currentRotation + remainDegreeAfterSpin + 360,
           duration: 2,
           ease: 'power2.in',
           onComplete: function () {
@@ -124,11 +97,27 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
               ease: 'none',
               onComplete: function () {
                 gsap.set(element, {clearProps: 'all'});
-                gsap.to(element, {
-                  rotation: 1440 - winnerIndex * step - indicatorDegree + stopAt,
+                gsap.to(bgMusic, {
+                  volume: 0,
                   duration: 10,
                   onComplete: function () {
+                    bgMusic.pause();
+                    bgMusic.currentTime = 0;
+                  },
+                  callbackScope: bgMusic
+                });
+
+                gsap.to(element, {
+                  rotation: rotateCount - winnerIndex * step - (indicatorDegree + stopAt),
+                  duration: 10,
+                  ease: 'power2.out',
+                  onComplete: function () {
                     onComplete?.();
+                    firstRun = false;
+
+                    if (winSound.paused) gsap.set(winSound, {volume: 0});
+                    gsap.to(winSound, {volume: 1, duration: 0.5});
+                    winSound.play();
                   }
                 });
               }

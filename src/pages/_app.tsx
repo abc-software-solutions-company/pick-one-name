@@ -1,4 +1,3 @@
-import '@/vendors/bootstrap/bootstrap.scss';
 import '@/vendors/tailwindcss/tailwind.scss';
 import '@/vendors/tailwindcss/theme.scss';
 import '@/vendors/abc-icons/dist/abc.scss';
