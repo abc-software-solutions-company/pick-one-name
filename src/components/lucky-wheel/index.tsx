@@ -79,8 +79,6 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
 
   if (!players.length) players = DEFAULT_PLAYERS;
 
-  players = players.filter(x => x.visible);
-
   // #region Wheel
   const step = 360 / players.length;
   const indicatorDegree = 43;
@@ -112,7 +110,6 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
       const element = wheelRef.current;
 
       if (element) {
-        // gsap.set(element, {clearProps: 'all'});
         const stopAt = players.length <= 10 ? rangeInt(-15, 15) : 0;
         const currentRotation = gsap.getProperty(element, 'rotation') as number;
         gsap.to(element, {
@@ -130,7 +127,6 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
                 gsap.to(element, {
                   rotation: 1440 - winnerIndex * step - indicatorDegree + stopAt,
                   duration: 10,
-                  ease: 'power4.out',
                   onComplete: function () {
                     onComplete?.();
                   }

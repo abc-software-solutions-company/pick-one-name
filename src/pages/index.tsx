@@ -119,7 +119,7 @@ export default function PageHome() {
             <div className="flex flex-grow flex-col items-center overflow-hidden">
               <LuckyWheel
                 className="m-auto"
-                players={players}
+                players={players.filter(x => x.visible)}
                 winner={winner}
                 onComplete={onPlayerWin}
                 trigger={
