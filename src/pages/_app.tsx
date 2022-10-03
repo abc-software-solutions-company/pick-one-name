@@ -9,6 +9,7 @@ import React from 'react';
 
 import DefaultSeo from '@/components/common/seo/default-seo';
 import ServiceWorker from '@/components/common/service-worker';
+import {FirebaseAuthProvider} from '@/contexts/firebase-auth/provider';
 
 const Noop: React.FC = ({children}: React.PropsWithChildren<any>) => <>{children}</>;
 
@@ -21,9 +22,11 @@ const CustomApp = ({Component, pageProps}: AppProps) => {
     <>
       <ServiceWorker />
       <DefaultSeo />
-      <Layout pageProps={pageProps}>
-        <Component {...pageProps} key={router.route} />
-      </Layout>
+      <FirebaseAuthProvider>
+        <Layout pageProps={pageProps}>
+          <Component {...pageProps} key={router.route} />
+        </Layout>
+      </FirebaseAuthProvider>
     </>
   );
 };

@@ -34,10 +34,11 @@ export const siteSettings = {
   name: 'Pick One Name',
   logo: 'https://pickonename.com/android-chrome-512x512.png',
   cover: 'https://pickonename.com/og-abc.png',
-  url: 'https://abcsoftwarecompany.com',
-  defaultLanguage: 'en',
+  url: 'https://pickonename.com',
   description:
     'A free wheel spinner for a random picker, free random spinner wheels to help make decisions. Enter choices and spin the wheel to decide a random result.',
+  keyword:
+    'lucky wheel, wheel of names, wheel decide, lucky draw, roulette, random name, spin the wheel, wheel of fortune, random name picker',
   author: {
     name: 'ABC Software Solutions',
     websiteUrl: 'https://www.abcsoftwarecompany.com'
