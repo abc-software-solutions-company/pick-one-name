@@ -20,7 +20,8 @@ interface IWheelOfFortuneProps {
 }
 
 let firstRun = true;
-let bgMusic: HTMLAudioElement;
+let spinSound: HTMLAudioElement;
+let bgSound: HTMLAudioElement;
 let winSound: HTMLAudioElement;
 
 const LuckyWheel: FC<IWheelOfFortuneProps> = ({
@@ -35,10 +36,10 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
   const [redraw, setRedraw] = useState(0);
   const indicatorRef = useRef<HTMLDivElement>(null);
   const wheelRef = useRef<HTMLDivElement>(null);
+  const spintPoints = useRef<number[]>([]);
 
   if (!players.length) players = constant.defaultPlayers;
 
-  // #region Wheel
   const step = 360 / players.length;
   const indicatorDegree = 43;
   const wheelWidth = wheelRef.current?.clientWidth || size;
@@ -55,12 +56,19 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
   if (players.length === 9) polygon = 'polygon(50% 100%, 4% 0%, 96% 0%)';
   if (players.length === 10) polygon = 'polygon(50% 100%, 4.8% 0%, 95.8% 0%)';
   if (players.length > 10) polygon = 'polygon(50% 100%, 5% 0%, 95% 0%)';
-  // #endregion
 
   useEffect(() => {
-    bgMusic = new Audio('/music.mp3');
+    spinSound = new Audio('/tick.mp3');
+    spinSound.volume = 0.5;
+    bgSound = new Audio('/music.mp3');
     winSound = new Audio('/win.mp3');
-  }, []);
+
+    spintPoints.current = [];
+    for (let i = 0; i < 50; i++) {
+      spintPoints.current.push(Math.round(step * i + 1));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [players]);
 
   useEffect(() => {
     const handleRedraw = () => setRedraw(redraw + 1);
@@ -74,56 +82,88 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
       const element = wheelRef.current;
 
       if (element) {
-        const generateStopPoint = (len: number) => (len < 10 ? 50 - 5 * (len - 1) : 0);
-        const stopPoint = generateStopPoint(players.length);
+        const stopPoint = players.length < 20 ? step / 2 - 2 : 0;
         const stopAt = rangeInt(-stopPoint, stopPoint);
         const currentRotation = gsap.getProperty(element, 'rotation') as number;
         const rotateCount = 360 * 7;
         const remainDegreeAfterSpin = rotateCount - currentRotation;
-
-        if (bgMusic.paused) gsap.set(bgMusic, {volume: 0});
-        gsap.to(bgMusic, {volume: 1, duration: 3});
-        bgMusic.play();
-
-        gsap.to(element, {
-          rotation: firstRun ? 360 : currentRotation + remainDegreeAfterSpin + 360,
-          duration: 2,
-          ease: 'power2.in',
-          onComplete: function () {
-            gsap.set(element, {clearProps: 'all'});
-            gsap.to(element, {
-              rotation: 360 * 5,
-              duration: 3,
-              ease: 'none',
-              onComplete: function () {
-                gsap.set(element, {clearProps: 'all'});
-                gsap.to(bgMusic, {
-                  volume: 0,
-                  duration: 10,
-                  onComplete: function () {
-                    bgMusic.pause();
-                    bgMusic.currentTime = 0;
-                  },
-                  callbackScope: bgMusic
-                });
-
-                gsap.to(element, {
-                  rotation: rotateCount - winnerIndex * step - (indicatorDegree + stopAt),
-                  duration: 10,
-                  ease: 'power2.out',
-                  onComplete: function () {
-                    onComplete?.();
-                    firstRun = false;
-
-                    if (winSound.paused) gsap.set(winSound, {volume: 0});
-                    gsap.to(winSound, {volume: 1, duration: 0.5});
-                    winSound.play();
-                  }
-                });
-              }
-            });
+        const destination = firstRun ? 360 : currentRotation + remainDegreeAfterSpin + 360;
+        const winnerDestination = rotateCount + stopAt - winnerIndex * step - indicatorDegree;
+        // Setup Animations
+        const startDuration = {countdown: 0};
+        const normalDuration = {countdown: 0};
+        const endDuration = {countdown: 0};
+        let prePercent = 0;
+        const spinStart = gsap.to(element, {rotation: destination, duration: 2, ease: 'power2.in'});
+        const spinNormal = gsap.to(element, {rotation: 360 * 5, duration: 3, ease: 'none'});
+        const spinEnd = gsap.to(element, {rotation: winnerDestination, duration: 10, ease: 'power2.out'});
+        const timeline = gsap.timeline({paused: true});
+        // Callbacks
+        const playSound = (percent: number) => {
+          if (percent > prePercent) {
+            spinSound.play();
+            prePercent = percent;
           }
+        };
+        // Easing In
+        spinStart.eventCallback('onStart', function () {
+          prePercent = 0;
+          gsap.set(startDuration, {countdown: 0});
+          gsap.to(startDuration, {countdown: 100, duration: 2, ease: 'power4.in'});
+
+          gsap.set(bgSound, {volume: 0});
+          gsap.to(bgSound, {volume: 1, duration: 3});
+          bgSound.play();
         });
+        spinStart.eventCallback('onUpdate', function () {
+          playSound(Math.round(startDuration.countdown));
+        });
+        spinStart.eventCallback('onComplete', function () {
+          gsap.set(element, {clearProps: 'all'});
+        });
+        // No Easing
+        spinNormal.eventCallback('onStart', function () {
+          prePercent = 0;
+          gsap.set(normalDuration, {countdown: 0});
+          gsap.to(normalDuration, {countdown: 100, duration: 3});
+        });
+        spinNormal.eventCallback('onUpdate', function () {
+          playSound(Math.round(normalDuration.countdown));
+        });
+        spinNormal.eventCallback('onComplete', function () {
+          gsap.set(element, {clearProps: 'all'});
+        });
+        // Easing Out
+        spinEnd.eventCallback('onStart', function () {
+          prePercent = 0;
+          gsap.set(endDuration, {countdown: 0});
+          gsap.to(endDuration, {countdown: 100, duration: 10, ease: 'power2.out'});
+
+          gsap.to(bgSound, {
+            volume: 0,
+            duration: 10,
+            onComplete: function () {
+              bgSound.pause();
+              bgSound.currentTime = 0;
+            },
+            callbackScope: bgSound
+          });
+        });
+        spinEnd.eventCallback('onUpdate', function () {
+          playSound(Math.round(endDuration.countdown));
+        });
+        spinEnd.eventCallback('onComplete', function () {
+          onComplete?.();
+          firstRun = false;
+          if (winSound.paused) gsap.set(winSound, {volume: 0});
+          gsap.to(winSound, {volume: 1, duration: 0.5});
+          winSound.play();
+        });
+        // Timeline
+        timeline.add(spinStart, 'start');
+        timeline.add(spinNormal, 'normal');
+        timeline.add(spinEnd, 'end');
+        timeline.play();
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
