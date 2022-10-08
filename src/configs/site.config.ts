@@ -50,7 +50,7 @@ export const siteSettings = {
     email: 'hello@abcsoftwarecompany.com'
   },
   schemaJsonLd: {
-    organization: merge(organizationDefault, {name: 'ABC Software Solution'}),
+    organization: merge(organizationDefault, {name: 'ABC Software Solutions'}),
     website: merge(websiteDefault, {name: 'Pick One Name'})
   }
 };
