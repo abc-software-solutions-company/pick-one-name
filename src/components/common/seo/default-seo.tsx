@@ -38,20 +38,19 @@ const DefaultSeo: React.FC = () => {
         },
         {
           name: 'MobileOptimized',
-          content: '375'
+          content: '320'
         },
         {
           name: 'keywords',
-          content:
-            'pick one name, wheel of decide, lucky wheel, wheel of fortune, random spin wheel, abc software solutions'
+          content: siteSettings.keyword
         },
         {
           name: 'application-name',
-          content: `${siteSettings.name}`
+          content: siteSettings.name
         },
         {
           name: 'theme-color',
-          content: '#ffffff'
+          content: '#334155'
         },
         {
           name: 'msapplication-TileColor',
@@ -71,7 +70,7 @@ const DefaultSeo: React.FC = () => {
         },
         {
           name: 'apple-mobile-web-app-title',
-          content: `${siteSettings.name}`
+          content: siteSettings.name
         },
         {
           name: 'google',
