@@ -10,8 +10,8 @@ const Footer: FC = () => {
     <>
       <div className={cls(styles.footer)}>
         Created by{' '}
-        <a href={siteSettings.url} target="_blank" rel="noreferrer">
-          ABC Software Solutions Company
+        <a href={siteSettings.author.websiteUrl} target="_blank" rel="noreferrer">
+          {siteSettings.author.name}
         </a>
       </div>
     </>
