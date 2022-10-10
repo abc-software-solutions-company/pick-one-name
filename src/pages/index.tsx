@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import React, {ChangeEvent, ChangeEventHandler, KeyboardEvent, useEffect, useState} from 'react';
 
-import Seo from '@/components/common/seo/seo';
 import LuckyWheel from '@/components/lucky-wheel';
 import {Media} from '@/components/media';
 import ConfirmBox from '@/components/modal-confirm';
@@ -109,10 +108,6 @@ export default function PageHome() {
 
   return (
     <div className={styles['page-index']}>
-      <Seo
-        description="A free wheel spinner for a random picker, free random spinner wheels to help make decisions. Enter choices and spin the wheel to decide a random result."
-        images={[{url: '/luckydraw.jpg', width: 1200, height: 630, alt: 'Pick One Name'}]}
-      />
       <div className="container">
         <div className="page-index-inner">
           <div className="flex w-full py-5">
