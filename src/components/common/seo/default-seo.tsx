@@ -12,7 +12,7 @@ const DefaultSeo: React.FC = () => {
         type: 'website',
         locale: 'en_IE',
         title: siteSettings.name,
-        site_name: siteSettings.url?.replace('https://', ''),
+        site_name: siteSettings.name,
         description: siteSettings.description,
         images: [siteSettings.cover]
       }}
