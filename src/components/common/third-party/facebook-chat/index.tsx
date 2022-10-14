@@ -1,6 +1,6 @@
 import Script from 'next/script';
 
-const FacebookMessenger = () => {
+const FacebookChat = () => {
   const MESSENGER_PAGE_ID = process.env.NEXT_PUBLIC_MESSENGER_PAGE_ID;
 
   return (
@@ -32,4 +32,4 @@ const FacebookMessenger = () => {
   );
 };
 
-export default FacebookMessenger;
+export default FacebookChat;
