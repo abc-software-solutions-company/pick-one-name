@@ -9,6 +9,8 @@ import React from 'react';
 
 import DefaultSeo from '@/components/common/seo/default-seo';
 import ServiceWorker from '@/components/common/service-worker';
+import {GameProvider} from '@/states/game';
+import {GlobalProvider} from '@/states/global';
 
 const Noop: React.FC = ({children}: React.PropsWithChildren<any>) => <>{children}</>;
 
@@ -21,9 +23,13 @@ const CustomApp = ({Component, pageProps}: AppProps) => {
     <>
       <ServiceWorker />
       <DefaultSeo />
-      <Layout pageProps={pageProps}>
-        <Component {...pageProps} key={router.route} />
-      </Layout>
+      <GlobalProvider>
+        <GameProvider>
+          <Layout pageProps={pageProps}>
+            <Component {...pageProps} key={router.route} />
+          </Layout>
+        </GameProvider>
+      </GlobalProvider>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React, {ChangeEvent, ChangeEventHandler, KeyboardEvent, useEffect, useState} from 'react';
 
+import GameSettings from '@/components/game-settings';
 import LuckyWheel from '@/components/lucky-wheel';
 import {Media} from '@/components/media';
 import ConfirmBox from '@/components/modal-confirm';
@@ -12,6 +13,7 @@ import IconButton from '@/core-ui/icon-button';
 import Input from '@/core-ui/input';
 import useToast from '@/core-ui/toast';
 import LayoutDefault from '@/layouts/default';
+import {useGameState} from '@/states/game';
 import Database from '@/utils/database';
 import CollectionPlayer, {IPlayer} from '@/utils/players';
 
@@ -28,6 +30,8 @@ export default function PageHome() {
   const [newPlayer, setNewPlayer] = useState('');
   const [players, setPlayers] = useState<IPlayer[]>([]);
   const [winner, setWinner] = useState<IPlayer>();
+
+  const gameState = useGameState();
 
   const toast = useToast();
 
@@ -109,14 +113,17 @@ export default function PageHome() {
   return (
     <div className={styles['page-index']}>
       <div className="container">
-        <div className="page-index-inner">
+        <div className="page-index-inner relative">
           <div className="flex w-full py-5">
             <div className="flex flex-grow flex-col items-center overflow-hidden">
+              <GameSettings />
               <LuckyWheel
                 className="m-auto"
                 players={players.filter(x => x.visible)}
                 winner={winner}
                 onComplete={onPlayerWin}
+                bgMusic={gameState.isMusicOn}
+                soundEffect={gameState.isSoundEffectOn}
                 trigger={
                   players.length > 1 && <Button text={isRunning ? '' : 'Start'} onClick={run} disabled={isRunning} />
                 }

@@ -17,12 +17,15 @@ interface IWheelOfFortuneProps {
   size?: number;
   colors?: string[];
   trigger?: ReactNode;
+  bgMusic?: boolean;
+  soundEffect?: boolean;
   onComplete?: () => void;
 }
 
 let firstRun = true;
 let bgSound: HTMLAudioElement;
 let winSound: HTMLAudioElement;
+let tickSound: HTMLAudioElement;
 
 const LuckyWheel: FC<IWheelOfFortuneProps> = ({
   className,
@@ -30,6 +33,8 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
   winner,
   trigger,
   colors = constant.colors,
+  bgMusic = false,
+  soundEffect = false,
   onComplete
 }) => {
   const wheelRef = useRef<HTMLDivElement>(null);
@@ -42,6 +47,7 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
   useEffect(() => {
     bgSound = new Audio('/music.mp3');
     winSound = new Audio('/win.mp3');
+    tickSound = new Audio('/tick.mp3');
   }, []);
 
   useEffect(() => {
@@ -56,7 +62,7 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
         const stopPoint = segmentCenter - spead;
         const stopAt = rangeInt(-stopPoint, stopPoint);
         const currentRotation = gsap.getProperty(element, 'rotation') as number;
-        const rotateCount = 360 * 7;
+        const rotateCount = 360 * 8;
         const remainDegreeAfterSpin = rotateCount - currentRotation;
         const destination = firstRun ? 360 : currentRotation + remainDegreeAfterSpin + 360;
         const winnerDestination = rotateCount - winnerIndex * segmentSize - indicatorAngle - segmentCenter + stopAt;
@@ -64,8 +70,8 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
         const startDuration = {countdown: 0};
         const normalDuration = {countdown: 0};
         const endDuration = {countdown: 0};
-        const spinStart = gsap.to(element, {rotation: destination, duration: 2, ease: 'power2.in'});
-        const spinNormal = gsap.to(element, {rotation: 360 * 5, duration: 3, ease: 'none'});
+        const spinStart = gsap.to(element, {rotation: destination, duration: 1.8, ease: 'power2.in'});
+        const spinNormal = gsap.to(element, {rotation: 360 * 6, duration: 3, ease: 'none'});
         const spinEnd = gsap.to(element, {rotation: winnerDestination, duration: 10, ease: 'power2.out'});
         const timeline = gsap.timeline({paused: true});
         // Callbacks
@@ -74,9 +80,18 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
           gsap.set(startDuration, {countdown: 0});
           gsap.to(startDuration, {countdown: 100, duration: 2, ease: 'power4.in'});
 
-          gsap.set(bgSound, {volume: 0});
-          gsap.to(bgSound, {volume: 1, duration: 3});
-          bgSound.play();
+          // Background Music
+          if (bgMusic) {
+            gsap.set(bgSound, {volume: 0});
+            gsap.to(bgSound, {volume: 1, duration: 3});
+            bgSound.currentTime = 0;
+            bgSound.play();
+          }
+          // Sound Effect
+          if (soundEffect) {
+            tickSound.currentTime = 0;
+            tickSound.play();
+          }
         });
         spinStart.eventCallback('onComplete', function () {
           gsap.set(element, {clearProps: 'all'});
@@ -93,15 +108,9 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({
         spinEnd.eventCallback('onStart', function () {
           gsap.set(endDuration, {countdown: 0});
           gsap.to(endDuration, {countdown: 100, duration: 10, ease: 'power2.out'});
-
-          gsap.to(bgSound, {
-            volume: 0,
-            duration: 10,
-            onComplete: function () {
-              bgSound.pause();
-              bgSound.currentTime = 0;
-            }
-          });
+          if (bgMusic) {
+            gsap.to(bgSound, {volume: 0, duration: 10});
+          }
         });
         spinEnd.eventCallback('onComplete', function () {
           onComplete?.();

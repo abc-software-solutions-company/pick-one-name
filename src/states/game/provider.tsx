@@ -4,17 +4,17 @@ import {Context, DispatchContext} from './context';
 import reducer from './reducer';
 import initialState from './state';
 
-interface IProps {
+interface IGameProviderProps {
   children: ReactNode;
 }
 
-const Provider: FC<IProps> = ({children}) => {
+const Provider: FC<IGameProviderProps> = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <DispatchContext.Provider value={dispatch}>
-      <Context.Provider value={state}>{children}</Context.Provider>
-    </DispatchContext.Provider>
+    <Context.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
+    </Context.Provider>
   );
 };
 
