@@ -13,7 +13,6 @@
     "quicktype.quicktype",
     "christian-kohler.path-intellisense",
     "zobo.php-intellisense",
-    "kokororin.vscode-phpfmt",
     "esbenp.prettier-vscode",
     "ms-vscode-remote.remote-containers",
     "mrmlnc.vscode-scss",
