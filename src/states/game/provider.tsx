@@ -1,4 +1,5 @@
-import React, {FC, ReactNode, useReducer} from 'react';
+import React, {FC, ReactNode} from 'react';
+import {useImmerReducer} from 'use-immer';
 
 import {Context, DispatchContext} from './context';
 import reducer from './reducer';
@@ -8,8 +9,8 @@ interface IGameProviderProps {
   children: ReactNode;
 }
 
-const Provider: FC<IGameProviderProps> = ({children}) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+const GameProvider: FC<IGameProviderProps> = ({children}) => {
+  const [state, dispatch] = useImmerReducer(reducer, initialState);
 
   return (
     <Context.Provider value={state}>
@@ -18,4 +19,4 @@ const Provider: FC<IGameProviderProps> = ({children}) => {
   );
 };
 
-export default Provider;
+export default GameProvider;

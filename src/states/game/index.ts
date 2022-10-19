@@ -1,5 +1,6 @@
 import * as GameActions from './actions';
-import {useGameDispatch, useGameState} from './hooks';
+import {useGame, useGameDispatch, useGameState} from './hooks';
+import * as GameOperations from './operations';
 import GameProvider from './provider';
 
-export {GameActions, GameProvider, useGameDispatch, useGameState};
+export {GameActions, GameOperations, GameProvider, useGame, useGameDispatch, useGameState};

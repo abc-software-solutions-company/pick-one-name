@@ -1,29 +1,26 @@
-import classNames from 'classnames';
-import React, {ChangeEvent, ChangeEventHandler, KeyboardEvent, useEffect, useState} from 'react';
+import classnames from 'classnames';
+import React, {ChangeEventHandler, KeyboardEvent, useEffect, useState} from 'react';
 
 import GameSettings from '@/components/game-settings';
 import LuckyWheel from '@/components/lucky-wheel';
 import {Media} from '@/components/media';
 import ConfirmBox from '@/components/modal-confirm';
 import Congrats from '@/components/modal-congrats';
+import PlayerList from '@/components/player-list/list';
+import PlayerSuggest from '@/components/player-list/suggest';
+import PlayerToolbar from '@/components/player-list/toolbar';
 import Button from '@/core-ui/button';
 import Drawer from '@/core-ui/drawer';
 import Icon from '@/core-ui/icon';
-import IconButton from '@/core-ui/icon-button';
-import Input from '@/core-ui/input';
 import useToast from '@/core-ui/toast';
 import LayoutDefault from '@/layouts/default';
-import {useGameState} from '@/states/game';
-import Database from '@/utils/database';
-import CollectionPlayer, {IPlayer} from '@/utils/players';
+import {GameOperations, useGameDispatch, useGameState} from '@/states/game';
+import {GlobalActions, useGlobalDispatch, useGlobalState} from '@/states/global';
+import {IPlayer} from '@/utils/players';
 
 import styles from './index.module.scss';
 
-const db = new Database('lucky.db');
-const playerCollection = new CollectionPlayer(db);
-
 export default function PageHome() {
-  const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const [isOpenDeleteAll, setIsOpenDeleteAll] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [isWin, setIsWin] = useState(false);
@@ -31,13 +28,14 @@ export default function PageHome() {
   const [players, setPlayers] = useState<IPlayer[]>([]);
   const [winner, setWinner] = useState<IPlayer>();
 
-  const gameState = useGameState();
-
   const toast = useToast();
+  const globalState = useGlobalState();
+  const gameState = useGameState();
+  const globalDispatch = useGlobalDispatch();
+  const gameDispatch = useGameDispatch();
 
-  const getPlayers = () => {
-    const data = playerCollection.list();
-    setPlayers(data);
+  const getAllPlayers = () => {
+    GameOperations.getPlayers()(gameDispatch);
   };
 
   const addNewPlayer = (playerName: string) => {
@@ -45,46 +43,35 @@ export default function PageHome() {
     const names = playerName.split(',');
     const isMultiple = names.length > 0;
     if (isMultiple) {
-      names.map(name => playerCollection.create({name: name.trim(), visible: true}));
+      names.map(name => GameOperations.addPlayer({name: name.trim(), visible: true})(gameDispatch));
     } else {
-      playerCollection.create({name: playerName, visible: true});
+      GameOperations.addPlayer({name: playerName, visible: true})(gameDispatch);
     }
     setNewPlayer('');
-    getPlayers();
-  };
-
-  const updatePlayer = (player: IPlayer) => {
-    playerCollection.update(player);
-    getPlayers();
-  };
-
-  const deletePlayer = (player: IPlayer) => {
-    playerCollection.delete(player);
-    getPlayers();
+    getAllPlayers();
   };
 
   const deleteAllPlayer = () => {
     setIsOpenDeleteAll(false);
-    playerCollection.clear();
-    getPlayers();
+    GameOperations.deleteAllPlayers()(gameDispatch);
+    getAllPlayers();
   };
 
   const hideWinner = (player: IPlayer) => {
     if (!player) throw Error('Player not found');
     const newData = player;
     newData.visible = false;
-    playerCollection.update(player);
+    GameOperations.updatePlayer(player)(gameDispatch);
     setIsWin(false);
-    getPlayers();
+    getAllPlayers();
     toast.show({type: 'info', title: '', content: `Player "${player.name}" is now hidden.`});
   };
 
   const run = () => {
-    const visiblePlayers = players.filter(x => x.visible);
+    const visiblePlayers = gameState.players.filter(x => x.visible);
     const playerSelected = visiblePlayers[Math.floor(Math.random() * visiblePlayers.length)];
     setWinner(playerSelected);
     setIsRunning(true);
-    setIsOpenDrawer(false);
   };
 
   const onPlayerWin = () => {
@@ -95,20 +82,21 @@ export default function PageHome() {
   };
   const onConfirmDeleteAllPlayer = () => deleteAllPlayer();
   const onCancelDeleteAllPlayer = () => setIsOpenDeleteAll(false);
-  const onKeyDownNewPlayer = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.code === 'Enter') addNewPlayer(newPlayer);
-  };
-  const onNewPlayerChange: ChangeEventHandler<HTMLInputElement> = e => setNewPlayer(e.target.value);
-  const onPlayerChange = (e: ChangeEvent<HTMLInputElement>, data: IPlayer) => {
-    const newData = data;
-    newData.name = e.target.value;
-    updatePlayer(newData);
-  };
+  const onNewPlayerKeydown = (e: KeyboardEvent<HTMLInputElement>) => e.code === 'Enter' && addNewPlayer(newPlayer);
+  const onNewPlayerTextChange: ChangeEventHandler<HTMLInputElement> = e => setNewPlayer(e.target.value);
 
   useEffect(() => {
     import(/* webpackChunkName: "vendor.lottie-player" */ '@lottiefiles/lottie-player');
-    getPlayers();
   }, []);
+
+  useEffect(() => {
+    getAllPlayers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setPlayers(gameState.players);
+  }, [gameState.players]);
 
   return (
     <div className={styles['page-index']}>
@@ -120,10 +108,10 @@ export default function PageHome() {
               <LuckyWheel
                 className="m-auto"
                 players={players.filter(x => x.visible)}
+                bgMusic={gameState.isBackgroundMusicOn}
+                soundEffect={gameState.isSoundEffectOn}
                 winner={winner}
                 onComplete={onPlayerWin}
-                bgMusic={gameState.isMusicOn}
-                soundEffect={gameState.isSoundEffectOn}
                 trigger={
                   players.length > 1 && <Button text={isRunning ? '' : 'Start'} onClick={run} disabled={isRunning} />
                 }
@@ -132,80 +120,24 @@ export default function PageHome() {
             <Media greaterThan="md">
               <div className={styles['list-of-players']}>
                 <div className={styles.players}>
-                  <div className="toolbar">
-                    <Input
-                      onChange={onNewPlayerChange}
-                      value={newPlayer}
-                      spellCheck={false}
-                      placeholder="Enter name(s)"
-                      onKeyDown={onKeyDownNewPlayer}
-                      groupEnd={
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          text="Save"
-                          onClick={() => addNewPlayer(newPlayer)}
-                          disabled={!newPlayer}
-                        />
-                      }
-                    />
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      text="Delete All"
-                      disabled={players.length === 0 || isRunning}
-                      onClick={() => setIsOpenDeleteAll(true)}
-                    />
-                  </div>
-                  <div>
-                    <span className="mt-1 mb-2 block text-xs text-slate-400">
-                      Add multiple names using commas: &apos;John,Tony&apos;
-                    </span>
-                  </div>
-                  <div className="list">
-                    <div className="scrollbar">
-                      {players.length > 0 &&
-                        players.map((player, index) => {
-                          return (
-                            <div className={classNames('item', !player.visible && 'disabled')} key={index}>
-                              <Input
-                                className={'flex-grow'}
-                                value={player.name}
-                                onChange={e => onPlayerChange(e, player)}
-                                readOnly={isRunning}
-                              />
-                              {!player.visible && (
-                                <IconButton
-                                  name="ico-eye"
-                                  onClick={() => updatePlayer({...player, visible: true})}
-                                  disabled={isRunning}
-                                />
-                              )}
-                              {player.visible && (
-                                <IconButton
-                                  name="ico-eye-off"
-                                  onClick={() => updatePlayer({...player, visible: false})}
-                                  disabled={isRunning}
-                                />
-                              )}
-                              <IconButton
-                                name="ico-trash-2"
-                                onClick={() => deletePlayer(player)}
-                                disabled={isRunning}
-                              />
-                            </div>
-                          );
-                        })}
-                    </div>
-                  </div>
-                  <Button
+                  <PlayerToolbar
+                    value={newPlayer}
+                    disabled={players.length === 0 || isRunning}
+                    addPlayer={() => addNewPlayer(newPlayer)}
+                    deleteAllPlayer={() => setIsOpenDeleteAll(true)}
+                    onNewPlayerTextChange={onNewPlayerTextChange}
+                    onNewPlayerKeyDown={onNewPlayerKeydown}
+                  />
+                  <PlayerSuggest />
+                  <PlayerList players={players} disabled={isRunning} />
+                  {/* <Button
                     className="btn-start"
                     variant="contained"
                     color="primary"
                     text="Start"
                     onClick={run}
                     disabled={isRunning || players.filter(x => x.visible).length < 2}
-                  />
+                  /> */}
                 </div>
               </div>
             </Media>
@@ -227,80 +159,21 @@ export default function PageHome() {
           </div>
         </div>
       </div>
-      <Drawer anchor="right" open={isOpenDrawer} backdrop={true} onClose={() => setIsOpenDrawer(false)}>
+      <Drawer
+        anchor="right"
+        open={globalState.isOpenDrawer}
+        backdrop={true}
+        onClose={() => globalDispatch(GlobalActions.setDrawerOpen(false))}
+      >
         <Button
           className={styles['btn-show-players']}
           variant="contained"
           color="primary"
-          onClick={() => setIsOpenDrawer(!isOpenDrawer)}
+          onClick={() => globalDispatch(GlobalActions.setDrawerOpen(!globalState.isOpenDrawer))}
         >
           <Icon name="ico-user" size={28} />
         </Button>
-        <div className={classNames(styles.players, styles['in-drawer'])}>
-          <div className="toolbar">
-            <Input
-              onChange={onNewPlayerChange}
-              value={newPlayer}
-              spellCheck={false}
-              placeholder="Enter name(s)"
-              onKeyDown={onKeyDownNewPlayer}
-              groupEnd={
-                <Button
-                  variant="contained"
-                  color="primary"
-                  text="Save"
-                  onClick={() => addNewPlayer(newPlayer)}
-                  disabled={!newPlayer}
-                />
-              }
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={players.length === 0 || isRunning}
-              onClick={() => setIsOpenDeleteAll(true)}
-            >
-              <Icon name="ico-trash-2" />
-            </Button>
-          </div>
-          <div>
-            <span className="mt-1 mb-2 block text-xs text-slate-400">
-              Add multiple names using commas: &apos;John,Tony&apos;
-            </span>
-          </div>
-          <div className="list">
-            <div className="scrollbar">
-              {players.length > 0 &&
-                players.map((player, index) => {
-                  return (
-                    <div className={classNames('item', !player.visible && 'disabled')} key={index}>
-                      <Input
-                        className={'flex-grow'}
-                        value={player.name}
-                        onChange={e => onPlayerChange(e, player)}
-                        readOnly={isRunning}
-                      />
-                      {!player.visible && (
-                        <IconButton
-                          name="ico-eye"
-                          onClick={() => updatePlayer({...player, visible: true})}
-                          disabled={isRunning}
-                        />
-                      )}
-                      {player.visible && (
-                        <IconButton
-                          name="ico-eye-off"
-                          onClick={() => updatePlayer({...player, visible: false})}
-                          disabled={isRunning}
-                        />
-                      )}
-                      <IconButton name="ico-trash-2" onClick={() => deletePlayer(player)} disabled={isRunning} />
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
-        </div>
+        <div className={classnames(styles.players, styles['in-drawer'])}></div>
       </Drawer>
     </div>
   );

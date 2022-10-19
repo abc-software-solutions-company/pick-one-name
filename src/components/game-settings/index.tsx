@@ -14,14 +14,16 @@ const GameSettings: FC<IProps> = ({className}) => {
   const gameState = useGameState();
   const gameDispatch = useGameDispatch();
 
-  const onMusicChange = () => gameDispatch(GameActions.setMusicOn(!gameState.isMusicOn));
-  const onSoundEffectChange = () => gameDispatch(GameActions.setSoundEffectOn(!gameState.isSoundEffectOn));
+  const onMusicChange = () =>
+    gameDispatch(GameActions.setMusicOn({isBackgroundMusicOn: !gameState.isBackgroundMusicOn}));
+  const onSoundEffectChange = () =>
+    gameDispatch(GameActions.setSoundEffectOn({isSoundEffectOn: !gameState.isSoundEffectOn}));
 
   return (
     <div className={classnames(styles['game-settings'], className)}>
       <div className="flex items-center gap-x-2">
         <span>Music</span>
-        <Checkbox checked={gameState.isMusicOn} onChange={onMusicChange} />
+        <Checkbox checked={gameState.isBackgroundMusicOn} onChange={onMusicChange} />
       </div>
       <div className="flex items-center gap-x-2">
         <span>Effect</span>

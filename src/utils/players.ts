@@ -43,6 +43,8 @@ export default class CollectionPlayer implements ICollectionPlayer {
 
     this.db.players.update(player);
     this.db.save();
+
+    return player;
   }
 
   delete(data: IPlayer) {
@@ -52,5 +54,7 @@ export default class CollectionPlayer implements ICollectionPlayer {
 
     this.db.players.remove(player);
     this.db.save();
+
+    return player[0];
   }
 }

@@ -1,5 +1,5 @@
 .drawer-container {
-  @apply pointer-events-none ml-auto h-full max-w-[300px];
+  @apply pointer-events-none ml-auto h-full w-full max-w-[300px];
   @apply fixed z-drawer;
   @apply transition-all duration-300;
   &.right {

@@ -1,0 +1,7 @@
+.wheel-decide__indicator {
+  @apply absolute top-[18px] -left-[11px] md:top-[62px] md:left-[10px];
+  @apply -rotate-[55deg] scale-75 md:scale-100;
+  path {
+    filter: drop-shadow(0 0 1px rgba(56, 56, 56, 0.5));
+  }
+}
