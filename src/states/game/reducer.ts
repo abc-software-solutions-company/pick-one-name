@@ -3,17 +3,64 @@ import {IAction, IState, Types} from './types';
 export default function reducer(state: IState, action: IAction): IState {
   switch (action.type) {
     // ======================================================================================================
-    // TOGGLE BACKGROUND MUSIC
+    // TOOGLE MODAL DELETE ALL PLAYERS
     // ======================================================================================================
-    case Types.TOGGLE_BACKGROUND_MUSIC:
-      state.isBackgroundMusicOn = action.payload.isBackgroundMusicOn;
+    case Types.TOOGLE_MODAL_DELETE_ALL_PLAYERS:
+      state.isShowDeleteAllPlayer = action.payload.isShowDeleteAllPlayer;
       return state;
     // ======================================================================================================
-    // TOOGLE SOUND EFFECT
+    // TOGGLE SPINNING
     // ======================================================================================================
-    case Types.TOOGLE_SOUND_EFFECT:
-      state.isSoundEffectOn = action.payload.isSoundEffectOn;
+    case Types.TOGGLE_SPINNING:
+      state.isSpinning = action.payload.isSpinning;
       return state;
+    // ======================================================================================================
+    // TOGGLE WINNING
+    // ======================================================================================================
+    case Types.TOGGLE_WINNING:
+      state.isShowWinning = action.payload.isShowWinning;
+      return state;
+    // ======================================================================================================
+    // SET RUN TIME
+    // ======================================================================================================
+    case Types.SET_RUN_TIME:
+      state.runAt = action.payload.runAt;
+      return state;
+    // ======================================================================================================
+    // SET WINNER
+    // ======================================================================================================
+    case Types.SET_WINNER:
+      state.winner = action.payload.winner;
+      return state;
+    // ======================================================================================================
+    // GET SETTINGS
+    // ======================================================================================================
+    case Types.GET_SETTINGS_REQUEST:
+      state.settings.isFetching = true;
+      return state;
+    case Types.GET_SETTINGS_SUCCESS:
+      state.settings.isFetching = false;
+      state.settings.isBackgroundMusicOn = action.payload.isBackgroundMusicOn!;
+      state.settings.isSoundEffectOn = action.payload.isSoundEffectOn!;
+      return state;
+    case Types.GET_SETTINGS_FAILURE:
+      state.settings.isFetching = false;
+      return state;
+    // ======================================================================================================
+    // SAVE SETTINGS
+    // ======================================================================================================
+    case Types.SAVE_SETTINGS_REQUEST:
+      state.settings.isFetching = true;
+      return state;
+    case Types.SAVE_SETTINGS_SUCCESS:
+      state.settings.isFetching = false;
+      state.settings.isBackgroundMusicOn = action.payload.isBackgroundMusicOn!;
+      state.settings.isSoundEffectOn = action.payload.isSoundEffectOn!;
+      return state;
+    case Types.SAVE_SETTINGS_FAILURE:
+      state.settings.isFetching = false;
+      return state;
+
     // ======================================================================================================
     // GET ALL PLAYERS
     // ======================================================================================================
@@ -22,6 +69,7 @@ export default function reducer(state: IState, action: IAction): IState {
       return state;
     case Types.GET_PLAYERS_SUCCESS:
       state.playerFetching = false;
+      state.players = action.payload;
       return state;
     case Types.GET_PLAYERS_FAILURE:
       state.playerFetching = false;

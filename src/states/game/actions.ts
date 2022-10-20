@@ -1,97 +1,145 @@
+import {IPlayer} from '@/localdb/models/player.model';
+import {ISetting} from '@/localdb/models/setting.model';
+
 import {
-  IActionAddPlayerFailure,
-  IActionAddPlayerRequest,
-  IActionAddPlayerSuccess,
-  IActionBackgroundMusic,
-  IActionBackgroundMusicPayload,
-  IActionDeleteAllPlayersFailure,
-  IActionDeleteAllPlayersRequest,
-  IActionDeleteAllPlayersSuccess,
-  IActionDeletePlayerFailure,
-  IActionDeletePlayerRequest,
-  IActionDeletePlayerSuccess,
-  IActionGetPlayersFailure,
-  IActionGetPlayersRequest,
-  IActionGetPlayersSuccess,
-  IActionToggleSoundEffect,
-  IActionToggleSoundEffectPayload,
-  IActionUpdatePlayerFailure,
-  IActionUpdatePlayerRequest,
-  IActionUpdatePlayerSuccess,
-  Types
+  AddPlayerFailure,
+  AddPlayerRequest,
+  AddPlayerSuccess,
+  DeleteAllPlayersFailure,
+  DeleteAllPlayersRequest,
+  DeleteAllPlayersSuccess,
+  DeletePlayerFailure,
+  DeletePlayerRequest,
+  DeletePlayerSuccess,
+  GetPlayersFailure,
+  GetPlayersRequest,
+  GetPlayersSuccess,
+  GetSettingsFailure,
+  GetSettingsRequest,
+  GetSettingsSuccess,
+  SaveSettingsFailure,
+  SaveSettingsRequest,
+  SaveSettingsSuccess,
+  SetRunTime,
+  SetWinner,
+  ToggleDeleteAllPlayer,
+  ToggleSpinning,
+  ToggleWinning,
+  Types,
+  UpdatePlayerFailure,
+  UpdatePlayerRequest,
+  UpdatePlayerSuccess
 } from './types';
 // ======================================================================================================
-// TOGGLE BACKGROUND MUSIC
+// SET RUN TIME
 // ======================================================================================================
-export const setMusicOn = (payload: IActionBackgroundMusicPayload): IActionBackgroundMusic => {
-  return {type: Types.TOGGLE_BACKGROUND_MUSIC, payload};
+export const setRunTime = (payload: any): SetRunTime => {
+  return {type: Types.SET_RUN_TIME, payload};
+};
+// SET WINNER
+// ======================================================================================================
+export const setWinner = (payload: any): SetWinner => {
+  return {type: Types.SET_WINNER, payload};
 };
 // ======================================================================================================
-// TOOGLE SOUND EFFECT
+// TOOGLE SPINNING
 // ======================================================================================================
-export const setSoundEffectOn = (payload: IActionToggleSoundEffectPayload): IActionToggleSoundEffect => {
-  return {type: Types.TOOGLE_SOUND_EFFECT, payload};
+export const toggleSpining = (payload: any): ToggleSpinning => {
+  return {type: Types.TOGGLE_SPINNING, payload};
+};
+// ======================================================================================================
+// TOOGLE SPINNING
+// ======================================================================================================
+export const toggleWinning = (payload: any): ToggleWinning => {
+  return {type: Types.TOGGLE_WINNING, payload};
+};
+// ======================================================================================================
+// TOOGLE MODAL DELETE ALL PLAYERS
+// ======================================================================================================
+export const setShowDeleteAllPlayer = (payload: any): ToggleDeleteAllPlayer => {
+  return {type: Types.TOOGLE_MODAL_DELETE_ALL_PLAYERS, payload};
+};
+// ======================================================================================================
+// GET SETTINGS
+// ======================================================================================================
+export const getSettingsRequest = (): GetSettingsRequest => {
+  return {type: Types.GET_SETTINGS_REQUEST};
+};
+export const getSettingsSuccess = (payload: ISetting): GetSettingsSuccess => {
+  return {type: Types.GET_SETTINGS_SUCCESS, payload};
+};
+export const getSettingsFailure = (payload: any): GetSettingsFailure => {
+  return {type: Types.GET_SETTINGS_FAILURE, payload};
+};
+// ======================================================================================================
+// SAVE SETTINGS
+// ======================================================================================================
+export const saveSettingsRequest = (): SaveSettingsRequest => {
+  return {type: Types.SAVE_SETTINGS_REQUEST};
+};
+export const saveSettingsSuccess = (payload: ISetting): SaveSettingsSuccess => {
+  return {type: Types.SAVE_SETTINGS_SUCCESS, payload};
+};
+export const saveSettingsFailure = (payload: any): SaveSettingsFailure => {
+  return {type: Types.SAVE_SETTINGS_FAILURE, payload};
 };
 // ======================================================================================================
 // GET ALL PLAYERS
 // ======================================================================================================
-export const getAllPlayersRequest = (): IActionGetPlayersRequest => ({
-  type: Types.GET_PLAYERS_REQUEST
-});
-export const getAllPlayersSuccess = (payload: any): IActionGetPlayersSuccess => ({
-  type: Types.GET_PLAYERS_SUCCESS,
-  payload
-});
-export const getAllPlayersFailure = (payload: any): IActionGetPlayersFailure => ({
-  type: Types.GET_PLAYERS_FAILURE,
-  payload
-});
+export const getAllPlayersRequest = (): GetPlayersRequest => {
+  return {type: Types.GET_PLAYERS_REQUEST};
+};
+export const getAllPlayersSuccess = (payload: IPlayer[]): GetPlayersSuccess => {
+  return {type: Types.GET_PLAYERS_SUCCESS, payload};
+};
+export const getAllPlayersFailure = (payload: any): GetPlayersFailure => {
+  return {type: Types.GET_PLAYERS_FAILURE, payload};
+};
 // ======================================================================================================
 // ADD PLAYER
 // ======================================================================================================
-export const addPlayerRequest = (payload: any): IActionAddPlayerRequest => ({type: Types.ADD_PLAYER_REQUEST, payload});
-export const addPlayerSuccess = (payload: any): IActionAddPlayerSuccess => ({type: Types.ADD_PLAYER_SUCCESS, payload});
-export const addPlayerFailure = (payload: any): IActionAddPlayerFailure => ({type: Types.ADD_PLAYER_FAILURE, payload});
+export const addPlayerRequest = (payload: any): AddPlayerRequest => {
+  return {type: Types.ADD_PLAYER_REQUEST, payload};
+};
+export const addPlayerSuccess = (payload: any): AddPlayerSuccess => {
+  return {type: Types.ADD_PLAYER_SUCCESS, payload};
+};
+export const addPlayerFailure = (payload: any): AddPlayerFailure => {
+  return {type: Types.ADD_PLAYER_FAILURE, payload};
+};
 // ======================================================================================================
 // UPDATE PLAYER
 // ======================================================================================================
-export const updatePlayerRequest = (payload: any): IActionUpdatePlayerRequest => ({
-  type: Types.UPDATE_PLAYER_REQUEST,
-  payload
-});
-export const updatePlayerSuccess = (payload: any): IActionUpdatePlayerSuccess => ({
-  type: Types.UPDATE_PLAYER_SUCCESS,
-  payload
-});
-export const updatePlayerFailure = (payload: any): IActionUpdatePlayerFailure => ({
-  type: Types.UPDATE_PLAYER_FAILURE,
-  payload
-});
+export const updatePlayerRequest = (payload: any): UpdatePlayerRequest => {
+  return {type: Types.UPDATE_PLAYER_REQUEST, payload};
+};
+export const updatePlayerSuccess = (payload: any): UpdatePlayerSuccess => {
+  return {type: Types.UPDATE_PLAYER_SUCCESS, payload};
+};
+export const updatePlayerFailure = (payload: any): UpdatePlayerFailure => {
+  return {type: Types.UPDATE_PLAYER_FAILURE, payload};
+};
 // ======================================================================================================
 // DELETE PLAYER
 // ======================================================================================================
-export const deletePlayerRequest = (payload: any): IActionDeletePlayerRequest => ({
-  type: Types.DELETE_PLAYER_REQUEST,
-  payload
-});
-export const deletePlayerSuccess = (payload: any): IActionDeletePlayerSuccess => ({
-  type: Types.DELETE_PLAYER_SUCCESS,
-  payload
-});
-export const deletePlayerFailure = (payload: any): IActionDeletePlayerFailure => ({
-  type: Types.DELETE_PLAYER_FAILURE,
-  payload
-});
+export const deletePlayerRequest = (payload: any): DeletePlayerRequest => {
+  return {type: Types.DELETE_PLAYER_REQUEST, payload};
+};
+export const deletePlayerSuccess = (payload: any): DeletePlayerSuccess => {
+  return {type: Types.DELETE_PLAYER_SUCCESS, payload};
+};
+export const deletePlayerFailure = (payload: any): DeletePlayerFailure => {
+  return {type: Types.DELETE_PLAYER_FAILURE, payload};
+};
 // ======================================================================================================
 // DELETE ALL PLAYERS
 // ======================================================================================================
-export const deleteAllPlayersRequest = (): IActionDeleteAllPlayersRequest => ({
-  type: Types.DELETE_ALL_PLAYERS_REQUEST
-});
-export const deleteAllPlayersSuccess = (): IActionDeleteAllPlayersSuccess => ({
-  type: Types.DELETE_ALL_PLAYERS_SUCCESS
-});
-export const deleteAllPlayersFailure = (payload: any): IActionDeleteAllPlayersFailure => ({
-  type: Types.DELETE_ALL_PLAYERS_FAILURE,
-  payload
-});
+export const deleteAllPlayersRequest = (): DeleteAllPlayersRequest => {
+  return {type: Types.DELETE_ALL_PLAYERS_REQUEST};
+};
+export const deleteAllPlayersSuccess = (): DeleteAllPlayersSuccess => {
+  return {type: Types.DELETE_ALL_PLAYERS_SUCCESS};
+};
+export const deleteAllPlayersFailure = (payload: any): DeleteAllPlayersFailure => {
+  return {type: Types.DELETE_ALL_PLAYERS_FAILURE, payload};
+};

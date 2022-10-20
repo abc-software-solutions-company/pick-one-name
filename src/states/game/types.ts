@@ -1,8 +1,21 @@
-import {IPlayer} from '@/utils/players';
+import {IPlayer} from '@/localdb/models/player.model';
+import {ISetting} from '@/localdb/models/setting.model';
 
 export enum Types {
-  TOGGLE_BACKGROUND_MUSIC = 'game/TOGGLE_BACKGROUND_MUSIC',
-  TOOGLE_SOUND_EFFECT = 'game/TOOGLE_SOUND_EFFECT',
+  TOOGLE_MODAL_DELETE_ALL_PLAYERS = 'game/TOOGLE_MODAL_DELETE_ALL_PLAYERS',
+  TOGGLE_SPINNING = 'game/TOGGLE_SPINNING',
+  TOGGLE_WINNING = 'game/TOGGLE_WINNING',
+
+  SET_RUN_TIME = 'game/SET_RUN_TIME',
+  SET_WINNER = 'game/SET_WINNER',
+
+  GET_SETTINGS_REQUEST = 'game/GET_SETTINGS_REQUEST',
+  GET_SETTINGS_SUCCESS = 'game/GET_SETTINGS_SUCCESS',
+  GET_SETTINGS_FAILURE = 'game/GET_SETTINGS_FAILURE',
+
+  SAVE_SETTINGS_REQUEST = 'game/SAVE_SETTINGS_REQUEST',
+  SAVE_SETTINGS_SUCCESS = 'game/SAVE_SETTINGS_SUCCESS',
+  SAVE_SETTINGS_FAILURE = 'game/SAVE_SETTINGS_FAILURE',
 
   GET_PLAYERS_REQUEST = 'game/GET_PLAYERS_REQUEST',
   GET_PLAYERS_SUCCESS = 'game/GET_PLAYERS_SUCCESS',
@@ -26,106 +39,153 @@ export enum Types {
 }
 
 export interface IState {
-  isBackgroundMusicOn: boolean;
-  isSoundEffectOn: boolean;
-  isWheelSpinning: boolean;
+  runAt: Date | null;
+  isSpinning: boolean;
+  isShowWinning: boolean;
+  isShowDeleteAllPlayer: boolean;
+  winner: IPlayer | null;
   playerFetching: boolean;
   playerError: string | null;
   players: IPlayer[];
+  settings: {
+    isFetching: boolean;
+    isBackgroundMusicOn: boolean;
+    isSoundEffectOn: boolean;
+  };
+}
+// ======================================================================================================
+// SET RUN TIME
+// ======================================================================================================
+export type SetRunTime = {
+  type: typeof Types.SET_RUN_TIME;
+  payload: {runAt: Date | null};
+};
+// ======================================================================================================
+// SET WINNER
+// ======================================================================================================
+export type SetWinner = {
+  type: typeof Types.SET_WINNER;
+  payload: {winner: IPlayer | null};
+};
+// ======================================================================================================
+// TOOGLE MODAL DELETE ALL PLAYERS
+// ======================================================================================================
+export interface ToggleDeleteAllPlayer {
+  type: typeof Types.TOOGLE_MODAL_DELETE_ALL_PLAYERS;
+  payload: {isShowDeleteAllPlayer: boolean};
+}
+// ======================================================================================================
+// SET SPINNING
+// ======================================================================================================
+export interface ToggleSpinning {
+  type: typeof Types.TOGGLE_SPINNING;
+  payload: {isSpinning: boolean};
+}
+// ======================================================================================================
+// SET WINNING
+// ======================================================================================================
+export interface ToggleWinning {
+  type: typeof Types.TOGGLE_WINNING;
+  payload: {isShowWinning: boolean};
 }
 
 // ======================================================================================================
-// TOGGLE BACKGROUND MUSIC
+// GET SETTINGS
 // ======================================================================================================
-export interface IActionBackgroundMusic {
-  type: typeof Types.TOGGLE_BACKGROUND_MUSIC;
-  payload: IActionBackgroundMusicPayload;
+export interface GetSettingsRequest {
+  type: typeof Types.GET_SETTINGS_REQUEST;
 }
-export interface IActionBackgroundMusicPayload {
-  isBackgroundMusicOn: boolean;
+export interface GetSettingsSuccess {
+  type: typeof Types.GET_SETTINGS_SUCCESS;
+  payload: ISetting;
+}
+export interface GetSettingsFailure {
+  type: typeof Types.GET_SETTINGS_FAILURE;
+  payload: {message: string};
 }
 // ======================================================================================================
-// TOOGLE SOUND EFFECT
+// SAVE SETTINGS
 // ======================================================================================================
-export interface IActionToggleSoundEffect {
-  type: typeof Types.TOOGLE_SOUND_EFFECT;
-  payload: IActionToggleSoundEffectPayload;
+export interface SaveSettingsRequest {
+  type: typeof Types.SAVE_SETTINGS_REQUEST;
 }
-export interface IActionToggleSoundEffectPayload {
-  isSoundEffectOn: boolean;
+export interface SaveSettingsSuccess {
+  type: typeof Types.SAVE_SETTINGS_SUCCESS;
+  payload: ISetting;
+}
+export interface SaveSettingsFailure {
+  type: typeof Types.SAVE_SETTINGS_FAILURE;
+  payload: Error;
 }
 // ======================================================================================================
 // GET ALL PLAYERS
 // ======================================================================================================
-export interface IActionGetPlayersRequest {
+export interface GetPlayersRequest {
   type: typeof Types.GET_PLAYERS_REQUEST;
 }
-export interface IActionGetPlayersSuccess {
+export interface GetPlayersSuccess {
   type: typeof Types.GET_PLAYERS_SUCCESS;
-  payload: IActionGetPlayersSuccessPayload;
+  payload: IPlayer[];
 }
-export interface IActionGetPlayersSuccessPayload {
-  payload: {players: IPlayer[]};
-}
-export interface IActionGetPlayersFailure {
+export interface GetPlayersFailure {
   type: typeof Types.GET_PLAYERS_FAILURE;
-  payload: {player: IPlayer};
+  payload: {message: string};
 }
 // ======================================================================================================
 // ADD PLAYER
 // ======================================================================================================
-export interface IActionAddPlayerRequest {
+export interface AddPlayerRequest {
   type: typeof Types.ADD_PLAYER_REQUEST;
   payload: {player: IPlayer};
 }
-export interface IActionAddPlayerSuccess {
+export interface AddPlayerSuccess {
   type: typeof Types.ADD_PLAYER_SUCCESS;
   payload: IPlayer;
 }
-export interface IActionAddPlayerFailure {
+export interface AddPlayerFailure {
   type: typeof Types.ADD_PLAYER_FAILURE;
   payload: {player: IPlayer};
 }
 // ======================================================================================================
 // UPDATE PLAYER
 // ======================================================================================================
-export interface IActionUpdatePlayerRequest {
+export interface UpdatePlayerRequest {
   type: typeof Types.UPDATE_PLAYER_REQUEST;
   payload: {player: IPlayer};
 }
-export interface IActionUpdatePlayerSuccess {
+export interface UpdatePlayerSuccess {
   type: typeof Types.UPDATE_PLAYER_SUCCESS;
   payload: IPlayer;
 }
-export interface IActionUpdatePlayerFailure {
+export interface UpdatePlayerFailure {
   type: typeof Types.UPDATE_PLAYER_FAILURE;
   payload: {player: IPlayer};
 }
 // ======================================================================================================
 // DELETE PLAYER
 // ======================================================================================================
-export interface IActionDeletePlayerRequest {
+export interface DeletePlayerRequest {
   type: typeof Types.DELETE_PLAYER_REQUEST;
   payload: {player: IPlayer};
 }
-export interface IActionDeletePlayerSuccess {
+export interface DeletePlayerSuccess {
   type: typeof Types.DELETE_PLAYER_SUCCESS;
   payload: IPlayer;
 }
-export interface IActionDeletePlayerFailure {
+export interface DeletePlayerFailure {
   type: typeof Types.DELETE_PLAYER_FAILURE;
   payload: {player: IPlayer};
 }
 // ======================================================================================================
 // DELETE ALL PLAYERS
 // ======================================================================================================
-export interface IActionDeleteAllPlayersRequest {
+export interface DeleteAllPlayersRequest {
   type: typeof Types.DELETE_ALL_PLAYERS_REQUEST;
 }
-export interface IActionDeleteAllPlayersSuccess {
+export interface DeleteAllPlayersSuccess {
   type: typeof Types.DELETE_ALL_PLAYERS_SUCCESS;
 }
-export interface IActionDeleteAllPlayersFailure {
+export interface DeleteAllPlayersFailure {
   type: typeof Types.DELETE_ALL_PLAYERS_FAILURE;
   payload: {player: IPlayer};
 }
@@ -133,25 +193,36 @@ export interface IActionDeleteAllPlayersFailure {
 // COMBINED ACTIONS
 // ======================================================================================================
 export type IAction =
-  | IActionBackgroundMusic
-  | IActionToggleSoundEffect
+  | SetRunTime
+  | SetWinner
+  | ToggleDeleteAllPlayer
+  | ToggleSpinning
+  | ToggleWinning
+  // GET SETTINGS
+  | GetSettingsRequest
+  | GetSettingsSuccess
+  | GetSettingsFailure
+  // SAVE SETTINGS
+  | SaveSettingsRequest
+  | SaveSettingsSuccess
+  | SaveSettingsFailure
   // GET ALL PLAYERS
-  | IActionGetPlayersRequest
-  | IActionGetPlayersSuccess
-  | IActionGetPlayersFailure
+  | GetPlayersRequest
+  | GetPlayersSuccess
+  | GetPlayersFailure
   // ADD PLAYER
-  | IActionAddPlayerRequest
-  | IActionAddPlayerSuccess
-  | IActionAddPlayerFailure
+  | AddPlayerRequest
+  | AddPlayerSuccess
+  | AddPlayerFailure
   // UPDATE PLAYER
-  | IActionUpdatePlayerRequest
-  | IActionUpdatePlayerSuccess
-  | IActionUpdatePlayerFailure
+  | UpdatePlayerRequest
+  | UpdatePlayerSuccess
+  | UpdatePlayerFailure
   // DELETE PLAYER
-  | IActionDeletePlayerRequest
-  | IActionDeletePlayerSuccess
-  | IActionDeletePlayerFailure
+  | DeletePlayerRequest
+  | DeletePlayerSuccess
+  | DeletePlayerFailure
   // DELETE ALL PLAYERS
-  | IActionDeleteAllPlayersRequest
-  | IActionDeleteAllPlayersSuccess
-  | IActionDeleteAllPlayersFailure;
+  | DeleteAllPlayersRequest
+  | DeleteAllPlayersSuccess
+  | DeleteAllPlayersFailure;

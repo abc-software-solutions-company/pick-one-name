@@ -6,10 +6,10 @@ import Input from '@/core-ui/input';
 
 interface IPlayerToolbarProps {
   className?: string;
-  value: string;
-  disabled: boolean;
+  value?: string;
+  disabled?: boolean;
   addPlayer: () => void;
-  deleteAllPlayer: () => void;
+  deleteAllPlayers: () => void;
   onNewPlayerTextChange: ChangeEventHandler<HTMLInputElement>;
   onNewPlayerKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
 }
@@ -17,9 +17,9 @@ interface IPlayerToolbarProps {
 const PlayerToolbar: FC<IPlayerToolbarProps> = ({
   className,
   value,
-  disabled,
-  addPlayer,
-  deleteAllPlayer,
+  disabled = false,
+  // addPlayer,
+  deleteAllPlayers,
   onNewPlayerKeyDown,
   onNewPlayerTextChange
 }) => {
@@ -32,9 +32,9 @@ const PlayerToolbar: FC<IPlayerToolbarProps> = ({
           placeholder="Enter name(s)"
           onKeyDown={onNewPlayerKeyDown}
           onChange={onNewPlayerTextChange}
-          groupEnd={<Button variant="contained" color="primary" text="Save" onClick={addPlayer} disabled={!value} />}
+          // groupEnd={<Button variant="contained" color="primary" text="Save" onClick={addPlayer} />}
         />
-        <Button variant="contained" color="primary" text="Delete All" disabled={disabled} onClick={deleteAllPlayer} />
+        <Button variant="contained" color="primary" text="Delete All" disabled={disabled} onClick={deleteAllPlayers} />
       </div>
     </div>
   );

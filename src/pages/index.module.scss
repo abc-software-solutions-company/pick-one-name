@@ -7,9 +7,6 @@
     @apply flex h-full lg:items-center;
   }
 }
-.list-of-players :global {
-  @apply ml-8 h-full;
-}
 .players :global {
   @apply flex h-full w-full max-w-[412px] flex-col;
   .toolbar {

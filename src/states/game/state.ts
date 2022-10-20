@@ -1,18 +1,19 @@
-import Database from '@/utils/database';
-import CollectionPlayer from '@/utils/players';
-
 import {IState} from './types';
 
-const db = new Database('lucky.db');
-const playerCollection = new CollectionPlayer(db);
-
 const initialState: IState = {
-  isBackgroundMusicOn: true,
-  isSoundEffectOn: false,
-  isWheelSpinning: false,
+  runAt: null,
+  isSpinning: false,
+  isShowWinning: false,
+  isShowDeleteAllPlayer: false,
+  winner: null,
   playerFetching: false,
   playerError: null,
-  players: playerCollection.list()
+  players: [],
+  settings: {
+    isFetching: false,
+    isBackgroundMusicOn: true,
+    isSoundEffectOn: false
+  }
 };
 
 export default initialState;

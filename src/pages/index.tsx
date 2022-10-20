@@ -1,68 +1,51 @@
 import classnames from 'classnames';
-import React, {ChangeEventHandler, KeyboardEvent, useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 
-import GameSettings from '@/components/game-settings';
 import LuckyWheel from '@/components/lucky-wheel';
-import {Media} from '@/components/media';
 import ConfirmBox from '@/components/modal-confirm';
 import Congrats from '@/components/modal-congrats';
-import PlayerList from '@/components/player-list/list';
-import PlayerSuggest from '@/components/player-list/suggest';
-import PlayerToolbar from '@/components/player-list/toolbar';
+import Players from '@/components/players';
 import Button from '@/core-ui/button';
 import Drawer from '@/core-ui/drawer';
 import Icon from '@/core-ui/icon';
 import useToast from '@/core-ui/toast';
 import LayoutDefault from '@/layouts/default';
-import {GameOperations, useGameDispatch, useGameState} from '@/states/game';
+import {IPlayer} from '@/localdb/models/player.model';
+import {GameActions, GameOperations, useGameDispatch, useGameState} from '@/states/game';
 import {GlobalActions, useGlobalDispatch, useGlobalState} from '@/states/global';
-import {IPlayer} from '@/utils/players';
 
 import styles from './index.module.scss';
 
 export default function PageHome() {
-  const [isOpenDeleteAll, setIsOpenDeleteAll] = useState(false);
-  const [isRunning, setIsRunning] = useState(false);
-  const [isWin, setIsWin] = useState(false);
-  const [newPlayer, setNewPlayer] = useState('');
-  const [players, setPlayers] = useState<IPlayer[]>([]);
-  const [winner, setWinner] = useState<IPlayer>();
-
   const toast = useToast();
   const globalState = useGlobalState();
   const gameState = useGameState();
   const globalDispatch = useGlobalDispatch();
   const gameDispatch = useGameDispatch();
 
+  const getSettings = () => {
+    GameOperations.getSettings()(gameDispatch);
+  };
+
   const getAllPlayers = () => {
     GameOperations.getPlayers()(gameDispatch);
   };
 
-  const addNewPlayer = (playerName: string) => {
-    if (!playerName) return;
-    const names = playerName.split(',');
-    const isMultiple = names.length > 0;
-    if (isMultiple) {
-      names.map(name => GameOperations.addPlayer({name: name.trim(), visible: true})(gameDispatch));
-    } else {
-      GameOperations.addPlayer({name: playerName, visible: true})(gameDispatch);
-    }
-    setNewPlayer('');
-    getAllPlayers();
+  const ToggleDeleteAllPlayers = (value: boolean) => {
+    gameDispatch(GameActions.setShowDeleteAllPlayer({isShowDeleteAllPlayer: value}));
   };
 
   const deleteAllPlayer = () => {
-    setIsOpenDeleteAll(false);
     GameOperations.deleteAllPlayers()(gameDispatch);
+    ToggleDeleteAllPlayers(false);
     getAllPlayers();
   };
 
   const hideWinner = (player: IPlayer) => {
     if (!player) throw Error('Player not found');
-    const newData = player;
-    newData.visible = false;
-    GameOperations.updatePlayer(player)(gameDispatch);
-    setIsWin(false);
+    GameOperations.updatePlayer({...player, visible: false})(gameDispatch);
+    gameDispatch(GameActions.toggleWinning({isShowWinning: false}));
+    gameDispatch(GameActions.setWinner({winner: null}));
     getAllPlayers();
     toast.show({type: 'info', title: '', content: `Player "${player.name}" is now hidden.`});
   };
@@ -70,33 +53,28 @@ export default function PageHome() {
   const run = () => {
     const visiblePlayers = gameState.players.filter(x => x.visible);
     const playerSelected = visiblePlayers[Math.floor(Math.random() * visiblePlayers.length)];
-    setWinner(playerSelected);
-    setIsRunning(true);
+    gameDispatch(GameActions.toggleSpining({isSpinning: true}));
+    gameDispatch(GameActions.setRunTime({runAt: new Date()}));
+    gameDispatch(GameActions.setWinner({winner: playerSelected}));
   };
 
   const onPlayerWin = () => {
     setTimeout(() => {
-      setIsWin(true);
-      setIsRunning(false);
+      gameDispatch(GameActions.toggleSpining({isSpinning: false}));
+      gameDispatch(GameActions.setRunTime({runAt: null}));
+      gameDispatch(GameActions.toggleWinning({isShowWinning: true}));
     }, 500);
   };
-  const onConfirmDeleteAllPlayer = () => deleteAllPlayer();
-  const onCancelDeleteAllPlayer = () => setIsOpenDeleteAll(false);
-  const onNewPlayerKeydown = (e: KeyboardEvent<HTMLInputElement>) => e.code === 'Enter' && addNewPlayer(newPlayer);
-  const onNewPlayerTextChange: ChangeEventHandler<HTMLInputElement> = e => setNewPlayer(e.target.value);
 
   useEffect(() => {
     import(/* webpackChunkName: "vendor.lottie-player" */ '@lottiefiles/lottie-player');
   }, []);
 
   useEffect(() => {
+    getSettings();
     getAllPlayers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    setPlayers(gameState.players);
-  }, [gameState.players]);
 
   return (
     <div className={styles['page-index']}>
@@ -104,57 +82,42 @@ export default function PageHome() {
         <div className="page-index-inner relative">
           <div className="flex w-full py-5">
             <div className="flex flex-grow flex-col items-center overflow-hidden">
-              <GameSettings />
               <LuckyWheel
                 className="m-auto"
-                players={players.filter(x => x.visible)}
-                bgMusic={gameState.isBackgroundMusicOn}
-                soundEffect={gameState.isSoundEffectOn}
-                winner={winner}
+                players={gameState.players.filter(x => x.visible)}
                 onComplete={onPlayerWin}
                 trigger={
-                  players.length > 1 && <Button text={isRunning ? '' : 'Start'} onClick={run} disabled={isRunning} />
+                  <Button text={gameState.isSpinning ? '' : 'Start'} onClick={run} disabled={gameState.isSpinning} />
                 }
               />
             </div>
-            <Media greaterThan="md">
-              <div className={styles['list-of-players']}>
-                <div className={styles.players}>
-                  <PlayerToolbar
-                    value={newPlayer}
-                    disabled={players.length === 0 || isRunning}
-                    addPlayer={() => addNewPlayer(newPlayer)}
-                    deleteAllPlayer={() => setIsOpenDeleteAll(true)}
-                    onNewPlayerTextChange={onNewPlayerTextChange}
-                    onNewPlayerKeyDown={onNewPlayerKeydown}
-                  />
-                  <PlayerSuggest />
-                  <PlayerList players={players} disabled={isRunning} />
-                  {/* <Button
-                    className="btn-start"
-                    variant="contained"
-                    color="primary"
-                    text="Start"
-                    onClick={run}
-                    disabled={isRunning || players.filter(x => x.visible).length < 2}
-                  /> */}
-                </div>
+            <div className="ml-8 h-full">
+              <div className={styles.players}>
+                <Players />
+                <Button
+                  className="btn-start"
+                  variant="contained"
+                  color="primary"
+                  text="Start"
+                  onClick={run}
+                  disabled={gameState.isSpinning}
+                />
               </div>
-            </Media>
+            </div>
             <Congrats
-              data={winner}
-              open={isWin}
+              player={gameState.winner!}
+              open={gameState.isShowWinning}
               onClose={() => {
-                setIsWin(false);
-                setWinner(undefined);
+                gameDispatch(GameActions.toggleWinning({isShowWinning: false}));
+                gameDispatch(GameActions.setWinner({winner: null}));
               }}
-              onHidePlayer={() => hideWinner(winner!)}
+              onHidePlayer={() => hideWinner(gameState.winner!)}
             />
             <ConfirmBox
-              open={isOpenDeleteAll}
+              open={gameState.isShowDeleteAllPlayer}
               message="Are you sure to delete all players?"
-              onYes={onConfirmDeleteAllPlayer}
-              onNo={onCancelDeleteAllPlayer}
+              onYes={deleteAllPlayer}
+              onNo={() => ToggleDeleteAllPlayers(false)}
             />
           </div>
         </div>
