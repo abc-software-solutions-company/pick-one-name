@@ -1,2 +1,9 @@
-.player-list {
+.players__toolbar :global {
+  @apply flex gap-x-2 lg:gap-x-3;
+  .abc-input {
+    @apply flex-grow;
+  }
+  .abc-btn {
+    @apply whitespace-nowrap;
+  }
 }

@@ -1,5 +1,5 @@
 import cls from 'classnames';
-import React, {FC, ReactNode, memo} from 'react';
+import React, {FC, memo, ReactNode} from 'react';
 
 interface IProps {
   className?: string;
@@ -13,5 +13,7 @@ const Heading: FC<IProps> = ({className, text, children, as = 'h1'}) => {
   const content = text || children;
   return <Element className={cls('abc-heading', className)}>{content}</Element>;
 };
+
+Heading.displayName = 'AIHeading';
 
 export default memo(Heading);

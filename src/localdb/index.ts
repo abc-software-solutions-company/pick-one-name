@@ -17,7 +17,12 @@ export default class Database implements IDatabase {
   settings: Collection<ISetting>;
 
   constructor(name: string) {
-    this.loki = new Loki(name, {autoload: false, autosave: false, env: 'BROWSER'});
+    this.loki = new Loki(name, {
+      autoload: false,
+      autosave: true,
+      autosaveInterval: 700,
+      env: 'BROWSER'
+    });
     this.players = this.loki.getCollection<IPlayer>('players');
     this.settings = this.loki.getCollection<ISetting>('settings');
 
@@ -30,7 +35,6 @@ export default class Database implements IDatabase {
   private initTablePlayers() {
     if (!this.players) {
       this.players = this.loki.addCollection<IPlayer>('players');
-      this.save();
     }
   }
 
@@ -39,7 +43,6 @@ export default class Database implements IDatabase {
       this.settings = this.loki.addCollection<ISetting>('settings');
       const recordCount = this.settings.count();
       if (!recordCount) this.settings.insert({isBackgroundMusicOn: true, isSoundEffectOn: false});
-      this.save();
     }
   }
 

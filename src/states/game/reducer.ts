@@ -94,9 +94,12 @@ export default function reducer(state: IState, action: IAction): IState {
       return state;
     case Types.UPDATE_PLAYER_SUCCESS:
       state.playerFetching = false;
-      const updatePlayerIdx = state.players.findIndex(x => x.$loki === action.payload.$loki);
-      state.players[updatePlayerIdx].visible = action.payload.visible;
-      state.players[updatePlayerIdx].name = action.payload.name;
+      state.players.map(x => {
+        if (x.$loki === action.payload.$loki) {
+          x.name = action.payload.name;
+          x.visible = action.payload.visible;
+        }
+      });
       return state;
     case Types.UPDATE_PLAYER_FAILURE:
       state.playerFetching = false;
@@ -122,6 +125,7 @@ export default function reducer(state: IState, action: IAction): IState {
       return state;
     case Types.DELETE_ALL_PLAYERS_SUCCESS:
       state.playerFetching = false;
+      state.isShowDeleteAllPlayer = false;
       state.players = [];
       return state;
     case Types.DELETE_ALL_PLAYERS_FAILURE:

@@ -4,6 +4,9 @@ import {IPlayer} from '../models/player.model';
 export interface ICollectionPlayer {
   clear: () => void;
   list: () => IPlayer[];
+  create: (data: IPlayer) => IPlayer;
+  update: (data: IPlayer) => IPlayer;
+  delete: (data: IPlayer) => IPlayer;
 }
 
 export default class CollectionPlayer implements ICollectionPlayer {
@@ -15,36 +18,31 @@ export default class CollectionPlayer implements ICollectionPlayer {
 
   clear() {
     this.db.players.removeDataOnly();
-    this.db.save();
   }
 
   list() {
     const dynamicView = this.db.players.addDynamicView('dvPlayers');
     dynamicView.applySimpleSort('$loki', {desc: true});
-    return dynamicView.data();
+    return dynamicView.data() as IPlayer[];
   }
 
   create(data: IPlayer) {
-    const player = this.db.players.insert(data);
+    const player = this.db.players.insert(data) as IPlayer;
     if (!player) throw Error("Can't add player.");
-    this.db.save();
     return player;
   }
 
   update(data: IPlayer) {
-    const player = this.db.players.by('$loki', data.$loki);
+    const player = this.db.players.by('$loki', data.$loki) as IPlayer;
     if (!player) throw Error("Can't update player, player not found.");
-    const newData = Object.assign(player, data);
-    this.db.players.update(newData);
-    this.db.save();
+    this.db.players.update({...player, ...data});
     return player;
   }
 
-  delete(data: IPlayer) {
-    const player = this.db.players.findOne({$loki: data.$loki});
+  delete(data: IPlayer): IPlayer {
+    const player = this.db.players.findOne({$loki: data.$loki}) as IPlayer;
     if (!player) throw Error("Can't delete player, player not found.");
     this.db.players.remove(player);
-    this.db.save();
     return player;
   }
 }

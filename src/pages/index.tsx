@@ -1,6 +1,6 @@
-import classnames from 'classnames';
 import React, {useEffect} from 'react';
 
+import GameSettings from '@/components/game-settings';
 import LuckyWheel from '@/components/lucky-wheel';
 import ConfirmBox from '@/components/modal-confirm';
 import Congrats from '@/components/modal-congrats';
@@ -23,22 +23,10 @@ export default function PageHome() {
   const globalDispatch = useGlobalDispatch();
   const gameDispatch = useGameDispatch();
 
-  const getSettings = () => {
-    GameOperations.getSettings()(gameDispatch);
-  };
-
-  const getAllPlayers = () => {
-    GameOperations.getPlayers()(gameDispatch);
-  };
+  const visiblePlayers = gameState.players.filter(x => x.visible);
 
   const ToggleDeleteAllPlayers = (value: boolean) => {
     gameDispatch(GameActions.setShowDeleteAllPlayer({isShowDeleteAllPlayer: value}));
-  };
-
-  const deleteAllPlayer = () => {
-    GameOperations.deleteAllPlayers()(gameDispatch);
-    ToggleDeleteAllPlayers(false);
-    getAllPlayers();
   };
 
   const hideWinner = (player: IPlayer) => {
@@ -46,12 +34,11 @@ export default function PageHome() {
     GameOperations.updatePlayer({...player, visible: false})(gameDispatch);
     gameDispatch(GameActions.toggleWinning({isShowWinning: false}));
     gameDispatch(GameActions.setWinner({winner: null}));
-    getAllPlayers();
+    GameOperations.getPlayers()(gameDispatch);
     toast.show({type: 'info', title: '', content: `Player "${player.name}" is now hidden.`});
   };
 
   const run = () => {
-    const visiblePlayers = gameState.players.filter(x => x.visible);
     const playerSelected = visiblePlayers[Math.floor(Math.random() * visiblePlayers.length)];
     gameDispatch(GameActions.toggleSpining({isSpinning: true}));
     gameDispatch(GameActions.setRunTime({runAt: new Date()}));
@@ -71,36 +58,37 @@ export default function PageHome() {
   }, []);
 
   useEffect(() => {
-    getSettings();
-    getAllPlayers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    GameOperations.getSettings()(gameDispatch);
+    GameOperations.getPlayers()(gameDispatch);
+  }, [gameDispatch]);
 
   return (
     <div className={styles['page-index']}>
       <div className="container">
-        <div className="page-index-inner relative">
-          <div className="flex w-full py-5">
-            <div className="flex flex-grow flex-col items-center overflow-hidden">
+        <div className="page-index-inner">
+          <div className="flex w-full justify-between py-5">
+            <div className="flex grow items-center overflow-hidden">
               <LuckyWheel
                 className="m-auto"
-                players={gameState.players.filter(x => x.visible)}
+                players={visiblePlayers}
                 onComplete={onPlayerWin}
                 trigger={
-                  <Button text={gameState.isSpinning ? '' : 'Start'} onClick={run} disabled={gameState.isSpinning} />
+                  visiblePlayers.length > 1 && (
+                    <Button text={gameState.isSpinning ? '' : 'Start'} onClick={run} disabled={gameState.isSpinning} />
+                  )
                 }
               />
             </div>
-            <div className="ml-8 h-full">
-              <div className={styles.players}>
+            <div className="hidden max-w-[360px] grow items-center lg:flex">
+              <div>
                 <Players />
                 <Button
-                  className="btn-start"
+                  className={styles['btn-start']}
                   variant="contained"
                   color="primary"
                   text="Start"
                   onClick={run}
-                  disabled={gameState.isSpinning}
+                  disabled={gameState.isSpinning || visiblePlayers.length < 2}
                 />
               </div>
             </div>
@@ -116,13 +104,15 @@ export default function PageHome() {
             <ConfirmBox
               open={gameState.isShowDeleteAllPlayer}
               message="Are you sure to delete all players?"
-              onYes={deleteAllPlayer}
+              onYes={() => GameOperations.deleteAllPlayers()(gameDispatch)}
               onNo={() => ToggleDeleteAllPlayers(false)}
             />
           </div>
         </div>
       </div>
+      <GameSettings className="side" />
       <Drawer
+        className="block lg:hidden"
         anchor="right"
         open={globalState.isOpenDrawer}
         backdrop={true}
@@ -134,9 +124,9 @@ export default function PageHome() {
           color="primary"
           onClick={() => globalDispatch(GlobalActions.setDrawerOpen(!globalState.isOpenDrawer))}
         >
-          <Icon name="ico-user" size={28} />
+          <Icon name="ico-user" />
         </Button>
-        <div className={classnames(styles.players, styles['in-drawer'])}></div>
+        <Players className="drawer" />
       </Drawer>
     </div>
   );

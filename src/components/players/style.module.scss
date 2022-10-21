@@ -1,2 +1,8 @@
-.players {
+.players :global {
+  @apply flex h-full w-full flex-col;
+}
+.players.drawer :global {
+  [class*='players__player-list'] {
+    @apply rounded-lg;
+  }
 }

@@ -24,6 +24,7 @@ const SoundController: FC<ISoundControllerProps> = ({className}) => {
     if (gameState.runAt) {
       bgSound.currentTime = 0;
       bgSound.play();
+
       tickSound.currentTime = 0;
       tickSound.play();
     }
@@ -40,7 +41,7 @@ const SoundController: FC<ISoundControllerProps> = ({className}) => {
   useEffect(() => {
     if (gameState.isShowWinning) {
       winSound.currentTime = 0;
-      winSound.play();
+      // winSound.play();
     }
   }, [gameState.isShowWinning]);
 

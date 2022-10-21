@@ -15,7 +15,7 @@ const Header: FC<IProps> = ({className}) => {
       <div className="container">
         <div className="com-header--inner">
           <h1>PICK ONE NAME</h1>
-          <GameSettings />
+          <GameSettings className="header" />
           <SoundController />
         </div>
       </div>

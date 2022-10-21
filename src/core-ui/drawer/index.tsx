@@ -46,4 +46,6 @@ const Drawer: FC<IProps> = ({
   );
 };
 
+Drawer.displayName = 'AIDrawer';
+
 export default memo(Drawer);

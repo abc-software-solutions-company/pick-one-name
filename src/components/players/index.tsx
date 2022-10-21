@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, {FC, useState} from 'react';
 
 import {GameActions, GameOperations, useGameDispatch, useGameState} from '@/states/game';
@@ -11,7 +12,7 @@ interface IProps {
   className?: string;
 }
 
-const Players: FC<IProps> = () => {
+const Players: FC<IProps> = ({className}) => {
   const [newPlayer, setNewPlayer] = useState('');
 
   const gameState = useGameState();
@@ -35,7 +36,7 @@ const Players: FC<IProps> = () => {
   };
 
   return (
-    <div className={styles['player-list']}>
+    <div className={classNames(styles.players, styles[className + ''])}>
       <PlayerToolbar
         value={newPlayer}
         disabled={gameState.isSpinning}

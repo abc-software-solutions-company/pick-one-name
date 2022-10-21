@@ -1,10 +1,10 @@
 import {Dispatch} from 'react';
 
 import Database from '@/localdb';
-import {IPlayer} from '@/localdb/models/player.model';
-import {ISetting} from '@/localdb/models/setting.model';
 import PlayerController from '@/localdb/controllers/players.controller';
 import SettingController from '@/localdb/controllers/settings.controller';
+import {IPlayer} from '@/localdb/models/player.model';
+import {ISetting} from '@/localdb/models/setting.model';
 import {getErrorMessage} from '@/utils/error-handle';
 
 import * as actions from './actions';
@@ -14,7 +14,7 @@ const db = new Database('game.db');
 const playerController = new PlayerController(db);
 const settingController = new SettingController(db);
 
-export const getSettings = () => (dispatch: Dispatch<IAction>) => {
+export const getSettings = () => async (dispatch: Dispatch<IAction>) => {
   dispatch(actions.getSettingsRequest());
   try {
     const settings = settingController.get();
@@ -24,7 +24,7 @@ export const getSettings = () => (dispatch: Dispatch<IAction>) => {
   }
 };
 
-export const setSettings = (settings: ISetting) => (dispatch: Dispatch<IAction>) => {
+export const setSettings = (settings: ISetting) => async (dispatch: Dispatch<IAction>) => {
   dispatch(actions.saveSettingsRequest());
   try {
     const resp = settingController.set({...settings});
@@ -34,7 +34,7 @@ export const setSettings = (settings: ISetting) => (dispatch: Dispatch<IAction>)
   }
 };
 
-export const getPlayers = () => (dispatch: Dispatch<IAction>) => {
+export const getPlayers = () => async (dispatch: Dispatch<IAction>) => {
   dispatch(actions.getAllPlayersRequest());
   try {
     const resp = playerController.list();
@@ -44,28 +44,27 @@ export const getPlayers = () => (dispatch: Dispatch<IAction>) => {
   }
 };
 
-export const addPlayer = (player: IPlayer) => (dispatch: Dispatch<IAction>) => {
+export const addPlayer = (player: IPlayer) => async (dispatch: Dispatch<IAction>) => {
   dispatch(actions.addPlayerRequest(player));
   try {
-    const resp = playerController.create({...player});
+    const resp = playerController.create(player);
     dispatch(actions.addPlayerSuccess(resp));
   } catch (error) {
     dispatch(actions.addPlayerFailure(getErrorMessage(error)));
   }
 };
 
-export const updatePlayer = (player: IPlayer) => (dispatch: Dispatch<IAction>) => {
+export const updatePlayer = (player: IPlayer) => async (dispatch: Dispatch<IAction>) => {
   dispatch(actions.updatePlayerRequest(player));
   try {
-    const resp = playerController.update({...player});
+    const resp = playerController.update(player);
     dispatch(actions.updatePlayerSuccess(resp));
   } catch (error) {
-    console.log('updatePlayerFailure', error);
     dispatch(actions.updatePlayerFailure(getErrorMessage(error)));
   }
 };
 
-export const deletePlayer = (player: IPlayer) => (dispatch: Dispatch<IAction>) => {
+export const deletePlayer = (player: IPlayer) => async (dispatch: Dispatch<IAction>) => {
   dispatch(actions.deletePlayerRequest(player));
   try {
     const resp = playerController.delete(player);
@@ -75,7 +74,7 @@ export const deletePlayer = (player: IPlayer) => (dispatch: Dispatch<IAction>) =
   }
 };
 
-export const deleteAllPlayers = () => (dispatch: Dispatch<IAction>) => {
+export const deleteAllPlayers = () => async (dispatch: Dispatch<IAction>) => {
   dispatch(actions.deleteAllPlayersRequest());
   try {
     playerController.clear();

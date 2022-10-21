@@ -93,15 +93,13 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({className, players, trigger, colo
   }, [gameState.runAt, gameState.winner]);
 
   return (
-    <>
-      <div className={classnames(styles['wheel-decide'], className)}>
-        <div className={styles['wheel-decide__inner']} ref={wheelRef}>
-          <SpinnerBoard segments={players} colors={colors} />
-        </div>
-        <SpinnerTrigger trigger={trigger} />
-        <SpinnerIndicator />
+    <div className={classnames(styles['wheel-decide'], className)}>
+      <div className={styles['wheel-decide__inner']} ref={wheelRef}>
+        <SpinnerBoard segments={players} colors={colors} />
       </div>
-    </>
+      <SpinnerTrigger trigger={trigger} />
+      <SpinnerIndicator />
+    </div>
   );
 };
 

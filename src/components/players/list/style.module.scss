@@ -1,2 +1,9 @@
-.player-list {
+.players__player-list :global {
+  @apply flex-grow overflow-hidden rounded-t-lg bg-slate-600 py-2 lg:max-h-[457px];
+  .scrollbar {
+    @apply h-full overflow-y-auto;
+  }
+  .form-input {
+    @apply border-none;
+  }
 }
