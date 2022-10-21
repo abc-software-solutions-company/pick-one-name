@@ -40,7 +40,7 @@ const SoundController: FC<ISoundControllerProps> = ({className}) => {
 
   useEffect(() => {
     const volume = gameState.settings.isSoundEffectOn ? 1 : 0;
-    if (gameState.runAt) gsap.to(tickSound, {volume, duration: 2});
+    if (gameState.runAt) gsap.to(tickSound, {volume, duration: 0.5});
   }, [gameState.settings.isSoundEffectOn, gameState.runAt]);
 
   useEffect(() => {
