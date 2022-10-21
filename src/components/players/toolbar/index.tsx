@@ -3,6 +3,7 @@ import React, {ChangeEventHandler, FC, KeyboardEvent} from 'react';
 
 import Button from '@/core-ui/button';
 import Input from '@/core-ui/input';
+import {useGameState} from '@/states/game';
 
 import styles from './style.module.scss';
 
@@ -19,12 +20,13 @@ interface IPlayerToolbarProps {
 const PlayerToolbar: FC<IPlayerToolbarProps> = ({
   className,
   value,
-  disabled = false,
   addPlayer,
   deleteAllPlayers,
   onNewPlayerKeyDown,
   onNewPlayerTextChange
 }) => {
+  const gameState = useGameState();
+
   return (
     <div className={classnames(styles.players__toolbar, className)}>
       <Input
@@ -35,7 +37,13 @@ const PlayerToolbar: FC<IPlayerToolbarProps> = ({
         onChange={onNewPlayerTextChange}
         groupEnd={<Button variant="contained" color="primary" text="Save" onClick={addPlayer} disabled={!value} />}
       />
-      <Button variant="contained" color="primary" text="Delete All" disabled={disabled} onClick={deleteAllPlayers} />
+      <Button
+        variant="contained"
+        color="primary"
+        text="Delete All"
+        disabled={gameState.players.length === 0 || gameState.isSpinning}
+        onClick={deleteAllPlayers}
+      />
     </div>
   );
 };

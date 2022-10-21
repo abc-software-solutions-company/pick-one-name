@@ -11,4 +11,7 @@
 .game-settings.side :global {
   @apply flex lg:hidden;
   @apply left-0 top-20;
+  .abc-btn:first-child {
+    @apply rounded-l-none;
+  }
 }

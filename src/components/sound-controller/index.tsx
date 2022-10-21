@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import {gsap} from 'gsap';
 import React, {FC, useEffect} from 'react';
 
 import {useGameState} from '@/states/game';
@@ -23,25 +24,29 @@ const SoundController: FC<ISoundControllerProps> = ({className}) => {
   useEffect(() => {
     if (gameState.runAt) {
       bgSound.currentTime = 0;
+      bgSound.volume = 0;
       bgSound.play();
 
       tickSound.currentTime = 0;
+      tickSound.volume = 0;
       tickSound.play();
     }
   }, [gameState.runAt]);
 
   useEffect(() => {
-    bgSound.volume = gameState.settings.isBackgroundMusicOn ? 1 : 0;
-  }, [gameState.settings.isBackgroundMusicOn]);
+    const volume = gameState.settings.isBackgroundMusicOn ? 1 : 0;
+    if (gameState.runAt) gsap.to(bgSound, {volume, duration: 2});
+  }, [gameState.settings.isBackgroundMusicOn, gameState.runAt]);
 
   useEffect(() => {
-    tickSound.volume = gameState.settings.isSoundEffectOn ? 1 : 0;
-  }, [gameState.settings.isSoundEffectOn]);
+    const volume = gameState.settings.isSoundEffectOn ? 1 : 0;
+    if (gameState.runAt) gsap.to(tickSound, {volume, duration: 2});
+  }, [gameState.settings.isSoundEffectOn, gameState.runAt]);
 
   useEffect(() => {
     if (gameState.isShowWinning) {
       winSound.currentTime = 0;
-      // winSound.play();
+      winSound.play();
     }
   }, [gameState.isShowWinning]);
 
