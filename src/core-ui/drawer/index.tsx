@@ -1,5 +1,5 @@
 import cls from 'classnames';
-import React, {FC, ReactNode} from 'react';
+import React, {FC, memo, ReactNode} from 'react';
 
 import Backdrop from '../backdrop';
 import Icon from '../icon';
@@ -46,4 +46,6 @@ const Drawer: FC<IProps> = ({
   );
 };
 
-export default Drawer;
+Drawer.displayName = 'AIDrawer';
+
+export default memo(Drawer);

@@ -6,8 +6,6 @@ name: Pick One Name
 on:
   push:
     branches: ["main"]
-  # pull_request:
-  #   branches: ["main"]
 
 env:
   test: test
@@ -36,5 +34,5 @@ jobs:
       - name: Setup environment
         run: cp .env.template .env
 
-      - name: Build,Start and Restart Web Application
+      - name: Build, Start and Restart Web Application
         run: RUNNER_TRACKING_ID="" && yarn build && pm2 start yarn -- start && pm2 restart yarn

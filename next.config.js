@@ -1,7 +1,6 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const withPlugins = require('next-compose-plugins');
-// const withFonts = require('next-fonts');
 const {i18n} = require('./next-i18next.config');
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -12,17 +11,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = {
   reactStrictMode: true,
   i18n,
-  images: {
-    domains: [
-      'abc-cms-1740798364.ap-southeast-1.elb.amazonaws.com',
-      'localhost',
-      '127.0.0.1',
-      'strapiv4cms.abcsoftwarecompany.com',
-      'strapiv4cms.stage.abcsoftwarecompany.com',
-      'abc-cms-stage.s3.ap-southeast-1.amazonaws.com',
-      'abc-cms-production.s3.ap-southeast-1.amazonaws.com'
-    ]
-  },
   output: 'standalone',
   webpack(config, {isServer}) {
     if (!isServer) {
@@ -30,27 +18,6 @@ const nextConfig = {
         ...config.resolve.fallback,
         fs: false
       };
-
-      // config.module.rules.push({
-      //   test: /\.(woff|woff2|ttf|eot)$/,
-      //   type: 'asset/resource',
-      //   generator: {
-      //     filename: `${path.join(__dirname, './public/fonts')}/[name][ext]`
-      //   }
-      // });
-
-      // config.module.rules.push({
-      //   test: /\.(woff|woff2|ttf|eot)$/,
-      //   use: {
-      //     loader: 'url-loader',
-      //     options: {
-      //       limit: 0,
-      //       name: './public/fonts/[name].[ext]'
-      //     },
-      //   },
-      //   type: 'javascript/auto'
-      // });
-
       config.plugins.push(
         new CopyPlugin({
           patterns: [

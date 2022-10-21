@@ -1,0 +1,6 @@
+.spinner-board :global {
+  @apply h-[310px] w-[310px] md:h-[560px] md:w-[560px];
+  svg text {
+    @apply select-none fill-white text-base font-medium md:text-xl;
+  }
+}

@@ -35,7 +35,9 @@
     "@artsy/fresnel": "^6.1.0",
     "@lottiefiles/lottie-player": "^1.5.7",
     "classnames": "^2.3.1",
+    "d3": "^7.6.1",
     "gsap": "3",
+    "immer": "^9.0.15",
     "lodash-es": "^4.17.21",
     "lokijs": "^1.5.12",
     "next": "12.2.0",
@@ -44,6 +46,7 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "sharp": "^0.30.7",
+    "use-immer": "^0.7.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
@@ -54,6 +57,7 @@
     "@tailwindcss/typography": "^0.5.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
+    "@types/d3": "^7.4.0",
     "@types/gsap": "^3.0.0",
     "@types/jest": "^28.1.1",
     "@types/lodash-es": "^4.17.6",

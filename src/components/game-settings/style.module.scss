@@ -1,0 +1,14 @@
+.game-settings :global {
+  @apply rounded-b-md bg-slate-600;
+  @apply flex items-center gap-x-3;
+  @apply absolute;
+}
+// Modifiers
+.game-settings.header :global {
+  @apply hidden lg:flex;
+  @apply right-0;
+}
+.game-settings.side :global {
+  @apply flex lg:hidden;
+  @apply left-0 top-20;
+}

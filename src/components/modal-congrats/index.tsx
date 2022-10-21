@@ -3,19 +3,19 @@ import React, {FC} from 'react';
 
 import Button from '@/core-ui/button';
 import {Modal} from '@/core-ui/modal';
-import {IPlayer} from '@/utils/players';
+import {IPlayer} from '@/localdb/models/player.model';
 
 import styles from './modal-congrats.module.scss';
 
-interface IProps {
+interface ICongratsProps {
   className?: string;
-  data?: IPlayer;
+  player: IPlayer;
   open?: boolean;
   onClose?: () => void;
   onHidePlayer?: () => void;
 }
 
-const Congrats: FC<IProps> = ({className, data, open, onClose, onHidePlayer}) => {
+const Congrats: FC<ICongratsProps> = ({className, player, open, onClose, onHidePlayer}) => {
   if (!open) return null;
 
   return (
@@ -28,7 +28,7 @@ const Congrats: FC<IProps> = ({className, data, open, onClose, onHidePlayer}) =>
       <Modal.Header text="" />
       <Modal.Body className="relative -mt-12">
         <h2 className="heading">Congratulations</h2>
-        <h1 className="player">{data?.name}</h1>
+        <h1 className="player">{player?.name}</h1>
         <div className="animation">
           <lottie-player src={'/congrats.json'} background="transparent" speed="1" loop autoplay></lottie-player>
         </div>
