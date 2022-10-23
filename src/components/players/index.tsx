@@ -31,9 +31,7 @@ const Players: FC<IProps> = ({className}) => {
     GameOperations.getPlayers()(gameDispatch);
   };
 
-  const deleteAllPlayers = () => {
-    gameDispatch(GameActions.setShowDeleteAllPlayer({isShowDeleteAllPlayer: true}));
-  };
+  const deleteAllPlayers = () => gameDispatch(GameActions.toggleShowDeleteAllPlayer(true));
 
   return (
     <div className={classNames(styles.players, styles[className + ''])}>
@@ -46,7 +44,7 @@ const Players: FC<IProps> = ({className}) => {
         onNewPlayerKeyDown={e => e.code === 'Enter' && addNewPlayer(newPlayer)}
       />
       <PlayerSuggest />
-      <PlayerList players={gameState.players} />
+      <PlayerList players={gameState.players.items} />
     </div>
   );
 };

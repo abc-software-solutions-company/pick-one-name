@@ -41,7 +41,7 @@ const PlayerToolbar: FC<IPlayerToolbarProps> = ({
         variant="contained"
         color="primary"
         text="Delete All"
-        disabled={gameState.players.length === 0 || gameState.isSpinning}
+        disabled={gameState.players.items.length === 0 || gameState.isSpinning}
         onClick={deleteAllPlayers}
       />
     </div>

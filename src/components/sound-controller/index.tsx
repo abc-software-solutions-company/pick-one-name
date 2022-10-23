@@ -44,11 +44,11 @@ const SoundController: FC<ISoundControllerProps> = ({className}) => {
   }, [gameState.settings.isSoundEffectOn, gameState.runAt]);
 
   useEffect(() => {
-    if (gameState.isShowWinning) {
+    if (gameState.isShowWinner) {
       winSound.currentTime = 0;
       winSound.play();
     }
-  }, [gameState.isShowWinning]);
+  }, [gameState.isShowWinner]);
 
   return <div className={classnames(className)}></div>;
 };

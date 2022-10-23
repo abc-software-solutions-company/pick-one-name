@@ -11,9 +11,9 @@ import {
   DeletePlayerFailure,
   DeletePlayerRequest,
   DeletePlayerSuccess,
-  GetPlayersFailure,
-  GetPlayersRequest,
-  GetPlayersSuccess,
+  GetAllPlayersFailure,
+  GetAllPlayersRequest,
+  GetAllPlayersSuccess,
   GetSettingsFailure,
   GetSettingsRequest,
   GetSettingsSuccess,
@@ -22,42 +22,42 @@ import {
   SaveSettingsSuccess,
   SetRunTime,
   SetWinner,
-  ToggleDeleteAllPlayer,
+  ToggleDeleteAllPlayers,
   ToggleSpinning,
-  ToggleWinning,
+  ToggleWinner,
   Types,
   UpdatePlayerFailure,
   UpdatePlayerRequest,
   UpdatePlayerSuccess
 } from './types';
 // ======================================================================================================
+// TOOGLE SPINNING
+// ======================================================================================================
+export const toggleSpining = (payload: boolean): ToggleSpinning => {
+  return {type: Types.TOGGLE_SPINNING, payload};
+};
+// ======================================================================================================
+// TOOGLE WINNER
+// ======================================================================================================
+export const toggleWinner = (payload: boolean): ToggleWinner => {
+  return {type: Types.TOGGLE_WINNER, payload};
+};
+// ======================================================================================================
+// TOOGLE DELETE ALL PLAYERS
+// ======================================================================================================
+export const toggleShowDeleteAllPlayer = (payload: boolean): ToggleDeleteAllPlayers => {
+  return {type: Types.TOOGLE_DELETE_ALL_PLAYERS, payload};
+};
+// ======================================================================================================
 // SET RUN TIME
 // ======================================================================================================
-export const setRunTime = (payload: any): SetRunTime => {
+export const setRunTime = (payload: Date | null): SetRunTime => {
   return {type: Types.SET_RUN_TIME, payload};
 };
 // SET WINNER
 // ======================================================================================================
-export const setWinner = (payload: any): SetWinner => {
+export const setWinner = (payload: IPlayer | null): SetWinner => {
   return {type: Types.SET_WINNER, payload};
-};
-// ======================================================================================================
-// TOOGLE SPINNING
-// ======================================================================================================
-export const toggleSpining = (payload: any): ToggleSpinning => {
-  return {type: Types.TOGGLE_SPINNING, payload};
-};
-// ======================================================================================================
-// TOOGLE SPINNING
-// ======================================================================================================
-export const toggleWinning = (payload: any): ToggleWinning => {
-  return {type: Types.TOGGLE_WINNING, payload};
-};
-// ======================================================================================================
-// TOOGLE MODAL DELETE ALL PLAYERS
-// ======================================================================================================
-export const setShowDeleteAllPlayer = (payload: any): ToggleDeleteAllPlayer => {
-  return {type: Types.TOOGLE_MODAL_DELETE_ALL_PLAYERS, payload};
 };
 // ======================================================================================================
 // GET SETTINGS
@@ -68,7 +68,7 @@ export const getSettingsRequest = (): GetSettingsRequest => {
 export const getSettingsSuccess = (payload: ISetting): GetSettingsSuccess => {
   return {type: Types.GET_SETTINGS_SUCCESS, payload};
 };
-export const getSettingsFailure = (payload: any): GetSettingsFailure => {
+export const getSettingsFailure = (payload: string): GetSettingsFailure => {
   return {type: Types.GET_SETTINGS_FAILURE, payload};
 };
 // ======================================================================================================
@@ -80,55 +80,55 @@ export const saveSettingsRequest = (): SaveSettingsRequest => {
 export const saveSettingsSuccess = (payload: ISetting): SaveSettingsSuccess => {
   return {type: Types.SAVE_SETTINGS_SUCCESS, payload};
 };
-export const saveSettingsFailure = (payload: any): SaveSettingsFailure => {
+export const saveSettingsFailure = (payload: string): SaveSettingsFailure => {
   return {type: Types.SAVE_SETTINGS_FAILURE, payload};
 };
 // ======================================================================================================
 // GET ALL PLAYERS
 // ======================================================================================================
-export const getAllPlayersRequest = (): GetPlayersRequest => {
+export const getAllPlayersRequest = (): GetAllPlayersRequest => {
   return {type: Types.GET_PLAYERS_REQUEST};
 };
-export const getAllPlayersSuccess = (payload: IPlayer[]): GetPlayersSuccess => {
+export const getAllPlayersSuccess = (payload: IPlayer[]): GetAllPlayersSuccess => {
   return {type: Types.GET_PLAYERS_SUCCESS, payload};
 };
-export const getAllPlayersFailure = (payload: any): GetPlayersFailure => {
+export const getAllPlayersFailure = (payload: string): GetAllPlayersFailure => {
   return {type: Types.GET_PLAYERS_FAILURE, payload};
 };
 // ======================================================================================================
 // ADD PLAYER
 // ======================================================================================================
-export const addPlayerRequest = (payload: any): AddPlayerRequest => {
-  return {type: Types.ADD_PLAYER_REQUEST, payload};
+export const addPlayerRequest = (): AddPlayerRequest => {
+  return {type: Types.ADD_PLAYER_REQUEST};
 };
-export const addPlayerSuccess = (payload: any): AddPlayerSuccess => {
+export const addPlayerSuccess = (payload: IPlayer): AddPlayerSuccess => {
   return {type: Types.ADD_PLAYER_SUCCESS, payload};
 };
-export const addPlayerFailure = (payload: any): AddPlayerFailure => {
+export const addPlayerFailure = (payload: string): AddPlayerFailure => {
   return {type: Types.ADD_PLAYER_FAILURE, payload};
 };
 // ======================================================================================================
 // UPDATE PLAYER
 // ======================================================================================================
-export const updatePlayerRequest = (payload: any): UpdatePlayerRequest => {
-  return {type: Types.UPDATE_PLAYER_REQUEST, payload};
+export const updatePlayerRequest = (): UpdatePlayerRequest => {
+  return {type: Types.UPDATE_PLAYER_REQUEST};
 };
-export const updatePlayerSuccess = (payload: any): UpdatePlayerSuccess => {
+export const updatePlayerSuccess = (payload: IPlayer): UpdatePlayerSuccess => {
   return {type: Types.UPDATE_PLAYER_SUCCESS, payload};
 };
-export const updatePlayerFailure = (payload: any): UpdatePlayerFailure => {
+export const updatePlayerFailure = (payload: string): UpdatePlayerFailure => {
   return {type: Types.UPDATE_PLAYER_FAILURE, payload};
 };
 // ======================================================================================================
 // DELETE PLAYER
 // ======================================================================================================
-export const deletePlayerRequest = (payload: any): DeletePlayerRequest => {
-  return {type: Types.DELETE_PLAYER_REQUEST, payload};
+export const deletePlayerRequest = (): DeletePlayerRequest => {
+  return {type: Types.DELETE_PLAYER_REQUEST};
 };
-export const deletePlayerSuccess = (payload: any): DeletePlayerSuccess => {
+export const deletePlayerSuccess = (payload: IPlayer): DeletePlayerSuccess => {
   return {type: Types.DELETE_PLAYER_SUCCESS, payload};
 };
-export const deletePlayerFailure = (payload: any): DeletePlayerFailure => {
+export const deletePlayerFailure = (payload: string): DeletePlayerFailure => {
   return {type: Types.DELETE_PLAYER_FAILURE, payload};
 };
 // ======================================================================================================
@@ -140,6 +140,6 @@ export const deleteAllPlayersRequest = (): DeleteAllPlayersRequest => {
 export const deleteAllPlayersSuccess = (): DeleteAllPlayersSuccess => {
   return {type: Types.DELETE_ALL_PLAYERS_SUCCESS};
 };
-export const deleteAllPlayersFailure = (payload: any): DeleteAllPlayersFailure => {
+export const deleteAllPlayersFailure = (payload: string): DeleteAllPlayersFailure => {
   return {type: Types.DELETE_ALL_PLAYERS_FAILURE, payload};
 };

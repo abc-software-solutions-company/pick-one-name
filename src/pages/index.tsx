@@ -23,33 +23,31 @@ export default function PageHome() {
   const globalDispatch = useGlobalDispatch();
   const gameDispatch = useGameDispatch();
 
-  const visiblePlayers = gameState.players.filter(x => x.visible);
+  const visiblePlayers = gameState.players.items.filter(x => x.visible);
 
-  const ToggleDeleteAllPlayers = (value: boolean) => {
-    gameDispatch(GameActions.setShowDeleteAllPlayer({isShowDeleteAllPlayer: value}));
-  };
+  const ToggleDeleteAllPlayers = (value: boolean) => gameDispatch(GameActions.toggleShowDeleteAllPlayer(value));
 
   const hideWinner = (player: IPlayer) => {
     if (!player) throw Error('Player not found');
     GameOperations.updatePlayer({...player, visible: false})(gameDispatch);
-    gameDispatch(GameActions.toggleWinning({isShowWinning: false}));
-    gameDispatch(GameActions.setWinner({winner: null}));
+    gameDispatch(GameActions.toggleWinner(false));
+    gameDispatch(GameActions.setWinner(null));
     GameOperations.getPlayers()(gameDispatch);
     toast.show({type: 'info', title: '', content: `Player "${player.name}" is now hidden.`});
   };
 
   const run = () => {
     const playerSelected = visiblePlayers[Math.floor(Math.random() * visiblePlayers.length)];
-    gameDispatch(GameActions.toggleSpining({isSpinning: true}));
-    gameDispatch(GameActions.setRunTime({runAt: new Date()}));
-    gameDispatch(GameActions.setWinner({winner: playerSelected}));
+    gameDispatch(GameActions.toggleSpining(true));
+    gameDispatch(GameActions.setRunTime(new Date()));
+    gameDispatch(GameActions.setWinner(playerSelected));
   };
 
   const onPlayerWin = () => {
     setTimeout(() => {
-      gameDispatch(GameActions.toggleSpining({isSpinning: false}));
-      gameDispatch(GameActions.setRunTime({runAt: null}));
-      gameDispatch(GameActions.toggleWinning({isShowWinning: true}));
+      gameDispatch(GameActions.toggleSpining(false));
+      gameDispatch(GameActions.setRunTime(null));
+      gameDispatch(GameActions.toggleWinner(true));
     }, 500);
   };
 
@@ -94,15 +92,15 @@ export default function PageHome() {
             </div>
             <Congrats
               player={gameState.winner!}
-              open={gameState.isShowWinning}
+              open={gameState.isShowWinner}
               onClose={() => {
-                gameDispatch(GameActions.toggleWinning({isShowWinning: false}));
-                gameDispatch(GameActions.setWinner({winner: null}));
+                gameDispatch(GameActions.toggleWinner(false));
+                gameDispatch(GameActions.setWinner(null));
               }}
               onHidePlayer={() => hideWinner(gameState.winner!)}
             />
             <ConfirmBox
-              open={gameState.isShowDeleteAllPlayer}
+              open={gameState.isShowDeleteAllPlayers}
               message="Are you sure to delete all players?"
               onYes={() => GameOperations.deleteAllPlayers()(gameDispatch)}
               onNo={() => ToggleDeleteAllPlayers(false)}

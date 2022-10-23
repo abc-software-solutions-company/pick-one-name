@@ -3,14 +3,17 @@ import {IState} from './types';
 const initialState: IState = {
   runAt: null,
   isSpinning: false,
-  isShowWinning: false,
-  isShowDeleteAllPlayer: false,
+  isShowWinner: false,
+  isShowDeleteAllPlayers: false,
   winner: null,
-  playerFetching: false,
-  playerError: null,
-  players: [],
+  players: {
+    isFetching: false,
+    error: null,
+    items: []
+  },
   settings: {
     isFetching: false,
+    error: null,
     isBackgroundMusicOn: true,
     isSoundEffectOn: false
   }
