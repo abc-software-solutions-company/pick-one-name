@@ -4,11 +4,11 @@ import {Context, DispatchContext} from './context';
 import reducer from './reducer';
 import initialState from './state';
 
-interface IProps {
+interface IGlobalProviderProps {
   children: ReactNode;
 }
 
-const Provider: FC<IProps> = ({children}) => {
+const Provider: FC<IGlobalProviderProps> = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (

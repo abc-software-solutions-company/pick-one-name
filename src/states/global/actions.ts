@@ -1,9 +1,9 @@
-import {IActionOpenDrawer, IActionOpenMenu, Types} from './types';
+import {ToggleDrawer, ToggleMenu, Types} from './types';
 
-export const setMenuOpen = (value: boolean): IActionOpenMenu => {
-  return {type: Types.OPEN_MENU, payload: {isOpenMenu: value}};
+export const toggleMenu = (payload: boolean): ToggleMenu => {
+  return {type: Types.TOGGLE_MENU, payload};
 };
 
-export const setDrawerOpen = (value: boolean): IActionOpenDrawer => {
-  return {type: Types.OPEN_DRAWER, payload: {isOpenDrawer: value}};
+export const toggleDrawer = (payload: boolean): ToggleDrawer => {
+  return {type: Types.TOGGLE_DRAWER, payload};
 };

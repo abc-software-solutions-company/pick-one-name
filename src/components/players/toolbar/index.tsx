@@ -3,7 +3,7 @@ import React, {ChangeEventHandler, FC, KeyboardEvent} from 'react';
 
 import Button from '@/core-ui/button';
 import Input from '@/core-ui/input';
-import {useGameState} from '@/states/game';
+import {useGame} from '@/states/game';
 
 import styles from './style.module.scss';
 
@@ -25,7 +25,7 @@ const PlayerToolbar: FC<IPlayerToolbarProps> = ({
   onNewPlayerKeyDown,
   onNewPlayerTextChange
 }) => {
-  const gameState = useGameState();
+  const game = useGame();
 
   return (
     <div className={classnames(styles.players__toolbar, className)}>
@@ -41,7 +41,7 @@ const PlayerToolbar: FC<IPlayerToolbarProps> = ({
         variant="contained"
         color="primary"
         text="Delete All"
-        disabled={gameState.players.items.length === 0 || gameState.isSpinning}
+        disabled={game.state.players.items.length === 0 || game.state.isSpinning}
         onClick={deleteAllPlayers}
       />
     </div>

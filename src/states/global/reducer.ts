@@ -4,10 +4,10 @@ export default function reducer(state: IState, action: IAction): IState {
   const {type, payload} = action;
 
   switch (type) {
-    case Types.OPEN_MENU:
-      return {...state, isOpenMenu: payload.isOpenMenu};
-    case Types.OPEN_DRAWER:
-      return {...state, isOpenDrawer: payload.isOpenDrawer};
+    case Types.TOGGLE_MENU:
+      return {...state, isOpenMenu: payload};
+    case Types.TOGGLE_DRAWER:
+      return {...state, isOpenDrawer: payload};
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import {gsap} from 'gsap';
 import React, {FC, useEffect} from 'react';
 
-import {useGameState} from '@/states/game';
+import {useGame} from '@/states/game';
 
 interface ISoundControllerProps {
   className?: string;
@@ -13,7 +13,7 @@ let bgSound: HTMLAudioElement;
 let tickSound: HTMLAudioElement;
 
 const SoundController: FC<ISoundControllerProps> = ({className}) => {
-  const gameState = useGameState();
+  const game = useGame();
 
   useEffect(() => {
     winSound = new Audio('/win.mp3');
@@ -22,7 +22,7 @@ const SoundController: FC<ISoundControllerProps> = ({className}) => {
   }, []);
 
   useEffect(() => {
-    if (gameState.runAt) {
+    if (game.state.runAt) {
       bgSound.currentTime = 0;
       bgSound.volume = 0;
       bgSound.play();
@@ -31,24 +31,24 @@ const SoundController: FC<ISoundControllerProps> = ({className}) => {
       tickSound.volume = 0;
       tickSound.play();
     }
-  }, [gameState.runAt]);
+  }, [game.state.runAt]);
 
   useEffect(() => {
-    const volume = gameState.settings.isBackgroundMusicOn ? 1 : 0;
-    if (gameState.runAt) gsap.to(bgSound, {volume, duration: 2});
-  }, [gameState.settings.isBackgroundMusicOn, gameState.runAt]);
+    const volume = game.state.settings.isBackgroundMusicOn ? 1 : 0;
+    if (game.state.runAt) gsap.to(bgSound, {volume, duration: 2});
+  }, [game.state.settings.isBackgroundMusicOn, game.state.runAt]);
 
   useEffect(() => {
-    const volume = gameState.settings.isSoundEffectOn ? 1 : 0;
-    if (gameState.runAt) gsap.to(tickSound, {volume, duration: 0.5});
-  }, [gameState.settings.isSoundEffectOn, gameState.runAt]);
+    const volume = game.state.settings.isSoundEffectOn ? 1 : 0;
+    if (game.state.runAt) gsap.to(tickSound, {volume, duration: 0.5});
+  }, [game.state.settings.isSoundEffectOn, game.state.runAt]);
 
   useEffect(() => {
-    if (gameState.isShowWinner) {
+    if (game.state.isShowWinner) {
       winSound.currentTime = 0;
       winSound.play();
     }
-  }, [gameState.isShowWinner]);
+  }, [game.state.isShowWinner]);
 
   return <div className={classnames(className)}></div>;
 };

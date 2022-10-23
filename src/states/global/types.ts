@@ -1,6 +1,6 @@
 export enum Types {
-  OPEN_MENU = 'global/OPEN_MENU',
-  OPEN_DRAWER = 'global/OPEN_DRAWER'
+  TOGGLE_MENU = 'global/TOGGLE_MENU',
+  TOGGLE_DRAWER = 'global/TOGGLE_DRAWER'
 }
 
 export interface IState {
@@ -8,18 +8,7 @@ export interface IState {
   isOpenDrawer: boolean;
 }
 
-export interface IActionOpenMenu {
-  type: typeof Types.OPEN_MENU;
-  payload: {
-    isOpenMenu: boolean;
-  };
-}
+export type ToggleMenu = {type: typeof Types.TOGGLE_MENU; payload: boolean};
+export type ToggleDrawer = {type: typeof Types.TOGGLE_DRAWER; payload: boolean};
 
-export interface IActionOpenDrawer {
-  type: typeof Types.OPEN_DRAWER;
-  payload: {
-    isOpenDrawer: boolean;
-  };
-}
-
-export type IAction = IActionOpenMenu | IActionOpenDrawer;
+export type IAction = ToggleMenu | ToggleDrawer;

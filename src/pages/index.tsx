@@ -11,43 +11,41 @@ import Icon from '@/core-ui/icon';
 import useToast from '@/core-ui/toast';
 import LayoutDefault from '@/layouts/default';
 import {IPlayer} from '@/localdb/models/player.model';
-import {GameActions, GameOperations, useGameDispatch, useGameState} from '@/states/game';
-import {GlobalActions, useGlobalDispatch, useGlobalState} from '@/states/global';
+import {GameOperations, useGame} from '@/states/game';
+import {useGlobal} from '@/states/global';
 
 import styles from './index.module.scss';
 
 export default function PageHome() {
   const toast = useToast();
-  const globalState = useGlobalState();
-  const gameState = useGameState();
-  const globalDispatch = useGlobalDispatch();
-  const gameDispatch = useGameDispatch();
+  const global = useGlobal();
+  const game = useGame();
 
-  const visiblePlayers = gameState.players.items.filter(x => x.visible);
+  const visiblePlayers = game.state.players.items.filter(x => x.visible);
 
-  const ToggleDeleteAllPlayers = (value: boolean) => gameDispatch(GameActions.toggleShowDeleteAllPlayer(value));
+  const ToggleDeleteAllPlayers = (value: boolean) => game.dispatch(game.toggleShowDeleteAllPlayer(value));
 
   const hideWinner = (player: IPlayer) => {
     if (!player) throw Error('Player not found');
-    GameOperations.updatePlayer({...player, visible: false})(gameDispatch);
-    gameDispatch(GameActions.toggleWinner(false));
-    gameDispatch(GameActions.setWinner(null));
-    GameOperations.getPlayers()(gameDispatch);
+    GameOperations.updatePlayer({...player, visible: false})(game.dispatch);
+    game.dispatch(game.toggleWinner(false));
+    game.dispatch(game.setWinner(null));
+    GameOperations.getPlayers()(game.dispatch);
     toast.show({type: 'info', title: '', content: `Player "${player.name}" is now hidden.`});
   };
 
   const run = () => {
     const playerSelected = visiblePlayers[Math.floor(Math.random() * visiblePlayers.length)];
-    gameDispatch(GameActions.toggleSpining(true));
-    gameDispatch(GameActions.setRunTime(new Date()));
-    gameDispatch(GameActions.setWinner(playerSelected));
+    game.dispatch(game.toggleSpining(true));
+    game.dispatch(game.setRunTime(new Date()));
+    game.dispatch(game.setWinner(playerSelected));
   };
 
   const onPlayerWin = () => {
     setTimeout(() => {
-      gameDispatch(GameActions.toggleSpining(false));
-      gameDispatch(GameActions.setRunTime(null));
-      gameDispatch(GameActions.toggleWinner(true));
+      game.dispatch(game.toggleSpining(false));
+      game.dispatch(game.setRunTime(null));
+      game.dispatch(game.toggleWinner(true));
     }, 500);
   };
 
@@ -56,9 +54,9 @@ export default function PageHome() {
   }, []);
 
   useEffect(() => {
-    GameOperations.getSettings()(gameDispatch);
-    GameOperations.getPlayers()(gameDispatch);
-  }, [gameDispatch]);
+    GameOperations.getSettings()(game.dispatch);
+    GameOperations.getPlayers()(game.dispatch);
+  }, [game.dispatch]);
 
   return (
     <div className={styles['page-index']}>
@@ -72,7 +70,11 @@ export default function PageHome() {
                 onComplete={onPlayerWin}
                 trigger={
                   visiblePlayers.length > 1 && (
-                    <Button text={gameState.isSpinning ? '' : 'Start'} onClick={run} disabled={gameState.isSpinning} />
+                    <Button
+                      text={game.state.isSpinning ? '' : 'Start'}
+                      onClick={run}
+                      disabled={game.state.isSpinning}
+                    />
                   )
                 }
               />
@@ -86,23 +88,23 @@ export default function PageHome() {
                   color="primary"
                   text="Start"
                   onClick={run}
-                  disabled={gameState.isSpinning || visiblePlayers.length < 2}
+                  disabled={game.state.isSpinning || visiblePlayers.length < 2}
                 />
               </div>
             </div>
             <Congrats
-              player={gameState.winner!}
-              open={gameState.isShowWinner}
+              player={game.state.winner!}
+              open={game.state.isShowWinner}
               onClose={() => {
-                gameDispatch(GameActions.toggleWinner(false));
-                gameDispatch(GameActions.setWinner(null));
+                game.dispatch(game.toggleWinner(false));
+                game.dispatch(game.setWinner(null));
               }}
-              onHidePlayer={() => hideWinner(gameState.winner!)}
+              onHidePlayer={() => hideWinner(game.state.winner!)}
             />
             <ConfirmBox
-              open={gameState.isShowDeleteAllPlayers}
+              open={game.state.isShowDeleteAllPlayers}
               message="Are you sure to delete all players?"
-              onYes={() => GameOperations.deleteAllPlayers()(gameDispatch)}
+              onYes={() => GameOperations.deleteAllPlayers()(game.dispatch)}
               onNo={() => ToggleDeleteAllPlayers(false)}
             />
           </div>
@@ -112,15 +114,15 @@ export default function PageHome() {
       <Drawer
         className="block lg:hidden"
         anchor="right"
-        open={globalState.isOpenDrawer}
+        open={global.state.isOpenDrawer}
         backdrop={true}
-        onClose={() => globalDispatch(GlobalActions.setDrawerOpen(false))}
+        onClose={() => global.dispatch(global.toggleDrawer(false))}
       >
         <Button
           className={styles['btn-show-players']}
           variant="contained"
           color="primary"
-          onClick={() => globalDispatch(GlobalActions.setDrawerOpen(!globalState.isOpenDrawer))}
+          onClick={() => global.dispatch(global.toggleDrawer(!global.state.isOpenDrawer))}
         >
           <Icon name="ico-user" />
         </Button>

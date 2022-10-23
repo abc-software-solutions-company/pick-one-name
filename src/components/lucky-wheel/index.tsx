@@ -3,7 +3,7 @@ import {gsap} from 'gsap';
 import React, {FC, ReactNode, useEffect, useRef} from 'react';
 
 import {IPlayer} from '@/localdb/models/player.model';
-import {useGameState} from '@/states/game';
+import {useGame} from '@/states/game';
 import {rangeInt} from '@/utils/random';
 
 import SpinnerBoard from './spinner-board';
@@ -25,7 +25,7 @@ interface IWheelOfFortuneProps {
 const LuckyWheel: FC<IWheelOfFortuneProps> = ({className, players, trigger, colors = constant.colors, onComplete}) => {
   const wheelRef = useRef<HTMLDivElement>(null);
 
-  const gameState = useGameState();
+  const game = useGame();
 
   if (!players.length) players = constant.defaultPlayers;
 
@@ -85,12 +85,12 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({className, players, trigger, colo
   };
 
   useEffect(() => {
-    if (gameState.runAt && gameState.winner) {
+    if (game.state.runAt && game.state.winner) {
       const element = wheelRef.current;
-      if (element) runAnimation(element, gameState.winner!);
+      if (element) runAnimation(element, game.state.winner!);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameState.runAt, gameState.winner]);
+  }, [game.state.runAt, game.state.winner]);
 
   return (
     <div className={classnames(styles['wheel-decide'], className)}>

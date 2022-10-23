@@ -1,5 +1,4 @@
-import * as GlobalActions from './actions';
-import {useGlobalDispatch, useGlobalState} from './hooks';
+import {useGlobal} from './context';
 import GlobalProvider from './provider';
 
-export {GlobalActions, GlobalProvider, useGlobalDispatch, useGlobalState};
+export {GlobalProvider, useGlobal};

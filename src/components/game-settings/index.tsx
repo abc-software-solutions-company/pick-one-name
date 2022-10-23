@@ -4,7 +4,7 @@ import React, {FC} from 'react';
 import Button from '@/core-ui/button';
 import ButtonGroup from '@/core-ui/button-group';
 import Icon from '@/core-ui/icon';
-import {GameOperations, useGameDispatch, useGameState} from '@/states/game';
+import {GameOperations, useGame} from '@/states/game';
 
 import styles from './style.module.scss';
 
@@ -13,11 +13,10 @@ interface IProps {
 }
 
 const GameSettings: FC<IProps> = ({className}) => {
-  const gameState = useGameState();
-  const gameDispatch = useGameDispatch();
+  const game = useGame();
 
-  const soundEnabled = gameState.settings.isBackgroundMusicOn;
-  const effectEnabled = gameState.settings.isSoundEffectOn;
+  const soundEnabled = game.state.settings.isBackgroundMusicOn;
+  const effectEnabled = game.state.settings.isSoundEffectOn;
 
   return (
     <div className={classnames(styles['game-settings'], styles[className + ''])}>
@@ -25,14 +24,14 @@ const GameSettings: FC<IProps> = ({className}) => {
         <Button
           variant={'contained'}
           color={soundEnabled ? 'primary' : 'secondary'}
-          onClick={() => GameOperations.setSettings({isBackgroundMusicOn: !soundEnabled})(gameDispatch)}
+          onClick={() => GameOperations.setSettings({isBackgroundMusicOn: !soundEnabled})(game.dispatch)}
         >
           <Icon name="ico-music" />
         </Button>
         <Button
           variant="contained"
           color={effectEnabled ? 'primary' : 'secondary'}
-          onClick={() => GameOperations.setSettings({isSoundEffectOn: !effectEnabled})(gameDispatch)}
+          onClick={() => GameOperations.setSettings({isSoundEffectOn: !effectEnabled})(game.dispatch)}
         >
           <Icon name="ico-speaker" />
         </Button>

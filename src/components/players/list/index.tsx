@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React, {FC} from 'react';
 
 import {IPlayer} from '@/localdb/models/player.model';
-import {GameOperations, useGameDispatch, useGameState} from '@/states/game';
+import {GameOperations, useGame} from '@/states/game';
 
 import PlayerItem from '../item';
 import styles from './style.module.scss';
@@ -13,21 +13,20 @@ interface IPlayerListProps {
 }
 
 const PlayerList: FC<IPlayerListProps> = ({className, players}) => {
-  const gameState = useGameState();
-  const gameDispatch = useGameDispatch();
+  const game = useGame();
 
   const onHide = async (player: IPlayer) => {
-    await GameOperations.updatePlayer({...player, visible: false})(gameDispatch);
-    await GameOperations.getPlayers()(gameDispatch);
+    await GameOperations.updatePlayer({...player, visible: false})(game.dispatch);
+    await GameOperations.getPlayers()(game.dispatch);
   };
   const onShow = async (player: IPlayer) => {
-    await GameOperations.updatePlayer({...player, visible: true})(gameDispatch);
-    await GameOperations.getPlayers()(gameDispatch);
+    await GameOperations.updatePlayer({...player, visible: true})(game.dispatch);
+    await GameOperations.getPlayers()(game.dispatch);
   };
-  const onDelete = async (player: IPlayer) => GameOperations.deletePlayer(player)(gameDispatch);
+  const onDelete = async (player: IPlayer) => GameOperations.deletePlayer(player)(game.dispatch);
   const onTextChange = async (player: IPlayer, name: string) => {
-    await GameOperations.updatePlayer({...player, name})(gameDispatch);
-    await GameOperations.getPlayers()(gameDispatch);
+    await GameOperations.updatePlayer({...player, name})(game.dispatch);
+    await GameOperations.getPlayers()(game.dispatch);
   };
 
   return (
@@ -38,7 +37,7 @@ const PlayerList: FC<IPlayerListProps> = ({className, players}) => {
             <PlayerItem
               key={player.$loki}
               player={player}
-              disabled={gameState.isSpinning}
+              disabled={game.state.isSpinning}
               onHide={() => onHide(player)}
               onShow={() => onShow(player)}
               onDelete={() => onDelete(player)}
