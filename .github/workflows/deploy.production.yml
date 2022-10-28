@@ -1,0 +1,49 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Deploy to Production
+
+on:
+  push:
+    branches: ["release"]
+
+env:
+  APP_ENV: ${{ secrets.PRODUCTION }}
+
+jobs:
+  build:
+    name: "Deploy to Production"
+    environment:
+      name: production
+
+    runs-on: [self-hosted, production]
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Create ENV
+        run: |
+          rm -r -f .env
+          touch .env_temp
+          echo $APP_ENV | tee .env_temp
+          sed 's/ /\n/g' .env_temp >> .env
+          rm -r -f .env_temp
+
+      - name: Install Node Modules
+        run: |
+          npm install -g yarn pm2
+          yarn
+
+      - name: Generate Icon Font
+        run: yarn genfont
+
+      - name: Build and Run Application
+        run: RUNNER_TRACKING_ID="" && yarn build && pm2 start yarn -- start && pm2 restart yarn

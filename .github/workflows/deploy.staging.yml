@@ -1,18 +1,22 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Pick One Name
+name: Deploy to Staging
 
 on:
   push:
     branches: ["main"]
 
 env:
-  test: test
+  APP_ENV: ${{ secrets.STAGING }}
 
 jobs:
   build:
-    runs-on: self-hosted
+    name: "Deploy to Staging"
+    environment:
+      name: staging
+
+    runs-on: [self-hosted, staging]
 
     strategy:
       matrix:
@@ -25,14 +29,21 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install Yarn, PM2
-        run: npm install -g yarn pm2
+      - name: Create ENV
+        run: |
+          rm -r -f .env
+          touch .env_temp
+          echo $APP_ENV | tee .env_temp
+          sed 's/ /\n/g' .env_temp >> .env
+          rm -r -f .env_temp
 
-      - name: Install Node Module
-        run: yarn
+      - name: Install Node Modules
+        run: |
+          npm install -g yarn pm2
+          yarn
 
-      - name: Setup environment
-        run: cp .env.template .env
+      - name: Generate Icon Font
+        run: yarn genfont
 
-      - name: Build, Start and Restart Web Application
+      - name: Build and Run Application
         run: RUNNER_TRACKING_ID="" && yarn build && pm2 start yarn -- start && pm2 restart yarn
