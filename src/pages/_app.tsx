@@ -9,6 +9,7 @@ import React from 'react';
 
 import DefaultSeo from '@/components/common/seo/default-seo';
 import ServiceWorker from '@/components/common/service-worker';
+import QueryProvider from '@/contexts/query.provider';
 import {GameProvider} from '@/states/game';
 import {GlobalProvider} from '@/states/global';
 
@@ -16,11 +17,10 @@ const Noop: React.FC = ({children}: React.PropsWithChildren<any>) => <>{children
 
 const CustomApp = ({Component, pageProps}: AppProps) => {
   const router = useRouter();
-
   const Layout = (Component as any).Layout || Noop;
 
   return (
-    <>
+    <QueryProvider pageProps={pageProps}>
       <ServiceWorker />
       <DefaultSeo />
       <GlobalProvider>
@@ -30,7 +30,7 @@ const CustomApp = ({Component, pageProps}: AppProps) => {
           </Layout>
         </GameProvider>
       </GlobalProvider>
-    </>
+    </QueryProvider>
   );
 };
 
