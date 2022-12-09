@@ -30,6 +30,9 @@ const SoundController: FC<ISoundControllerProps> = ({className}) => {
       tickSound.currentTime = 0;
       tickSound.volume = 0;
       tickSound.play();
+
+      winSound.currentTime = 0;
+      winSound.volume = 0;
     }
   }, [game.state.runAt]);
 
@@ -40,12 +43,14 @@ const SoundController: FC<ISoundControllerProps> = ({className}) => {
 
   useEffect(() => {
     const volume = game.state.settings.isSoundEffectOn ? 1 : 0;
-    if (game.state.runAt) gsap.to(tickSound, {volume, duration: 0.5});
+    if (game.state.runAt) {
+      gsap.to(tickSound, {volume, duration: 0.5});
+      gsap.to(winSound, {volume, duration: 0.1});
+    }
   }, [game.state.settings.isSoundEffectOn, game.state.runAt]);
 
   useEffect(() => {
     if (game.state.isShowWinner) {
-      winSound.currentTime = 0;
       winSound.play();
     }
   }, [game.state.isShowWinner]);
