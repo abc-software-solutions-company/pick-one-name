@@ -36,7 +36,24 @@ jobs:
           echo $APP_ENV | tee .env_temp
           sed 's/ /\n/g' .env_temp >> .env
           rm -r -f .env_temp
-
       # Reference from offical Docker youtube channel: https://youtu.be/aNh8iShFXto
       - name: Build Docker and deployment
         run: sudo chmod +x docker-build.sh && sudo ./docker-build.sh
+
+      - name: Prune docker image trash
+        run: sudo docker rmi -f $(sudo docker images --filter "dangling=true" -q --no-trunc)
+        if: always() # Pick up events even if the job fails or is canceled.
+
+      - name: Post to a Slack channel
+        id: slack
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          # Slack channel id, channel name, or user id to post message.
+          # See also: https://api.slack.com/methods/chat.postMessage#channels
+          # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
+          channel-id: 'C05246T9K7G'
+          # For posting a simple plain text message
+          slack-message: "GitHub build result: ${{ job.status }}\nPlease check result in\nhttps://github.com/abc-software-solutions-company/lucky-draw-website/actions/runs/${{ github.run_id }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        if: always() # Pick up events even if the job fails or is canceled.
