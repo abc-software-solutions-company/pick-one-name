@@ -5,22 +5,22 @@ name: Deploy to Staging
 
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
 
 env:
   APP_ENV: ${{ secrets.STAGING }}
-  STATUS: '❌'
+  STATUS: "❌"
 
 jobs:
   clear-docker-cache:
-    name: 'Clear Docker Cache'
+    name: "Clear Docker Cache"
     runs-on: [self-hosted, staging]
     steps:
       - name: Docker Prune
         run: sudo docker system prune -f -a --volumes
   build:
-    needs: ['clear-docker-cache']
-    name: 'Deploy to Staging'
+    needs: ["clear-docker-cache"]
+    name: "Deploy to Staging"
     environment:
       name: staging
 
