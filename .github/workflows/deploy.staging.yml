@@ -5,14 +5,22 @@ name: Deploy to Staging
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
 
 env:
   APP_ENV: ${{ secrets.STAGING }}
+  STATUS: '❌'
 
 jobs:
+  clear-docker-cache:
+    name: 'Clear Docker Cache'
+    runs-on: [self-hosted, staging]
+    steps:
+      - name: Docker Prune
+        run: sudo docker system prune -f -a --volumes
   build:
-    name: "Deploy to Staging"
+    needs: ['clear-docker-cache']
+    name: 'Deploy to Staging'
     environment:
       name: staging
 
@@ -39,10 +47,6 @@ jobs:
       # Reference from offical Docker youtube channel: https://youtu.be/aNh8iShFXto
       - name: Build Docker and deployment
         run: sudo chmod +x docker-build.sh && sudo ./docker-build.sh
-
-      - name: Prune docker image trash
-        run: sudo docker rmi -f $(sudo docker images --filter "dangling=true" -q --no-trunc)
-        if: always() # Pick up events even if the job fails or is canceled.
 
       - name: Post to a Slack channel
         id: slack

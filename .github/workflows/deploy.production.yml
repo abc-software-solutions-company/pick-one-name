@@ -5,14 +5,22 @@ name: Deploy to Production
 
 on:
   push:
-    branches: ["release"]
+    branches: ['release']
 
 env:
   APP_ENV: ${{ secrets.PRODUCTION }}
+  STATUS: '❌'
 
 jobs:
+  clear-docker-cache:
+    name: 'Clear Docker Cache'
+    runs-on: [self-hosted, production]
+    steps:
+      - name: Docker Prune
+        run: sudo docker system prune -f -a --volumes
   build:
-    name: "Deploy to Production"
+    needs: ['clear-docker-cache']
+    name: 'Deploy to Production'
     environment:
       name: production
 
