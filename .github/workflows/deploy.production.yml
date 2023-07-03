@@ -36,14 +36,32 @@ jobs:
           echo $APP_ENV | tee .env_temp
           sed 's/ /\n/g' .env_temp >> .env
           rm -r -f .env_temp
+      # Reference from offical Docker youtube channel: https://youtu.be/aNh8iShFXto
+      - name: Build Docker and deployment
+        run: sudo chmod +x docker-build.sh && sudo ./docker-build.sh
 
-      - name: Install Node Modules
-        run: |
-          npm install -g yarn pm2
-          yarn
+      - name: Prune docker image trash
+        run: sudo docker rmi -f $(sudo docker images --filter "dangling=true" -q --no-trunc)
+        if: always() # Pick up events even if the job fails or is canceled.
 
-      - name: Generate Icon Font
-        run: yarn genfont
-
-      - name: Build and Run Application
-        run: RUNNER_TRACKING_ID="" && yarn build && pm2 start yarn -- start && pm2 restart yarn
+      - name: Post to a Slack channel
+        id: slack
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: "C053JVDGG12"
+          payload: |
+            {
+              "text": "PICK-ONE-NAME-*PRODUCTION* ${{ env.STATUS }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "<https://github.com/abc-software-solutions-company/lucky-draw-website/actions/runs/${{ github.run_id }}|PICK-ONE-NAME-*PRODUCTION* ${{ env.STATUS }}>"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        if: always() # Pick up events even if the job fails or is canceled.
