@@ -9,6 +9,7 @@ import React from 'react';
 
 import DefaultSeo from '@/components/common/seo/default-seo';
 import ServiceWorker from '@/components/common/service-worker';
+import Tracking from '@/components/common/third-party/tracking';
 import QueryProvider from '@/contexts/query.provider';
 import {GameProvider} from '@/states/game';
 import {GlobalProvider} from '@/states/global';
@@ -23,6 +24,7 @@ const CustomApp = ({Component, pageProps}: AppProps) => {
     <QueryProvider pageProps={pageProps}>
       <ServiceWorker />
       <DefaultSeo />
+      <Tracking />
       <GlobalProvider>
         <GameProvider>
           <Layout pageProps={pageProps}>

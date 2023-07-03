@@ -4,6 +4,8 @@ import {FC} from 'react';
 import tracker from './tracker';
 
 const GtagScript: FC = () => {
+  if (!tracker.ID) return null;
+
   return (
     <>
       <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${tracker.ID}`} />

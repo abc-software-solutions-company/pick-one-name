@@ -1,5 +1,5 @@
 //https://segment.com/docs/connections/
-import {ITrackEventParams} from '../types';
+import {ITrackingEventParams} from '../types';
 
 declare global {
   interface Window {
@@ -7,16 +7,16 @@ declare global {
   }
 }
 
-export const ID = process.env.NEXT_PUBLIC_SEGMENT_ANALYTICS;
+export const ID = process.env.NEXT_PUBLIC_SEGMENT_TRACKING;
 
 export const page = (url: string) => {
   if (!ID && typeof window === undefined) return;
-  return window.analytics.page(url);
+  return window.analytics?.page(url);
 };
 
-export const event = ({name, properties}: ITrackEventParams) => {
+export const event = ({name, properties}: ITrackingEventParams) => {
   if (ID && typeof window === undefined) return;
-  return window.analytics.track(name, properties);
+  return window.analytics?.track(name, properties);
 };
 
 const tracker = {ID, page, event};

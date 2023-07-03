@@ -4,6 +4,8 @@ import {FC} from 'react';
 import tracker from './tracker';
 
 const SegmentScript: FC = () => {
+  if (!tracker.ID) return null;
+
   return (
     <Script strategy="afterInteractive" id="segment">
       {`

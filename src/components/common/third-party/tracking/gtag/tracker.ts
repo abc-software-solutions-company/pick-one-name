@@ -1,6 +1,6 @@
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 
-import {ITrackEventParams} from '../types';
+import {ITrackingEventParams} from '../types';
 
 declare global {
   interface Window {
@@ -8,15 +8,15 @@ declare global {
   }
 }
 
-export const ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
+export const ID = process.env.NEXT_PUBLIC_GOOGLE_TRACKING;
 
 export const page = (url: string) => {
-  if (ID && typeof window === undefined) return;
+  if (!ID || typeof window === undefined || !window.gtag) return;
   window.gtag('config', ID, {page_path: url});
 };
 
-export const event = ({name, properties}: ITrackEventParams) => {
-  if (ID && typeof window === undefined) return;
+export const event = ({name, properties}: ITrackingEventParams) => {
+  if (!ID || typeof window === undefined || !window.gtag) return;
   window.gtag('event', name, properties);
 };
 

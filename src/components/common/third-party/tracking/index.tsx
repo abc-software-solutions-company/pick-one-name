@@ -1,11 +1,11 @@
 import {useRouter} from 'next/router';
-import {FC, useEffect} from 'react';
+import {useEffect} from 'react';
 
 import GtagScript from './gtag';
 import SegmentScript from './segment';
 import Tracker from './utils/tracker';
 
-const Tracking: FC = () => {
+const Tracking = () => {
   const router = useRouter();
 
   useEffect(() => {

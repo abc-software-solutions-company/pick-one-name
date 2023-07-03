@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import {gsap} from 'gsap';
 import React, {FC, ReactNode, useEffect, useRef} from 'react';
 
+import useTracking from '@/hooks/use-tracking';
 import {IPlayer} from '@/localdb/models/player.model';
 import {useGame} from '@/states/game';
 import {rangeInt} from '@/utils/random';
@@ -26,6 +27,7 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({className, players, trigger, colo
   const wheelRef = useRef<HTMLDivElement>(null);
 
   const game = useGame();
+  const tracking = useTracking();
 
   if (!players.length) players = constant.defaultPlayers;
 
@@ -87,7 +89,15 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({className, players, trigger, colo
   useEffect(() => {
     if (game.state.runAt && game.state.winner) {
       const element = wheelRef.current;
-      if (element) runAnimation(element, game.state.winner!);
+      if (element) {
+        runAnimation(element, game.state.winner!);
+        tracking.event({
+          name: 'rotate',
+          properties: {
+            players
+          }
+        });
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game.state.runAt, game.state.winner]);
