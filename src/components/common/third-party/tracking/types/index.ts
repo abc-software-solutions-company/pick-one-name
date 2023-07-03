@@ -1,4 +1,4 @@
-export interface ITrackEventParams {
+export interface ITrackingEventParams {
   name: string;
-  properties?: any;
+  properties?: unknown;
 }
