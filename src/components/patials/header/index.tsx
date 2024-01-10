@@ -7,7 +7,6 @@ import Button from '@/core-ui/button';
 import Icon from '@/core-ui/icon';
 
 import {linksList} from './const';
-import styles from './header.module.scss';
 
 interface IProps {
   className?: string;
@@ -15,31 +14,37 @@ interface IProps {
 
 const Header: FC<IProps> = ({className}) => {
   return (
-    <div className={classnames(styles['com-header'], className)}>
-      <div className="com-header--inner">
-        <div className="com-header--links">
+    <div className={classnames(className, 'bg-teal-100 px-[100px] py-3')}>
+      <div className="flex items-center justify-between">
+        <div className="flex shrink-0 items-center gap-8">
           {linksList.map(link => (
-            <Link key={link.href} style={{color: '#0C0A09'}} href={link.href}>
-              {link.title}
+            <Link key={link.href} href={link.href}>
+              <span className="cursor-pointer text-xl font-bold leading-6 text-[#0C0A09]">{link.title}</span>
             </Link>
           ))}
         </div>
-        <Image src={'/logo.png'} width={218} height={36} alt="logo" />
-        <div className="com-header--controls">
+        <Image
+          className="text-[#0C0A09]; text-xl font-bold leading-6"
+          src={'/logo.png'}
+          width={218}
+          height={36}
+          alt="logo"
+        />
+        <div className="flex items-center justify-end gap-6 text-[#030712]">
           {/* <GameSettings className="header" />
             <SoundController /> */}
           <div className="flex">
-            <Button className="com-header--controls--sounds">
+            <Button className="flex justify-center gap-2 rounded-[8px_0_0_8px] border-[3px] border-[#000] bg-[#FAFAFA] py-4 px-3">
               <Icon name="ico-volume-1" />
             </Button>
-            <Button className="com-header--controls--zoom">
+            <Button className="flex items-center justify-center gap-2 rounded-[0_8px_8px_0] border-[3px] border-l-0 border-[#000] bg-[#FAFAFA] py-4 px-3">
               <Icon name="ico-maximize-3" />
-              <span>Phóng to</span>
+              <span className="text-xl font-semibold leading-6">Phóng to</span>
             </Button>
           </div>
-          <div className="com-header--controls--auth">
-            <Button>
-              <span>Đăng nhập</span>
+          <div>
+            <Button className="flex items-center justify-center gap-2 rounded-lg border-[3px] border-[#000] bg-[#FDE047] py-4 px-8 shadow-[2px_4px_0_0_#000]">
+              <span className="text-xl font-semibold leading-6 text-[#030712]">Đăng nhập</span>
             </Button>
           </div>
         </div>

@@ -2,11 +2,10 @@ import React, {FC} from 'react';
 
 import VerticalWheel from '../number-wheel';
 import RanOption from '../option';
-import style from './random-number.module.scss';
 
 const RandomNumber: FC = () => {
   return (
-    <div className={style['random-number']}>
+    <div className={'flex items-center gap-8'}>
       <VerticalWheel className={'basis-2/3 bg-slate-400'} />
       <RanOption className="basis-1/3 bg-slate-300" />
     </div>

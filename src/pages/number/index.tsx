@@ -1,11 +1,9 @@
 import RandomNumber from '@/components/random-number';
 import LayoutDefault from '@/layouts/default';
 
-import styles from './number.module.scss';
-
 export default function PageNumber() {
   return (
-    <div className={styles['page-number']}>
+    <div className={'h-full py-[74px] px-[100px]'}>
       <RandomNumber />
     </div>
   );
