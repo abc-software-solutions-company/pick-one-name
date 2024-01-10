@@ -5,7 +5,7 @@ import {siteSettings} from '@/configs/site.config';
 
 import styles from './style.module.scss';
 
-const Footer: FC = () => {
+const FooterOld: FC = () => {
   return (
     <>
       <div className={cls(styles.footer)}>
@@ -18,4 +18,4 @@ const Footer: FC = () => {
   );
 };
 
-export default Footer;
+export default FooterOld;

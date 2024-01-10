@@ -9,7 +9,7 @@ import Button from '@/core-ui/button';
 import Drawer from '@/core-ui/drawer';
 import Icon from '@/core-ui/icon';
 import useToast from '@/core-ui/toast';
-import LayoutDefault from '@/layouts/default';
+import LayoutWheel from '@/layouts/old-layout';
 import {IPlayer} from '@/localdb/models/player.model';
 import {GameOperations, useGame} from '@/states/game';
 import {useGlobal} from '@/states/global';
@@ -132,4 +132,4 @@ export default function PageHome() {
   );
 }
 
-PageHome.Layout = LayoutDefault;
+PageHome.Layout = LayoutWheel;

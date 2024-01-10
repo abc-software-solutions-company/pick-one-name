@@ -1,15 +1,15 @@
 import classnames from 'classnames';
 import React, {FC} from 'react';
 
-import GameSettings from '../game-settings';
-import SoundController from '../sound-controller';
+import GameSettings from '../../game-settings';
+import SoundController from '../../sound-controller';
 import styles from './header.module.scss';
 
 interface IProps {
   className?: string;
 }
 
-const Header: FC<IProps> = ({className}) => {
+const HeaderOld: FC<IProps> = ({className}) => {
   return (
     <div className={classnames(styles['com-header'], className)}>
       <div className="container">
@@ -23,4 +23,4 @@ const Header: FC<IProps> = ({className}) => {
   );
 };
 
-export default Header;
+export default HeaderOld;

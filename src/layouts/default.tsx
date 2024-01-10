@@ -1,7 +1,7 @@
 import React, {PropsWithChildren} from 'react';
 
-import Footer from '@/components/footer';
-import Header from '@/components/header';
+import Footer from '@/components/patials/footer-old';
+import Header from '@/components/patials/header';
 
 import styles from './style.module.scss';
 
