@@ -11,11 +11,7 @@ export default function LayoutDefault({children}: PropsWithChildren<IDefaultLayo
   return (
     <div className="flex h-full w-full flex-col">
       <Header />
-      <main className="relative">
-        <div className="absolute left-[10%] top-[20%] h-[403px] w-[403px] rounded-full bg-teal-500 blur-[250px]" />
-        <div className="absolute right-[7%] top-[10%] h-[303px] w-[303px] rounded-full bg-teal-300 blur-[250px]" />
-        {children}
-      </main>
+      <main>{children}</main>
       <Footer />
     </div>
   );
