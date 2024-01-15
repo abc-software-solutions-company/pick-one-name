@@ -3,7 +3,7 @@ import cls from 'classnames';
 import Link from 'next/link';
 import React, {FC, MouseEvent} from 'react';
 
-import {linksList} from '../const';
+import {linksList} from '@/utils/const';
 
 interface IPropsHeaderLeft {
   pathName?: string;

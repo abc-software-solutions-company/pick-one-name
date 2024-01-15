@@ -1,3 +1,14 @@
+const linksList = [
+  {
+    href: '/number',
+    title: 'Random number'
+  },
+  {
+    href: '/wheel',
+    title: 'Random wheel'
+  }
+];
+
 const findUsList = [
   {
     icon: 'ico-discord',
@@ -12,5 +23,4 @@ const findUsList = [
     href: ''
   }
 ];
-
-export {findUsList};
+export {findUsList, linksList};
