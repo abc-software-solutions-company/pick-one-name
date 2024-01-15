@@ -5,24 +5,31 @@ import React, {FC, MouseEvent} from 'react';
 
 import {linksList} from '@/utils/const';
 
+import {TypeMouseEvent} from '../type';
+
 interface IPropsHeaderLeft {
   pathName?: string;
-  onClick: (e: MouseEvent<HTMLSpanElement>) => void;
+  onClick: (e: MouseEvent<HTMLSpanElement>, type: TypeMouseEvent) => void;
+  onHover: (e: MouseEvent<HTMLSpanElement>, type: TypeMouseEvent) => void;
+  onBlur: (e: MouseEvent<HTMLSpanElement>) => void;
 }
 
-const HeaderLeft: FC<IPropsHeaderLeft> = ({pathName, onClick}) => {
+const HeaderLeft: FC<IPropsHeaderLeft> = ({pathName, onClick, onHover, onBlur}) => {
   return (
     <div className="flex items-center gap-8">
       {linksList.map(link => (
-        <Link
-          href={link.href}
-          key={link.href}
-          className={cls(
-            'cursor-pointer text-lg font-bold leading-normal text-neutral-50 hover:text-gray-600 hover:no-underline',
-            {active: link.href === pathName}
-          )}
-        >
-          <span onClick={e => onClick(e)}>{link.title}</span>
+        <Link href={link.href} key={link.href}>
+          <span
+            className={cls(
+              'cursor-pointer text-lg font-bold leading-normal text-neutral-50 hover:text-gray-300 hover:no-underline',
+              {active: link.href === pathName}
+            )}
+            onClick={e => onClick(e, 'click')}
+            onMouseEnter={e => onHover(e, 'hover')}
+            onMouseLeave={e => onBlur(e)}
+          >
+            {link.title}
+          </span>
         </Link>
       ))}
     </div>

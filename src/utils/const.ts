@@ -23,4 +23,23 @@ const findUsList = [
     href: ''
   }
 ];
-export {findUsList, linksList};
+
+const infoList = [
+  {
+    title: 'About',
+    href: 'about'
+  },
+  {
+    title: 'Privacy policy',
+    href: 'privacy-policy'
+  },
+  {
+    title: 'Term of service',
+    href: 'term-of-service'
+  },
+  {
+    title: 'Contact',
+    href: 'contact'
+  }
+];
+export {findUsList, infoList, linksList};

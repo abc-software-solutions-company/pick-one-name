@@ -10,8 +10,10 @@ const FooterRight: FC = () => {
       <span>Find us</span>
       <div className="flex items-center justify-end gap-2">
         {findUsList.map(item => (
-          <Link key={item.icon} href={item.href} className="hover:no-underline">
-            <Icon className="text-[#FFF]" name={item.icon} />
+          <Link key={item.icon} href={item.href}>
+            <>
+              <Icon className="cursor-pointer text-[#FFF]" name={item.icon} />
+            </>
           </Link>
         ))}
       </div>

@@ -1,5 +1,5 @@
 .abc-backdrop {
-  @apply pointer-events-auto invisible fixed top-0 left-0 z-drawerbackdrop h-screen w-screen bg-black/[0.6] opacity-0;
+  @apply pointer-events-auto invisible fixed left-0 top-0 z-drawerbackdrop h-screen w-screen bg-black/[0.6] opacity-0;
   @apply transition-opacity duration-200;
   &.show {
     @apply visible opacity-100;

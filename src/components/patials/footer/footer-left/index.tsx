@@ -1,5 +1,8 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React, {FC} from 'react';
+
+import {infoList} from '@/utils/const';
 
 const FooterLeft: FC = () => {
   return (
@@ -21,10 +24,11 @@ const FooterLeft: FC = () => {
         />
       </div>
       <div className="flex justify-start gap-8 font-semibold leading-5">
-        <span className="cursor-pointer">About</span>
-        <span className="cursor-pointer">Privacy policy</span>
-        <span className="cursor-pointer">Term of service</span>
-        <span className="cursor-pointer">Contact</span>
+        {infoList.map(item => (
+          <Link href={item.href} key={item.title} className="cursor-pointer">
+            <span className="cursor-pointer">{item.title}</span>
+          </Link>
+        ))}
       </div>
     </div>
   );
