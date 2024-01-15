@@ -1,7 +1,7 @@
 .form-radio {
   @apply h-5 w-5;
   @apply pointer-events-auto cursor-pointer;
-  @apply border-transparent border-blue-500;
+  @apply border-blue-500 border-transparent;
   @apply focus:outline-none focus:outline-offset-0 focus:ring-0 focus:ring-offset-0;
 }
 .abc-radio {
