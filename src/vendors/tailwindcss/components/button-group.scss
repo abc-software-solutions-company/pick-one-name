@@ -1,15 +1,15 @@
 .abc-button-group {
   @apply relative flex w-full flex-wrap items-stretch;
   > :first-child {
-    @apply rounded-tl rounded-bl;
+    @apply rounded-bl rounded-tl;
   }
   > :not(:first-child) {
-    @apply rounded-tl-none rounded-bl-none;
+    @apply rounded-bl-none rounded-tl-none;
   }
   > :last-child {
-    @apply rounded-tr rounded-br;
+    @apply rounded-br rounded-tr;
   }
   > :not(:last-child) {
-    @apply rounded-tr-none rounded-br-none;
+    @apply rounded-br-none rounded-tr-none;
   }
 }

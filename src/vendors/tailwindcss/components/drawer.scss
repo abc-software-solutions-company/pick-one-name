@@ -3,7 +3,7 @@
   @apply fixed z-drawer;
   @apply transition-all duration-300;
   &.right {
-    @apply top-0 -right-[300px];
+    @apply -right-[300px] top-0;
     &.show {
       @apply right-0;
     }
@@ -14,7 +14,7 @@
     .drawer-header {
       @apply relative;
       button {
-        @apply absolute top-2 right-3 z-20;
+        @apply absolute right-3 top-2 z-20;
       }
     }
     .drawer-body {

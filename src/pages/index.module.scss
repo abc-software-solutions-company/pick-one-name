@@ -8,8 +8,8 @@
   }
 }
 .btn-show-players :global {
-  @apply absolute top-20 -left-12 rounded-r-none bg-gray-700 px-2;
+  @apply absolute -left-12 top-20 rounded-r-none bg-gray-700 px-2;
 }
 .btn-start :global {
-  @apply w-full rounded-t-none rounded-b-lg py-4 text-3xl uppercase;
+  @apply w-full rounded-b-lg rounded-t-none py-4 text-3xl uppercase;
 }

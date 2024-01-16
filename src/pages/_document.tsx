@@ -17,8 +17,9 @@ export default class CustomDocument extends Document {
           <meta httpEquiv="cleartype" content="on" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+          <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700&display=swap" rel="stylesheet" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,500;0,600;0,700;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap"
             rel="stylesheet"
           />
           <style type="text/css" dangerouslySetInnerHTML={{__html: mediaStyles}} />
@@ -31,7 +32,7 @@ export default class CustomDocument extends Document {
             dangerouslySetInnerHTML={{__html: JSON.stringify(siteSettings.schemaJsonLd.website)}}
           />
         </Head>
-        <body className="scrollbar font-kanit h-full bg-orange-50">
+        <body className="scrollbar font-nunito h-full w-full bg-[#FAFAFA] text-[#030712]">
           <Main />
           <NextScript />
           <div id="react-modal-root"></div>
