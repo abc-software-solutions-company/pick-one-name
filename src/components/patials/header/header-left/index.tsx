@@ -20,10 +20,9 @@ const HeaderLeft: FC<IPropsHeaderLeft> = ({pathName, onClick, onHover, onBlur}) 
       {linksList.map(link => (
         <Link href={link.href} key={link.href}>
           <span
-            className={cls(
-              'cursor-pointer text-lg font-bold leading-normal text-neutral-50 hover:text-gray-300 hover:no-underline',
-              {active: link.href === pathName}
-            )}
+            className={cls('cursor-pointer text-lg font-semibold leading-6 hover:text-gray-300 hover:no-underline', {
+              active: link.href === pathName
+            })}
             onClick={e => onClick(e, 'click')}
             onMouseEnter={e => onHover(e, 'hover')}
             onMouseLeave={e => onBlur(e)}

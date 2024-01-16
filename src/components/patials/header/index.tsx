@@ -63,12 +63,7 @@ const Header: FC<IProps> = ({className}) => {
   };
 
   return (
-    <div
-      className={cls(
-        className,
-        'relative top-0 z-10 rounded-[3px] border-b border-slate-500 bg-transparent px-[100px] py-4'
-      )}
-    >
+    <div className={cls(className, 'relative top-0 border-b border-gray-300 px-[100px] py-4')}>
       <motion.div
         animate={controls}
         style={{width: activeEl.width, left: activeEl.position}}

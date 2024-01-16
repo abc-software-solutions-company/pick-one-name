@@ -12,7 +12,7 @@ const FooterRight: FC = () => {
         {findUsList.map(item => (
           <Link key={item.icon} href={item.href}>
             <>
-              <Icon className="cursor-pointer text-[#FFF]" name={item.icon} />
+              <Icon className="cursor-pointer text-[#030712]" name={item.icon} />
             </>
           </Link>
         ))}
