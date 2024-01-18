@@ -18,6 +18,7 @@ module.exports = {
       sans: ['"Fira Sans"', 'system-ui', '-apple-system', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'sans-serif'],
       serif: ['Merriweather', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       mono: ['"Roboto Mono"', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+      nunito: ['"Nunito"'],
       display: ['"Sansita Swashed"'],
       handwriting: ['"Dancing Script"']
     },
@@ -45,6 +46,10 @@ module.exports = {
         display6: ['2.5rem', {lineHeight: '3.5rem', letterSpacing: '0'}],
         figure: ['0.688rem', {lineHeight: '3.5rem', letterSpacing: '0'}]
       },
+      spacing: {
+        25: '6rem',
+        number: '86px'
+      },
       letterSpacing: {
         4: '0.04em', // -4%
         3: '0.03em', // -3%
@@ -55,6 +60,9 @@ module.exports = {
         0: '0'
       },
       colors: {
+        dark: {
+          950: '#030712'
+        },
         blue: {
           50: '#f6fafe',
           100: '#edf5fd',
@@ -69,7 +77,8 @@ module.exports = {
         }
       },
       backgroundImage: {
-        'gradient-45deg': 'linear-gradient(45deg, var(--tw-gradient-stops))'
+        'gradient-45deg': 'linear-gradient(45deg, var(--tw-gradient-stops))',
+        'modal-congrats-winding-line': "url('/images/modal-congrats-winding-line.svg')"
       },
       maxWidth: {
         '1/2': '50%',
@@ -190,6 +199,18 @@ module.exports = {
           visibility: 'hidden',
           marginTop: '-100px',
           height: '100px'
+        },
+        '.backface-visible': {
+          'backface-visibility': 'visible'
+        },
+        '.backface-hidden': {
+          'backface-visibility': 'hidden'
+        },
+        '.transform-style-preserve-3d': {
+          'transform-style': 'preserve-3d'
+        },
+        '.perspective-1000': {
+          perspective: '1000px'
         }
       });
     })

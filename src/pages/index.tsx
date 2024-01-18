@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 
 import GameSettings from '@/components/game-settings';
 import LuckyWheel from '@/components/lucky-wheel';
-import ConfirmBox from '@/components/modal-confirm';
-import Congrats from '@/components/modal-congrats';
+import ConfirmBox from '@/components/modals/modal-confirm';
+import Congrats from '@/components/modals/modal-congrats';
 import Players from '@/components/players';
 import Button from '@/core-ui/button';
 import Drawer from '@/core-ui/drawer';
