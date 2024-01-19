@@ -1,3 +1,5 @@
+import {sanitizeInput} from '@/utils/sanitize-input';
+
 interface IInputNumberProps {
   label: string;
   value: number;
@@ -5,9 +7,6 @@ interface IInputNumberProps {
 }
 
 const InputNumber = ({label, value, onChange}: IInputNumberProps) => {
-  const sanitizeInput = (input: string) => {
-    return input.replace(/[^0-9]/g, '');
-  };
   return (
     <div className="flex flex-col">
       <div className="mb-4 text-2xl font-medium text-black">{label}</div>
