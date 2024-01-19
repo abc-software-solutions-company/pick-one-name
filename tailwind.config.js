@@ -24,7 +24,9 @@ module.exports = {
     },
     extend: {
       screens: {
-        '2xl': '1460px'
+        '2xl': '1460px',
+        '3xl': '1600px',
+        '4xl': '1920px'
       },
       // https://nekocalc.com/px-to-rem-converter
       // Tailwind cung cấp sẵn cho bạn khá nhiều thứ nhưng không có nghĩa là chỉ dùng những cái nó cung cấp sẵn là đủ.
@@ -47,8 +49,9 @@ module.exports = {
         figure: ['0.688rem', {lineHeight: '3.5rem', letterSpacing: '0'}]
       },
       spacing: {
-        25: '6rem',
-        number: '86px'
+        18: '4.5rem',
+        21: '5.5rem',
+        25: '6rem'
       },
       letterSpacing: {
         4: '0.04em', // -4%
@@ -58,6 +61,20 @@ module.exports = {
       },
       lineHeight: {
         0: '0'
+      },
+      height: {
+        'lg-number-box': '80px',
+        '2xl-number-box': '80px',
+        'lg-number-container': '100px',
+        '2xl-number-container': '140px'
+      },
+      width: {
+        'lg-number-box': '60px',
+        '2xl-number-box': '70px'
+      },
+      scale: {
+        175: '1.75',
+        200: '2'
       },
       colors: {
         dark: {

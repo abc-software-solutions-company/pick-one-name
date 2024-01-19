@@ -11,7 +11,7 @@ export default function LayoutDefault({children}: PropsWithChildren<IDefaultLayo
   return (
     <div className="flex h-full w-full flex-col">
       <Header />
-      <main>{children}</main>
+      <main className="grow">{children}</main>
       <Footer />
     </div>
   );

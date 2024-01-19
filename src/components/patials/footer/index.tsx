@@ -7,7 +7,7 @@ import FooterRight from './footer-right';
 
 const Footer: FC = () => {
   return (
-    <div className="flex flex-col items-center gap-8 border-t border-gray-300 md:px-[100px] md:py-8">
+    <div className="flex flex-col items-center gap-8 border-t border-gray-300 py-4 md:px-[100px] 2xl:py-8">
       <div className="flex w-full items-center justify-between">
         <FooterLeft />
         <FooterRight />

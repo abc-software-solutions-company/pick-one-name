@@ -37,7 +37,11 @@ const Rotaion: FC<IRotateProps> = ({position, numbers, controls, animationStart}
 
   return (
     <div className="user-select-none relative flex items-center overflow-visible perspective-1000">
-      <div className="absolute left-1/2 top-1/2 z-10 h-[85px] w-[71px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-slate-50 p-4 px-2"></div>
+      <div
+        className="absolute left-1/2 top-1/2 z-10 h-[65px] w-[41px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-slate-50 
+        p-4 px-2 lg:h-lg-number-box lg:w-lg-number-box 3xl:h-2xl-number-box 3xl:w-2xl-number-box"
+      ></div>
+
       <motion.div
         className="absolute z-20 h-full w-full will-change-transform transform-style-preserve-3d"
         custom={{
@@ -50,11 +54,11 @@ const Rotaion: FC<IRotateProps> = ({position, numbers, controls, animationStart}
       >
         {numbers.map((num, index: number) => (
           <div
-            className="absolute top-0 left-0 flex h-full w-full items-center justify-center text-center opacity-0 backface-hidden"
+            className="flex h-full w-full items-center justify-center text-center opacity-0 backface-hidden"
             key={index}
             style={num.style}
           >
-            <p className="font-bold sm:text-6xl lg:text-7xl">{num.value}</p>
+            <p className="font-bold sm:text-3xl lg:text-6xl 3xl:text-7xl">{num.value}</p>
           </div>
         ))}
       </motion.div>

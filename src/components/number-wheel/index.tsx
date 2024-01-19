@@ -32,8 +32,9 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    console.log(window.innerWidth);
     generateWheelNumbers();
-    generateNumberList(1000);
+    generateNumberList(10000);
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
@@ -64,7 +65,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
   };
 
   function handleClick() {
-    generateRandNumber(1000, 1);
+    generateRandNumber(10000, 1);
     updateNumberList();
     onAnimationStart();
   }
@@ -85,26 +86,24 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       <NumberWheelTop containerRef={containerRef} isBGImage={isBGImage} />
 
       <div className="flex h-full w-full select-none gap-3">
-        <div className="flex w-full items-center justify-center rounded-sm text-center text-5xl">
-          <div className="flex h-number w-full items-center gap-3 rounded-xl">
-            <div className={cls('relative h-full w-full overflow-hidden')}>
-              <div className="flex h-full w-full items-center justify-center gap-14 md:gap-[4.5rem] lg:gap-[90px]">
-                {randomNumberList.map((n, i) => (
-                  <Rotaion
-                    key={i}
-                    numbers={wheelnumbers}
-                    position={n}
-                    controls={controls}
-                    animationStart={isAnimationStart}
-                  />
-                ))}
-              </div>
+        <div className="flex w-full items-center justify-center rounded-sm text-center">
+          <div className="relative flex h-[65px] w-full items-center gap-3 overflow-hidden rounded-xl lg:h-lg-number-container 3xl:h-2xl-number-container">
+            <div className="flex h-full w-full items-center justify-center sm:gap-10 lg:scale-125 lg:gap-18 3xl:scale-175 3xl:gap-20">
+              {randomNumberList.map((n, i) => (
+                <Rotaion
+                  key={i}
+                  numbers={wheelnumbers}
+                  position={n}
+                  controls={controls}
+                  animationStart={isAnimationStart}
+                />
+              ))}
             </div>
           </div>
         </div>
       </div>
       <Button
-        className="inline-flex h-14 w-[394px] items-center justify-center gap-2 rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-neutral-50"
+        className="inline-flex h-14 w-48 items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-lg font-semibold text-neutral-50 3xl:w-96 3xl:px-8 3xl:py-4"
         disabled={isAnimationStart}
         onClick={handleClick}
       >
