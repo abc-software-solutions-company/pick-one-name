@@ -1,12 +1,9 @@
-import Icon from '@/core-ui/icon';
-
 const HideButton = () => {
   return (
     <button
-      className=" flex h-[56px] w-[118px] items-center justify-center gap-[8px] rounded-lg
-          border-[3px] border-black bg-white text-xl font-bold text-black shadow-[5px_4px_0_0_#000]"
+      className=" flex h-[56px] w-[78px] items-center justify-center gap-2
+         text-xl font-medium text-black"
     >
-      <Icon name="ico-square" />
       Ẩn
     </button>
   );

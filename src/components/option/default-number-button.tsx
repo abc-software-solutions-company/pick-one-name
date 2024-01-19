@@ -8,8 +8,8 @@ interface DefaultNumberButtonProps {
 const DefaultNumberButton: React.FC<DefaultNumberButtonProps> = ({onClick, labelLimit}) => {
   return (
     <button
-      className="flex h-[44px] w-[78px] items-center justify-center gap-10 rounded-lg  border-[2px] 
-      border-black bg-white text-black shadow-[5px_4px_0_0_#000]"
+      className="flex h-[44px] grow items-center justify-center rounded-lg border border-slate-300
+      px-5 py-3 text-black"
       onClick={onClick}
     >
       {labelLimit}
