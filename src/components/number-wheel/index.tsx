@@ -1,7 +1,6 @@
 import cls from 'classnames';
 import {useAnimation} from 'framer-motion';
 import React, {FC, useEffect, useRef} from 'react';
-import {twMerge} from 'tailwind-merge';
 
 import Button from '@/core-ui/button';
 import {useRandomNumber} from '@/hooks/use-random-number';
@@ -77,9 +76,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       }}
       className={cls(
         className,
-        twMerge(
-          'flex h-full flex-col items-center justify-between rounded-2xl border border-gray-300 bg-neutral-50 bg-cover bg-center bg-no-repeat px-5 shadow lg:px-[90px] lg:py-10'
-        )
+        'flex h-full flex-col items-center justify-between rounded-2xl border border-gray-300 bg-neutral-50 bg-cover bg-center bg-no-repeat px-5 shadow lg:px-[90px] lg:py-10'
       )}
     >
       <NumberWheelTop containerRef={containerRef} isBGImage={isBGImage} />
