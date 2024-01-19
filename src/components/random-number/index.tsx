@@ -14,8 +14,8 @@ const RandomNumber: FC = () => {
 
   return (
     <div className={'flex h-full items-stretch gap-8'}>
-      <VerticalWheel className={'sm:w-full lg:basis-2/3'} />
-      <RanOption className="sm:hidden lg:basis-1/3" min={0} max={0} />
+      <VerticalWheel className={'lg:basis-2/3 xs:w-full'} />
+      <RanOption className="lg:basis-1/3 xs:w-full" min={0} max={0} />
       <CongratsNumber number={randomNumber} open={isDone} onClose={() => setDone(false)} />
     </div>
   );
