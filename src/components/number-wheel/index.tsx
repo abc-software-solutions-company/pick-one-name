@@ -32,7 +32,6 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log(window.innerWidth);
     generateWheelNumbers();
     generateNumberList(10000);
     if (timeoutRef.current) {

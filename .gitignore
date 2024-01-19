@@ -47,3 +47,6 @@ sw.js
 # Reports
 coverage
 junit.xml
+
+# ABC Font Dist
+src/vendors/abc-icons/dist
