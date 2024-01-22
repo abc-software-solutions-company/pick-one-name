@@ -29,7 +29,7 @@ export default function DrawerNavbar(props: Props) {
 
   const pathName = useRouter().pathname;
   const handleDrawerToggle = () => {
-    setMobileOpen(prevState => !prevState);
+    setMobileOpen(!mobileOpen);
   };
 
   const drawer = (
