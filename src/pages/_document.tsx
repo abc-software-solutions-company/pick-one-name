@@ -32,7 +32,7 @@ export default class CustomDocument extends Document {
             dangerouslySetInnerHTML={{__html: JSON.stringify(siteSettings.schemaJsonLd.website)}}
           />
         </Head>
-        <body className="scrollbar font-nunito h-full w-full bg-[#FAFAFA] text-[#030712]">
+        <body className="scrollbar h-full w-full bg-neutral-50 font-nunito text-dark-950">
           <Main />
           <NextScript />
           <div id="react-modal-root"></div>

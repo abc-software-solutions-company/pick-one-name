@@ -3,7 +3,7 @@ import LayoutDefault from '@/layouts/default';
 
 export default function PageNumber() {
   return (
-    <div className={'relative z-10 h-full px-[100px] py-[74px]'}>
+    <div className={'h-full grow flex-col px-[50px] py-8 2xl:px-[100px] 2xl:py-16'}>
       <RandomNumber />
     </div>
   );

@@ -1,3 +1,4 @@
+import cls from 'classnames';
 import React, {useState} from 'react';
 
 import DefaultNumberButton from './default-number-button';
@@ -6,18 +7,20 @@ import InputNumber from './input';
 import SettingButton from './setting-button';
 
 interface IRandomOption {
+  className: string;
   min: number;
   max: number;
 }
-const RandomOption = ({min: minNumber, max: maxNumber}: IRandomOption) => {
+const RandomOption = ({min: minNumber, max: maxNumber, className}: IRandomOption) => {
   const [min, setMin] = useState(minNumber);
   const [max, setMax] = useState(maxNumber);
 
   return (
     <div
-      className="flex h-auto w-[552px] flex-col 
-      gap-8 rounded-2xl  border border-solid border-black px-8
-       py-10"
+      className={cls(
+        className,
+        'flex h-auto w-[552px] flex-col gap-8 rounded-2xl  border border-solid border-black px-8 py-10'
+      )}
     >
       <div className=" text-center text-3xl font-medium">Chọn số ngẫu nhiên</div>
       <div className="flex flex-col gap-2">

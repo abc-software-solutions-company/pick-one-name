@@ -1,0 +1,5 @@
+.congratulation :global {
+  .abc-modal-content {
+    @apply relative overflow-hidden  after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-modal-congrats-winding-line after:bg-contain after:bg-no-repeat after:content-[""] md:max-h-[400px];
+  }
+}
