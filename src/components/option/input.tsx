@@ -8,12 +8,13 @@ interface IInputNumberProps {
 
 const InputNumber = ({label, value, onChange}: IInputNumberProps) => {
   return (
-    <div className="flex flex-col">
-      <div className="mb-4 text-2xl font-medium text-black">{label}</div>
+    <div className="flex flex-col gap-1 lg:gap-4">
+      <label className="items-start text-xl font-bold text-black lg:gap-4 3xl:text-2xl">{label}</label>
       <input
-        type="text"
         value={value !== 0 ? value : ''}
-        className="h-12 rounded-lg border border-slate-300"
+        minLength={1}
+        maxLength={7}
+        className="rounded-lg border border-gray-300 bg-slate-50 p-2 text-xs lg:py-3 lg:px-2 lg:text-lg"
         placeholder="Bạn hãy nhập số ..."
         onChange={e => {
           const sanitizedValue = sanitizeInput(e.target.value);

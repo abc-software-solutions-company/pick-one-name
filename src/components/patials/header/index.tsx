@@ -1,5 +1,4 @@
 'use client';
-import cls from 'classnames';
 import {motion, useAnimation} from 'framer-motion';
 import Image from 'next/image';
 import {useRouter} from 'next/router';
@@ -13,13 +12,27 @@ interface IProps {
   className?: string;
 }
 
-const Header: FC<IProps> = ({className}) => {
+const Header: FC<IProps> = () => {
   const controls = useAnimation();
   const pathName = useRouter().pathname;
+  const [width, setWidth] = useState(0);
   const [activeEl, setActiveEL] = useState<IPropsActiveEl>({
     width: 0,
     position: 0
   });
+
+  const updateWidth = () => {
+    const newWidth = window.innerWidth;
+    setWidth(newWidth);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', updateWidth);
+    updateWidth();
+
+    return () => {
+      window.removeEventListener('resize', updateWidth);
+    };
+  }, []);
 
   useEffect(() => {
     //* Step 1: Đặt vị trí - độ dài underline = với phần tử có class active
@@ -63,25 +76,23 @@ const Header: FC<IProps> = ({className}) => {
   };
 
   return (
-    <div className={cls(className, 'relative top-0 border-b border-gray-300 md:px-[100px] md:py-4')}>
+    <>
       <motion.div
         animate={controls}
         style={{width: activeEl.width, left: activeEl.position}}
-        className="absolute bottom-0 inline-block h-1 bg-blue-600"
+        className="absolute bottom-0 hidden h-1 w-full bg-blue-600 md:inline-block md:w-auto"
       />
-      <div className="flex items-center justify-between">
-        <HeaderLeft
-          pathName={pathName}
-          onClick={handleSlidingMenu}
-          onHover={handleSlidingMenu}
-          onBlur={handleBlurMenu}
-        />
+      <HeaderLeft pathName={pathName} onClick={handleSlidingMenu} onHover={handleSlidingMenu} onBlur={handleBlurMenu} />
+      <Image
+        width={width < 1024 ? '142' : '213'}
+        height={width < 1024 ? '22' : '32'}
+        src={'/images/logo.png'}
+        className="h-full w-full"
+        alt="logo"
+      />
 
-        <Image src={'/images/logo.png'} width={218} height={36} alt="logo" />
-
-        <HeaderRight />
-      </div>
-    </div>
+      <HeaderRight />
+    </>
   );
 };
 

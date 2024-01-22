@@ -2,6 +2,7 @@ import '@/vendors/tailwindcss/tailwind.scss';
 import '@/vendors/tailwindcss/theme.scss';
 import '@/vendors/abc-icons/dist/abc.scss';
 
+import {StyledEngineProvider} from '@mui/material';
 import type {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
 import {appWithTranslation} from 'next-i18next';
@@ -27,9 +28,11 @@ const CustomApp = ({Component, pageProps}: AppProps) => {
       <Tracking />
       <GlobalProvider>
         <GameProvider>
-          <Layout pageProps={pageProps}>
-            <Component {...pageProps} key={router.route} />
-          </Layout>
+          <StyledEngineProvider injectFirst>
+            <Layout pageProps={pageProps}>
+              <Component {...pageProps} key={router.route} />
+            </Layout>
+          </StyledEngineProvider>
         </GameProvider>
       </GlobalProvider>
     </QueryProvider>
