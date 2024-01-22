@@ -58,7 +58,7 @@ const Rotaion: FC<IRotateProps> = ({position, numbers, controls, animationStart}
             key={index}
             style={num.style}
           >
-            <p className="font-bold sm:text-3xl lg:text-6xl 3xl:text-7xl">{num.value}</p>
+            <p className="text-3xl font-bold lg:text-6xl 3xl:text-7xl">{num.value}</p>
           </div>
         ))}
       </motion.div>

@@ -71,12 +71,14 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
   return (
     <div
       ref={containerRef}
-      style={{
-        backgroundImage: `url("/images/paddy-field.jpg")`
-      }}
+      style={
+        {
+          // backgroundImage: `url("/images/paddy-field.jpg")`
+        }
+      }
       className={cls(
         className,
-        'flex h-full flex-col items-center justify-between rounded-2xl border border-gray-300 bg-neutral-50 bg-cover bg-center bg-no-repeat px-5 shadow lg:px-[90px] lg:py-10'
+        'flex flex-col items-center justify-between rounded-2xl border border-gray-300 bg-neutral-50 bg-cover bg-center bg-no-repeat py-5 shadow lg:px-[90px] lg:py-10'
       )}
     >
       <NumberWheelTop containerRef={containerRef} isBGImage={isBGImage} />
@@ -84,7 +86,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       <div className="flex h-full w-full select-none gap-3">
         <div className="flex w-full items-center justify-center rounded-sm text-center">
           <div className="relative flex h-[65px] w-full items-center gap-3 overflow-hidden rounded-xl lg:h-lg-number-container 3xl:h-2xl-number-container">
-            <div className="flex h-full w-full items-center justify-center sm:gap-10 lg:scale-125 lg:gap-18 3xl:scale-175 3xl:gap-20">
+            <div className="wheel-container flex h-full w-full items-center justify-center gap-10 md:scale-125 lg:gap-18 3xl:scale-150 3xl:gap-20">
               {randomNumberList.map((n, i) => (
                 <Rotaion
                   key={i}
@@ -99,7 +101,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
         </div>
       </div>
       <Button
-        className="inline-flex h-14 w-48 items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-lg font-semibold text-neutral-50 3xl:w-96 3xl:px-8 3xl:py-4"
+        className="inline-flex h-14 w-2/3 items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1 text-sm font-semibold text-neutral-50 hover:bg-blue-700 lg:w-[40%] lg:py-4 lg:px-8 lg:text-lg"
         disabled={isAnimationStart}
         onClick={handleClick}
       >

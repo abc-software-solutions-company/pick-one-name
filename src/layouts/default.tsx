@@ -1,7 +1,7 @@
 import React, {PropsWithChildren} from 'react';
 
 import Footer from '@/components/patials/footer';
-import Header from '@/components/patials/header';
+import DrawerNavbar from '@/components/patials/header/drawer-navbar';
 
 interface IDefaultLayoutProps {
   className?: string;
@@ -9,9 +9,9 @@ interface IDefaultLayoutProps {
 
 export default function LayoutDefault({children}: PropsWithChildren<IDefaultLayoutProps>) {
   return (
-    <div className="flex h-full w-full flex-col">
-      <Header />
-      <main className="grow">{children}</main>
+    <div className="box-border flex h-full flex-col">
+      <DrawerNavbar />
+      <main>{children}</main>
       <Footer />
     </div>
   );

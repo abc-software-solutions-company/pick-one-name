@@ -6,15 +6,15 @@ import {infoList} from '@/utils/const';
 
 const FooterLeft: FC = () => {
   return (
-    <div className="flex flex-col items-start gap-8">
-      <div className="flex items-center justify-start gap-8">
+    <div className="flex flex-col items-start gap-3 lg:gap-6 3xl:gap-8">
+      <div className="flex w-full items-center justify-center gap-3 lg:justify-start lg:gap-6 3xl:gap-8">
         <Image src={'/images/logo.png'} width={218} height={36} alt="logo" />
         <Image src={'/images/logo-abc.png'} width={80} height={38} alt="logo abc" />
       </div>
-      <div className="flex justify-start gap-8 font-semibold leading-5">
+      <div className="flex w-full flex-col items-center gap-2 font-semibold leading-5 lg:flex-row lg:justify-start lg:gap-6 3xl:gap-8">
         {infoList.map(item => (
           <Link href={item.href} key={item.title} className="cursor-pointer">
-            <span className="cursor-pointer">{item.title}</span>
+            <span className="cursor-pointer text-sm">{item.title}</span>
           </Link>
         ))}
       </div>

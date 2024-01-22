@@ -9,14 +9,14 @@ import {TypeMouseEvent} from '../type';
 
 interface IPropsHeaderLeft {
   pathName?: string;
-  onClick: (e: MouseEvent<HTMLSpanElement>, type: TypeMouseEvent) => void;
-  onHover: (e: MouseEvent<HTMLSpanElement>, type: TypeMouseEvent) => void;
-  onBlur: (e: MouseEvent<HTMLSpanElement>) => void;
+  onClick?: (e: MouseEvent<HTMLSpanElement>, type: TypeMouseEvent) => void;
+  onHover?: (e: MouseEvent<HTMLSpanElement>, type: TypeMouseEvent) => void;
+  onBlur?: (e: MouseEvent<HTMLSpanElement>) => void;
 }
 
-const HeaderLeft: FC<IPropsHeaderLeft> = ({pathName, onClick, onHover, onBlur}) => {
+const HeaderLeft: FC<IPropsHeaderLeft> = ({pathName, onClick = () => {}, onHover = () => {}, onBlur = () => {}}) => {
   return (
-    <div className="flex items-center gap-8">
+    <div className="hidden w-auto items-center gap-8 md:flex">
       {linksList.map(link => (
         <Link href={link.href} key={link.href}>
           <span
