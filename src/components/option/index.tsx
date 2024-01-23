@@ -18,7 +18,7 @@ const RandomOption = ({className}: IRandomOption) => {
     <div
       className={cls(
         className,
-        'flex flex-col gap-4 rounded-2xl border border-gray-300 px-2 py-5 lg:gap-4 lg:py-10 lg:px-8 3xl:gap-8'
+        'flex flex-col gap-4 rounded-2xl border border-gray-300 px-2 py-5 md:p-10 lg:py-10 lg:px-8 3xl:gap-8'
       )}
     >
       <div className="flex flex-col gap-2 lg:gap-4 3xl:gap-8">
@@ -27,7 +27,7 @@ const RandomOption = ({className}: IRandomOption) => {
         <InputNumber label="Tối đa (max 9.999.999)" value={max} onChange={setMax} />
       </div>
       <DefaultNumberOptions />
-      <div className="flex items-center gap-2 self-stretch align-bottom lg:gap-4">
+      <div className="flex items-center gap-2 self-stretch align-bottom md:gap-4">
         <SettingButton />
         <HideButton />
       </div>

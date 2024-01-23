@@ -80,12 +80,12 @@ const Header: FC<IProps> = () => {
       <motion.div
         animate={controls}
         style={{width: activeEl.width, left: activeEl.position}}
-        className="absolute bottom-0 hidden h-1 w-full bg-blue-600 md:inline-block md:w-auto"
+        className="absolute bottom-0 hidden h-1 w-full bg-blue-600 lg:inline-block lg:w-auto"
       />
       <HeaderLeft pathName={pathName} onClick={handleSlidingMenu} onHover={handleSlidingMenu} onBlur={handleBlurMenu} />
       <Image
-        width={width < 1024 ? '142' : '213'}
-        height={width < 1024 ? '22' : '32'}
+        width={width < 768 ? '142' : '213'}
+        height={width < 768 ? '22' : '32'}
         src={'/images/logo.png'}
         className="h-full w-full"
         alt="logo"

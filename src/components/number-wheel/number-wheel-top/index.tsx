@@ -32,7 +32,7 @@ const NumberWheelTop: FC<Iprops> = ({isBGImage, containerRef}) => {
 
   return (
     <div className="flex w-full items-center justify-between px-2">
-      <div className="w-10 lg:w-[56px]"></div>
+      <div className="w-10 md:w-[56px]"></div>
       <div
         className={cls('p-3', {
           'rounded-lg': isBGImage,
@@ -41,7 +41,7 @@ const NumberWheelTop: FC<Iprops> = ({isBGImage, containerRef}) => {
         })}
       >
         <p
-          className={cls('text-gray-950 rounded px-3 text-xl font-bold tracking-tight lg:text-[32px]', {
+          className={cls('text-gray-950 rounded px-3 text-xl font-bold tracking-tight md:text-2xl lg:text-[32px]', {
             'bg-white': isBGImage
           })}
         >
@@ -49,7 +49,7 @@ const NumberWheelTop: FC<Iprops> = ({isBGImage, containerRef}) => {
         </p>
       </div>
       <button
-        className="flex max-h-[32px] max-w-[32px] items-center justify-center rounded bg-blue-600 p-1 hover:bg-blue-700 lg:max-h-[56px] lg:max-w-[56px] lg:rounded-lg lg:p-4"
+        className="flex max-h-[32px] max-w-[32px] items-center justify-center rounded bg-blue-600 p-1 hover:bg-blue-700 md:max-h-[56px] md:max-w-[56px] md:rounded-lg md:p-4"
         onClick={() => toggleFullScreen(!isZoom)}
       >
         {isZoom ? (
