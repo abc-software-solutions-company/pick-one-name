@@ -5,7 +5,7 @@ import {ranges} from '@/utils/random';
 
 import DefaultNumberButton from './default-number-button';
 
-const DefaultNumberOptions = () => {
+const DefaultNumberOptions: React.FC = () => {
   const {setMin, setMax} = useRandomNumber();
 
   const randomOptions = ranges.map(({min, max, label}) => (
