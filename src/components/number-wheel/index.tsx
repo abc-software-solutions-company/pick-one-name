@@ -75,7 +75,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
   function handleClick() {
     if (isInputValid) {
       if (min >= max) {
-        toast.show({type: 'danger', title: '', content: 'Xin hãy nhập số tối thiểu nhỏ hơn số tối đa!'});
+        toast.show({type: 'danger', title: '', content: 'Số tối thiểu phải nhỏ hơn số tối đa!'});
       } else {
         generateRandNumber();
         updateNumberList();
