@@ -1,19 +1,18 @@
 import cls from 'classnames';
-import React, {useState} from 'react';
 
-import DefaultNumberButton from './default-number-button';
+import {useRandomNumber} from '@/hooks/use-random-number';
+
+import DefaultNumberOptions from './default-number';
 import HideButton from './hide-button';
 import InputNumber from './input';
 import SettingButton from './setting-button';
 
 interface IRandomOption {
   className: string;
-  min: number;
-  max: number;
 }
-const RandomOption = ({min: minNumber, max: maxNumber, className}: IRandomOption) => {
-  const [min, setMin] = useState(minNumber);
-  const [max, setMax] = useState(maxNumber);
+
+const RandomOption = ({className}: IRandomOption) => {
+  const {min, max, setMin, setMax} = useRandomNumber();
 
   return (
     <div
@@ -27,58 +26,7 @@ const RandomOption = ({min: minNumber, max: maxNumber, className}: IRandomOption
         <InputNumber label="Tối thiểu" value={min} onChange={setMin} />
         <InputNumber label="Tối đa (max 9.999.999)" value={max} onChange={setMax} />
       </div>
-
-      <div className="flex h-full flex-wrap content-start items-start gap-2 self-stretch lg:gap-3">
-        <DefaultNumberButton
-          onClick={() => {
-            setMin(1);
-            setMax(99);
-          }}
-          labelLimit="1-99"
-        />
-        <DefaultNumberButton
-          onClick={() => {
-            setMin(1);
-            setMax(999);
-          }}
-          labelLimit="1-999"
-        />
-        <DefaultNumberButton
-          onClick={() => {
-            setMin(100);
-            setMax(999);
-          }}
-          labelLimit="100-999"
-        />
-        <DefaultNumberButton
-          onClick={() => {
-            setMin(1);
-            setMax(9999);
-          }}
-          labelLimit="1-9999"
-        />
-        <DefaultNumberButton
-          onClick={() => {
-            setMin(1);
-            setMax(99999);
-          }}
-          labelLimit="1-99.999"
-        />
-        <DefaultNumberButton
-          onClick={() => {
-            setMin(1);
-            setMax(999999);
-          }}
-          labelLimit="1-999.999"
-        />
-        <DefaultNumberButton
-          onClick={() => {
-            setMin(1);
-            setMax(9999999);
-          }}
-          labelLimit="1-9.999.999"
-        />
-      </div>
+      <DefaultNumberOptions />
       <div className="flex items-center gap-2 self-stretch align-bottom lg:gap-4">
         <SettingButton />
         <HideButton />
