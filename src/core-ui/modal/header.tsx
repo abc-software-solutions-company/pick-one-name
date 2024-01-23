@@ -7,10 +7,11 @@ import {useModal} from './modal';
 export interface IModalHeaderProps {
   className?: string;
   text?: string;
+  icon?: string;
   children?: ReactNode;
 }
 
-const Header: FC<IModalHeaderProps> = ({className, text, children}) => {
+const Header: FC<IModalHeaderProps> = ({className, text, icon = 'ico-x-circle', children}) => {
   const {onClose} = useModal();
 
   const content = text ? <p className={cls('abc-modal-title', className)}>{text}</p> : children;
@@ -18,7 +19,7 @@ const Header: FC<IModalHeaderProps> = ({className, text, children}) => {
   return (
     <div className={cls('abc-modal-header', className)}>
       {content}
-      <Icon className="abc-modal-close ml-auto cursor-pointer" name="ico-x-circle" onClick={() => onClose(false)} />
+      <Icon className="abc-modal-close ml-auto cursor-pointer px-4" name={icon} onClick={() => onClose(false)} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import cls from 'classnames';
+import classnames from 'classnames';
 import React, {FC} from 'react';
 
 import Button from '@/core-ui/button';
@@ -6,35 +6,34 @@ import {Modal} from '@/core-ui/modal';
 
 import styles from './modal-congrats.module.scss';
 
-interface IProps {
+interface ICongratsNumberProps {
   className?: string;
   number: number;
   open?: boolean;
   onClose?: () => void;
 }
 
-const CongratsNumber: FC<IProps> = ({className, number, open, onClose}) => {
+const CongratsNumber: FC<ICongratsNumberProps> = ({className, number, open, onClose}) => {
   if (!open) return null;
 
   return (
     <Modal
       variant="center"
-      className={cls('h-full max-w-xs md:max-w-2xl', styles.congratulation, className)}
+      className={classnames(styles.congratulation, 'max-w-xl lg:max-w-4xl', className)}
       open={open}
       onClose={onClose!}
     >
-      <Modal.Body className="relative z-[3] -mt-12">
-        <div className="flex flex-col items-center justify-center gap-8 md:py-25">
-          <div className="text-[64px] font-bold leading-[68px] tracking-wide text-blue-600">{number}</div>
-          <div className="text-5xl font-normal leading-[48px] text-gray-700">Số may mắn</div>
-          <Button
-            className="relative z-[5] bg-blue-600 text-lg font-semibold leading-normal text-neutral-50 md:max-w-[150px] md:px-12 md:py-4"
-            color="primary"
-            text="Xong"
-            onClick={onClose}
-          />
-        </div>
-        <div className="absolute left-1/2 top-1/2 z-[4] w-[120%] -translate-x-1/2 -translate-y-1/2">
+      <Modal.Header text="" icon="ico-x" />
+      <Modal.Body className="relative -mt-16 flex flex-col items-center justify-center gap-5 lg:gap-8">
+        <h3 className="text-2xl font-bold text-blue-300 lg:text-5xl">Chúc mừng bạn</h3>
+        <h3 className="text-3xl font-bold tracking-wide text-zinc-900 lg:text-5xl">{number}</h3>
+        <Button
+          className="relative z-20 w-full max-w-1/2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-neutral-50 lg:max-w-xs lg:px-14 lg:py-4 lg:text-lg"
+          color="primary"
+          text="Xong"
+          onClick={onClose}
+        />
+        <div className="animation">
           <lottie-player src={'/congrats.json'} background="transparent" speed="1" loop autoplay></lottie-player>
         </div>
       </Modal.Body>

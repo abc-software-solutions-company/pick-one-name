@@ -21,7 +21,7 @@ interface Props {
   window?: () => Window;
 }
 
-const drawerWidth = 240;
+const drawerWidth = '50%';
 
 export default function DrawerNavbar(props: Props) {
   const {window} = props;
@@ -33,12 +33,19 @@ export default function DrawerNavbar(props: Props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{textAlign: 'center'}}>
+    <Box className="flex h-full flex-col items-start gap-10 p-5">
+      <button
+        onClick={handleDrawerToggle}
+        className="inline-flex h-8 w-8 items-center justify-center gap-2 rounded-lg p-1"
+      >
+        <Icon name="ico-x" />
+      </button>
       {linksList.map(link => (
         <Link href={link.href} key={link.href}>
           <span
-            className={cls('block text-lg font-semibold leading-6 hover:text-gray-300 hover:no-underline', {
-              active: link.href === pathName
+            onClick={handleDrawerToggle}
+            className={cls('block text-base font-semibold leading-6', {
+              'text-blue-700': link.href === pathName
             })}
           >
             {link.title}

@@ -32,7 +32,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
 
   useEffect(() => {
     generateWheelNumbers();
-    generateNumberList(10000);
+    generateNumberList(1000000);
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
@@ -63,7 +63,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
   };
 
   function handleClick() {
-    generateRandNumber(10000, 1);
+    generateRandNumber(1000000, 1);
     updateNumberList();
     onAnimationStart();
   }

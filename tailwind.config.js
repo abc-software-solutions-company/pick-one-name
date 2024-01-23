@@ -95,8 +95,7 @@ module.exports = {
         }
       },
       backgroundImage: {
-        'gradient-45deg': 'linear-gradient(45deg, var(--tw-gradient-stops))',
-        'modal-congrats-winding-line': "url('/images/modal-congrats-winding-line.svg')"
+        'gradient-45deg': 'linear-gradient(45deg, var(--tw-gradient-stops))'
       },
       maxWidth: {
         '1/2': '50%',
