@@ -3,6 +3,7 @@ import {useAnimation} from 'framer-motion';
 import React, {FC, useEffect, useRef} from 'react';
 
 import Button from '@/core-ui/button';
+import useToast from '@/core-ui/toast';
 import {useRandomNumber} from '@/hooks/use-random-number';
 
 import NumberWheelTop from './number-wheel-top';
@@ -19,30 +20,39 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
     isAnimationStart,
     wheelnumbers,
     randomNumberList,
+    max,
+    min,
+    isInputValid,
     setDone,
     setBGImage,
     setAnimationStart,
     updateNumberList,
     generateRandNumber,
     generateNumberList,
-    generateWheelNumbers
+    generateWheelNumbers,
+    setIsInputValid
   } = useRandomNumber();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const toast = useToast();
 
   useEffect(() => {
     generateWheelNumbers();
-    generateNumberList(10000);
+    generateNumberList(max);
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-  }, [generateWheelNumbers, generateNumberList, generateRandNumber]);
+  }, [generateWheelNumbers, generateNumberList, generateRandNumber, max]);
 
   useEffect(() => {
     if (containerRef.current?.style['0']) {
       setBGImage(true);
     }
   }, [setBGImage]);
+
+  useEffect(() => {
+    setIsInputValid(min !== null && max !== null);
+  }, [setIsInputValid, min, max]);
 
   const onAnimationStart = () => {
     if (!isAnimationStart) {
@@ -63,9 +73,15 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
   };
 
   function handleClick() {
-    generateRandNumber(10000, 1);
-    updateNumberList();
-    onAnimationStart();
+    if (isInputValid) {
+      if (min >= max) {
+        toast.show({type: 'danger', title: '', content: 'Số tối thiểu phải nhỏ hơn số tối đa!'});
+      } else {
+        generateRandNumber();
+        updateNumberList();
+        onAnimationStart();
+      }
+    }
   }
 
   return (
@@ -102,7 +118,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       </div>
       <Button
         className="inline-flex h-14 w-2/3 items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1 text-sm font-semibold text-neutral-50 hover:bg-blue-700 lg:w-[40%] lg:py-4 lg:px-8 lg:text-lg"
-        disabled={isAnimationStart}
+        disabled={isAnimationStart || !isInputValid}
         onClick={handleClick}
       >
         Quay

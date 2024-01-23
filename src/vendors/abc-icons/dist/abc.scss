@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'abc';
-  src: url('/fonts/abc.eot?t=1705377757067'); /* IE9*/
-  src: url('/fonts/abc.eot?t=1705377757067#iefix') format('embedded-opentype'),
-    /* IE6-IE8 */ url('/fonts/abc.woff2?t=1705377757067') format('woff2'),
-    url('/fonts/abc.woff?t=1705377757067') format('woff'), url('/fonts/abc.ttf?t=1705377757067') format('truetype'),
-    /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url('/fonts/abc.svg?t=1705377757067#abc') format('svg'); /* iOS 4.1- */
+  src: url('/fonts/abc.eot?t=1705904731898'); /* IE9*/
+  src: url('/fonts/abc.eot?t=1705904731898#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('/fonts/abc.woff2?t=1705904731898') format('woff2'),
+    url('/fonts/abc.woff?t=1705904731898') format('woff'), url('/fonts/abc.ttf?t=1705904731898') format('truetype'),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url('/fonts/abc.svg?t=1705904731898#abc') format('svg'); /* iOS 4.1- */
 }
 
 [class^='ico-'],
@@ -229,650 +229,656 @@
 .ico-compass:before {
   content: '\ea47';
 }
-.ico-copy:before {
+.ico-compress:before {
   content: '\ea48';
 }
-.ico-corner-down-left:before {
+.ico-copy:before {
   content: '\ea49';
 }
-.ico-corner-down-right:before {
+.ico-corner-down-left:before {
   content: '\ea4a';
 }
-.ico-corner-left-down:before {
+.ico-corner-down-right:before {
   content: '\ea4b';
 }
-.ico-corner-left-up:before {
+.ico-corner-left-down:before {
   content: '\ea4c';
 }
-.ico-corner-right-down:before {
+.ico-corner-left-up:before {
   content: '\ea4d';
 }
-.ico-corner-right-up:before {
+.ico-corner-right-down:before {
   content: '\ea4e';
 }
-.ico-corner-up-left:before {
+.ico-corner-right-up:before {
   content: '\ea4f';
 }
-.ico-corner-up-right:before {
+.ico-corner-up-left:before {
   content: '\ea50';
 }
-.ico-cpu:before {
+.ico-corner-up-right:before {
   content: '\ea51';
 }
-.ico-credit-card:before {
+.ico-cpu:before {
   content: '\ea52';
 }
-.ico-crop:before {
+.ico-credit-card:before {
   content: '\ea53';
 }
-.ico-crosshair:before {
+.ico-crop:before {
   content: '\ea54';
 }
-.ico-database:before {
+.ico-crosshair:before {
   content: '\ea55';
 }
-.ico-delete:before {
+.ico-database:before {
   content: '\ea56';
 }
-.ico-disc:before {
+.ico-delete:before {
   content: '\ea57';
 }
-.ico-discord:before {
+.ico-disc:before {
   content: '\ea58';
 }
-.ico-dollar-sign:before {
+.ico-discord:before {
   content: '\ea59';
 }
-.ico-download-cloud:before {
+.ico-dollar-sign:before {
   content: '\ea5a';
 }
-.ico-download:before {
+.ico-download-cloud:before {
   content: '\ea5b';
 }
-.ico-droplet:before {
+.ico-download:before {
   content: '\ea5c';
 }
-.ico-edit-2:before {
+.ico-droplet:before {
   content: '\ea5d';
 }
-.ico-edit-3:before {
+.ico-edit-2:before {
   content: '\ea5e';
 }
-.ico-edit:before {
+.ico-edit-3:before {
   content: '\ea5f';
 }
-.ico-external-link:before {
+.ico-edit:before {
   content: '\ea60';
 }
-.ico-eye-off:before {
+.ico-expand:before {
   content: '\ea61';
 }
-.ico-eye:before {
+.ico-external-link:before {
   content: '\ea62';
 }
-.ico-facebook-fill:before {
+.ico-eye-off:before {
   content: '\ea63';
 }
-.ico-facebook:before {
+.ico-eye:before {
   content: '\ea64';
 }
-.ico-fast-forward:before {
+.ico-facebook-fill:before {
   content: '\ea65';
 }
-.ico-feather:before {
+.ico-facebook:before {
   content: '\ea66';
 }
-.ico-figma:before {
+.ico-fast-forward:before {
   content: '\ea67';
 }
-.ico-file-minus:before {
+.ico-feather:before {
   content: '\ea68';
 }
-.ico-file-plus:before {
+.ico-figma:before {
   content: '\ea69';
 }
-.ico-file-text:before {
+.ico-file-minus:before {
   content: '\ea6a';
 }
-.ico-file:before {
+.ico-file-plus:before {
   content: '\ea6b';
 }
-.ico-film:before {
+.ico-file-text:before {
   content: '\ea6c';
 }
-.ico-filter:before {
+.ico-file:before {
   content: '\ea6d';
 }
-.ico-flag:before {
+.ico-film:before {
   content: '\ea6e';
 }
-.ico-folder-minus:before {
+.ico-filter:before {
   content: '\ea6f';
 }
-.ico-folder-plus:before {
+.ico-flag:before {
   content: '\ea70';
 }
-.ico-folder:before {
+.ico-folder-minus:before {
   content: '\ea71';
 }
-.ico-framer:before {
+.ico-folder-plus:before {
   content: '\ea72';
 }
-.ico-frown:before {
+.ico-folder:before {
   content: '\ea73';
 }
-.ico-gift:before {
+.ico-framer:before {
   content: '\ea74';
 }
-.ico-git-branch:before {
+.ico-frown:before {
   content: '\ea75';
 }
-.ico-git-commit:before {
+.ico-gift:before {
   content: '\ea76';
 }
-.ico-git-merge:before {
+.ico-git-branch:before {
   content: '\ea77';
 }
-.ico-git-pull-request:before {
+.ico-git-commit:before {
   content: '\ea78';
 }
-.ico-github:before {
+.ico-git-merge:before {
   content: '\ea79';
 }
-.ico-gitlab:before {
+.ico-git-pull-request:before {
   content: '\ea7a';
 }
-.ico-globe:before {
+.ico-github:before {
   content: '\ea7b';
 }
-.ico-grid:before {
+.ico-gitlab:before {
   content: '\ea7c';
 }
-.ico-hard-drive:before {
+.ico-globe:before {
   content: '\ea7d';
 }
-.ico-hash:before {
+.ico-grid:before {
   content: '\ea7e';
 }
-.ico-headphones:before {
+.ico-hard-drive:before {
   content: '\ea7f';
 }
-.ico-heart:before {
+.ico-hash:before {
   content: '\ea80';
 }
-.ico-help-circle:before {
+.ico-headphones:before {
   content: '\ea81';
 }
-.ico-hexagon:before {
+.ico-heart:before {
   content: '\ea82';
 }
-.ico-home:before {
+.ico-help-circle:before {
   content: '\ea83';
 }
-.ico-image:before {
+.ico-hexagon:before {
   content: '\ea84';
 }
-.ico-inbox:before {
+.ico-home:before {
   content: '\ea85';
 }
-.ico-info:before {
+.ico-image:before {
   content: '\ea86';
 }
-.ico-instagram:before {
+.ico-inbox:before {
   content: '\ea87';
 }
-.ico-italic:before {
+.ico-info:before {
   content: '\ea88';
 }
-.ico-key:before {
+.ico-instagram:before {
   content: '\ea89';
 }
-.ico-layers:before {
+.ico-italic:before {
   content: '\ea8a';
 }
-.ico-layout:before {
+.ico-key:before {
   content: '\ea8b';
 }
-.ico-life-buoy:before {
+.ico-layers:before {
   content: '\ea8c';
 }
-.ico-link-2:before {
+.ico-layout:before {
   content: '\ea8d';
 }
-.ico-link:before {
+.ico-life-buoy:before {
   content: '\ea8e';
 }
-.ico-linkedin-fill:before {
+.ico-link-2:before {
   content: '\ea8f';
 }
-.ico-linkedin:before {
+.ico-link:before {
   content: '\ea90';
 }
-.ico-list:before {
+.ico-linkedin-fill:before {
   content: '\ea91';
 }
-.ico-loader:before {
+.ico-linkedin:before {
   content: '\ea92';
 }
-.ico-lock:before {
+.ico-list:before {
   content: '\ea93';
 }
-.ico-log-in:before {
+.ico-loader:before {
   content: '\ea94';
 }
-.ico-log-out:before {
+.ico-lock:before {
   content: '\ea95';
 }
-.ico-mail:before {
+.ico-log-in:before {
   content: '\ea96';
 }
-.ico-map-pin:before {
+.ico-log-out:before {
   content: '\ea97';
 }
-.ico-map:before {
+.ico-mail:before {
   content: '\ea98';
 }
-.ico-maximize-2:before {
+.ico-map-pin:before {
   content: '\ea99';
 }
-.ico-maximize-3:before {
+.ico-map:before {
   content: '\ea9a';
 }
-.ico-maximize:before {
+.ico-maximize-2:before {
   content: '\ea9b';
 }
-.ico-meh:before {
+.ico-maximize-3:before {
   content: '\ea9c';
 }
-.ico-menu:before {
+.ico-maximize:before {
   content: '\ea9d';
 }
-.ico-message-circle:before {
+.ico-meh:before {
   content: '\ea9e';
 }
-.ico-message-square:before {
+.ico-menu:before {
   content: '\ea9f';
 }
-.ico-mic-off:before {
+.ico-message-circle:before {
   content: '\eaa0';
 }
-.ico-mic:before {
+.ico-message-square:before {
   content: '\eaa1';
 }
-.ico-minimize-2:before {
+.ico-mic-off:before {
   content: '\eaa2';
 }
-.ico-minimize:before {
+.ico-mic:before {
   content: '\eaa3';
 }
-.ico-minus-circle:before {
+.ico-minimize-2:before {
   content: '\eaa4';
 }
-.ico-minus-square:before {
+.ico-minimize:before {
   content: '\eaa5';
 }
-.ico-minus:before {
+.ico-minus-circle:before {
   content: '\eaa6';
 }
-.ico-monitor:before {
+.ico-minus-square:before {
   content: '\eaa7';
 }
-.ico-moon:before {
+.ico-minus:before {
   content: '\eaa8';
 }
-.ico-more-horizontal:before {
+.ico-monitor:before {
   content: '\eaa9';
 }
-.ico-more-vertical:before {
+.ico-moon:before {
   content: '\eaaa';
 }
-.ico-mouse-pointer:before {
+.ico-more-horizontal:before {
   content: '\eaab';
 }
-.ico-move:before {
+.ico-more-vertical:before {
   content: '\eaac';
 }
-.ico-music:before {
+.ico-mouse-pointer:before {
   content: '\eaad';
 }
-.ico-navigation-2:before {
+.ico-move:before {
   content: '\eaae';
 }
-.ico-navigation:before {
+.ico-music:before {
   content: '\eaaf';
 }
-.ico-octagon:before {
+.ico-navigation-2:before {
   content: '\eab0';
 }
-.ico-package:before {
+.ico-navigation:before {
   content: '\eab1';
 }
-.ico-paperclip:before {
+.ico-octagon:before {
   content: '\eab2';
 }
-.ico-pause-circle:before {
+.ico-package:before {
   content: '\eab3';
 }
-.ico-pause:before {
+.ico-paperclip:before {
   content: '\eab4';
 }
-.ico-pen-tool:before {
+.ico-pause-circle:before {
   content: '\eab5';
 }
-.ico-percent:before {
+.ico-pause:before {
   content: '\eab6';
 }
-.ico-phone-call:before {
+.ico-pen-tool:before {
   content: '\eab7';
 }
-.ico-phone-forwarded:before {
+.ico-percent:before {
   content: '\eab8';
 }
-.ico-phone-incoming:before {
+.ico-phone-call:before {
   content: '\eab9';
 }
-.ico-phone-missed:before {
+.ico-phone-forwarded:before {
   content: '\eaba';
 }
-.ico-phone-off:before {
+.ico-phone-incoming:before {
   content: '\eabb';
 }
-.ico-phone-outgoing:before {
+.ico-phone-missed:before {
   content: '\eabc';
 }
-.ico-phone:before {
+.ico-phone-off:before {
   content: '\eabd';
 }
-.ico-pie-chart:before {
+.ico-phone-outgoing:before {
   content: '\eabe';
 }
-.ico-play-circle:before {
+.ico-phone:before {
   content: '\eabf';
 }
-.ico-play:before {
+.ico-pie-chart:before {
   content: '\eac0';
 }
-.ico-plus-circle:before {
+.ico-play-circle:before {
   content: '\eac1';
 }
-.ico-plus-square:before {
+.ico-play:before {
   content: '\eac2';
 }
-.ico-plus:before {
+.ico-plus-circle:before {
   content: '\eac3';
 }
-.ico-pocket:before {
+.ico-plus-square:before {
   content: '\eac4';
 }
-.ico-power:before {
+.ico-plus:before {
   content: '\eac5';
 }
-.ico-printer:before {
+.ico-pocket:before {
   content: '\eac6';
 }
-.ico-radio:before {
+.ico-power:before {
   content: '\eac7';
 }
-.ico-refresh-ccw:before {
+.ico-printer:before {
   content: '\eac8';
 }
-.ico-refresh-cw:before {
+.ico-radio:before {
   content: '\eac9';
 }
-.ico-repeat:before {
+.ico-refresh-ccw:before {
   content: '\eaca';
 }
-.ico-rewind:before {
+.ico-refresh-cw:before {
   content: '\eacb';
 }
-.ico-rotate-ccw:before {
+.ico-repeat:before {
   content: '\eacc';
 }
-.ico-rotate-cw:before {
+.ico-rewind:before {
   content: '\eacd';
 }
-.ico-rss:before {
+.ico-rotate-ccw:before {
   content: '\eace';
 }
-.ico-save:before {
+.ico-rotate-cw:before {
   content: '\eacf';
 }
-.ico-scissors:before {
+.ico-rss:before {
   content: '\ead0';
 }
-.ico-search:before {
+.ico-save:before {
   content: '\ead1';
 }
-.ico-send:before {
+.ico-scissors:before {
   content: '\ead2';
 }
-.ico-server:before {
+.ico-search:before {
   content: '\ead3';
 }
-.ico-settings:before {
+.ico-send:before {
   content: '\ead4';
 }
-.ico-share-2:before {
+.ico-server:before {
   content: '\ead5';
 }
-.ico-share:before {
+.ico-settings:before {
   content: '\ead6';
 }
-.ico-shield-off:before {
+.ico-share-2:before {
   content: '\ead7';
 }
-.ico-shield:before {
+.ico-share:before {
   content: '\ead8';
 }
-.ico-shopping-bag:before {
+.ico-shield-off:before {
   content: '\ead9';
 }
-.ico-shopping-cart:before {
+.ico-shield:before {
   content: '\eada';
 }
-.ico-shuffle:before {
+.ico-shopping-bag:before {
   content: '\eadb';
 }
-.ico-sidebar:before {
+.ico-shopping-cart:before {
   content: '\eadc';
 }
-.ico-skip-back:before {
+.ico-shuffle:before {
   content: '\eadd';
 }
-.ico-skip-forward:before {
+.ico-sidebar:before {
   content: '\eade';
 }
-.ico-slack:before {
+.ico-skip-back:before {
   content: '\eadf';
 }
-.ico-slash:before {
+.ico-skip-forward:before {
   content: '\eae0';
 }
-.ico-sliders:before {
+.ico-slack:before {
   content: '\eae1';
 }
-.ico-smartphone:before {
+.ico-slash:before {
   content: '\eae2';
 }
-.ico-smile:before {
+.ico-sliders:before {
   content: '\eae3';
 }
-.ico-speaker:before {
+.ico-smartphone:before {
   content: '\eae4';
 }
-.ico-square:before {
+.ico-smile:before {
   content: '\eae5';
 }
-.ico-star:before {
+.ico-speaker:before {
   content: '\eae6';
 }
-.ico-stop-circle:before {
+.ico-square:before {
   content: '\eae7';
 }
-.ico-sun:before {
+.ico-star:before {
   content: '\eae8';
 }
-.ico-sunrise:before {
+.ico-stop-circle:before {
   content: '\eae9';
 }
-.ico-sunset:before {
+.ico-sun:before {
   content: '\eaea';
 }
-.ico-tablet:before {
+.ico-sunrise:before {
   content: '\eaeb';
 }
-.ico-tag:before {
+.ico-sunset:before {
   content: '\eaec';
 }
-.ico-target:before {
+.ico-tablet:before {
   content: '\eaed';
 }
-.ico-terminal:before {
+.ico-tag:before {
   content: '\eaee';
 }
-.ico-thermometer:before {
+.ico-target:before {
   content: '\eaef';
 }
-.ico-thumbs-down:before {
+.ico-terminal:before {
   content: '\eaf0';
 }
-.ico-thumbs-up:before {
+.ico-thermometer:before {
   content: '\eaf1';
 }
-.ico-toggle-left:before {
+.ico-thumbs-down:before {
   content: '\eaf2';
 }
-.ico-toggle-right:before {
+.ico-thumbs-up:before {
   content: '\eaf3';
 }
-.ico-tool:before {
+.ico-toggle-left:before {
   content: '\eaf4';
 }
-.ico-trash-2:before {
+.ico-toggle-right:before {
   content: '\eaf5';
 }
-.ico-trash:before {
+.ico-tool:before {
   content: '\eaf6';
 }
-.ico-trello:before {
+.ico-trash-2:before {
   content: '\eaf7';
 }
-.ico-trending-down:before {
+.ico-trash:before {
   content: '\eaf8';
 }
-.ico-trending-up:before {
+.ico-trello:before {
   content: '\eaf9';
 }
-.ico-triangle:before {
+.ico-trending-down:before {
   content: '\eafa';
 }
-.ico-truck:before {
+.ico-trending-up:before {
   content: '\eafb';
 }
-.ico-tv:before {
+.ico-triangle:before {
   content: '\eafc';
 }
-.ico-twitch:before {
+.ico-truck:before {
   content: '\eafd';
 }
-.ico-twitter:before {
+.ico-tv:before {
   content: '\eafe';
 }
-.ico-type:before {
+.ico-twitch:before {
   content: '\eaff';
 }
-.ico-umbrella:before {
+.ico-twitter:before {
   content: '\eb00';
 }
-.ico-underline:before {
+.ico-type:before {
   content: '\eb01';
 }
-.ico-unlock:before {
+.ico-umbrella:before {
   content: '\eb02';
 }
-.ico-upload-cloud:before {
+.ico-underline:before {
   content: '\eb03';
 }
-.ico-upload:before {
+.ico-unlock:before {
   content: '\eb04';
 }
-.ico-user-check:before {
+.ico-upload-cloud:before {
   content: '\eb05';
 }
-.ico-user-minus:before {
+.ico-upload:before {
   content: '\eb06';
 }
-.ico-user-plus:before {
+.ico-user-check:before {
   content: '\eb07';
 }
-.ico-user-x:before {
+.ico-user-minus:before {
   content: '\eb08';
 }
-.ico-user:before {
+.ico-user-plus:before {
   content: '\eb09';
 }
-.ico-users:before {
+.ico-user-x:before {
   content: '\eb0a';
 }
-.ico-video-off:before {
+.ico-user:before {
   content: '\eb0b';
 }
-.ico-video:before {
+.ico-users:before {
   content: '\eb0c';
 }
-.ico-voicemail:before {
+.ico-video-off:before {
   content: '\eb0d';
 }
-.ico-volume-1:before {
+.ico-video:before {
   content: '\eb0e';
 }
-.ico-volume-2:before {
+.ico-voicemail:before {
   content: '\eb0f';
 }
-.ico-volume-x:before {
+.ico-volume-1:before {
   content: '\eb10';
 }
-.ico-volume:before {
+.ico-volume-2:before {
   content: '\eb11';
 }
-.ico-watch:before {
+.ico-volume-x:before {
   content: '\eb12';
 }
-.ico-wifi-off:before {
+.ico-volume:before {
   content: '\eb13';
 }
-.ico-wifi:before {
+.ico-watch:before {
   content: '\eb14';
 }
-.ico-wind:before {
+.ico-wifi-off:before {
   content: '\eb15';
 }
-.ico-x-circle:before {
+.ico-wifi:before {
   content: '\eb16';
 }
-.ico-x-octagon:before {
+.ico-wind:before {
   content: '\eb17';
 }
-.ico-x-square:before {
+.ico-x-circle:before {
   content: '\eb18';
 }
-.ico-x:before {
+.ico-x-octagon:before {
   content: '\eb19';
 }
-.ico-youtube:before {
+.ico-x-square:before {
   content: '\eb1a';
 }
-.ico-zap-off:before {
+.ico-x:before {
   content: '\eb1b';
 }
-.ico-zap:before {
+.ico-youtube:before {
   content: '\eb1c';
 }
-.ico-zoom-in:before {
+.ico-zap-off:before {
   content: '\eb1d';
 }
-.ico-zoom-out:before {
+.ico-zap:before {
   content: '\eb1e';
+}
+.ico-zoom-in:before {
+  content: '\eb1f';
+}
+.ico-zoom-out:before {
+  content: '\eb20';
 }
 
 $ico-activity: '\ea01';
@@ -946,218 +952,220 @@ $ico-coffee: '\ea44';
 $ico-columns: '\ea45';
 $ico-command: '\ea46';
 $ico-compass: '\ea47';
-$ico-copy: '\ea48';
-$ico-corner-down-left: '\ea49';
-$ico-corner-down-right: '\ea4a';
-$ico-corner-left-down: '\ea4b';
-$ico-corner-left-up: '\ea4c';
-$ico-corner-right-down: '\ea4d';
-$ico-corner-right-up: '\ea4e';
-$ico-corner-up-left: '\ea4f';
-$ico-corner-up-right: '\ea50';
-$ico-cpu: '\ea51';
-$ico-credit-card: '\ea52';
-$ico-crop: '\ea53';
-$ico-crosshair: '\ea54';
-$ico-database: '\ea55';
-$ico-delete: '\ea56';
-$ico-disc: '\ea57';
-$ico-discord: '\ea58';
-$ico-dollar-sign: '\ea59';
-$ico-download-cloud: '\ea5a';
-$ico-download: '\ea5b';
-$ico-droplet: '\ea5c';
-$ico-edit-2: '\ea5d';
-$ico-edit-3: '\ea5e';
-$ico-edit: '\ea5f';
-$ico-external-link: '\ea60';
-$ico-eye-off: '\ea61';
-$ico-eye: '\ea62';
-$ico-facebook-fill: '\ea63';
-$ico-facebook: '\ea64';
-$ico-fast-forward: '\ea65';
-$ico-feather: '\ea66';
-$ico-figma: '\ea67';
-$ico-file-minus: '\ea68';
-$ico-file-plus: '\ea69';
-$ico-file-text: '\ea6a';
-$ico-file: '\ea6b';
-$ico-film: '\ea6c';
-$ico-filter: '\ea6d';
-$ico-flag: '\ea6e';
-$ico-folder-minus: '\ea6f';
-$ico-folder-plus: '\ea70';
-$ico-folder: '\ea71';
-$ico-framer: '\ea72';
-$ico-frown: '\ea73';
-$ico-gift: '\ea74';
-$ico-git-branch: '\ea75';
-$ico-git-commit: '\ea76';
-$ico-git-merge: '\ea77';
-$ico-git-pull-request: '\ea78';
-$ico-github: '\ea79';
-$ico-gitlab: '\ea7a';
-$ico-globe: '\ea7b';
-$ico-grid: '\ea7c';
-$ico-hard-drive: '\ea7d';
-$ico-hash: '\ea7e';
-$ico-headphones: '\ea7f';
-$ico-heart: '\ea80';
-$ico-help-circle: '\ea81';
-$ico-hexagon: '\ea82';
-$ico-home: '\ea83';
-$ico-image: '\ea84';
-$ico-inbox: '\ea85';
-$ico-info: '\ea86';
-$ico-instagram: '\ea87';
-$ico-italic: '\ea88';
-$ico-key: '\ea89';
-$ico-layers: '\ea8a';
-$ico-layout: '\ea8b';
-$ico-life-buoy: '\ea8c';
-$ico-link-2: '\ea8d';
-$ico-link: '\ea8e';
-$ico-linkedin-fill: '\ea8f';
-$ico-linkedin: '\ea90';
-$ico-list: '\ea91';
-$ico-loader: '\ea92';
-$ico-lock: '\ea93';
-$ico-log-in: '\ea94';
-$ico-log-out: '\ea95';
-$ico-mail: '\ea96';
-$ico-map-pin: '\ea97';
-$ico-map: '\ea98';
-$ico-maximize-2: '\ea99';
-$ico-maximize-3: '\ea9a';
-$ico-maximize: '\ea9b';
-$ico-meh: '\ea9c';
-$ico-menu: '\ea9d';
-$ico-message-circle: '\ea9e';
-$ico-message-square: '\ea9f';
-$ico-mic-off: '\eaa0';
-$ico-mic: '\eaa1';
-$ico-minimize-2: '\eaa2';
-$ico-minimize: '\eaa3';
-$ico-minus-circle: '\eaa4';
-$ico-minus-square: '\eaa5';
-$ico-minus: '\eaa6';
-$ico-monitor: '\eaa7';
-$ico-moon: '\eaa8';
-$ico-more-horizontal: '\eaa9';
-$ico-more-vertical: '\eaaa';
-$ico-mouse-pointer: '\eaab';
-$ico-move: '\eaac';
-$ico-music: '\eaad';
-$ico-navigation-2: '\eaae';
-$ico-navigation: '\eaaf';
-$ico-octagon: '\eab0';
-$ico-package: '\eab1';
-$ico-paperclip: '\eab2';
-$ico-pause-circle: '\eab3';
-$ico-pause: '\eab4';
-$ico-pen-tool: '\eab5';
-$ico-percent: '\eab6';
-$ico-phone-call: '\eab7';
-$ico-phone-forwarded: '\eab8';
-$ico-phone-incoming: '\eab9';
-$ico-phone-missed: '\eaba';
-$ico-phone-off: '\eabb';
-$ico-phone-outgoing: '\eabc';
-$ico-phone: '\eabd';
-$ico-pie-chart: '\eabe';
-$ico-play-circle: '\eabf';
-$ico-play: '\eac0';
-$ico-plus-circle: '\eac1';
-$ico-plus-square: '\eac2';
-$ico-plus: '\eac3';
-$ico-pocket: '\eac4';
-$ico-power: '\eac5';
-$ico-printer: '\eac6';
-$ico-radio: '\eac7';
-$ico-refresh-ccw: '\eac8';
-$ico-refresh-cw: '\eac9';
-$ico-repeat: '\eaca';
-$ico-rewind: '\eacb';
-$ico-rotate-ccw: '\eacc';
-$ico-rotate-cw: '\eacd';
-$ico-rss: '\eace';
-$ico-save: '\eacf';
-$ico-scissors: '\ead0';
-$ico-search: '\ead1';
-$ico-send: '\ead2';
-$ico-server: '\ead3';
-$ico-settings: '\ead4';
-$ico-share-2: '\ead5';
-$ico-share: '\ead6';
-$ico-shield-off: '\ead7';
-$ico-shield: '\ead8';
-$ico-shopping-bag: '\ead9';
-$ico-shopping-cart: '\eada';
-$ico-shuffle: '\eadb';
-$ico-sidebar: '\eadc';
-$ico-skip-back: '\eadd';
-$ico-skip-forward: '\eade';
-$ico-slack: '\eadf';
-$ico-slash: '\eae0';
-$ico-sliders: '\eae1';
-$ico-smartphone: '\eae2';
-$ico-smile: '\eae3';
-$ico-speaker: '\eae4';
-$ico-square: '\eae5';
-$ico-star: '\eae6';
-$ico-stop-circle: '\eae7';
-$ico-sun: '\eae8';
-$ico-sunrise: '\eae9';
-$ico-sunset: '\eaea';
-$ico-tablet: '\eaeb';
-$ico-tag: '\eaec';
-$ico-target: '\eaed';
-$ico-terminal: '\eaee';
-$ico-thermometer: '\eaef';
-$ico-thumbs-down: '\eaf0';
-$ico-thumbs-up: '\eaf1';
-$ico-toggle-left: '\eaf2';
-$ico-toggle-right: '\eaf3';
-$ico-tool: '\eaf4';
-$ico-trash-2: '\eaf5';
-$ico-trash: '\eaf6';
-$ico-trello: '\eaf7';
-$ico-trending-down: '\eaf8';
-$ico-trending-up: '\eaf9';
-$ico-triangle: '\eafa';
-$ico-truck: '\eafb';
-$ico-tv: '\eafc';
-$ico-twitch: '\eafd';
-$ico-twitter: '\eafe';
-$ico-type: '\eaff';
-$ico-umbrella: '\eb00';
-$ico-underline: '\eb01';
-$ico-unlock: '\eb02';
-$ico-upload-cloud: '\eb03';
-$ico-upload: '\eb04';
-$ico-user-check: '\eb05';
-$ico-user-minus: '\eb06';
-$ico-user-plus: '\eb07';
-$ico-user-x: '\eb08';
-$ico-user: '\eb09';
-$ico-users: '\eb0a';
-$ico-video-off: '\eb0b';
-$ico-video: '\eb0c';
-$ico-voicemail: '\eb0d';
-$ico-volume-1: '\eb0e';
-$ico-volume-2: '\eb0f';
-$ico-volume-x: '\eb10';
-$ico-volume: '\eb11';
-$ico-watch: '\eb12';
-$ico-wifi-off: '\eb13';
-$ico-wifi: '\eb14';
-$ico-wind: '\eb15';
-$ico-x-circle: '\eb16';
-$ico-x-octagon: '\eb17';
-$ico-x-square: '\eb18';
-$ico-x: '\eb19';
-$ico-youtube: '\eb1a';
-$ico-zap-off: '\eb1b';
-$ico-zap: '\eb1c';
-$ico-zoom-in: '\eb1d';
-$ico-zoom-out: '\eb1e';
+$ico-compress: '\ea48';
+$ico-copy: '\ea49';
+$ico-corner-down-left: '\ea4a';
+$ico-corner-down-right: '\ea4b';
+$ico-corner-left-down: '\ea4c';
+$ico-corner-left-up: '\ea4d';
+$ico-corner-right-down: '\ea4e';
+$ico-corner-right-up: '\ea4f';
+$ico-corner-up-left: '\ea50';
+$ico-corner-up-right: '\ea51';
+$ico-cpu: '\ea52';
+$ico-credit-card: '\ea53';
+$ico-crop: '\ea54';
+$ico-crosshair: '\ea55';
+$ico-database: '\ea56';
+$ico-delete: '\ea57';
+$ico-disc: '\ea58';
+$ico-discord: '\ea59';
+$ico-dollar-sign: '\ea5a';
+$ico-download-cloud: '\ea5b';
+$ico-download: '\ea5c';
+$ico-droplet: '\ea5d';
+$ico-edit-2: '\ea5e';
+$ico-edit-3: '\ea5f';
+$ico-edit: '\ea60';
+$ico-expand: '\ea61';
+$ico-external-link: '\ea62';
+$ico-eye-off: '\ea63';
+$ico-eye: '\ea64';
+$ico-facebook-fill: '\ea65';
+$ico-facebook: '\ea66';
+$ico-fast-forward: '\ea67';
+$ico-feather: '\ea68';
+$ico-figma: '\ea69';
+$ico-file-minus: '\ea6a';
+$ico-file-plus: '\ea6b';
+$ico-file-text: '\ea6c';
+$ico-file: '\ea6d';
+$ico-film: '\ea6e';
+$ico-filter: '\ea6f';
+$ico-flag: '\ea70';
+$ico-folder-minus: '\ea71';
+$ico-folder-plus: '\ea72';
+$ico-folder: '\ea73';
+$ico-framer: '\ea74';
+$ico-frown: '\ea75';
+$ico-gift: '\ea76';
+$ico-git-branch: '\ea77';
+$ico-git-commit: '\ea78';
+$ico-git-merge: '\ea79';
+$ico-git-pull-request: '\ea7a';
+$ico-github: '\ea7b';
+$ico-gitlab: '\ea7c';
+$ico-globe: '\ea7d';
+$ico-grid: '\ea7e';
+$ico-hard-drive: '\ea7f';
+$ico-hash: '\ea80';
+$ico-headphones: '\ea81';
+$ico-heart: '\ea82';
+$ico-help-circle: '\ea83';
+$ico-hexagon: '\ea84';
+$ico-home: '\ea85';
+$ico-image: '\ea86';
+$ico-inbox: '\ea87';
+$ico-info: '\ea88';
+$ico-instagram: '\ea89';
+$ico-italic: '\ea8a';
+$ico-key: '\ea8b';
+$ico-layers: '\ea8c';
+$ico-layout: '\ea8d';
+$ico-life-buoy: '\ea8e';
+$ico-link-2: '\ea8f';
+$ico-link: '\ea90';
+$ico-linkedin-fill: '\ea91';
+$ico-linkedin: '\ea92';
+$ico-list: '\ea93';
+$ico-loader: '\ea94';
+$ico-lock: '\ea95';
+$ico-log-in: '\ea96';
+$ico-log-out: '\ea97';
+$ico-mail: '\ea98';
+$ico-map-pin: '\ea99';
+$ico-map: '\ea9a';
+$ico-maximize-2: '\ea9b';
+$ico-maximize-3: '\ea9c';
+$ico-maximize: '\ea9d';
+$ico-meh: '\ea9e';
+$ico-menu: '\ea9f';
+$ico-message-circle: '\eaa0';
+$ico-message-square: '\eaa1';
+$ico-mic-off: '\eaa2';
+$ico-mic: '\eaa3';
+$ico-minimize-2: '\eaa4';
+$ico-minimize: '\eaa5';
+$ico-minus-circle: '\eaa6';
+$ico-minus-square: '\eaa7';
+$ico-minus: '\eaa8';
+$ico-monitor: '\eaa9';
+$ico-moon: '\eaaa';
+$ico-more-horizontal: '\eaab';
+$ico-more-vertical: '\eaac';
+$ico-mouse-pointer: '\eaad';
+$ico-move: '\eaae';
+$ico-music: '\eaaf';
+$ico-navigation-2: '\eab0';
+$ico-navigation: '\eab1';
+$ico-octagon: '\eab2';
+$ico-package: '\eab3';
+$ico-paperclip: '\eab4';
+$ico-pause-circle: '\eab5';
+$ico-pause: '\eab6';
+$ico-pen-tool: '\eab7';
+$ico-percent: '\eab8';
+$ico-phone-call: '\eab9';
+$ico-phone-forwarded: '\eaba';
+$ico-phone-incoming: '\eabb';
+$ico-phone-missed: '\eabc';
+$ico-phone-off: '\eabd';
+$ico-phone-outgoing: '\eabe';
+$ico-phone: '\eabf';
+$ico-pie-chart: '\eac0';
+$ico-play-circle: '\eac1';
+$ico-play: '\eac2';
+$ico-plus-circle: '\eac3';
+$ico-plus-square: '\eac4';
+$ico-plus: '\eac5';
+$ico-pocket: '\eac6';
+$ico-power: '\eac7';
+$ico-printer: '\eac8';
+$ico-radio: '\eac9';
+$ico-refresh-ccw: '\eaca';
+$ico-refresh-cw: '\eacb';
+$ico-repeat: '\eacc';
+$ico-rewind: '\eacd';
+$ico-rotate-ccw: '\eace';
+$ico-rotate-cw: '\eacf';
+$ico-rss: '\ead0';
+$ico-save: '\ead1';
+$ico-scissors: '\ead2';
+$ico-search: '\ead3';
+$ico-send: '\ead4';
+$ico-server: '\ead5';
+$ico-settings: '\ead6';
+$ico-share-2: '\ead7';
+$ico-share: '\ead8';
+$ico-shield-off: '\ead9';
+$ico-shield: '\eada';
+$ico-shopping-bag: '\eadb';
+$ico-shopping-cart: '\eadc';
+$ico-shuffle: '\eadd';
+$ico-sidebar: '\eade';
+$ico-skip-back: '\eadf';
+$ico-skip-forward: '\eae0';
+$ico-slack: '\eae1';
+$ico-slash: '\eae2';
+$ico-sliders: '\eae3';
+$ico-smartphone: '\eae4';
+$ico-smile: '\eae5';
+$ico-speaker: '\eae6';
+$ico-square: '\eae7';
+$ico-star: '\eae8';
+$ico-stop-circle: '\eae9';
+$ico-sun: '\eaea';
+$ico-sunrise: '\eaeb';
+$ico-sunset: '\eaec';
+$ico-tablet: '\eaed';
+$ico-tag: '\eaee';
+$ico-target: '\eaef';
+$ico-terminal: '\eaf0';
+$ico-thermometer: '\eaf1';
+$ico-thumbs-down: '\eaf2';
+$ico-thumbs-up: '\eaf3';
+$ico-toggle-left: '\eaf4';
+$ico-toggle-right: '\eaf5';
+$ico-tool: '\eaf6';
+$ico-trash-2: '\eaf7';
+$ico-trash: '\eaf8';
+$ico-trello: '\eaf9';
+$ico-trending-down: '\eafa';
+$ico-trending-up: '\eafb';
+$ico-triangle: '\eafc';
+$ico-truck: '\eafd';
+$ico-tv: '\eafe';
+$ico-twitch: '\eaff';
+$ico-twitter: '\eb00';
+$ico-type: '\eb01';
+$ico-umbrella: '\eb02';
+$ico-underline: '\eb03';
+$ico-unlock: '\eb04';
+$ico-upload-cloud: '\eb05';
+$ico-upload: '\eb06';
+$ico-user-check: '\eb07';
+$ico-user-minus: '\eb08';
+$ico-user-plus: '\eb09';
+$ico-user-x: '\eb0a';
+$ico-user: '\eb0b';
+$ico-users: '\eb0c';
+$ico-video-off: '\eb0d';
+$ico-video: '\eb0e';
+$ico-voicemail: '\eb0f';
+$ico-volume-1: '\eb10';
+$ico-volume-2: '\eb11';
+$ico-volume-x: '\eb12';
+$ico-volume: '\eb13';
+$ico-watch: '\eb14';
+$ico-wifi-off: '\eb15';
+$ico-wifi: '\eb16';
+$ico-wind: '\eb17';
+$ico-x-circle: '\eb18';
+$ico-x-octagon: '\eb19';
+$ico-x-square: '\eb1a';
+$ico-x: '\eb1b';
+$ico-youtube: '\eb1c';
+$ico-zap-off: '\eb1d';
+$ico-zap: '\eb1e';
+$ico-zoom-in: '\eb1f';
+$ico-zoom-out: '\eb20';

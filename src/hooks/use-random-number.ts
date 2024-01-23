@@ -6,9 +6,12 @@ type State = {
   wheelnumbers: IWheelNumbers[];
   randomNumberList: number[];
   randomNumber: number;
+  min: number;
+  max: number;
   isDone: boolean;
   isBGImage: boolean;
   isAnimationStart: boolean;
+  isInputValid: boolean;
 };
 
 type Actions = {
@@ -16,9 +19,12 @@ type Actions = {
   setDone: (isDone: boolean) => void;
   setBGImage: (isBGImage: boolean) => void;
   generateWheelNumbers: () => void;
-  generateRandNumber: (maxNumber: number, minNumber: number) => void;
+  setMin: (minNumber: number) => void;
+  setMax: (maxNumber: number) => void;
+  generateRandNumber: () => void;
   generateNumberList: (number: number) => void;
   updateNumberList: (number?: number) => void;
+  setIsInputValid: (isInputValid: boolean) => void;
 };
 
 const initialState: State = {
@@ -27,7 +33,10 @@ const initialState: State = {
   isDone: false,
   wheelnumbers: [],
   randomNumberList: [],
-  randomNumber: 0
+  randomNumber: 0,
+  min: 1,
+  max: 100,
+  isInputValid: false
 };
 
 export const useRandomNumber = create<State & Actions>()((set, get) => ({
@@ -41,11 +50,11 @@ export const useRandomNumber = create<State & Actions>()((set, get) => ({
   setDone: (isDone: boolean) => {
     set({isDone});
   },
-  generateRandNumber: (maxNumber: number, minNumber: number) => {
+  generateRandNumber: () => {
     // const favoredNumber = 100;
     // const isFavoredNumber = Math.random() < 0.5;
     // return isFavoredNumber ? favoredNumber : Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
-    const number = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+    const number = Math.floor(Math.random() * (get().max - get().min + 1) + get().min);
     set({randomNumber: number});
   },
   generateWheelNumbers: () => {
@@ -95,5 +104,14 @@ export const useRandomNumber = create<State & Actions>()((set, get) => ({
       }
       set({randomNumberList: numbers});
     }
+  },
+  setMin: (minNumber: number) => {
+    set(state => ({...state, min: minNumber}));
+  },
+  setMax: (maxNumber: number) => {
+    set(state => ({...state, max: maxNumber}));
+  },
+  setIsInputValid(isInputValid: boolean) {
+    set({isInputValid});
   }
 }));
