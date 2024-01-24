@@ -23,8 +23,8 @@ const RandomNumber: FC = () => {
       {isVisible && <RandomOption className="w-full lg:basis-1/3" />}
       {!isVisible && (
         <button
-          className="absolute -right-12 top-5 inline-flex h-fit -rotate-90 items-center justify-center 
-                  rounded-tl-lg rounded-tr-lg bg-blue-600 py-4 px-8 lg:-right-18 3xl:-right-32"
+          className="-right-12 top-5 inline-flex h-fit max-w-[88px] items-center justify-center rounded 
+                  bg-blue-600 py-4 px-8 lg:absolute lg:-right-18 lg:-rotate-90 lg:rounded-tl-lg lg:rounded-tr-lg 3xl:-right-32"
           onClick={() => setVisible(true)}
         >
           <p className="text-lg text-slate-50">Hiện</p>
