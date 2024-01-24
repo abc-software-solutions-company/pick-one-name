@@ -65,13 +65,13 @@ module.exports = {
         0: '0'
       },
       height: {
-        'lg-number-box': '80px',
+        'lg-number-box': '65px',
         '2xl-number-box': '80px',
         'lg-number-container': '100px',
         '2xl-number-container': '140px'
       },
       width: {
-        'lg-number-box': '60px',
+        'lg-number-box': '50px',
         '2xl-number-box': '70px'
       },
       scale: {

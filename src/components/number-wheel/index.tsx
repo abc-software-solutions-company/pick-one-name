@@ -104,7 +104,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       <div className="flex h-full w-full select-none gap-3">
         <div className="flex w-full items-center justify-center rounded-sm text-center">
           <div className="relative flex h-[65px] w-full items-center gap-3 overflow-hidden rounded-xl lg:h-lg-number-container 3xl:h-2xl-number-container">
-            <div className="wheel-container flex h-full w-full items-center justify-center gap-10 md:scale-175 lg:scale-150 lg:gap-16 3xl:gap-20">
+            <div className="wheel-container flex h-full w-full items-center justify-center gap-10 md:scale-175 lg:scale-150 lg:gap-14 3xl:gap-20">
               {randomNumberList.map((n, i) => (
                 <Rotaion
                   key={i}
