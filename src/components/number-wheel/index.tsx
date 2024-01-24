@@ -7,6 +7,7 @@ import useToast from '@/core-ui/toast';
 import {useRandomNumber} from '@/hooks/use-random-number';
 
 import CongratsNumber from '../modals/modal-congrats-number';
+import Timer from '../timer';
 import NumberWheelTop from './number-wheel-top';
 import Rotaion from './rotation';
 
@@ -97,15 +98,14 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       }
       className={cls(
         className,
-        'flex flex-col items-center justify-between rounded-2xl border border-gray-300 bg-neutral-50 bg-cover bg-center bg-no-repeat p-5 shadow md:gap-10 md:p-10 lg:px-[90px] lg:py-10'
+        'flex flex-col items-center justify-between rounded-2xl border border-gray-300 bg-neutral-50 bg-cover bg-center bg-no-repeat p-5 shadow md:gap-10 md:p-10 lg:px-21 lg:py-10'
       )}
     >
       <NumberWheelTop containerRef={containerRef} isBGImage={isBGImage} />
-
       <div className="flex h-full w-full select-none gap-3">
         <div className="flex w-full items-center justify-center rounded-sm text-center">
-          <div className="relative flex h-[65px] w-full items-center gap-3 overflow-hidden rounded-xl lg:h-lg-number-container 3xl:h-2xl-number-container">
-            <div className="wheel-container flex h-full w-full items-center justify-center gap-10 md:scale-175 lg:scale-150 lg:gap-18 3xl:gap-20">
+          <div className="relative flex h-[65px] w-full items-center gap-3 overflow-hidden rounded-xl md:h-19 lg:h-lg-number-container 3xl:h-2xl-number-container">
+            <div className="wheel-container flex h-full w-full items-center justify-center gap-10 md:scale-175 lg:scale-150 lg:gap-14 3xl:gap-20">
               {randomNumberList.map((n, i) => (
                 <Rotaion
                   key={i}
@@ -119,14 +119,17 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
           </div>
         </div>
       </div>
-      <Button
-        className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1
+      <div className="flex w-full flex-col items-center justify-center gap-2">
+        <Button
+          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1
         text-sm font-semibold text-neutral-50 hover:bg-blue-700 md:py-4 md:px-8 md:text-lg lg:w-[40%]"
-        disabled={isAnimationStart || !isInputValid}
-        onClick={handleClick}
-      >
-        Quay
-      </Button>
+          disabled={isAnimationStart || !isInputValid}
+          onClick={handleClick}
+        >
+          Quay
+        </Button>
+        <Timer />
+      </div>
       <CongratsNumber number={randomNumber} open={isDone} onClose={() => setDone(false)} />
     </div>
   );

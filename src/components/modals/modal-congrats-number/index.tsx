@@ -19,12 +19,11 @@ const CongratsNumber: FC<ICongratsNumberProps> = ({className, number, open, onCl
   return (
     <Modal
       variant="center"
-      className={classnames(styles.congratulation, 'max-w-xl lg:max-w-4xl', className)}
+      className={classnames(styles.congratulation, 'max-w-xl lg:max-w-2xl', className)}
       open={open}
       onClose={onClose!}
     >
-      <Modal.Header text="" icon="ico-x" />
-      <Modal.Body className="relative -mt-16 flex flex-col items-center justify-center gap-5 md:gap-8">
+      <Modal.Body className="relative flex flex-col items-center justify-center gap-5 md:gap-8">
         <h3 className="text-2xl font-bold text-blue-300 md:text-[40px] lg:text-5xl">Chúc mừng bạn</h3>
         <h3 className="text-3xl font-bold tracking-wide text-zinc-900 md:text-[40px] lg:text-5xl">{number}</h3>
         <Button

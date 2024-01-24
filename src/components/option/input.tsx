@@ -14,7 +14,7 @@ const InputNumber = ({label, value, onChange}: IInputNumberProps) => {
         value={value}
         minLength={1}
         maxLength={7}
-        className="rounded-lg border border-gray-300 bg-slate-50 p-2 text-sm md:py-3 md:px-2 md:text-lg"
+        className="rounded-lg border border-gray-300 bg-neutral-50 p-2 text-sm md:py-3 md:px-2 md:text-lg"
         onChange={e => {
           const sanitizedValue = sanitizeInput(e.target.value);
           onChange(Number(sanitizedValue));
