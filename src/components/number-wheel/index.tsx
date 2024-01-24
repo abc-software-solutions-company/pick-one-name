@@ -7,6 +7,7 @@ import useToast from '@/core-ui/toast';
 import {useRandomNumber} from '@/hooks/use-random-number';
 
 import CongratsNumber from '../modals/modal-congrats-number';
+import Timer from '../timer';
 import NumberWheelTop from './number-wheel-top';
 import Rotaion from './rotation';
 
@@ -118,14 +119,17 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
           </div>
         </div>
       </div>
-      <Button
-        className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1
+      <div className="flex w-full flex-col items-center justify-center gap-2">
+        <Button
+          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1
         text-sm font-semibold text-neutral-50 hover:bg-blue-700 md:py-4 md:px-8 md:text-lg lg:w-[40%]"
-        disabled={isAnimationStart || !isInputValid}
-        onClick={handleClick}
-      >
-        Quay
-      </Button>
+          disabled={isAnimationStart || !isInputValid}
+          onClick={handleClick}
+        >
+          Quay
+        </Button>
+        <Timer />
+      </div>
       <CongratsNumber number={randomNumber} open={isDone} onClose={() => setDone(false)} />
     </div>
   );
