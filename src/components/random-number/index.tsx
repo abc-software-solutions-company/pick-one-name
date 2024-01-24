@@ -19,7 +19,7 @@ const RandomNumber: FC = () => {
         'relative justify-center': !isVisible
       })}
     >
-      <VerticalWheel className={'max-h-[206px] w-full md:max-h-full lg:basis-2/3'} />
+      <VerticalWheel className={'w-full lg:basis-2/3'} />
       {isVisible && <RandomOption className="w-full lg:basis-1/3" />}
       {!isVisible && (
         <button
