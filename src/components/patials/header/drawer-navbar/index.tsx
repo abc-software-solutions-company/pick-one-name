@@ -44,7 +44,7 @@ export default function DrawerNavbar(props: Props) {
         <Link href={link.href} key={link.href}>
           <span
             onClick={handleDrawerToggle}
-            className={cls('block text-base font-semibold leading-6', {
+            className={cls('block py-3 text-base font-semibold leading-6 md:text-lg', {
               'text-blue-700': link.href === pathName
             })}
           >
@@ -65,13 +65,7 @@ export default function DrawerNavbar(props: Props) {
         className="relative top-0 w-full border-b border-gray-300 bg-slate-50 px-5 py-2 text-dark-950 shadow-none lg:px-[50px] 3xl:px-[100px]"
       >
         <div className="flex items-center md:justify-between">
-          <IconButton
-            aria-label="open drawer"
-            className="p-1"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{display: {sm: 'none'}}}
-          >
+          <IconButton aria-label="open drawer" className="p-1 lg:hidden" edge="start" onClick={handleDrawerToggle}>
             <Icon name="ico-menu" />
           </IconButton>
           <Header />
@@ -79,6 +73,7 @@ export default function DrawerNavbar(props: Props) {
       </AppBar>
       <nav>
         <Drawer
+          className="lg:hidden"
           container={container}
           variant="temporary"
           open={mobileOpen}
@@ -87,7 +82,6 @@ export default function DrawerNavbar(props: Props) {
             keepMounted: true
           }}
           sx={{
-            display: {xs: 'block', sm: 'none'},
             '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth}
           }}
         >

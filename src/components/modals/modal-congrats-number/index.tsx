@@ -24,11 +24,12 @@ const CongratsNumber: FC<ICongratsNumberProps> = ({className, number, open, onCl
       onClose={onClose!}
     >
       <Modal.Header text="" icon="ico-x" />
-      <Modal.Body className="relative -mt-16 flex flex-col items-center justify-center gap-5 lg:gap-8">
-        <h3 className="text-2xl font-bold text-blue-300 lg:text-5xl">Chúc mừng bạn</h3>
-        <h3 className="text-3xl font-bold tracking-wide text-zinc-900 lg:text-5xl">{number}</h3>
+      <Modal.Body className="relative -mt-16 flex flex-col items-center justify-center gap-5 md:gap-8">
+        <h3 className="text-2xl font-bold text-blue-300 md:text-[40px] lg:text-5xl">Chúc mừng bạn</h3>
+        <h3 className="text-3xl font-bold tracking-wide text-zinc-900 md:text-[40px] lg:text-5xl">{number}</h3>
         <Button
-          className="relative z-20 w-full max-w-1/2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-neutral-50 lg:max-w-xs lg:px-14 lg:py-4 lg:text-lg"
+          className="relative z-20 w-full max-w-1/2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-neutral-50 
+          md:max-w-xs md:px-14 md:py-4 md:text-lg"
           color="primary"
           text="Xong"
           onClick={onClose}

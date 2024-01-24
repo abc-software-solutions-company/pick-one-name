@@ -1,6 +1,6 @@
 .congratulation :global {
   .abc-modal-content {
-    @apply p-1;
+    @apply py-4;
   }
   .animation {
     @apply absolute left-1/2 top-1/2 z-10 w-[120%] -translate-x-1/2 -translate-y-1/2;

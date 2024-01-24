@@ -16,7 +16,7 @@ interface IPropsHeaderLeft {
 
 const HeaderLeft: FC<IPropsHeaderLeft> = ({pathName, onClick = () => {}, onHover = () => {}, onBlur = () => {}}) => {
   return (
-    <div className="hidden w-auto items-center gap-8 md:flex">
+    <div className="hidden w-auto items-center gap-8 lg:flex">
       {linksList.map(link => (
         <Link href={link.href} key={link.href}>
           <span
