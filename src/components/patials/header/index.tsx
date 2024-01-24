@@ -4,6 +4,8 @@ import Image from 'next/image';
 import {useRouter} from 'next/router';
 import {FC, MouseEvent, useEffect, useState} from 'react';
 
+import SoundManager from '@/components/sound-manager';
+
 import HeaderLeft from './header-left';
 import HeaderRight from './header-right';
 import {IPropsActiveEl, TypeMouseEvent} from './type';
@@ -90,8 +92,8 @@ const Header: FC<IProps> = () => {
         className="h-full w-full"
         alt="logo"
       />
-
       <HeaderRight />
+      <SoundManager />
     </>
   );
 };

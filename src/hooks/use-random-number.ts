@@ -66,7 +66,7 @@ export const useRandomNumber = create<State & Actions>()((set, get) => ({
           value: i % 10,
           style: {
             transform: `rotateX(${deg}deg) translateZ(114px)`,
-            top: i % 10 === 0 ? '0' : '',
+            top: i % 10 === 0 ? '0' : ''
           }
         };
         arr.push(newNum);
