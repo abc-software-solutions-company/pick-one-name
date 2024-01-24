@@ -3,7 +3,6 @@ export interface IWheelNumbers {
   style: {
     transform: string;
     top: number | string;
-    opacity: number;
   };
 }
 export interface IRandomNumbers {

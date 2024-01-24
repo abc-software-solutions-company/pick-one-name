@@ -54,11 +54,11 @@ const Rotaion: FC<IRotateProps> = ({position, numbers, controls, animationStart}
       >
         {numbers.map((num, index: number) => (
           <div
-            className="flex h-full w-full items-center justify-center text-center opacity-0 backface-hidden"
+            className="flex h-full w-full items-center justify-center text-center backface-hidden"
             key={index}
             style={num.style}
           >
-            <p className="text-3xl font-bold lg:text-6xl 3xl:text-7xl">{num.value}</p>
+            <p className="text-4xl font-bold lg:text-6xl 3xl:text-7xl">{num.value}</p>
           </div>
         ))}
       </motion.div>
