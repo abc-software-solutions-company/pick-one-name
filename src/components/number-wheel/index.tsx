@@ -6,6 +6,7 @@ import Button from '@/core-ui/button';
 import useToast from '@/core-ui/toast';
 import {useRandomNumber} from '@/hooks/use-random-number';
 
+import CongratsNumber from '../modals/modal-congrats-number';
 import NumberWheelTop from './number-wheel-top';
 import Rotaion from './rotation';
 
@@ -16,21 +17,23 @@ interface INumberWheelProps {
 const NumberWheel: FC<INumberWheelProps> = ({className}) => {
   const controls = useAnimation();
   const {
-    isBGImage,
-    isAnimationStart,
-    wheelnumbers,
-    randomNumberList,
     max,
     min,
+    isDone,
+    isBGImage,
+    randomNumber,
+    wheelnumbers,
     isInputValid,
+    isAnimationStart,
+    randomNumberList,
     setDone,
     setBGImage,
-    setAnimationStart,
+    setIsInputValid,
     updateNumberList,
+    setAnimationStart,
     generateRandNumber,
     generateNumberList,
-    generateWheelNumbers,
-    setIsInputValid
+    generateWheelNumbers
   } = useRandomNumber();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -102,7 +105,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       <div className="flex h-full w-full select-none gap-3">
         <div className="flex w-full items-center justify-center rounded-sm text-center">
           <div className="relative flex h-[65px] w-full items-center gap-3 overflow-hidden rounded-xl lg:h-lg-number-container 3xl:h-2xl-number-container">
-            <div className="wheel-container flex h-full w-full items-center justify-center gap-10 md:scale-175 lg:gap-18 lg:scale-150 3xl:gap-20">
+            <div className="wheel-container flex h-full w-full items-center justify-center gap-10 md:scale-175 lg:scale-150 lg:gap-18 3xl:gap-20">
               {randomNumberList.map((n, i) => (
                 <Rotaion
                   key={i}
@@ -117,13 +120,14 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
         </div>
       </div>
       <Button
-        className="inline-flex h-14 items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1 text-sm
-        font-semibold text-neutral-50 hover:bg-blue-700 w-full md:py-4 md:px-8 md:text-lg lg:w-[40%]"
+        className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1
+        text-sm font-semibold text-neutral-50 hover:bg-blue-700 md:py-4 md:px-8 md:text-lg lg:w-[40%]"
         disabled={isAnimationStart || !isInputValid}
         onClick={handleClick}
       >
         Quay
       </Button>
+      <CongratsNumber number={randomNumber} open={isDone} onClose={() => setDone(false)} />
     </div>
   );
 };
