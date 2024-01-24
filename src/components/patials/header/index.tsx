@@ -4,6 +4,8 @@ import Image from 'next/image';
 import {useRouter} from 'next/router';
 import {FC, MouseEvent, useEffect, useState} from 'react';
 
+import SoundManager from '@/components/sound-manager';
+
 import HeaderLeft from './header-left';
 import HeaderRight from './header-right';
 import {IPropsActiveEl, TypeMouseEvent} from './type';
@@ -80,18 +82,24 @@ const Header: FC<IProps> = () => {
       <motion.div
         animate={controls}
         style={{width: activeEl.width, left: activeEl.position}}
-        className="absolute bottom-0 hidden h-1 w-full bg-blue-600 lg:inline-block lg:w-auto"
+        className="absolute bottom-0 hidden h-1 w-full bg-blue-600 lg:inline-block"
       />
-      <HeaderLeft pathName={pathName} onClick={handleSlidingMenu} onHover={handleSlidingMenu} onBlur={handleBlurMenu} />
-      <Image
-        width={width < 768 ? '142' : '213'}
-        height={width < 768 ? '22' : '32'}
-        src={'/images/logo.png'}
-        className="h-full w-full"
-        alt="logo"
-      />
-
-      <HeaderRight />
+      <div className="flex grow items-center md:justify-between">
+        <HeaderLeft
+          pathName={pathName}
+          onClick={handleSlidingMenu}
+          onHover={handleSlidingMenu}
+          onBlur={handleBlurMenu}
+        />
+        <Image
+          width={width < 768 ? '142' : '213'}
+          height={width < 768 ? '22' : '32'}
+          src={'/images/logo.png'}
+          alt="logo"
+        />
+        <HeaderRight />
+      </div>
+      <SoundManager />
     </>
   );
 };

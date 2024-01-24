@@ -64,7 +64,7 @@ export default function DrawerNavbar(props: Props) {
         component="nav"
         className="relative top-0 w-full border-b border-gray-300 bg-slate-50 px-5 py-2 text-dark-950 shadow-none lg:px-[50px] 3xl:px-[100px]"
       >
-        <div className="flex items-center md:justify-between">
+        <div className="flex items-center">
           <IconButton aria-label="open drawer" className="p-1 lg:hidden" edge="start" onClick={handleDrawerToggle}>
             <Icon name="ico-menu" />
           </IconButton>
