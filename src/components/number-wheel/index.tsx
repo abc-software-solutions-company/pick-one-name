@@ -6,6 +6,7 @@ import Button from '@/core-ui/button';
 import useToast from '@/core-ui/toast';
 import {useRandomNumber} from '@/hooks/use-random-number';
 
+import CongratsNumber from '../modals/modal-congrats-number';
 import NumberWheelTop from './number-wheel-top';
 import Rotaion from './rotation';
 
@@ -16,21 +17,23 @@ interface INumberWheelProps {
 const NumberWheel: FC<INumberWheelProps> = ({className}) => {
   const controls = useAnimation();
   const {
-    isBGImage,
-    isAnimationStart,
-    wheelnumbers,
-    randomNumberList,
     max,
     min,
+    isDone,
+    isBGImage,
+    randomNumber,
+    wheelnumbers,
     isInputValid,
+    isAnimationStart,
+    randomNumberList,
     setDone,
     setBGImage,
-    setAnimationStart,
+    setIsInputValid,
     updateNumberList,
+    setAnimationStart,
     generateRandNumber,
     generateNumberList,
-    generateWheelNumbers,
-    setIsInputValid
+    generateWheelNumbers
   } = useRandomNumber();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -124,6 +127,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       >
         Quay
       </Button>
+      <CongratsNumber number={randomNumber} open={isDone} onClose={() => setDone(false)} />
     </div>
   );
 };
