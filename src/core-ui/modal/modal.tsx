@@ -2,7 +2,6 @@ import cls from 'classnames';
 import React, {createContext, FC, ReactNode, useContext, useMemo} from 'react';
 
 import Backdrop from '../backdrop';
-import Portal from '../portal';
 import Body, {IModalBodyProps} from './body';
 import Footer, {IModalFooterProps} from './footer';
 import Header, {IModalHeaderProps} from './header';
@@ -66,14 +65,12 @@ export const Modal: FC<IModalProps> & IModalComposition = ({
 
   return (
     <ModalContext.Provider value={memoizedContextValue}>
-      <Portal>
-        <div className={cls('abc-modal', 'scrollbar', `abc-modal-${variant}`)}>
-          <div className={cls('abc-modal-dialog', className, dialogVariantClass)}>
-            <div className="abc-modal-content">{children}</div>
-          </div>
-          <Backdrop open={backdrop && open} onClick={onClose} />
+      <div className={cls('abc-modal', 'scrollbar', `abc-modal-${variant}`)}>
+        <div className={cls('abc-modal-dialog', className, dialogVariantClass)}>
+          <div className="abc-modal-content">{children}</div>
         </div>
-      </Portal>
+        <Backdrop open={backdrop && open} onClick={onClose} />
+      </div>
     </ModalContext.Provider>
   );
 };
