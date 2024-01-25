@@ -12,7 +12,7 @@ const DefaultNumberButton: React.FC<DefaultNumberButtonProps> = ({onClick, label
   return (
     <button
       className="flex grow items-center justify-center rounded-lg border border-slate-300 p-2 px-5 py-3
-      text-xs text-black lg:text-base"
+      text-xs text-black hover:bg-neutral-100 lg:text-base"
       disabled={isAnimationStart}
       onClick={onClick}
     >
