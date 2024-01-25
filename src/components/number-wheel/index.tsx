@@ -104,7 +104,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       <NumberWheelTop containerRef={containerRef} isBGImage={isBGImage} />
       <div className="flex h-full w-full select-none gap-3">
         <div className="flex w-full items-center justify-center rounded-sm text-center">
-          <div className="relative flex h-[65px] w-full items-center gap-3 overflow-hidden rounded-xl md:h-19 lg:h-lg-number-container 3xl:h-2xl-number-container">
+          <div className="relative flex h-18 w-full items-center gap-3 overflow-hidden rounded-xl md:h-19 lg:h-lg-number-container 3xl:h-2xl-number-container">
             <div className="wheel-container flex h-full w-full items-center justify-center gap-10 md:scale-175 lg:scale-150 lg:gap-14 3xl:gap-20">
               {randomNumberList.map((n, i) => (
                 <Rotaion
@@ -121,7 +121,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-2">
         <Button
-          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1
+          className="inline-flex h-9 md:h-14 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1
         text-sm font-semibold text-neutral-50 hover:bg-blue-700 md:py-4 md:px-8 md:text-lg lg:w-[40%]"
           disabled={isAnimationStart || !isInputValid}
           onClick={handleClick}
