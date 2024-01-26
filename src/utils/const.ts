@@ -1,3 +1,5 @@
+import {transaltion} from './translation';
+
 const linksList = [
   {
     href: '/number',
@@ -16,11 +18,11 @@ const findUsList = [
   },
   {
     icon: 'ico-facebook-fill',
-    href: ''
+    href: transaltion.footer.facebook
   },
   {
     icon: 'ico-linkedin-fill',
-    href: ''
+    href: transaltion.footer.linkedin
   }
 ];
 

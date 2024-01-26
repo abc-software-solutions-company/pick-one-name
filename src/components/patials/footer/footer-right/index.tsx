@@ -11,9 +11,9 @@ const FooterRight: FC = () => {
       <div className="flex items-center justify-end gap-2">
         {findUsList.map(item => (
           <Link key={item.icon} href={item.href}>
-            <>
+            <span>
               <Icon className="cursor-pointer text-[#030712]" name={item.icon} />
-            </>
+            </span>
           </Link>
         ))}
       </div>

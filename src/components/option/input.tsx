@@ -1,3 +1,4 @@
+import {useRandomNumber} from '@/hooks/use-random-number';
 import {sanitizeInput} from '@/utils/sanitize-input';
 
 interface IInputNumberProps {
@@ -7,10 +8,12 @@ interface IInputNumberProps {
 }
 
 const InputNumber = ({label, value, onChange}: IInputNumberProps) => {
+  const {isAnimationStart} = useRandomNumber();
   return (
     <div className="flex flex-col gap-1 lg:gap-4">
       <label className="items-start text-xl font-bold text-black 3xl:text-2xl">{label}</label>
       <input
+        disabled={isAnimationStart}
         value={value}
         minLength={1}
         maxLength={7}
