@@ -2,9 +2,10 @@ interface IInputLonginForm {
   label: string;
   value: string;
   placeholder: string;
+  type: string;
   onChange: (value: string) => void;
 }
-const InputLoginForm = ({label, value, placeholder, onChange}: IInputLonginForm) => {
+const InputLoginForm = ({label, type, value, placeholder, onChange}: IInputLonginForm) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -14,6 +15,7 @@ const InputLoginForm = ({label, value, placeholder, onChange}: IInputLonginForm)
       <input
         className="h-auto w-full rounded-lg border border-gray-300 px-2 py-3
               text-black"
+        type={type}
         value={value}
         placeholder={placeholder}
         onChange={handleInputChange}

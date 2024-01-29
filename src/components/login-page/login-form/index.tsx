@@ -20,14 +20,16 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
         <div className="mb-8 flex flex-col gap-4">
           <InputLoginForm
             label="Gmail"
+            type="gmail"
             value={gmailValue}
             placeholder="chinhcao@gmail.com"
             onChange={value => setGmailValue(value)}
           />
           <InputLoginForm
             label="Mật khẩu"
+            type="password"
             value={passValue}
-            placeholder="**************"
+            placeholder=""
             onChange={value => setPassValue(value)}
           />
           <div className="flex justify-end text-base text-gray-500">Quên mật khẩu?</div>
@@ -38,8 +40,8 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
           <p className="text-lg text-blue-600"> Đăng ký</p>
         </div>
         <div className="flex w-full flex-col gap-4">
-          <SocialLoginButton label="Đăng nhập bằng Google" srcImage="/images/logo-google.png" />
-          <SocialLoginButton label="Đăng nhập bằng Facebook" srcImage="/images/logo-facebook.png" />
+          <SocialLoginButton label="Đăng nhập bằng Google" src="/images/logo-google.png" />
+          <SocialLoginButton label="Đăng nhập bằng Facebook" src="/images/logo-facebook.png" />
         </div>
       </div>
     </div>

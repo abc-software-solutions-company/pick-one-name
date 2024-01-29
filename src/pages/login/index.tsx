@@ -3,7 +3,7 @@ import LayoutAuth from '@/layouts/auth-layout';
 
 export default function PageLogin() {
   return (
-    <div className={'h-full w-full grow flex-row'}>
+    <div className="h-full w-full grow flex-row">
       <LoginPage />
     </div>
   );
