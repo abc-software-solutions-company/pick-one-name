@@ -3,7 +3,7 @@ import React, {FC, useEffect} from 'react';
 
 import {useSetting} from '@/hooks/use-setting';
 
-import VerticalWheel from '../number-wheel';
+import NumberWheel from '../number-wheel';
 import RandomOption from '../option';
 
 const RandomNumber: FC = () => {
@@ -19,8 +19,8 @@ const RandomNumber: FC = () => {
         'relative justify-center': !isVisible
       })}
     >
-      <VerticalWheel
-        className={cls('w-full lg:basis-2/3', {
+      <NumberWheel
+        className={cls('w-full md:gap-10 md:p-10 lg:basis-2/3 lg:px-21 lg:py-10', {
           'grow lg:grow-0': !isVisible
         })}
       />

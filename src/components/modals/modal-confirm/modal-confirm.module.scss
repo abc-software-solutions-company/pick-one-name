@@ -1,9 +1,9 @@
 .confirm-box :global {
   .abc-modal-content {
-    @apply bg-slate-800/[1];
+    @apply bg-white;
   }
   .buttons {
-    @apply relative z-20 mx-auto flex gap-3;
+    @apply relative z-20 mx-auto flex gap-3 text-zinc-50;
     &.vertical {
       @apply max-w-xs flex-col;
     }
