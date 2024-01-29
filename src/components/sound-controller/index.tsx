@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import {gsap} from 'gsap';
 import React, {FC, useEffect} from 'react';
 
+import {useGlobal} from '@/hooks/use-global';
 import {useGame} from '@/states/game';
 
 interface ISoundControllerProps {
@@ -14,6 +15,7 @@ let tickSound: HTMLAudioElement;
 
 const SoundController: FC<ISoundControllerProps> = ({className}) => {
   const game = useGame();
+  const {isMusic} = useGlobal();
 
   useEffect(() => {
     winSound = new Audio('/win.mp3');
@@ -37,17 +39,17 @@ const SoundController: FC<ISoundControllerProps> = ({className}) => {
   }, [game.state.runAt]);
 
   useEffect(() => {
-    const volume = game.state.settings.isBackgroundMusicOn ? 1 : 0;
+    const volume = isMusic ? 1 : 0;
     if (game.state.runAt) gsap.to(bgSound, {volume, duration: 2});
-  }, [game.state.settings.isBackgroundMusicOn, game.state.runAt]);
+  }, [isMusic, game.state.runAt]);
 
   useEffect(() => {
-    const volume = game.state.settings.isSoundEffectOn ? 1 : 0;
+    const volume = isMusic ? 1 : 0;
     if (game.state.runAt) {
       gsap.to(tickSound, {volume, duration: 0.5});
       gsap.to(winSound, {volume, duration: 0.1});
     }
-  }, [game.state.settings.isSoundEffectOn, game.state.runAt]);
+  }, [isMusic, game.state.runAt]);
 
   useEffect(() => {
     if (game.state.isShowWinner) {

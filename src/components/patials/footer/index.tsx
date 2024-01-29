@@ -12,9 +12,7 @@ const Footer: FC = () => {
         <FooterLeft />
         <FooterRight />
       </div>
-      <p className="lead font-poppins text-center text-base font-medium text-blue-500">
-        {transaltion.footer.createdBy}
-      </p>
+      <p className="lead font-poppins text-center text-xs font-medium text-blue-500">{transaltion.footer.createdBy}</p>
     </div>
   );
 };
