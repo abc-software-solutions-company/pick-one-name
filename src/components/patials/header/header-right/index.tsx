@@ -11,9 +11,9 @@ const HeaderRight: FC = () => {
   const {isLogin} = usePublic();
   const route = useRouter();
 
-  function handleLogin() {
+  const handleLogin = () => {
     route.push('/login');
-  }
+  };
 
   return (
     <div className="flex grow items-center justify-end gap-1 text-[#FAFAFA] md:gap-6 lg:grow-0">
