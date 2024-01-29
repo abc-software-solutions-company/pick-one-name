@@ -10,6 +10,7 @@ const InputLoginForm: React.FC<IInputLonginForm> = ({label, type, value, placeho
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
+
   return (
     <div>
       <div className="mb-2 text-2xl">{label}</div>
