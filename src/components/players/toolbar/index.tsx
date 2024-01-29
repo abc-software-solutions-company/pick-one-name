@@ -28,22 +28,26 @@ const PlayerToolbar: FC<IPlayerToolbarProps> = ({
   const game = useGame();
 
   return (
-    <div className={classnames(styles.players__toolbar, className)}>
-      <Input
-        value={value}
-        spellCheck={false}
-        placeholder="Enter name(s)"
-        onKeyDown={onNewPlayerKeyDown}
-        onChange={onNewPlayerTextChange}
-        groupEnd={<Button variant="contained" color="primary" text="Save" onClick={addPlayer} disabled={!value} />}
-      />
-      <Button
-        variant="contained"
-        color="primary"
-        text="Delete All"
-        disabled={game.state.players.items.length === 0 || game.state.isSpinning}
-        onClick={deleteAllPlayers}
-      />
+    <div className="flex w-full flex-col items-start justify-start gap-4">
+      <p className="text-gray-950 text-2xl font-medium leading-7">Nhập tên</p>
+      <div className={classnames(styles.players__toolbar, className)}>
+        <Input
+          value={value}
+          spellCheck={false}
+          placeholder="Enter name(s)"
+          onKeyDown={onNewPlayerKeyDown}
+          onChange={onNewPlayerTextChange}
+          maxLength={15}
+          groupEnd={<Button variant="contained" color="primary" text="Lưu" onClick={addPlayer} disabled={!value} />}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          text="Xóa hết"
+          disabled={game.state.players.items.length === 0 || game.state.isSpinning}
+          onClick={deleteAllPlayers}
+        />
+      </div>
     </div>
   );
 };

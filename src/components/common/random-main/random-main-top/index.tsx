@@ -6,11 +6,12 @@ import Icon from '@/core-ui/icon';
 import {useGlobal} from '@/hooks/use-global';
 
 interface Iprops {
-  isBGImage: boolean;
-  containerRef: React.RefObject<HTMLDivElement>;
+  title?: string;
+  isBGImage?: boolean;
+  containerRef?: React.RefObject<HTMLDivElement>;
 }
 
-const NumberWheelTop: FC<Iprops> = ({isBGImage, containerRef}) => {
+const RandomMainTop: FC<Iprops> = ({title, isBGImage, containerRef}) => {
   const {isZoom, setZoom} = useGlobal();
 
   useEffect(() => {
@@ -23,7 +24,7 @@ const NumberWheelTop: FC<Iprops> = ({isBGImage, containerRef}) => {
 
   function toggleFullScreen(status: boolean) {
     if (status) {
-      containerRef.current?.requestFullscreen();
+      containerRef?.current?.requestFullscreen();
     } else {
       document.exitFullscreen();
     }
@@ -31,21 +32,21 @@ const NumberWheelTop: FC<Iprops> = ({isBGImage, containerRef}) => {
   }
 
   return (
-    <div className="flex w-full items-center justify-between px-2">
+    <div className="flex w-full items-center justify-between">
       <div className="w-10 md:w-[56px]"></div>
       <div
-        className={cls('p-3', {
+        className={cls('flex max-h-9 items-center justify-center p-3 md:max-h-[52px] lg:max-h-14', {
           'rounded-lg': isBGImage,
           'bg-neutral-50': isBGImage,
           'bg-opacity-50': isBGImage
         })}
       >
         <p
-          className={cls('text-gray-950 rounded px-3 text-xl font-bold tracking-tight md:text-2xl lg:text-[32px]', {
+          className={cls('text-gray-950 rounded px-3 text-lg font-bold tracking-tight md:text-2xl lg:text-[32px]', {
             'bg-white': isBGImage
           })}
         >
-          Random number
+          {title}
         </p>
       </div>
       <button
@@ -62,4 +63,4 @@ const NumberWheelTop: FC<Iprops> = ({isBGImage, containerRef}) => {
   );
 };
 
-export default NumberWheelTop;
+export default RandomMainTop;

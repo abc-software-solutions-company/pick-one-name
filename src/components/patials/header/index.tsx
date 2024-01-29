@@ -4,6 +4,7 @@ import Image from 'next/image';
 import {useRouter} from 'next/router';
 import {FC, MouseEvent, useEffect, useState} from 'react';
 
+import SoundController from '@/components/sound-controller';
 import SoundManager from '@/components/sound-manager';
 
 import HeaderLeft from './header-left';
@@ -100,6 +101,7 @@ const Header: FC<IProps> = () => {
         <HeaderRight />
       </div>
       <SoundManager />
+      <SoundController />
     </>
   );
 };

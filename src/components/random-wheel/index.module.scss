@@ -1,0 +1,15 @@
+.page-index :global {
+  @apply h-full;
+  .container {
+    @apply h-full px-0;
+  }
+  .page-index-inner {
+    @apply flex h-full lg:items-center;
+  }
+}
+.btn-show-players :global {
+  @apply absolute -left-12 top-20 rounded-r-none bg-gray-700 px-2;
+}
+.btn-start :global {
+  @apply w-full rounded-lg py-4 text-3xl uppercase 3xl:w-[40%];
+}

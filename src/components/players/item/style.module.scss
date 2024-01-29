@@ -1,9 +1,9 @@
 .players__player-item {
-  @apply flex w-full border-b border-slate-500 px-3 py-0.5 last:border-b-0;
+  @apply flex w-full border-b border-slate-300 px-3 py-0.5 last:border-b-0;
 }
 // Modifiers
 .players__player-item.disabled :global {
   .form-input {
-    @apply text-slate-500;
+    @apply text-slate-300;
   }
 }

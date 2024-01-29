@@ -2,7 +2,7 @@ import {transaltion} from './translation';
 
 const linksList = [
   {
-    href: '/number',
+    href: '/',
     title: 'Random number'
   },
   {
