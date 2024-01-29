@@ -47,4 +47,5 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
     </div>
   );
 };
+
 export default LoginForm;

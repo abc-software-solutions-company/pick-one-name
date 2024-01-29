@@ -1,7 +1,7 @@
 import LoginForm from './login-form';
 import LoginWelcome from './login-welcom';
 
-const LoginPage = () => {
+const LoginPage: React.FC = () => {
   return (
     <div className="flex h-full w-full gap-8 pr-[100px]">
       <div className="h-full basis-2/3">

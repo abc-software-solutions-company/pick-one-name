@@ -5,7 +5,8 @@ interface IInputLonginForm {
   type: string;
   onChange: (value: string) => void;
 }
-const InputLoginForm = ({label, type, value, placeholder, onChange}: IInputLonginForm) => {
+
+const InputLoginForm: React.FC<IInputLonginForm> = ({label, type, value, placeholder, onChange}) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -23,4 +24,5 @@ const InputLoginForm = ({label, type, value, placeholder, onChange}: IInputLongi
     </div>
   );
 };
+
 export default InputLoginForm;
