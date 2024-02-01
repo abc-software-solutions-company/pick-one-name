@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface ISettingButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const SettingButton: React.FC<ISettingButtonProps> = ({onClick}) => {

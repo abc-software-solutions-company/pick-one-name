@@ -9,24 +9,20 @@ import InputSetting from './input';
 const SettingGame: React.FC = () => {
   const {isSettingOpen, setIsSettingOpen} = useSetting();
 
-  const handleSettingClick = () => {
-    setIsSettingOpen(false);
-  };
-
   return (
-    <>
+    <div className="flex flex-col">
       {isSettingOpen ? (
         <div className="flex flex-col gap-8">
           <div className="flex items-center">
-            <Icon name="ico-arrow-left" className="h-6 w-6 cursor-pointer" onClick={handleSettingClick} />
+            <Icon name="ico-arrow-left" className="h-6 w-6 cursor-pointer" onClick={() => setIsSettingOpen(false)} />
             <div className="flex flex-grow justify-center text-3xl font-bold">Cài đặt</div>
           </div>
           <div>
             <div className="flex flex-col gap-3">
-              <InputSetting label="Tiêu đề" placeholder="Random number..." iconEnd={<Icon name="ico-pen-line" />} />
-              <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd={<Icon name="ico-angle-down" />} />
-              <InputSetting label="Màu nền" placeholder="#1111111111" iconEnd={<Icon name="ico-pen-line" />} />
-              <InputSetting label="Màu chữ" placeholder="#0000000" iconEnd={<Icon name="ico-pen-line" />} />
+              <InputSetting label="Tiêu đề" placeholder="Random number..." iconEnd="pen-line" />
+              <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" />
+              <InputSetting label="Màu nền" placeholder="#1111111111" iconEnd="pen-line" />
+              <InputSetting label="Màu chữ" placeholder="#0000000" iconEnd="pen-line" />
             </div>
             <div className="mt-3 flex flex-col gap-2">
               <div className="text-2xl font-medium text-black">Hình nền</div>
@@ -45,7 +41,7 @@ const SettingGame: React.FC = () => {
       ) : (
         <RandomOption />
       )}
-    </>
+    </div>
   );
 };
 
