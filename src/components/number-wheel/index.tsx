@@ -83,7 +83,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       button={
         <button
           className="inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1 text-sm
-        font-semibold text-neutral-50 hover:bg-blue-700 md:h-14 md:py-4 md:px-8 md:text-lg lg:w-[40%]"
+        font-semibold text-neutral-50 hover:bg-blue-700 md:h-14 md:px-8 md:py-4 md:text-lg lg:w-[40%]"
           disabled={isAnimationStart || !isInputValid}
           onClick={handleClick}
         >

@@ -56,7 +56,7 @@ const Wheel: FC<IProps> = ({className}) => {
       button={
         <Button
           className="inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1 text-sm
-          font-semibold text-neutral-50 hover:bg-blue-700 disabled:bg-opacity-50 md:h-14 md:py-4 md:px-8 md:text-lg lg:w-[40%]"
+          font-semibold text-neutral-50 hover:bg-blue-700 disabled:bg-slate-500 disabled:text-slate-400 md:h-14 md:px-8 md:py-4 md:text-lg lg:w-[40%]"
           variant="contained"
           text="Quay"
           onClick={run}

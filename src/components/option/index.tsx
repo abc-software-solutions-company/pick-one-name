@@ -18,7 +18,7 @@ const RandomOption = ({className}: IRandomOption) => {
     <div
       className={cls(
         className,
-        'flex flex-col gap-4 rounded-2xl border border-gray-300 px-2 py-5 md:p-10 lg:py-10 lg:px-8 3xl:gap-8'
+        'flex flex-col gap-4 rounded-2xl border border-gray-300 px-2 py-5 md:p-10 lg:px-8 lg:py-10 3xl:gap-8'
       )}
     >
       <div className="flex flex-col gap-2 lg:gap-4 3xl:gap-8">

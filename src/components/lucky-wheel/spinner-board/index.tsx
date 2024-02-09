@@ -59,8 +59,11 @@ function initPieChart(
   const elmHeight = height;
   const radius = Math.min(elmWidth, elmHeight) / 2;
   const size = 360 / segments.length;
+
   // Colors
-  const color = d3.scaleOrdinal(colors);
+  // const color = d3.scaleLinear().domain([0, colors.length - 1]).range(colors);
+  const colorOrigin = d3.scaleOrdinal(colors);
+
   // Generate the SVG
   const svg = d3
     .select(ref)
@@ -70,16 +73,32 @@ function initPieChart(
     .attr('height', elmHeight)
     .append('g')
     .attr('transform', 'translate(' + elmWidth / 2 + ',' + elmHeight / 2 + ')');
+
   // Generate the pie
   const pie = d3.pie().value(() => size);
+
   // Generate the arcs
   const arc = d3.arc().innerRadius(0).outerRadius(radius);
+
   // Generate groups
   const arcs = svg.selectAll('.arc').data(pie(segments)).enter().append('g').attr('class', 'arc');
+
   arcs
     .append('path')
     .attr('d', arc)
-    .attr('fill', (d: {index: number}) => color(d.index));
+    .attr('fill', (d: {index: number}) => {
+      const currentColor = colors[d.index];
+
+      if (isLinearGradient(currentColor)) {
+        // Nếu là linear gradient, thực hiện xử lý tương ứng
+        const gradientId = `gradient-${d.index}`;
+        createLinearGradient(d3, currentColor, gradientId);
+        return `url(#${gradientId})`;
+      } else {
+        // Nếu không phải linear gradient, sử dụng màu từ scaleLinear
+        return colorOrigin(d.index);
+      }
+    });
 
   pie(segments).forEach(function (d: any) {
     const [x, y] = arc.centroid(d);
@@ -99,4 +118,32 @@ function initPieChart(
 
 function destroySpinner(d3: any) {
   d3.select('.spinner-vector').remove();
+}
+
+// Thêm hàm để kiểm tra loại màu
+function isLinearGradient(color: string): boolean {
+  return color.startsWith('linear-gradient');
+}
+
+// Thêm hàm để tạo linear gradient
+function createLinearGradient(d3: any, color: string, gradientId: string): void {
+  const svg = d3.select('svg'); // Đảm bảo rằng bạn đang chọn SVG element chính xác
+  const gradient = svg
+    .append('defs')
+    .append('linearGradient')
+    .attr('id', gradientId)
+    .attr('gradientTransform', 'rotate(90)');
+
+  // Tách và lấy các màu từ linear gradient string
+  const colors = color.match(/#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3}/g) || [];
+
+  // Tính toán offset cho từng màu trong gradient
+  const offsetStep = 100 / (colors.length - 1);
+
+  colors.forEach((c, index) => {
+    gradient
+      .append('stop')
+      .attr('offset', `${index * offsetStep}%`)
+      .attr('style', `stop-color:${c};stop-opacity:1`);
+  });
 }
