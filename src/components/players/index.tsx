@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React, {FC, useState} from 'react';
 
+import {useSetting} from '@/hooks/use-setting';
 import {GameOperations, useGame} from '@/states/game';
 
 import HideButton from '../option/hide-button';
@@ -15,6 +16,7 @@ interface IProps {
 
 const Players: FC<IProps> = ({className}) => {
   const [newPlayer, setNewPlayer] = useState('');
+  const {setIsSettingOpen} = useSetting();
 
   const game = useGame();
 
@@ -53,7 +55,7 @@ const Players: FC<IProps> = ({className}) => {
       </div>
       <PlayerList players={game.state.players.items} />
       <div className="flex items-center gap-2 self-stretch align-bottom md:gap-4">
-        <SettingButton />
+        <SettingButton onClick={() => setIsSettingOpen(true)} />
         <HideButton />
       </div>
     </div>
