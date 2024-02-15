@@ -42,7 +42,7 @@ const RandomMainTop: FC<Iprops> = ({title, isBGImage, containerRef}) => {
         })}
       >
         <p
-          className={cls('rounded px-3 text-lg font-bold tracking-tight text-gray-950 md:text-2xl lg:text-[32px]', {
+          className={cls('text-gray-950 rounded px-3 text-lg font-bold tracking-tight md:text-2xl lg:text-[32px]', {
             'bg-white': isBGImage
           })}
         >

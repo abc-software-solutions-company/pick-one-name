@@ -29,7 +29,7 @@ const PlayerToolbar: FC<IPlayerToolbarProps> = ({
 
   return (
     <div className="flex w-full flex-col items-start justify-start gap-4">
-      <p className="text-2xl font-medium leading-7 text-gray-950">Nhập tên</p>
+      <p className="text-gray-950 text-2xl font-medium leading-7">Nhập tên</p>
       <div className={classnames(styles.players__toolbar, className)}>
         <Input
           value={value}
