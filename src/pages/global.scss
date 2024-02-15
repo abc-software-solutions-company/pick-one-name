@@ -1,0 +1,12 @@
+:root {
+  --black-default: #030712;
+}
+
+a {
+  text-decoration: none;
+  color: var(--black-default);
+
+  &:hover {
+    text-decoration: none;
+  }
+}
