@@ -1,7 +1,7 @@
 .wheel-decide {
   @apply relative z-[0] box-content rounded-full;
   @apply my-6 h-[250px] w-[250px] sm:h-[310px] sm:w-[310px] md:my-8 md:h-[460px] md:w-[460px] 3xl:h-[510px] 3xl:w-[510px];
-  box-shadow: 0 0 3px rgb(255, 255, 255, 0.5);
+  @apply shadow-[0_0_3px_rgb(255,255,255,0.5)];
 
   &::after {
     content: '';
@@ -16,5 +16,5 @@
 }
 .wheel-decide__inner {
   @apply relative h-full w-full overflow-hidden rounded-full bg-blue-200;
-  box-shadow: 0 0 3px rgb(255, 255, 255, 0.5);
+  @apply shadow-[0_0_3px_rgb(255,255,255,0.5)];
 }

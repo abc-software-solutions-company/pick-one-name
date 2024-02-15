@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, {FC, memo, useEffect, useRef, useState} from 'react';
 
+import {createLinearGradient, isLinearGradient} from '../utils';
 import styles from './style.module.scss';
 
 export interface IBoardItem {
@@ -90,12 +91,10 @@ function initPieChart(
       const currentColor = colors[d.index];
 
       if (isLinearGradient(currentColor)) {
-        // Nếu là linear gradient, thực hiện xử lý tương ứng
         const gradientId = `gradient-${d.index}`;
         createLinearGradient(d3, currentColor, gradientId);
         return `url(#${gradientId})`;
       } else {
-        // Nếu không phải linear gradient, sử dụng màu từ scaleLinear
         return colorOrigin(d.index);
       }
     });
@@ -118,32 +117,4 @@ function initPieChart(
 
 function destroySpinner(d3: any) {
   d3.select('.spinner-vector').remove();
-}
-
-// Thêm hàm để kiểm tra loại màu
-function isLinearGradient(color: string): boolean {
-  return color.startsWith('linear-gradient');
-}
-
-// Thêm hàm để tạo linear gradient
-function createLinearGradient(d3: any, color: string, gradientId: string): void {
-  const svg = d3.select('svg'); // Đảm bảo rằng bạn đang chọn SVG element chính xác
-  const gradient = svg
-    .append('defs')
-    .append('linearGradient')
-    .attr('id', gradientId)
-    .attr('gradientTransform', 'rotate(90)');
-
-  // Tách và lấy các màu từ linear gradient string
-  const colors = color.match(/#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3}/g) || [];
-
-  // Tính toán offset cho từng màu trong gradient
-  const offsetStep = 100 / (colors.length - 1);
-
-  colors.forEach((c, index) => {
-    gradient
-      .append('stop')
-      .attr('offset', `${index * offsetStep}%`)
-      .attr('style', `stop-color:${c};stop-opacity:1`);
-  });
 }
