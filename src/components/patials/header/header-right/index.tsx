@@ -1,14 +1,14 @@
 import React, {FC} from 'react';
 import {useRouter} from 'next/router';
+import {signOut, useSession} from 'next-auth/react';
 import cls from 'classnames';
 import {useGlobal} from '@/hooks/use-global';
-import {usePublic} from '@/hooks/use-public';
 
 import Icon from '@/core-ui/icon';
 
 const HeaderRight: FC = () => {
   const {isMusic, toggleMusic} = useGlobal();
-  const {isLogin} = usePublic();
+  const {data: session} = useSession();
   const route = useRouter();
 
   const handleLogin = () => {
@@ -28,12 +28,19 @@ const HeaderRight: FC = () => {
       >
         {isMusic ? <Icon name="ico-volume-1" /> : <Icon name="ico-volume-x" />}
       </button>
-      {!isLogin && (
+      {!session ? (
         <button
           onClick={handleLogin}
           className="flex cursor-pointer items-center justify-center rounded bg-blue-600 px-4 py-2 md:rounded-lg md:px-8 md:py-4"
         >
           <span className="text-sm font-semibold leading-6 text-white md:text-lg">Đăng nhập</span>
+        </button>
+      ) : (
+        <button
+          onClick={() => signOut()}
+          className="flex cursor-pointer items-center justify-center rounded bg-blue-600 px-4 py-2 md:rounded-lg md:px-8 md:py-4"
+        >
+          <span className="text-sm font-semibold leading-6 text-white md:text-lg">Đăng xuất</span>
         </button>
       )}
     </div>
