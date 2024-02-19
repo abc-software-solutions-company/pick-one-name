@@ -1,11 +1,11 @@
-import classNames from 'classnames';
 import React, {FC, useState} from 'react';
-
+import classNames from 'classnames';
 import {useSetting} from '@/hooks/use-setting';
 import {GameOperations, useGame} from '@/states/game';
 
 import HideButton from '../option/hide-button';
 import SettingButton from '../option/setting-button';
+
 import PlayerList from './list';
 import PlayerSuggest from './suggest';
 import PlayerToolbar from './toolbar';

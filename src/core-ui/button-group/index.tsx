@@ -1,5 +1,5 @@
-import cls from 'classnames';
 import React, {FC, ReactNode} from 'react';
+import cls from 'classnames';
 
 interface IButtonGroupProps {
   className?: string;

@@ -1,10 +1,10 @@
-import cls from 'classnames';
-import {useRouter} from 'next/router';
 import React, {FC} from 'react';
-
-import Icon from '@/core-ui/icon';
+import {useRouter} from 'next/router';
+import cls from 'classnames';
 import {useGlobal} from '@/hooks/use-global';
 import {usePublic} from '@/hooks/use-public';
+
+import Icon from '@/core-ui/icon';
 
 const HeaderRight: FC = () => {
   const {isMusic, toggleMusic} = useGlobal();

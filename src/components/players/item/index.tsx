@@ -1,9 +1,9 @@
-import classNames from 'classnames';
 import React, {ChangeEventHandler, FC} from 'react';
+import classNames from 'classnames';
+import {IPlayer} from '@/localdb/models/player.model';
 
 import IconButton from '@/core-ui/icon-button';
 import Input from '@/core-ui/input';
-import {IPlayer} from '@/localdb/models/player.model';
 
 import styles from './style.module.scss';
 

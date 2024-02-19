@@ -1,7 +1,8 @@
-import cls from 'classnames';
 import React, {FC, ReactNode} from 'react';
+import cls from 'classnames';
 
 import Icon from '../icon';
+
 import {useModal} from './modal';
 
 export interface IModalHeaderProps {

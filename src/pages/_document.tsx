@@ -1,7 +1,7 @@
 import Document, {DocumentContext, Head, Html, Main, NextScript} from 'next/document';
+import {siteSettings} from '@/configs/site.config';
 
 import {mediaStyles} from '@/components/media';
-import {siteSettings} from '@/configs/site.config';
 
 export default class CustomDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

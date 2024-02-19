@@ -1,9 +1,9 @@
-import cls from 'classnames';
 import React, {FC, useEffect} from 'react';
+import cls from 'classnames';
 import screenfull from 'screenfull';
+import {useGlobal} from '@/hooks/use-global';
 
 import Icon from '@/core-ui/icon';
-import {useGlobal} from '@/hooks/use-global';
 
 interface Iprops {
   title?: string;

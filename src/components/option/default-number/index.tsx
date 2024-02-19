@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {useRandomNumber} from '@/hooks/use-random-number';
 import {ranges} from '@/utils/random';
 

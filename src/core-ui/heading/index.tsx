@@ -1,5 +1,5 @@
-import cls from 'classnames';
 import React, {FC, memo, ReactNode} from 'react';
+import cls from 'classnames';
 
 interface IProps {
   className?: string;

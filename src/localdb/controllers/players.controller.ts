@@ -1,5 +1,5 @@
-import {IDatabase} from '..';
 import {IPlayer} from '../models/player.model';
+import {IDatabase} from '..';
 
 export interface ICollectionPlayer {
   clear: () => void;

@@ -1,5 +1,5 @@
-import cls from 'classnames';
 import React, {FC} from 'react';
+import cls from 'classnames';
 
 import Icon from '../icon';
 import {IconSize} from '../types';

@@ -1,5 +1,5 @@
-import cls from 'classnames';
 import React, {FC, MouseEventHandler, ReactNode} from 'react';
+import cls from 'classnames';
 
 import Loading from '../loading';
 import {Color, Size, Variant, XPosition} from '../types';

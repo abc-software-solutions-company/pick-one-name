@@ -1,5 +1,5 @@
-import {IDatabase} from '..';
 import {ISetting} from '../models/setting.model';
+import {IDatabase} from '..';
 
 export interface ICollectionSetting {
   get: () => ISetting;

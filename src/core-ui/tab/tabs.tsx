@@ -1,5 +1,5 @@
-import cls from 'classnames';
 import React, {createContext, FC, ReactNode, useContext, useMemo, useState} from 'react';
+import cls from 'classnames';
 
 import {ITabItemsProps, Items} from './items';
 import {IPanelProps, Panel} from './panel';

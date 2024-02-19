@@ -1,5 +1,5 @@
-import {AnimationControls, motion} from 'framer-motion';
 import React, {FC, useEffect, useState} from 'react';
+import {AnimationControls, motion} from 'framer-motion';
 
 import {IrotateWheelProps, IWheelNumbers} from '../type';
 

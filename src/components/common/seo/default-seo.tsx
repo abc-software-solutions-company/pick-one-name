@@ -1,5 +1,4 @@
 import {DefaultSeo as NextDefaultSeo} from 'next-seo';
-
 import {siteSettings} from '@/configs/site.config';
 
 const DefaultSeo: React.FC = () => {

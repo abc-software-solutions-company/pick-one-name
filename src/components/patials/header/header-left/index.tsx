@@ -1,8 +1,7 @@
 'use client';
-import cls from 'classnames';
-import Link from 'next/link';
 import React, {FC, MouseEvent} from 'react';
-
+import Link from 'next/link';
+import cls from 'classnames';
 import {linksList} from '@/utils/const';
 
 import {TypeMouseEvent} from '../type';

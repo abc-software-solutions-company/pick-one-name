@@ -5,22 +5,22 @@ name: Deploy to Production
 
 on:
   push:
-    branches: ["release"]
+    branches: ['release']
 
 env:
   APP_ENV: ${{ secrets.PRODUCTION }}
-  STATUS: "❌"
+  STATUS: '❌'
 
 jobs:
   clear-docker-cache:
-    name: "Clear Docker Cache"
+    name: 'Clear Docker Cache'
     runs-on: [self-hosted, production]
     steps:
       - name: Docker Prune
         run: sudo docker system prune -f -a --volumes
   build:
-    needs: ["clear-docker-cache"]
-    name: "Deploy to Production"
+    needs: ['clear-docker-cache']
+    name: 'Deploy to Production'
     environment:
       name: production
 
@@ -55,7 +55,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
         with:
-          channel-id: "C053JVDGG12"
+          channel-id: 'C053JVDGG12'
           payload: |
             {
               "text": "PICK-ONE-NAME-*PRODUCTION* ${{ env.STATUS }}",
