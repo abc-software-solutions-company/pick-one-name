@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, {FC, memo, useEffect, useRef, useState} from 'react';
 
+import {createLinearGradient, isLinearGradient} from '../utils';
+
 import styles from './style.module.scss';
 
 export interface IBoardItem {
@@ -59,8 +61,11 @@ function initPieChart(
   const elmHeight = height;
   const radius = Math.min(elmWidth, elmHeight) / 2;
   const size = 360 / segments.length;
+
   // Colors
-  const color = d3.scaleOrdinal(colors);
+  // const color = d3.scaleLinear().domain([0, colors.length - 1]).range(colors);
+  const colorOrigin = d3.scaleOrdinal(colors);
+
   // Generate the SVG
   const svg = d3
     .select(ref)
@@ -70,16 +75,30 @@ function initPieChart(
     .attr('height', elmHeight)
     .append('g')
     .attr('transform', 'translate(' + elmWidth / 2 + ',' + elmHeight / 2 + ')');
+
   // Generate the pie
   const pie = d3.pie().value(() => size);
+
   // Generate the arcs
   const arc = d3.arc().innerRadius(0).outerRadius(radius);
+
   // Generate groups
   const arcs = svg.selectAll('.arc').data(pie(segments)).enter().append('g').attr('class', 'arc');
+
   arcs
     .append('path')
     .attr('d', arc)
-    .attr('fill', (d: {index: number}) => color(d.index));
+    .attr('fill', (d: {index: number}) => {
+      const currentColor = colors[d.index];
+
+      if (isLinearGradient(currentColor)) {
+        const gradientId = `gradient-${d.index}`;
+        createLinearGradient(d3, currentColor, gradientId);
+        return `url(#${gradientId})`;
+      } else {
+        return colorOrigin(d.index);
+      }
+    });
 
   pie(segments).forEach(function (d: any) {
     const [x, y] = arc.centroid(d);

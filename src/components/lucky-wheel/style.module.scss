@@ -1,10 +1,21 @@
 .wheel-decide {
-  @apply relative z-[0] box-content rounded-full border-solid border-white;
-  @apply h-[250px] w-[250px] sm:h-[310px] sm:w-[310px] md:h-[460px] md:w-[460px] 3xl:h-[510px] 3xl:w-[510px];
-  @apply border-[10px] md:border-[16px];
-  box-shadow: 0 0 3px rgb(255, 255, 255, 0.5);
+  @apply relative z-[0] box-content rounded-full;
+  @apply my-6 h-[250px] w-[250px] sm:h-[310px] sm:w-[310px] md:my-8 md:h-[460px] md:w-[460px] 3xl:h-[510px] 3xl:w-[510px];
+  @apply shadow-[0_0_3px_rgb(255,255,255,0.5)];
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: linear-gradient(225deg, #1813fd 16%, #081bc3 51.91%, #040c59 87.83%);
+    box-shadow:
+      0 0 0 3px rgba(146, 83, 177, 0.8),
+      0 0 0 3px rgba(255, 255, 255, 0.8);
+    @apply -m-[10px] rounded-full md:-m-[35px];
+  }
 }
 .wheel-decide__inner {
   @apply relative h-full w-full overflow-hidden rounded-full bg-blue-200;
-  box-shadow: 0 0 3px rgb(255, 255, 255, 0.5);
+  @apply shadow-[0_0_3px_rgb(255,255,255,0.5)];
 }

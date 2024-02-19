@@ -1,45 +1,33 @@
 let colors: string[] = [];
 colors = colors.concat([
-  '#7aabce',
-  '#f7b2bc',
-  '#8dd3c8',
-  '#dfc181',
-  '#cabbee',
-  '#f7caeb',
-  '#c5e4c6',
-  '#e5c8c4',
-  '#cdbeab',
-  '#bbc9d6',
-  '#ffd7c2',
-  '#f7caca'
+  'linear-gradient(180deg, #FE7A18 3.8%, #FE9115 34.25%, #FFCC0F 96.09%)',
+  'linear-gradient(225deg, #FC9512 22.66%, #FED319 69.33%, #FFEB1C 91.3%)',
+  'linear-gradient(90deg, #2FFFFF -0.01%, #2AE7FF 26.99%, #1EA9FF 82%, #1A95FF 100%)',
+  'linear-gradient(315deg, #CC0A60 22.59%, #E60C69 54.96%, #FE0E73 90.03%)',
+  'linear-gradient(0deg, #3D08EA 1.63%, #600FF4 46.9%, #7815FC 83.94%)',
+  'linear-gradient(45deg, #006F67 22.05%, #00756B 26.95%, #00B392 71.12%, #00CBA2 92.15%)',
+  'linear-gradient(90deg, #808080 2.36%, #9D9D9D 52.29%, #B5B5B5 100.25%)',
+  'linear-gradient(141deg, #FF260D 24.56%, #FE3E0E 42.26%, #FC7B10 80.49%, #FC9512 95.35%)'
 ]);
 colors = colors.concat([
-  '#689fc7',
-  '#f59ca9',
-  '#7bcdc0',
-  '#dab86d',
-  '#bba8e9',
-  '#f4b5e3',
-  '#b5dcb6',
-  '#ddb8b4',
-  '#c4b39c',
-  '#acbccd',
-  '#ffc8aa',
-  '#f4b5b5'
+  'linear-gradient(180deg, #FE7A18 3.8%, #FE9115 34.25%, #FFCC0F 96.09%)',
+  'linear-gradient(225deg, #FC9512 22.66%, #FED319 69.33%, #FFEB1C 91.3%)',
+  'linear-gradient(90deg, #2FFFFF -0.01%, #2AE7FF 26.99%, #1EA9FF 82%, #1A95FF 100%)',
+  'linear-gradient(315deg, #CC0A60 22.59%, #E60C69 54.96%, #FE0E73 90.03%)',
+  'linear-gradient(0deg, #3D08EA 1.63%, #600FF4 46.9%, #7815FC 83.94%)',
+  'linear-gradient(45deg, #006F67 22.05%, #00756B 26.95%, #00B392 71.12%, #00CBA2 92.15%)',
+  'linear-gradient(90deg, #808080 2.36%, #9D9D9D 52.29%, #B5B5B5 100.25%)',
+  'linear-gradient(141deg, #FF260D 24.56%, #FE3E0E 42.26%, #FC7B10 80.49%, #FC9512 95.35%)'
 ]);
 colors = colors.concat([
-  '#5794c1',
-  '#f38596',
-  '#69c6b7',
-  '#d6ae5a',
-  '#ac94e4',
-  '#f19fdb',
-  '#a4d4a6',
-  '#d5a8a3',
-  '#bba78d',
-  '#9cb0c4',
-  '#ffb892',
-  '#f19f9f'
+  'linear-gradient(180deg, #FE7A18 3.8%, #FE9115 34.25%, #FFCC0F 96.09%)',
+  'linear-gradient(225deg, #FC9512 22.66%, #FED319 69.33%, #FFEB1C 91.3%)',
+  'linear-gradient(90deg, #2FFFFF -0.01%, #2AE7FF 26.99%, #1EA9FF 82%, #1A95FF 100%)',
+  'linear-gradient(315deg, #CC0A60 22.59%, #E60C69 54.96%, #FE0E73 90.03%)',
+  'linear-gradient(0deg, #3D08EA 1.63%, #600FF4 46.9%, #7815FC 83.94%)',
+  'linear-gradient(45deg, #006F67 22.05%, #00756B 26.95%, #00B392 71.12%, #00CBA2 92.15%)',
+  'linear-gradient(90deg, #808080 2.36%, #9D9D9D 52.29%, #B5B5B5 100.25%)',
+  'linear-gradient(141deg, #FF260D 24.56%, #FE3E0E 42.26%, #FC7B10 80.49%, #FC9512 95.35%)'
 ]);
 colors = colors.concat(...Array(20).fill(colors));
 
