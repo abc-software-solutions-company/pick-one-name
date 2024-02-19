@@ -3,16 +3,22 @@ import {create} from 'zustand';
 type State = {
   isSettingOpen: boolean;
   isVisible: boolean;
+  color: string;
+  isShowColorBox: boolean;
 };
 
 type Actions = {
   setIsSettingOpen: (isSettingOpen: boolean) => void;
   setVisible: (isVisible: boolean) => void;
+  setColor: (colorName: string) => void;
+  setIsShowColorBox: (isShowColorBox: boolean) => void;
 };
 
 const initialState: State = {
   isSettingOpen: false,
-  isVisible: true
+  isVisible: true,
+  color: '',
+  isShowColorBox: false
 };
 
 export const useSetting = create<State & Actions>()(set => ({
@@ -22,5 +28,11 @@ export const useSetting = create<State & Actions>()(set => ({
   },
   setIsSettingOpen(isSettingOpen: boolean) {
     set({isSettingOpen});
+  },
+  setColor(colorName: string) {
+    set(state => ({...state, color: colorName}));
+  },
+  setIsShowColorBox(isShowColorBox: boolean) {
+    set({isShowColorBox});
   }
 }));
