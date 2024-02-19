@@ -1,10 +1,10 @@
-import classnames from 'classnames';
 import React, {FC} from 'react';
+import classnames from 'classnames';
+import {GameOperations, useGame} from '@/states/game';
 
 import Button from '@/core-ui/button';
 import ButtonGroup from '@/core-ui/button-group';
 import Icon from '@/core-ui/icon';
-import {GameOperations, useGame} from '@/states/game';
 
 import styles from './style.module.scss';
 

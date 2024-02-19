@@ -1,8 +1,8 @@
 'use client';
-import {motion, useAnimation} from 'framer-motion';
+import {FC, MouseEvent, useEffect, useState} from 'react';
 import Image from 'next/image';
 import {useRouter} from 'next/router';
-import {FC, MouseEvent, useEffect, useState} from 'react';
+import {motion, useAnimation} from 'framer-motion';
 
 import SoundController from '@/components/sound-controller';
 import SoundManager from '@/components/sound-manager';

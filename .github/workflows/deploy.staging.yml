@@ -5,22 +5,22 @@ name: Deploy to Staging
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
 
 env:
   APP_ENV: ${{ secrets.STAGING }}
-  STATUS: "❌"
+  STATUS: '❌'
 
 jobs:
   clear-docker-cache:
-    name: "Clear Docker Cache"
+    name: 'Clear Docker Cache'
     runs-on: [self-hosted, staging]
     steps:
       - name: Docker Prune
         run: sudo docker system prune -f -a --volumes
   build:
-    needs: ["clear-docker-cache"]
-    name: "Deploy to Staging"
+    needs: ['clear-docker-cache']
+    name: 'Deploy to Staging'
     environment:
       name: staging
 
@@ -58,7 +58,7 @@ jobs:
           # Slack channel id, channel name, or user id to post message.
           # See also: https://api.slack.com/methods/chat.postMessage#channels
           # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
-          channel-id: "C05246T9K7G"
+          channel-id: 'C05246T9K7G'
           # For posting a simple plain text message
           slack-message:
             "GitHub build result: ${{ job.status }}\nPlease check result

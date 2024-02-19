@@ -1,11 +1,12 @@
-import {useAnimation} from 'framer-motion';
 import React, {FC, useEffect, useRef} from 'react';
+import {useAnimation} from 'framer-motion';
+import {useRandomNumber} from '@/hooks/use-random-number';
 
 import useToast from '@/core-ui/toast';
-import {useRandomNumber} from '@/hooks/use-random-number';
 
 import RandomMain from '../common/random-main';
 import CongratsNumber from '../modals/modal-congrats-number';
+
 import Rotaion from './rotation';
 
 interface INumberWheelProps {

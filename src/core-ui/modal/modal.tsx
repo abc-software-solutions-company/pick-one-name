@@ -1,7 +1,8 @@
-import cls from 'classnames';
 import React, {createContext, FC, ReactNode, useContext, useMemo} from 'react';
+import cls from 'classnames';
 
 import Backdrop from '../backdrop';
+
 import Body, {IModalBodyProps} from './body';
 import Footer, {IModalFooterProps} from './footer';
 import Header, {IModalHeaderProps} from './header';

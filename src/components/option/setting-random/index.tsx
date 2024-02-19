@@ -1,9 +1,10 @@
 import React from 'react';
-
-import Icon from '@/core-ui/icon';
 import {useSetting} from '@/hooks/use-setting';
 
+import Icon from '@/core-ui/icon';
+
 import RandomOption from '..';
+
 import InputSetting from './input';
 
 const SettingGame: React.FC = () => {

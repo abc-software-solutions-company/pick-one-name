@@ -1,8 +1,9 @@
-import classnames from 'classnames';
 import React, {FC} from 'react';
+import classnames from 'classnames';
 
 import GameSettings from '../../game-settings';
 import SoundController from '../../sound-controller';
+
 import styles from './header.module.scss';
 
 interface IProps {

@@ -1,13 +1,14 @@
 import React, {FC, useEffect} from 'react';
+import {IPlayer} from '@/localdb/models/player.model';
+import {GameOperations, useGame} from '@/states/game';
+
+import Button from '@/core-ui/button';
+import useToast from '@/core-ui/toast';
 
 import RandomMain from '@/components/common/random-main';
 import LuckyWheel from '@/components/lucky-wheel';
 import ConfirmBox from '@/components/modals/modal-confirm';
 import Congrats from '@/components/modals/modal-congrats';
-import Button from '@/core-ui/button';
-import useToast from '@/core-ui/toast';
-import {IPlayer} from '@/localdb/models/player.model';
-import {GameOperations, useGame} from '@/states/game';
 
 interface IProps {
   className?: string;

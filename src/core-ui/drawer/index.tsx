@@ -1,5 +1,5 @@
-import cls from 'classnames';
 import React, {FC, memo, ReactNode} from 'react';
+import cls from 'classnames';
 
 import Backdrop from '../backdrop';
 import Icon from '../icon';

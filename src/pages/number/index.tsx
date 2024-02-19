@@ -1,5 +1,6 @@
-import RandomNumber from '@/components/random-number';
 import LayoutDefault from '@/layouts/default';
+
+import RandomNumber from '@/components/random-number';
 
 export default function PageNumber() {
   return (

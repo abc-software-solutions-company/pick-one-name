@@ -1,5 +1,6 @@
-import RandomWheel from '@/components/random-wheel';
 import LayoutDefault from '@/layouts/default';
+
+import RandomWheel from '@/components/random-wheel';
 
 export default function PageWheel() {
   return (

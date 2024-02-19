@@ -1,9 +1,9 @@
-import {useRouter} from 'next/router';
 import {useEffect} from 'react';
+import {useRouter} from 'next/router';
 
+import Tracker from './utils/tracker';
 import GtagScript from './gtag';
 import SegmentScript from './segment';
-import Tracker from './utils/tracker';
 
 const Tracking = () => {
   const router = useRouter();
