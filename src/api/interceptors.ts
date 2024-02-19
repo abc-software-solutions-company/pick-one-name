@@ -1,6 +1,6 @@
-import {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
+import {AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig} from 'axios';
 
-const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig => {
+const onRequest = async (config: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> => {
   return config;
 };
 
