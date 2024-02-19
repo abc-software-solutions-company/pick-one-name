@@ -46,9 +46,7 @@ const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
           className={cls('text-gray-950 rounded px-3 text-lg font-bold tracking-tight md:text-2xl lg:text-[32px]', {
             'bg-white': isBGImage
           })}
-          style={{
-            backgroundColor: color
-          }}
+          style={{backgroundColor: color}}
         >
           {title}
         </p>
