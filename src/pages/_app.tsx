@@ -1,6 +1,7 @@
 import '@/vendors/tailwindcss/tailwind.scss';
 import '@/vendors/tailwindcss/theme.scss';
 import '@/vendors/abc-icons/dist/abc.scss';
+import './global.scss';
 
 import {StyledEngineProvider} from '@mui/material';
 import type {AppProps} from 'next/app';
