@@ -1,3 +1,4 @@
+import {signIn} from 'next-auth/react';
 import {usePublic} from '@/hooks/use-public';
 
 import InputLoginForm from './input';
@@ -40,8 +41,16 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
           <p className="text-lg text-blue-600"> Đăng ký</p>
         </div>
         <div className="flex w-full flex-col gap-4">
-          <SocialLoginButton label="Đăng nhập bằng Google" src="/images/logo-google.png" />
-          <SocialLoginButton label="Đăng nhập bằng Facebook" src="/images/logo-facebook.png" />
+          <SocialLoginButton
+            label="Đăng nhập bằng Google"
+            src="/images/logo-google.png"
+            onClick={() => signIn('google', {callbackUrl: '/'})}
+          />
+          <SocialLoginButton
+            label="Đăng nhập bằng Facebook"
+            src="/images/logo-facebook.png"
+            onClick={() => signIn('facebook', {callbackUrl: '/'})}
+          />
         </div>
       </div>
     </div>
