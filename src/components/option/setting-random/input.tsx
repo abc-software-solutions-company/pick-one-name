@@ -5,9 +5,10 @@ interface IInputSettingProps {
   placeholder: string;
   iconStart?: string;
   iconEnd?: string;
+  onClick?: () => void;
 }
 
-const InputSetting: React.FC<IInputSettingProps> = ({label, placeholder, iconStart, iconEnd}) => {
+const InputSetting: React.FC<IInputSettingProps> = ({label, placeholder, iconStart, iconEnd, onClick}) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="text-2xl font-medium text-black">{label}</div>
@@ -24,8 +25,8 @@ const InputSetting: React.FC<IInputSettingProps> = ({label, placeholder, iconSta
             className="w-full flex-grow rounded-lg border border-slate-300 bg-neutral-50 py-4 px-2 text-lg"
           />
           {iconEnd && (
-            <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-              <Icon name={`ico-${iconEnd}`} />
+            <div className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3">
+              <Icon name={`ico-${iconEnd}`} onClick={onClick} />
             </div>
           )}
         </div>

@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useRef} from 'react';
 import {useAnimation} from 'framer-motion';
 import {useRandomNumber} from '@/hooks/use-random-number';
+import {useSetting} from '@/hooks/use-setting';
 
 import useToast from '@/core-ui/toast';
 
@@ -32,6 +33,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
     generateNumberList,
     generateWheelNumbers
   } = useRandomNumber();
+  const {color} = useSetting();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const toast = useToast();
 
@@ -84,7 +86,8 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       button={
         <button
           className="inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1 text-sm
-        font-semibold text-neutral-50 hover:bg-blue-700 md:h-14 md:py-4 md:px-8 md:text-lg lg:w-[40%]"
+        font-semibold text-neutral-50 hover:bg-blue-700 md:h-14 md:px-8 md:py-4 md:text-lg lg:w-[40%]"
+          style={{backgroundColor: color}}
           disabled={isAnimationStart || !isInputValid}
           onClick={handleClick}
         >
