@@ -1,9 +1,9 @@
-import classnames from 'classnames';
 import React, {ChangeEventHandler, FC, KeyboardEvent} from 'react';
+import classnames from 'classnames';
+import {useGame} from '@/states/game';
 
 import Button from '@/core-ui/button';
 import Input from '@/core-ui/input';
-import {useGame} from '@/states/game';
 
 import styles from './style.module.scss';
 

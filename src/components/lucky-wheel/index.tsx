@@ -1,17 +1,17 @@
+import React, {FC, ReactNode, useEffect, useRef} from 'react';
 import classnames from 'classnames';
 import {gsap} from 'gsap';
-import React, {FC, ReactNode, useEffect, useRef} from 'react';
-
 import useTracking from '@/hooks/use-tracking';
 import {IPlayer} from '@/localdb/models/player.model';
 import {useGame} from '@/states/game';
 import {rangeInt} from '@/utils/random';
 
+import constant from './utils/contanst';
 import SpinnerBoard from './spinner-board';
 import SpinnerIndicator from './spinner-indicator';
 import SpinnerTrigger from './spinner-trigger';
+
 import styles from './style.module.scss';
-import constant from './utils/contanst';
 
 let firstRun = true;
 

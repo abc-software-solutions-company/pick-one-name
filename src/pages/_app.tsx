@@ -1,20 +1,20 @@
-import '@/vendors/tailwindcss/tailwind.scss';
-import '@/vendors/tailwindcss/theme.scss';
-import '@/vendors/abc-icons/dist/abc.scss';
-import './global.scss';
-
-import {StyledEngineProvider} from '@mui/material';
+import React from 'react';
 import type {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
 import {appWithTranslation} from 'next-i18next';
-import React from 'react';
+import QueryProvider from '@/contexts/query.provider';
+import {GameProvider} from '@/states/game';
+import {GlobalProvider} from '@/states/global';
+import {StyledEngineProvider} from '@mui/material';
 
 import DefaultSeo from '@/components/common/seo/default-seo';
 import ServiceWorker from '@/components/common/service-worker';
 import Tracking from '@/components/common/third-party/tracking';
-import QueryProvider from '@/contexts/query.provider';
-import {GameProvider} from '@/states/game';
-import {GlobalProvider} from '@/states/global';
+
+import '@/vendors/tailwindcss/tailwind.scss';
+import '@/vendors/tailwindcss/theme.scss';
+import '@/vendors/abc-icons/dist/abc.scss';
+import './global.scss';
 
 const Noop: React.FC = ({children}: React.PropsWithChildren<any>) => <>{children}</>;
 

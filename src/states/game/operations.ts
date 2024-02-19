@@ -1,5 +1,4 @@
 import {Dispatch} from 'react';
-
 import Database from '@/localdb';
 import PlayerController from '@/localdb/controllers/players.controller';
 import SettingController from '@/localdb/controllers/settings.controller';

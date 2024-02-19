@@ -1,4 +1,3 @@
-import cls from 'classnames';
 import React, {
   ChangeEvent,
   ChangeEventHandler,
@@ -11,6 +10,7 @@ import React, {
   useEffect,
   useState
 } from 'react';
+import cls from 'classnames';
 
 import {Color, XPosition} from '../types';
 

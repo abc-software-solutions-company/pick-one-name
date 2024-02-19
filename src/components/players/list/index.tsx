@@ -1,10 +1,10 @@
-import classNames from 'classnames';
 import React, {FC} from 'react';
-
+import classNames from 'classnames';
 import {IPlayer} from '@/localdb/models/player.model';
 import {GameOperations, useGame} from '@/states/game';
 
 import PlayerItem from '../item';
+
 import styles from './style.module.scss';
 
 interface IPlayerListProps {

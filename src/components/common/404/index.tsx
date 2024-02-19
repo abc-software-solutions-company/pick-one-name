@@ -1,10 +1,10 @@
+import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {useTranslation} from 'next-i18next';
-import * as React from 'react';
+import {ROUTES} from '@/configs/routes.config';
 
 import noResult from '@/assets/no-result.svg';
-import {ROUTES} from '@/configs/routes.config';
 
 const ErrorInformation: React.FC = () => {
   const {t} = useTranslation('common');

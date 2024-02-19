@@ -1,5 +1,4 @@
 import {FC} from 'react';
-
 import {transaltion} from '@/utils/translation';
 
 import FooterLeft from './footer-left';

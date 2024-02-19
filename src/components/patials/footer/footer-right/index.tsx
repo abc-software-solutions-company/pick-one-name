@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import React, {FC} from 'react';
+import Link from 'next/link';
+import {findUsList} from '@/utils/const';
 
 import Icon from '@/core-ui/icon';
-import {findUsList} from '@/utils/const';
 
 const FooterRight: FC = () => {
   return (

@@ -1,8 +1,8 @@
-import cls from 'classnames';
 import React, {FC, useEffect, useRef} from 'react';
+import cls from 'classnames';
+import {useRandomNumber} from '@/hooks/use-random-number';
 
 import Timer from '@/components/timer';
-import {useRandomNumber} from '@/hooks/use-random-number';
 
 import RandomMainTop from './random-main-top';
 

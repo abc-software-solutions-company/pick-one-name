@@ -1,5 +1,6 @@
-import LoginPage from '@/components/login-page';
 import LayoutAuth from '@/layouts/auth-layout';
+
+import LoginPage from '@/components/login-page';
 
 export default function PageLogin() {
   return (

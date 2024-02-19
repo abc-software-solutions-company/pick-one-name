@@ -1,5 +1,5 @@
-import cls from 'classnames';
 import React, {FC} from 'react';
+import cls from 'classnames';
 
 import Button from '@/core-ui/button';
 import {Modal} from '@/core-ui/modal';

@@ -1,6 +1,5 @@
-import cls from 'classnames';
 import {FC} from 'react';
-
+import cls from 'classnames';
 import {siteSettings} from '@/configs/site.config';
 
 import styles from './style.module.scss';
