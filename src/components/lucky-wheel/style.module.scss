@@ -9,9 +9,8 @@
     inset: 0;
     z-index: -1;
     background-image: linear-gradient(225deg, #1813fd 16%, #081bc3 51.91%, #040c59 87.83%);
-    border-radius: inherit;
     box-shadow: 0 0 0 3px rgba(146, 83, 177, 0.8), 0 0 0 3px rgba(255, 255, 255, 0.8);
-    @apply -m-[10px] md:-m-[35px];
+    @apply -m-[10px] rounded-full md:-m-[35px];
   }
 }
 .wheel-decide__inner {
