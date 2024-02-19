@@ -16,7 +16,7 @@ const RandomOption: React.FC<IRandomOption> = ({className}) => {
   return (
     <div
       className={cls(
-        'flex flex-col gap-4 rounded-2xl border border-gray-300 px-2 py-5 md:p-10 lg:py-10 lg:px-8 3xl:gap-8',
+        'flex flex-col gap-4 rounded-2xl border border-gray-300 px-2 py-5 md:p-10 lg:px-8 lg:py-10 3xl:gap-8',
         {'shadow-[0_0_4px_0_#797979]': isSettingOpen},
         className
       )}

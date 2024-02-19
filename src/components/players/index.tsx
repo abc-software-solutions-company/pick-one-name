@@ -39,7 +39,7 @@ const Players: FC<IProps> = ({className}) => {
     <div
       className={classNames(
         className,
-        'gap-4 rounded-lg border border-gray-300 bg-zinc-50 py-5 px-2 lg:gap-8 lg:rounded-3xl lg:px-8 lg:py-10'
+        'gap-4 rounded-lg border border-gray-300 bg-zinc-50 px-2 py-5 lg:gap-8 lg:rounded-3xl lg:px-8 lg:py-10'
       )}
     >
       <div className="flex w-full flex-col gap-2 lg:gap-3">
