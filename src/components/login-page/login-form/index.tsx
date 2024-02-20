@@ -1,4 +1,3 @@
-import {signIn} from 'next-auth/react';
 import {usePublic} from '@/hooks/use-public';
 
 import InputLoginForm from './input';
