@@ -13,7 +13,7 @@ interface Iprops {
 
 const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
   const {isZoom, setZoom} = useGlobal();
-  const {color, titleName} = useSetting();
+  const {color, title} = useSetting();
 
   useEffect(() => {
     if (screenfull.isEnabled) {
@@ -48,7 +48,7 @@ const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
           })}
           style={{backgroundColor: color}}
         >
-          {titleName}
+          {title}
         </p>
       </div>
       <button

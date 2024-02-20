@@ -4,11 +4,13 @@ import {useSetting} from '@/hooks/use-setting';
 
 import Icon from '@/core-ui/icon';
 
+import {RANDOM_NUMBER_WHEEL_DEFAULT_COLOR} from '@/components/common/constant/wheelColor.constant';
+
 import InputSetting from './input';
 
 const SettingForm: React.FC = () => {
   const {setIsSettingOpen} = useSetting();
-  const {color, setColor, isShowColorBox, setIsShowColorBox, titleName, setTitleName} = useSetting();
+  const {color, setColor, isShowColorBox, setIsShowColorBox, title, setTitle} = useSetting();
 
   const handleColorBoxClick = () => {
     setIsShowColorBox(!isShowColorBox);
@@ -22,20 +24,25 @@ const SettingForm: React.FC = () => {
       </div>
       <div>
         <div className="flex flex-col gap-3">
-          <InputSetting
-            label="Tiêu đề"
-            value={titleName}
-            iconEnd="pen-line"
-            onChange={e => setTitleName(e.target.value)}
-          />
+          <InputSetting label="Tiêu đề" value={title} iconEnd="pen-line" onChange={e => setTitle(e.target.value)} />
           <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" />
           {isShowColorBox && (
             <div className="absolute z-10">
               <HexColorPicker color={color} onChange={setColor} />
             </div>
           )}
-          <InputSetting label="Màu nền" placeholder="#1111111" iconEnd="pen-line" onClick={handleColorBoxClick} />
-          <InputSetting label="Màu chữ" placeholder="#0000000" iconEnd="pen-line" onClick={handleColorBoxClick} />
+          <InputSetting
+            label="Màu nền"
+            placeholder={RANDOM_NUMBER_WHEEL_DEFAULT_COLOR}
+            iconEnd="pen-line"
+            onClick={handleColorBoxClick}
+          />
+          <InputSetting
+            label="Màu chữ"
+            placeholder={RANDOM_NUMBER_WHEEL_DEFAULT_COLOR}
+            iconEnd="pen-line"
+            onClick={handleColorBoxClick}
+          />
         </div>
         <div className="mt-3 flex flex-col gap-2">
           <div className="text-2xl font-medium text-black">Hình nền</div>

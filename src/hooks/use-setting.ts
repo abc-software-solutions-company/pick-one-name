@@ -5,7 +5,7 @@ type State = {
   isVisible: boolean;
   color: string;
   isShowColorBox: boolean;
-  titleName: string;
+  title: string;
 };
 
 type Actions = {
@@ -13,7 +13,7 @@ type Actions = {
   setVisible: (isVisible: boolean) => void;
   setColor: (colorName: string) => void;
   setIsShowColorBox: (isShowColorBox: boolean) => void;
-  setTitleName: (value: string) => void;
+  setTitle: (value: string) => void;
 };
 
 const initialState: State = {
@@ -21,7 +21,7 @@ const initialState: State = {
   isVisible: true,
   color: '',
   isShowColorBox: false,
-  titleName: 'Random Number'
+  title: 'Random Number'
 };
 
 export const useSetting = create<State & Actions>()(set => ({
@@ -38,7 +38,7 @@ export const useSetting = create<State & Actions>()(set => ({
   setIsShowColorBox(isShowColorBox: boolean) {
     set({isShowColorBox});
   },
-  setTitleName(value: string) {
-    set(state => ({...state, titleName: value}));
+  setTitle(value: string) {
+    set(state => ({...state, title: value}));
   }
 }));
