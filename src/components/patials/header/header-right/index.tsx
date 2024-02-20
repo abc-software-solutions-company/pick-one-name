@@ -28,19 +28,19 @@ const HeaderRight: FC = () => {
       >
         {isMusic ? <Icon name="ico-volume-1" /> : <Icon name="ico-volume-x" />}
       </button>
-      {!session ? (
-        <button
-          onClick={handleLogin}
-          className="flex cursor-pointer items-center justify-center rounded bg-blue-600 px-4 py-2 md:rounded-lg md:px-8 md:py-4"
-        >
-          <span className="text-sm font-semibold leading-6 text-white md:text-lg">Đăng nhập</span>
-        </button>
-      ) : (
+      {session && session.user ? (
         <button
           onClick={() => signOut()}
           className="flex cursor-pointer items-center justify-center rounded bg-blue-600 px-4 py-2 md:rounded-lg md:px-8 md:py-4"
         >
           <span className="text-sm font-semibold leading-6 text-white md:text-lg">Đăng xuất</span>
+        </button>
+      ) : (
+        <button
+          onClick={handleLogin}
+          className="flex cursor-pointer items-center justify-center rounded bg-blue-600 px-4 py-2 md:rounded-lg md:px-8 md:py-4"
+        >
+          <span className="text-sm font-semibold leading-6 text-white md:text-lg">Đăng nhập</span>
         </button>
       )}
     </div>
