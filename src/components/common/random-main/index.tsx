@@ -8,7 +8,6 @@ import RandomMainTop from './random-main-top';
 
 interface IRandomMainProps {
   className?: string;
-  title?: string;
   button: React.ReactNode;
   children?: React.PropsWithChildren<any>;
 }
