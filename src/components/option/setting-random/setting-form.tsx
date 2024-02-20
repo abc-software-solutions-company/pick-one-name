@@ -4,10 +4,7 @@ import {useSetting} from '@/hooks/use-setting';
 
 import Icon from '@/core-ui/icon';
 
-import {
-  RANDOM_NUMBER_WHEEL_DEFAULT_COLOR,
-  RANDOM_NUMBER_WHEEL_DEFAULT_TEXT_COLOR
-} from '@/components/common/constant/wheelColor.constant';
+import { DEFAULT_WHEEL_BG_COLOR, DEFAULT_WHEEL_TEXT_COLOR } from '@/components/common/constant/wheelColor.constant';
 
 import InputSetting from './input';
 
@@ -39,13 +36,13 @@ const SettingForm: React.FC = () => {
           )}
           <InputSetting
             label="Màu nền"
-            placeholder={RANDOM_NUMBER_WHEEL_DEFAULT_COLOR}
+            placeholder={DEFAULT_WHEEL_BG_COLOR}
             iconEnd="pen-line"
             onClick={handleColorBoxClick}
           />
           <InputSetting
             label="Màu chữ"
-            placeholder={RANDOM_NUMBER_WHEEL_DEFAULT_TEXT_COLOR}
+            placeholder={DEFAULT_WHEEL_TEXT_COLOR}
             iconEnd="pen-line"
             onClick={handleColorBoxClick}
           />
