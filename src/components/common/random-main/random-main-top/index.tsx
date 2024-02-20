@@ -7,14 +7,13 @@ import {useSetting} from '@/hooks/use-setting';
 import Icon from '@/core-ui/icon';
 
 interface Iprops {
-  title?: string;
   isBGImage?: boolean;
   containerRef?: React.RefObject<HTMLDivElement>;
 }
 
-const RandomMainTop: FC<Iprops> = ({title, isBGImage, containerRef}) => {
+const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
   const {isZoom, setZoom} = useGlobal();
-  const {color} = useSetting();
+  const {bgColor, title} = useSetting();
 
   useEffect(() => {
     if (screenfull.isEnabled) {
@@ -47,14 +46,14 @@ const RandomMainTop: FC<Iprops> = ({title, isBGImage, containerRef}) => {
           className={cls('text-gray-950 rounded px-3 text-lg font-bold tracking-tight md:text-2xl lg:text-[32px]', {
             'bg-white': isBGImage
           })}
-          style={{backgroundColor: color}}
+          style={{backgroundColor: bgColor}}
         >
           {title}
         </p>
       </div>
       <button
         className="flex max-h-[32px] max-w-[32px] items-center justify-center rounded bg-blue-600 p-1 hover:bg-blue-700 md:max-h-[56px] md:max-w-[56px] md:rounded-lg md:p-4"
-        style={{backgroundColor: color}}
+        style={{backgroundColor: bgColor}}
         onClick={() => toggleFullScreen(!isZoom)}
       >
         {isZoom ? (

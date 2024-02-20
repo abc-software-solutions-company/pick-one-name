@@ -53,7 +53,6 @@ const Wheel: FC<IProps> = ({className}) => {
   return (
     <RandomMain
       className={className}
-      title="Random Wheel"
       button={
         <Button
           className="inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1 text-sm

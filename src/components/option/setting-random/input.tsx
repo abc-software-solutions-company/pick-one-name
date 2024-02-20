@@ -2,13 +2,23 @@ import Icon from '@/core-ui/icon';
 
 interface IInputSettingProps {
   label: string;
-  placeholder: string;
+  placeholder?: string;
   iconStart?: string;
   iconEnd?: string;
+  value?: string;
   onClick?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputSetting: React.FC<IInputSettingProps> = ({label, placeholder, iconStart, iconEnd, onClick}) => {
+const InputSetting: React.FC<IInputSettingProps> = ({
+  label,
+  placeholder,
+  iconStart,
+  iconEnd,
+  value,
+  onClick,
+  onChange
+}) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="text-2xl font-medium text-black">{label}</div>
@@ -22,6 +32,8 @@ const InputSetting: React.FC<IInputSettingProps> = ({label, placeholder, iconSta
           <input
             type="text"
             placeholder={placeholder}
+            value={value}
+            onChange={onChange}
             className="w-full flex-grow rounded-lg border border-slate-300 bg-neutral-50 py-4 px-2 text-lg"
           />
           {iconEnd && (
