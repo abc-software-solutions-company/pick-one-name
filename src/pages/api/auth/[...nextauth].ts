@@ -2,7 +2,7 @@ import NextAuth, {AuthOptions} from 'next-auth';
 // import CredentialsProvider from 'next-auth/providers/credentials';
 import FacebookProvider from 'next-auth/providers/facebook';
 import GoogleProvider from 'next-auth/providers/google';
-import {post} from '@/api/http-request';
+import {loginOAuth} from '@/api/network/auth';
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -26,11 +26,7 @@ export const authOptions: AuthOptions = {
       if (!account) return false;
 
       if (account?.provider === 'google') {
-        const googleResponse = (
-          await post('/api/v1/auth/login/google', {
-            token: account?.id_token
-          })
-        ).data;
+        const googleResponse = await loginOAuth('google', {token: account?.id_token});
 
         if (googleResponse.data.user) {
           user.id = googleResponse.data.user.id;
@@ -40,11 +36,7 @@ export const authOptions: AuthOptions = {
       }
 
       if (account?.provider === 'facebook') {
-        const facebookResponse = (
-          await post('/api/v1/auth/login/facebook', {
-            token: account?.access_token
-          })
-        ).data;
+        const facebookResponse = await loginOAuth('facebook', {token: account?.access_token});
 
         if (facebookResponse.data.user) {
           user.id = facebookResponse.data.user.id;
