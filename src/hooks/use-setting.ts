@@ -3,24 +3,30 @@ import {create} from 'zustand';
 type State = {
   isSettingOpen: boolean;
   isVisible: boolean;
-  color: string;
-  isShowColorBox: boolean;
+  bgColor: string;
+  hexBgColor: string;
+  isShowBgColorBox: boolean;
+  isShowTextColorBox: boolean;
   title: string;
 };
 
 type Actions = {
   setIsSettingOpen: (isSettingOpen: boolean) => void;
   setVisible: (isVisible: boolean) => void;
-  setColor: (colorName: string) => void;
-  setIsShowColorBox: (isShowColorBox: boolean) => void;
+  setBgColor: (bgColor: string) => void;
+  setHexBgColor: (hexBgColor: string) => void;
+  setIsShowBgColorBox: (isShowBgColorBox: boolean) => void;
   setTitle: (value: string) => void;
+  setisShowTextColorBox: (isShowTextColorBox: boolean) => void;
 };
 
 const initialState: State = {
   isSettingOpen: false,
   isVisible: true,
-  color: '',
-  isShowColorBox: false,
+  bgColor: '',
+  hexBgColor: '',
+  isShowBgColorBox: false,
+  isShowTextColorBox: false,
   title: 'Random Number'
 };
 
@@ -32,13 +38,19 @@ export const useSetting = create<State & Actions>()(set => ({
   setIsSettingOpen(isSettingOpen: boolean) {
     set({isSettingOpen});
   },
-  setColor(colorName: string) {
-    set(state => ({...state, color: colorName}));
+  setBgColor(bgColor: string) {
+    set(state => ({...state, bgColor: bgColor}));
   },
-  setIsShowColorBox(isShowColorBox: boolean) {
-    set({isShowColorBox});
+  setHexBgColor(hexBgColor: string) {
+    set(state => ({...state, hexBgColor: hexBgColor}));
+  },
+  setIsShowBgColorBox(isShowBgColorBox: boolean) {
+    set({isShowBgColorBox});
   },
   setTitle(value: string) {
     set(state => ({...state, title: value}));
+  },
+  setisShowTextColorBox(isShowTextColorBox: boolean) {
+    set({isShowTextColorBox});
   }
 }));
