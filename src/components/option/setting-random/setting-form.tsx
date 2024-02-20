@@ -4,7 +4,10 @@ import {useSetting} from '@/hooks/use-setting';
 
 import Icon from '@/core-ui/icon';
 
-import {RANDOM_NUMBER_WHEEL_DEFAULT_COLOR} from '@/components/common/constant/wheelColor.constant';
+import {
+  RANDOM_NUMBER_WHEEL_DEFAULT_COLOR,
+  RANDOM_NUMBER_WHEEL_DEFAULT_TEXT_COLOR
+} from '@/components/common/constant/wheelColor.constant';
 
 import InputSetting from './input';
 
@@ -14,6 +17,9 @@ const SettingForm: React.FC = () => {
 
   const handleColorBoxClick = () => {
     setIsShowColorBox(!isShowColorBox);
+  };
+  const handleCloseSettingModal = () => {
+    setIsSettingOpen(false);
   };
 
   return (
@@ -39,7 +45,7 @@ const SettingForm: React.FC = () => {
           />
           <InputSetting
             label="Màu chữ"
-            placeholder={RANDOM_NUMBER_WHEEL_DEFAULT_COLOR}
+            placeholder={RANDOM_NUMBER_WHEEL_DEFAULT_TEXT_COLOR}
             iconEnd="pen-line"
             onClick={handleColorBoxClick}
           />
@@ -55,7 +61,7 @@ const SettingForm: React.FC = () => {
       <div>
         <button
           className="flex w-full justify-center gap-4 rounded-lg bg-blue-600 px-6 py-4 text-lg text-white"
-          onClick={() => setIsSettingOpen(false)}
+          onClick={handleCloseSettingModal}
         >
           Hoàn thành
         </button>
