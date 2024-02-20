@@ -7,14 +7,13 @@ import {useSetting} from '@/hooks/use-setting';
 import Icon from '@/core-ui/icon';
 
 interface Iprops {
-  title?: string;
   isBGImage?: boolean;
   containerRef?: React.RefObject<HTMLDivElement>;
 }
 
-const RandomMainTop: FC<Iprops> = ({title, isBGImage, containerRef}) => {
+const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
   const {isZoom, setZoom} = useGlobal();
-  const {color} = useSetting();
+  const {color, titleName} = useSetting();
 
   useEffect(() => {
     if (screenfull.isEnabled) {
@@ -49,7 +48,7 @@ const RandomMainTop: FC<Iprops> = ({title, isBGImage, containerRef}) => {
           })}
           style={{backgroundColor: color}}
         >
-          {title}
+          {titleName}
         </p>
       </div>
       <button

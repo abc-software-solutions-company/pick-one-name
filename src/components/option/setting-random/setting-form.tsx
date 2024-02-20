@@ -8,7 +8,7 @@ import InputSetting from './input';
 
 const SettingForm: React.FC = () => {
   const {setIsSettingOpen} = useSetting();
-  const {color, setColor, isShowColorBox, setIsShowColorBox} = useSetting();
+  const {color, setColor, isShowColorBox, setIsShowColorBox, titleName, setTitleName} = useSetting();
 
   const handleColorBoxClick = () => {
     setIsShowColorBox(!isShowColorBox);
@@ -22,14 +22,19 @@ const SettingForm: React.FC = () => {
       </div>
       <div>
         <div className="flex flex-col gap-3">
-          <InputSetting label="Tiêu đề" placeholder="Random number..." iconEnd="pen-line" />
+          <InputSetting
+            label="Tiêu đề"
+            value={titleName}
+            iconEnd="pen-line"
+            onChange={e => setTitleName(e.target.value)}
+          />
           <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" />
           {isShowColorBox && (
             <div className="absolute z-10">
               <HexColorPicker color={color} onChange={setColor} />
             </div>
           )}
-          <InputSetting label="Màu nền" placeholder="#1111111111" iconEnd="pen-line" onClick={handleColorBoxClick} />
+          <InputSetting label="Màu nền" placeholder="#1111111" iconEnd="pen-line" onClick={handleColorBoxClick} />
           <InputSetting label="Màu chữ" placeholder="#0000000" iconEnd="pen-line" onClick={handleColorBoxClick} />
         </div>
         <div className="mt-3 flex flex-col gap-2">
@@ -41,7 +46,10 @@ const SettingForm: React.FC = () => {
         </div>
       </div>
       <div>
-        <button className="flex w-full justify-center gap-4 rounded-lg bg-blue-600 px-6 py-4 text-lg text-white">
+        <button
+          className="flex w-full justify-center gap-4 rounded-lg bg-blue-600 px-6 py-4 text-lg text-white"
+          onClick={() => setIsSettingOpen(false)}
+        >
           Hoàn thành
         </button>
       </div>
