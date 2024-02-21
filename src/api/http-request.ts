@@ -6,12 +6,12 @@ const responseBody = (response: AxiosResponse) => response;
 
 export async function get<T>(url: string) {
   const response = await axiosClient.get<T>(url);
-  return responseBody(response);
+  return responseBody(response).data;
 }
 
-export async function post<T>(url: string, data: T) {
+export async function post<T>(url: string, data: unknown) {
   const response = await axiosClient.post<T>(url, data);
-  return responseBody(response);
+  return responseBody(response).data;
 }
 
 export async function put<T>(id: unknown, data: T) {

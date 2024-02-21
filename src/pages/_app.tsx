@@ -24,8 +24,8 @@ const CustomApp = ({Component, pageProps: {session, ...pageProps}}: AppProps) =>
   const Layout = (Component as any).Layout || Noop;
 
   return (
-    <QueryProvider pageProps={pageProps}>
-      <SessionProvider session={session}>
+    <SessionProvider session={session}>
+      <QueryProvider pageProps={pageProps}>
         <ServiceWorker />
         <DefaultSeo />
         <Tracking />
@@ -38,8 +38,8 @@ const CustomApp = ({Component, pageProps: {session, ...pageProps}}: AppProps) =>
             </StyledEngineProvider>
           </GameProvider>
         </GlobalProvider>
-      </SessionProvider>
-    </QueryProvider>
+      </QueryProvider>
+    </SessionProvider>
   );
 };
 

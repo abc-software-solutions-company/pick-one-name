@@ -1,12 +1,12 @@
-export interface IAnyObj {
-  [k: string]: any;
-}
-
-export interface IUserSession {
+export interface IAuthResponse {
   id: string;
   name: string;
   email: string;
   avatar: string;
   accessToken: string;
   refreshToken: string;
+}
+
+export interface IOAuthParams {
+  token?: string;
 }
