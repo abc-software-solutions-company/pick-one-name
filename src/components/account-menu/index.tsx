@@ -76,7 +76,7 @@ const AccountMenu: FC = () => {
           <ListItemIcon>
             <Icon name="ico-log-out" />
           </ListItemIcon>
-          <p className="font-nunito font-semibold">Logout</p>
+          <p className="font-nunito font-semibold">Đăng xuất</p>
         </MenuItem>
       </Menu>
     </>
