@@ -12,6 +12,16 @@ const nextConfig = {
   reactStrictMode: true,
   i18n,
   output: 'standalone',
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        port: ''
+      }
+    ]
+  },
   webpack(config, {isServer}) {
     if (!isServer) {
       config.resolve.fallback = {
