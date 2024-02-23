@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import {signIn} from 'next-auth/react';
 
-interface ISocialLoginButton {
+interface IAuthSocialButton {
   label: string;
   src: string;
   authType: 'google' | 'facebook';
 }
 
-const SocialLoginButton: React.FC<ISocialLoginButton> = ({label, src, authType}) => {
+const AuthSocialButton: React.FC<IAuthSocialButton> = ({label, src, authType}) => {
   const onClick = () => {
     signIn(authType, {callbackUrl: '/'});
   };
@@ -23,4 +23,4 @@ const SocialLoginButton: React.FC<ISocialLoginButton> = ({label, src, authType})
   );
 };
 
-export default SocialLoginButton;
+export default AuthSocialButton;

@@ -1,14 +1,16 @@
-import {usePublic} from '@/hooks/use-public';
+import {useRouter} from 'next/router';
 
-import InputLoginForm from './input';
-import SocialLoginButton from './social-input-button';
+import AuthSocialButton from '../ui/social-button';
 
-interface ILoginFormProps {
+import LoginForm from './login';
+import SignupForm from './signup';
+
+interface IAuthFormProps {
   className?: string;
 }
 
-const LoginForm: React.FC<ILoginFormProps> = () => {
-  const {gmailValue, setGmailValue, passValue, setPassValue} = usePublic();
+const AuthForm: React.FC<IAuthFormProps> = () => {
+  const pathName = useRouter().pathname;
 
   return (
     <div className="flex h-full flex-col justify-center lg:p-8 lg:py-40 xl:py-40 2xl:px-11">
@@ -18,20 +20,7 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
           <p className="text-base text-gray-500">Hãy nhập tài khoản của bạn</p>
         </div>
         <div className="mb-2 flex flex-col gap-4 lg:mb-8">
-          <InputLoginForm
-            label="Gmail"
-            type="gmail"
-            value={gmailValue}
-            placeholder="chinhcao@gmail.com"
-            onChange={value => setGmailValue(value)}
-          />
-          <InputLoginForm
-            label="Mật khẩu"
-            type="password"
-            value={passValue}
-            placeholder=""
-            onChange={value => setPassValue(value)}
-          />
+          {pathName === '/login' ? <LoginForm /> : <SignupForm />}
           <div className="flex justify-end text-sm font-bold text-gray-500">Quên mật khẩu?</div>
           <button className="w-full rounded-lg bg-blue-600 p-4 text-white">Đăng nhập</button>
         </div>
@@ -40,12 +29,12 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
           <p className="text-lg text-blue-600"> Đăng ký</p>
         </div>
         <div className="flex w-full flex-col gap-4">
-          <SocialLoginButton label="Đăng nhập bằng Google" src="/images/logo-google.png" authType="google" />
-          <SocialLoginButton label="Đăng nhập bằng Facebook" src="/images/logo-facebook.png" authType="facebook" />
+          <AuthSocialButton label="Đăng nhập bằng Google" src="/images/logo-google.png" authType="google" />
+          <AuthSocialButton label="Đăng nhập bằng Facebook" src="/images/logo-facebook.png" authType="facebook" />
         </div>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default AuthForm;

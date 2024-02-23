@@ -1,4 +1,4 @@
-interface IInputLonginForm {
+interface IAuthInput {
   label: string;
   value: string;
   placeholder: string;
@@ -6,7 +6,7 @@ interface IInputLonginForm {
   onChange: (value: string) => void;
 }
 
-const InputLoginForm: React.FC<IInputLonginForm> = ({label, type, value, placeholder, onChange}) => {
+const AuthInput: React.FC<IAuthInput> = ({label, type, value, placeholder, onChange}) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -16,7 +16,7 @@ const InputLoginForm: React.FC<IInputLonginForm> = ({label, type, value, placeho
       <div className="mb-2 text-2xl">{label}</div>
       <input
         className="h-auto w-full rounded-lg border border-gray-300 px-2 py-3
-              text-black"
+                text-black"
         type={type}
         value={value}
         placeholder={placeholder}
@@ -26,4 +26,4 @@ const InputLoginForm: React.FC<IInputLonginForm> = ({label, type, value, placeho
   );
 };
 
-export default InputLoginForm;
+export default AuthInput;
