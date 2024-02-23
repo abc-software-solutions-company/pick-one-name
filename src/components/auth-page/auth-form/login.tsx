@@ -1,7 +1,7 @@
 import {ChangeEvent, useState} from 'react';
 
 import AuthInput from '../ui/input-auth';
-import {InputCates, InputConfig, loginInputs} from '../utils/const';
+import {InputCategories, InputConfig, loginInputs} from '../utils/const';
 
 interface ILoginFormProps {
   className?: string;
@@ -11,22 +11,22 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleOnchange(type: InputCates, e: ChangeEvent<HTMLInputElement>) {
+  function handleOnchange(type: InputCategories, e: ChangeEvent<HTMLInputElement>) {
     switch (type) {
-      case InputCates.EMAIL:
+      case InputCategories.EMAIL:
         setEmail(() => e?.target?.value);
         break;
-      case InputCates.PASSWORD:
+      case InputCategories.PASSWORD:
         setPassword(() => e?.target?.value);
         break;
     }
   }
 
-  function handleInputValue(type: InputCates): string {
+  function handleInputValue(type: InputCategories): string {
     switch (type) {
-      case InputCates.EMAIL:
+      case InputCategories.EMAIL:
         return email;
-      case InputCates.PASSWORD:
+      case InputCategories.PASSWORD:
         return password;
     }
     return '';
