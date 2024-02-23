@@ -23,7 +23,7 @@ const AuthForm: React.FC<IAuthFormProps> = ({path}) => {
           <div className="flex justify-end text-sm font-bold text-gray-500">Quên mật khẩu?</div>
           <button className="w-full rounded-lg bg-blue-600 p-4 text-white">Đăng nhập</button>
         </div>
-        <div className=" mb-6 flex w-full justify-center text-lg lg:mb-8">
+        <div className="mb-6 flex w-full justify-center text-lg lg:mb-8">
           Bạn có tài khoản chưa?
           <p className="text-lg text-blue-600">Đăng ký</p>
         </div>
