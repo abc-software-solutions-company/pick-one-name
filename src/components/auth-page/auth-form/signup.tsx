@@ -45,14 +45,14 @@ const SignUpForm: React.FC<ISignUpFormProps> = () => {
 
   return (
     <>
-      {signupInputs.map(({title, type, placeholder, cate}: InputConfig) => (
+      {signupInputs.map(({title, type, placeholder, category}: InputConfig) => (
         <AuthInput
           key={title}
           label={title}
           type={type}
-          value={handleInputValue(cate)}
+          value={handleInputValue(category)}
           placeholder={placeholder}
-          onChange={(e: any) => handleOnchange(cate, e)}
+          onChange={(e: any) => handleOnchange(category, e)}
         />
       ))}
     </>

@@ -34,14 +34,14 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
 
   return (
     <>
-      {loginInputs.map(({title, type, placeholder, cate}: InputConfig) => (
+      {loginInputs.map(({title, type, placeholder, category}: InputConfig) => (
         <AuthInput
           key={title}
           label={title}
           type={type}
-          value={handleInputValue(cate)}
+          value={handleInputValue(category)}
           placeholder={placeholder}
-          onChange={(e: any) => handleOnchange(cate, e)}
+          onChange={(e: any) => handleOnchange(category, e)}
         />
       ))}
     </>

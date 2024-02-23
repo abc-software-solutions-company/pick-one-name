@@ -15,8 +15,7 @@ const AuthInput: React.FC<IAuthInput> = ({label, type, value, placeholder, onCha
     <div>
       <div className="mb-2 text-2xl">{label}</div>
       <input
-        className="h-auto w-full rounded-lg border border-gray-300 px-2 py-3
-                text-black"
+        className="h-auto w-full rounded-lg border border-gray-300 px-2 py-3 text-black"
         type={type}
         value={value}
         placeholder={placeholder}

@@ -2,14 +2,14 @@ export enum InputCategories {
   EMAIL = 'email',
   PASSWORD = 'password',
   NAME = 'name',
-  RE_PASSWORD = 're-password'
+  RE_PASSWORD = 'reTypePassword'
 }
 
 export interface InputConfig {
   title: string;
   type: string;
   placeholder: string;
-  cate: InputCategories;
+  category: InputCategories;
 }
 
 export const loginInputs: InputConfig[] = [
@@ -17,13 +17,13 @@ export const loginInputs: InputConfig[] = [
     title: 'Email',
     type: 'email',
     placeholder: 'Example@gmail.com',
-    cate: InputCategories.EMAIL
+    category: InputCategories.EMAIL
   },
   {
     title: 'Mật khẩu',
     type: 'password',
     placeholder: '*****************',
-    cate: InputCategories.PASSWORD
+    category: InputCategories.PASSWORD
   }
 ];
 
@@ -32,24 +32,24 @@ export const signupInputs: InputConfig[] = [
     title: 'Họ và tên',
     type: 'text',
     placeholder: 'Your full name',
-    cate: InputCategories.NAME
+    category: InputCategories.NAME
   },
   {
     title: 'Email',
     type: 'email',
     placeholder: 'Example@gmail.com',
-    cate: InputCategories.EMAIL
+    category: InputCategories.EMAIL
   },
   {
     title: 'Mật khẩu',
     type: 'password',
     placeholder: '*****************',
-    cate: InputCategories.PASSWORD
+    category: InputCategories.PASSWORD
   },
   {
     title: 'Nhập lại mật khẩu',
     type: 'password',
     placeholder: '*****************',
-    cate: InputCategories.RE_PASSWORD
+    category: InputCategories.RE_PASSWORD
   }
 ];
