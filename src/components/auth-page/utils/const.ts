@@ -2,7 +2,7 @@ export enum InputCategories {
   EMAIL = 'email',
   PASSWORD = 'password',
   NAME = 'name',
-  RE_PASSWORD = 'reTypePassword'
+  RE_TYPE_PASSWORD = 'reTypePassword'
 }
 
 export interface InputConfig {
@@ -50,6 +50,6 @@ export const signupInputs: InputConfig[] = [
     title: 'Nhập lại mật khẩu',
     type: 'password',
     placeholder: '*****************',
-    category: InputCategories.RE_PASSWORD
+    category: InputCategories.RE_TYPE_PASSWORD
   }
 ];

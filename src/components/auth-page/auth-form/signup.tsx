@@ -24,7 +24,7 @@ const SignUpForm: React.FC<ISignUpFormProps> = () => {
       case InputCategories.PASSWORD:
         setPassword(() => e?.target?.value);
         break;
-      case InputCategories.RE_PASSWORD:
+      case InputCategories.RE_TYPE_PASSWORD:
         setRePassword(() => e?.target?.value);
         break;
     }
@@ -38,7 +38,7 @@ const SignUpForm: React.FC<ISignUpFormProps> = () => {
         return name;
       case InputCategories.PASSWORD:
         return password;
-      case InputCategories.RE_PASSWORD:
+      case InputCategories.RE_TYPE_PASSWORD:
         return rePassword;
     }
   }
