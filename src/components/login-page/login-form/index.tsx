@@ -37,7 +37,7 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
         </div>
         <div className=" mb-6 flex w-full justify-center text-lg lg:mb-8">
           Bạn có tài khoản chưa?
-          <p className="text-lg text-blue-600"> Đăng ký</p>
+          <p className="ml-1 text-lg text-blue-600">Đăng ký</p>
         </div>
         <div className="flex w-full flex-col gap-4">
           <SocialLoginButton label="Đăng nhập bằng Google" src="/images/logo-google.png" authType="google" />
