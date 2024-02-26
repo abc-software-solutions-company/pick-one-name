@@ -2,9 +2,10 @@ import React, {FC} from 'react';
 import {useRouter} from 'next/router';
 import {signOut, useSession} from 'next-auth/react';
 import cls from 'classnames';
-import {useGlobal} from '@/hooks/use-global';
 
 import Icon from '@/core-ui/icon';
+
+import {useGlobal} from '@/common/hooks/use-global';
 
 const HeaderRight: FC = () => {
   const {isMusic, toggleMusic} = useGlobal();

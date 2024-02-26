@@ -1,6 +1,7 @@
 import cls from 'classnames';
-import {useRandomNumber} from '@/hooks/use-random-number';
-import {useSetting} from '@/hooks/use-setting';
+
+import {useRandomNumber} from '@/common/hooks/use-random-number';
+import {useSetting} from '@/common/hooks/use-setting';
 
 import OptionMenu from './option-menu';
 import SettingGame from './setting-random';

@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import {AnimationControls, motion} from 'framer-motion';
-import {useSetting} from '@/hooks/use-setting';
+
+import {useSetting} from '@/common/hooks/use-setting';
 
 import {IrotateWheelProps, IWheelNumbers} from '../type';
 

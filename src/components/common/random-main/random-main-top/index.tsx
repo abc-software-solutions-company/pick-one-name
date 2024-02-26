@@ -1,10 +1,11 @@
 import React, {FC, useEffect} from 'react';
 import cls from 'classnames';
 import screenfull from 'screenfull';
-import {useGlobal} from '@/hooks/use-global';
-import {useSetting} from '@/hooks/use-setting';
 
 import Icon from '@/core-ui/icon';
+
+import {useGlobal} from '@/common/hooks/use-global';
+import {useSetting} from '@/common/hooks/use-setting';
 
 interface Iprops {
   isBGImage?: boolean;
