@@ -1,7 +1,8 @@
 import React, {FC, useState} from 'react';
 import classNames from 'classnames';
-import {useSetting} from '@/common/hooks/use-setting';
 import {GameOperations, useGame} from '@/states/game';
+
+import {useSetting} from '@/common/hooks/use-setting';
 
 import HideButton from '../option/hide-button';
 import SettingButton from '../option/setting-button';

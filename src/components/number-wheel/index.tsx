@@ -1,9 +1,10 @@
 import React, {FC, useEffect, useRef} from 'react';
 import {useAnimation} from 'framer-motion';
-import {useRandomNumber} from '@/common/hooks/use-random-number';
-import {useSetting} from '@/common/hooks/use-setting';
 
 import useToast from '@/core-ui/toast';
+
+import {useRandomNumber} from '@/common/hooks/use-random-number';
+import {useSetting} from '@/common/hooks/use-setting';
 
 import RandomMain from '../common/random-main';
 import CongratsNumber from '../modals/modal-congrats-number';

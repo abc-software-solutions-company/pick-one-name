@@ -1,6 +1,7 @@
 import React, {FC, useEffect} from 'react';
 import classnames from 'classnames';
 import {gsap} from 'gsap';
+
 import {useGlobal} from '@/common/hooks/use-global';
 import {useRandomNumber} from '@/common/hooks/use-random-number';
 

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {useRandomNumber} from '@/common/hooks/use-random-number';
 
 interface DefaultNumberButtonProps {
