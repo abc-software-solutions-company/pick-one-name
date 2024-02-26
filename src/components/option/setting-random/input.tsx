@@ -32,6 +32,7 @@ const InputSetting: React.FC<IInputSettingProps> = ({
           <input
             type="text"
             placeholder={placeholder}
+            maxLength={25}
             value={value}
             onChange={onChange}
             className="w-full flex-grow rounded-lg border border-slate-300 bg-neutral-50 py-4 px-2 text-lg"
