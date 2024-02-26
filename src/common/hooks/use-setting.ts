@@ -8,6 +8,8 @@ type State = {
   isShowBgColorBox: boolean;
   isShowTextColorBox: boolean;
   title: string;
+  textColor: string;
+  hexTextColor: string;
 };
 
 type Actions = {
@@ -18,6 +20,8 @@ type Actions = {
   setIsShowBgColorBox: (isShowBgColorBox: boolean) => void;
   setTitle: (value: string) => void;
   setisShowTextColorBox: (isShowTextColorBox: boolean) => void;
+  setTextColor: (value: string) => void;
+  setHexTextColor: (value: string) => void;
 };
 
 const initialState: State = {
@@ -27,7 +31,9 @@ const initialState: State = {
   hexBgColor: '',
   isShowBgColorBox: false,
   isShowTextColorBox: false,
-  title: 'Random Number'
+  title: 'Random Number',
+  textColor: '',
+  hexTextColor: ''
 };
 
 export const useSetting = create<State & Actions>()(set => ({
@@ -52,5 +58,11 @@ export const useSetting = create<State & Actions>()(set => ({
   },
   setisShowTextColorBox(isShowTextColorBox: boolean) {
     set({isShowTextColorBox});
+  },
+  setTextColor(value: string) {
+    set(state => ({...state, textColor: value}));
+  },
+  setHexTextColor(value: string) {
+    set(state => ({...state, hexTextColor: value}));
   }
 }));

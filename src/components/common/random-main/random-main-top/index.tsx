@@ -14,7 +14,7 @@ interface Iprops {
 
 const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
   const {isZoom, setZoom} = useGlobal();
-  const {bgColor, title} = useSetting();
+  const {bgColor, title, textColor} = useSetting();
 
   useEffect(() => {
     if (screenfull.isEnabled) {
@@ -47,20 +47,23 @@ const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
           className={cls('text-gray-950 rounded px-3 text-lg font-bold tracking-tight md:text-2xl lg:text-[32px]', {
             'bg-white': isBGImage
           })}
-          style={{backgroundColor: bgColor}}
+          style={{
+            backgroundColor: bgColor,
+            color: textColor
+          }}
         >
           {title}
         </p>
       </div>
       <button
-        className="flex max-h-[32px] max-w-[32px] items-center justify-center rounded bg-blue-600 p-1 hover:bg-blue-700 md:max-h-[56px] md:max-w-[56px] md:rounded-lg md:p-4"
+        className="flex max-h-[32px] max-w-[32px] items-center justify-center rounded bg-blue-600 p-1 text-black hover:bg-blue-700 md:max-h-[56px] md:max-w-[56px] md:rounded-lg md:p-4"
         style={{backgroundColor: bgColor}}
         onClick={() => toggleFullScreen(!isZoom)}
       >
         {isZoom ? (
-          <Icon name="ico-compress" className="text-white" />
+          <Icon name="ico-compress" className="text-black " style={{color: textColor}} />
         ) : (
-          <Icon name="ico-expand" className="text-white" />
+          <Icon name="ico-expand" className="text-black" style={{color: textColor}} />
         )}
       </button>
     </div>

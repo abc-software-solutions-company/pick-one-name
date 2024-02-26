@@ -17,7 +17,11 @@ const CustomSettingForm = () => {
     title,
     setTitle,
     hexBgColor,
-    setHexBgColor
+    setHexBgColor,
+    textColor,
+    setTextColor,
+    hexTextColor,
+    setHexTextColor
   } = useSetting();
 
   const handleBgColorBoxClick = () => {
@@ -32,9 +36,17 @@ const CustomSettingForm = () => {
     setBgColor(newColor);
     setHexBgColor(newColor);
   };
+
+  const handleChangeTextColor = (newColor: string) => {
+    setTextColor(newColor);
+    setHexTextColor(newColor);
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHexBgColor(e.target.value);
     setBgColor(e.target.value);
+    setHexBgColor(e.target.value);
+    setTextColor(e.target.value);
   };
 
   return (
@@ -61,11 +73,13 @@ const CustomSettingForm = () => {
           label="Màu chữ"
           placeholder={DEFAULT_WHEEL_TEXT_COLOR}
           iconEnd="pen-line"
+          value={hexTextColor}
           onClick={handleTextColorBoxClick}
+          onChange={handleInputChange}
         />
         {isShowTextColorBox && (
           <div className="absolute top-0 right-0 z-[100] mt-25">
-            <HexColorPicker color={bgColor} onChange={handleChangeBgColor} />
+            <HexColorPicker color={textColor} onChange={handleChangeTextColor} />
           </div>
         )}
       </div>
