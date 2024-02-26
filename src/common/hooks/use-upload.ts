@@ -1,14 +1,9 @@
 import {useState} from 'react';
 
-import useToast from '@/core-ui/toast';
-
 import * as APIMedia from '@/modules/media/api/media.api';
 import {MediaEntity} from '@/modules/media/entities/media.entity';
 
-import {MAX_FILE_IMAGE_SIZE, MAX_FILE_IMAGE_SIZE_TEXT, TYPE_FILE} from '../constants/file.constant';
-
 export default function useUpload() {
-  const toast = useToast();
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [indexItem, setIndexItem] = useState<string>();
   const [uploadDataElements, setUploadDataElements] = useState<{index: number; value: MediaEntity}>();
@@ -16,8 +11,6 @@ export default function useUpload() {
   const [isUploaded, setIsUploaded] = useState<boolean | undefined>(false);
 
   const upload = async (file?: File | null, index?: number, id?: string) => {
-    const typeFile = file?.type.split('/')[0];
-
     if (!file) {
       setIsUploaded(undefined);
       setUploadData?.(undefined);
@@ -25,19 +18,6 @@ export default function useUpload() {
       return;
     }
     if (indexItem === id || !index) setIsUploading(true);
-    if (typeFile === TYPE_FILE.IMAGE) {
-      if (Math.floor(file.size / 1024) > MAX_FILE_IMAGE_SIZE) {
-        toast.show({
-          type: 'danger',
-          title: '',
-          content: `Kích thước file không được lớn hơn ${MAX_FILE_IMAGE_SIZE_TEXT}`
-        });
-
-        setIsUploading(false);
-
-        return;
-      }
-    }
     try {
       const presignedResponse = await APIMedia.getPresignedUrl(file.name);
       const formData = new FormData();
