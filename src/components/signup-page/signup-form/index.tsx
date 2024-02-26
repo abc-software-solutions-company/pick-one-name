@@ -2,7 +2,7 @@ import {useRouter} from 'next/router';
 
 import AuthButton from '@/components/common/auth-page/auth-welcome/auth-button';
 
-import { usePublic } from '@/common/hooks/use-public';
+import {usePublic} from '@/common/hooks/use-public';
 
 import InputSignupForm from './input';
 
