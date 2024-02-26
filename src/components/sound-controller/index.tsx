@@ -1,7 +1,7 @@
 import React, {FC, useEffect} from 'react';
 import classnames from 'classnames';
 import {gsap} from 'gsap';
-import {useGlobal} from '@/hooks/use-global';
+import {useGlobal} from '@/common/hooks/use-global';
 import {useGame} from '@/states/game';
 
 interface ISoundControllerProps {

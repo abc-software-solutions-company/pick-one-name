@@ -1,4 +1,4 @@
-import {useRandomNumber} from '@/hooks/use-random-number';
+import {useRandomNumber} from '@/common/hooks/use-random-number';
 import {sanitizeInput} from '@/utils/sanitize-input';
 
 interface IInputNumberProps {

@@ -1,4 +1,4 @@
-import {useSetting} from '@/hooks/use-setting';
+import {useSetting} from '@/common/hooks/use-setting';
 
 const HideButton = () => {
   const {setVisible} = useSetting();

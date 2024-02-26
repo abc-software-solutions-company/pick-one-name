@@ -1,4 +1,4 @@
-import {usePublic} from '@/hooks/use-public';
+import {usePublic} from '@/common/hooks/use-public';
 
 import InputLoginForm from './input';
 import SocialLoginButton from './social-input-button';

@@ -1,5 +1,6 @@
 import React from 'react';
-import {useSetting} from '@/hooks/use-setting';
+
+import {useSetting} from '@/common/hooks/use-setting';
 
 import RandomOption from '..';
 
