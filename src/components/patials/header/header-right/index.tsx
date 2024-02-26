@@ -1,9 +1,11 @@
 import React, {FC} from 'react';
 import {useRouter} from 'next/router';
-import {signOut, useSession} from 'next-auth/react';
+import {useSession} from 'next-auth/react';
 import cls from 'classnames';
 
 import Icon from '@/core-ui/icon';
+
+import AccountMenu from '@/components/account-menu';
 
 import {useGlobal} from '@/common/hooks/use-global';
 
@@ -30,12 +32,7 @@ const HeaderRight: FC = () => {
         {isMusic ? <Icon name="ico-volume-1" /> : <Icon name="ico-volume-x" />}
       </button>
       {session && session.user ? (
-        <button
-          onClick={() => signOut()}
-          className="flex cursor-pointer items-center justify-center rounded bg-blue-600 px-4 py-2 md:rounded-lg md:px-8 md:py-4"
-        >
-          <span className="text-sm font-semibold leading-6 text-white md:text-lg">Đăng xuất</span>
-        </button>
+        <AccountMenu />
       ) : (
         <button
           onClick={handleLogin}
