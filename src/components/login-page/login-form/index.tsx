@@ -1,7 +1,9 @@
+import {useRouter} from 'next/router';
 import {usePublic} from '@/hooks/use-public';
 
+import AuthButton from '@/components/common/auth-page/auth-welcome/auth-button';
+
 import InputLoginForm from './input';
-import SocialLoginButton from './social-input-button';
 
 interface ILoginFormProps {
   className?: string;
@@ -9,6 +11,11 @@ interface ILoginFormProps {
 
 const LoginForm: React.FC<ILoginFormProps> = () => {
   const {gmailValue, setGmailValue, passValue, setPassValue} = usePublic();
+  const route = useRouter();
+
+  const handleSignup = () => {
+    route.push('/signup');
+  };
 
   return (
     <div className="flex h-full flex-col justify-center lg:p-8 lg:py-40 xl:py-40 2xl:px-11">
@@ -37,12 +44,11 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
         </div>
         <div className=" mb-6 flex w-full justify-center text-lg lg:mb-8">
           Bạn có tài khoản chưa?
-          <p className="ml-1 text-lg text-blue-600">Đăng ký</p>
+          <p className="ml-1 cursor-pointer text-lg text-blue-600" onClick={handleSignup}>
+            Đăng ký
+          </p>
         </div>
-        <div className="flex w-full flex-col gap-4">
-          <SocialLoginButton label="Đăng nhập bằng Google" src="/images/logo-google.png" authType="google" />
-          <SocialLoginButton label="Đăng nhập bằng Facebook" src="/images/logo-facebook.png" authType="facebook" />
-        </div>
+        <AuthButton />
       </div>
     </div>
   );
