@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useRef} from 'react';
 import {useAnimation} from 'framer-motion';
-import {useRandomNumber} from '@/hooks/use-random-number';
-import {useSetting} from '@/hooks/use-setting';
+import {useRandomNumber} from '@/common/hooks/use-random-number';
+import {useSetting} from '@/common/hooks/use-setting';
 
 import useToast from '@/core-ui/toast';
 

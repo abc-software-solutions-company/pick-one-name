@@ -1,6 +1,7 @@
 import React from 'react';
-import {useRandomNumber} from '@/hooks/use-random-number';
 import {ranges} from '@/utils/random';
+
+import {useRandomNumber} from '@/common/hooks/use-random-number';
 
 import DefaultNumberButton from './default-number-button';
 

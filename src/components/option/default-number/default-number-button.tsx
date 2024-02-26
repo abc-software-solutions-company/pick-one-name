@@ -1,5 +1,5 @@
 import React from 'react';
-import {useRandomNumber} from '@/hooks/use-random-number';
+import {useRandomNumber} from '@/common/hooks/use-random-number';
 
 interface DefaultNumberButtonProps {
   onClick: () => void;

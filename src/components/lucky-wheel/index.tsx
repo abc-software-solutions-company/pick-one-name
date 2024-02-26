@@ -1,7 +1,7 @@
 import React, {FC, ReactNode, useEffect, useRef} from 'react';
 import classnames from 'classnames';
 import {gsap} from 'gsap';
-import useTracking from '@/hooks/use-tracking';
+import useTracking from '@/common/hooks/use-tracking';
 import {IPlayer} from '@/localdb/models/player.model';
 import {useGame} from '@/states/game';
 import {rangeInt} from '@/utils/random';

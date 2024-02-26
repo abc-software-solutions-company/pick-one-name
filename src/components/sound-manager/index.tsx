@@ -1,8 +1,8 @@
 import React, {FC, useEffect} from 'react';
 import classnames from 'classnames';
 import {gsap} from 'gsap';
-import {useGlobal} from '@/hooks/use-global';
-import {useRandomNumber} from '@/hooks/use-random-number';
+import {useGlobal} from '@/common/hooks/use-global';
+import {useRandomNumber} from '@/common/hooks/use-random-number';
 
 interface ISoundManagerProps {
   className?: string;
