@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import Eclipse from '@/core-ui/eclipse';
 
-const LoginWelcome: React.FC = () => {
+const AuthWelcome: React.FC = () => {
   const [width, setWidth] = useState(0);
 
   const updateWidth = () => {
@@ -28,14 +28,14 @@ const LoginWelcome: React.FC = () => {
           height={width < 768 ? '17' : '32'}
           src={'/images/logo.png'}
           alt="logo"
-          className="mb-3 md:mb-8 lg:mb-[264px]"
+          className="mb-3 h-4 w-28 md:mb-8 md:h-8 md:w-[213px] lg:mb-[264px] lg:h-8 lg:w-[213px] "
         />
         <div className="relative mb-1 lg:mb-4">
           <div className="mb-1 text-lg font-bold text-white md:text-3xl lg:mb-4 lg:text-3xl">
             Chào mừng bạn tới trang web của chúng tôi
           </div>
           <div className="relative h-6 md:h-9 lg:h-9">
-            <div className="absolute left-0 top-0 h-6 w-[5px] rounded-tl-[1px] rounded-bl-[1px] bg-blue-50 md:h-9 lg:h-9" />
+            <div className="left-0 top-0 h-6 w-[5px] rounded-tl-[1px] rounded-bl-[1px] bg-blue-50 md:h-9 lg:h-9" />
             <div className="absolute left-[5px] top-0 h-6 w-32 bg-neutral-200 bg-opacity-10 md:h-9 md:w-[220px] lg:h-9 lg:w-[220px]" />
             <div className="absolute left-[9px] top-0 h-6 md:h-9 lg:h-9">
               <div className="absolute -bottom-2 w-full text-lg font-bold leading-9 text-neutral-50 md:text-[32px] lg:left-0 lg:top-0 lg:text-[32px]">
@@ -57,4 +57,4 @@ const LoginWelcome: React.FC = () => {
     </div>
   );
 };
-export default LoginWelcome;
+export default AuthWelcome;
