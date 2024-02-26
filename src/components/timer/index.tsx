@@ -1,4 +1,5 @@
 import {FC, useEffect, useState} from 'react';
+
 import {useTimer} from '@/common/hooks/use-timer';
 
 const Timer: FC = () => {
