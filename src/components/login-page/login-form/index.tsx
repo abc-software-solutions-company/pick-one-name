@@ -30,14 +30,14 @@ const LoginForm: React.FC<ILoginFormProps> = () => {
             label="Gmail"
             type="gmail"
             value={gmailValue}
-            placeholder="chinhcao@gmail.com"
+            placeholder="example@gmail.com"
             onChange={value => setGmailValue(value)}
           />
           <InputLoginForm
             label="Mật khẩu"
             type="password"
             value={passValue}
-            placeholder=""
+            placeholder="********"
             onChange={value => setPassValue(value)}
           />
           <div className="flex justify-end text-sm font-bold text-gray-500">Quên mật khẩu?</div>
