@@ -26,33 +26,32 @@ const SignupForm: React.FC<ISignupFormProps> = () => {
           <p className="text-base text-gray-500">Chào mừng bạn đến với chúng tôi</p>
         </div>
         <div className="mb-2 flex flex-col gap-4 lg:mb-8">
-          {/* //fix */}
           <InputSignupForm
             label="Họ và tên"
             type="text"
             value={name}
-            placeholder="Cao Quang Chính"
+            placeholder="Nguyễn Văn A"
             onChange={value => setName(value)}
           />
           <InputSignupForm
             label="Gmail"
             type="gmail"
             value={gmailValue}
-            placeholder="chinhcao@gmail.com"
+            placeholder="example@gmail.com"
             onChange={value => setGmailValue(value)}
           />
           <InputSignupForm
             label="Mật khẩu"
             type="password"
             value={passValue}
-            placeholder=""
+            placeholder="********"
             onChange={value => setPassValue(value)}
           />
           <InputSignupForm
             label="Nhập lại mật khẩu"
             type="password"
             value={rePassValue}
-            placeholder=""
+            placeholder="********"
             onChange={value => setRePassValue(value)}
           />
         </div>
