@@ -16,12 +16,8 @@ const CustomSettingForm = () => {
     setisShowTextColorBox,
     title,
     setTitle,
-    hexBgColor,
-    setHexBgColor,
     textColor,
-    setTextColor,
-    hexTextColor,
-    setHexTextColor
+    setTextColor
   } = useSetting();
 
   const handleBgColorBoxClick = () => {
@@ -34,33 +30,32 @@ const CustomSettingForm = () => {
 
   const handleChangeBgColor = (newColor: string) => {
     setBgColor(newColor);
-    setHexBgColor(newColor);
   };
 
   const handleChangeTextColor = (newColor: string) => {
     setTextColor(newColor);
-    setHexTextColor(newColor);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHexBgColor(e.target.value);
+  const handleInputBgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBgColor(e.target.value);
-    setHexBgColor(e.target.value);
+  };
+
+  const handleInputTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTextColor(e.target.value);
   };
 
   return (
     <div className="flex flex-col gap-3">
       <InputSetting label="Tiêu đề" value={title} iconEnd="pen-line" onChange={e => setTitle(e.target.value)} />
-      <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" />
+      <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" disable={true} />
       <div className="relative">
         <InputSetting
           label="Màu nền"
           placeholder={DEFAULT_WHEEL_BG_COLOR}
           iconEnd="pen-line"
-          value={hexBgColor}
+          value={bgColor}
           onClick={handleBgColorBoxClick}
-          onChange={handleInputChange}
+          onChange={handleInputBgChange}
         />
         {isShowBgColorBox && (
           <div className="absolute top-0 right-0 z-[100] mt-25">
@@ -73,9 +68,9 @@ const CustomSettingForm = () => {
           label="Màu chữ"
           placeholder={DEFAULT_WHEEL_TEXT_COLOR}
           iconEnd="pen-line"
-          value={hexTextColor}
+          value={textColor}
           onClick={handleTextColorBoxClick}
-          onChange={handleInputChange}
+          onChange={handleInputTextChange}
         />
         {isShowTextColorBox && (
           <div className="absolute top-0 right-0 z-[100] mt-25">

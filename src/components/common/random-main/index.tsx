@@ -27,9 +27,11 @@ const RandomMain: FC<IRandomMainProps> = ({className, button, children}) => {
   return (
     <div
       ref={containerRef}
-      style={{
-        backgroundImage: `url("https://s3.ap-southeast-1.amazonaws.com/samsung-hotel-tv-bucket/temp-upload/Screenshot-2024-02-15-135448-3c6a42ae4a.png")`
-      }}
+      style={
+        {
+          // backgroundImage: `url("https://s3.ap-southeast-1.amazonaws.com/samsung-hotel-tv-bucket/temp-upload/Screenshot-2024-02-15-135448-3c6a42ae4a.png")`
+        }
+      }
       className={cls(
         className,
         'flex flex-col items-center justify-between rounded-2xl border border-gray-300 bg-neutral-50 bg-cover bg-center bg-no-repeat p-5 shadow'

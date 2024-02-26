@@ -2,17 +2,29 @@ import React from 'react';
 
 import Icon from '@/core-ui/icon';
 
+import {
+  DEFAULT_WHEEL_BG_COLOR,
+  DEFAULT_WHEEL_TEXT_COLOR,
+  TITLE
+} from '@/components/common/constant/wheelColor.constant';
+
 import {useSetting} from '@/common/hooks/use-setting';
 import useUpload from '@/common/hooks/use-upload';
 
 import CustomSettingForm from './custom-setting-form';
 
 const SettingForm: React.FC = () => {
-  const {setIsSettingOpen} = useSetting();
+  const {setIsSettingOpen, setTitle, setBgColor, setTextColor} = useSetting();
   const {upload} = useUpload();
 
   const handleCloseSettingModal = () => {
     setIsSettingOpen(false);
+  };
+
+  const handleReset = () => {
+    setTitle(TITLE);
+    setBgColor(DEFAULT_WHEEL_BG_COLOR);
+    setTextColor(DEFAULT_WHEEL_TEXT_COLOR);
   };
 
   const handleUpFile = async (file: File | FileList | null | undefined) => {
@@ -52,12 +64,19 @@ const SettingForm: React.FC = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex w-full items-center gap-2">
         <button
-          className="flex w-full justify-center gap-4 rounded-lg bg-blue-600 px-6 py-4 text-lg text-white"
+          className=" flex grow justify-center gap-4 rounded-lg bg-blue-600 px-6 py-4 text-lg text-white"
           onClick={handleCloseSettingModal}
         >
           Hoàn thành
+        </button>
+        <button
+          className=" flex basis-1/3 items-center justify-center gap-2 py-2 px-3 text-sm text-black
+      md:px-8 md:py-4 md:text-xl md:font-medium"
+          onClick={handleReset}
+        >
+          Đặt lại
         </button>
       </div>
     </div>
