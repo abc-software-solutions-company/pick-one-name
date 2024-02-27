@@ -8,7 +8,7 @@ import useUpload from '@/common/hooks/use-upload';
 import CustomSettingForm from './custom-setting-form';
 
 const SettingForm: React.FC = () => {
-  const {setIsSettingOpen, setReset, setBGImage} = useSetting();
+  const {setIsSettingOpen, Reset, setBGImage} = useSetting();
   const {upload} = useUpload();
 
   const handleCloseSettingModal = () => {
@@ -70,7 +70,7 @@ const SettingForm: React.FC = () => {
         <button
           className="flex basis-1/3 items-center justify-center gap-2 py-2 px-3 text-sm text-black
       md:px-8 md:py-4 md:text-xl md:font-medium"
-          onClick={setReset}
+          onClick={Reset}
         >
           Đặt lại
         </button>

@@ -18,7 +18,7 @@ type Actions = {
   setTitle: (value: string) => void;
   setTextColor: (value: string) => void;
   setBGImage: (bgImage: string) => void;
-  setReset: () => void;
+  Reset: () => void;
 };
 
 const initialState: State = {
@@ -39,24 +39,23 @@ export const useSetting = create<State & Actions>()(set => ({
     set({isSettingOpen});
   },
   setBgColor(bgColor: string) {
-    set(state => ({...state, bgColor: bgColor}));
+    set({bgColor});
   },
-  setTitle(value: string) {
-    set(state => ({...state, title: value}));
+  setTitle(title: string) {
+    set({title});
   },
-  setTextColor(value: string) {
-    set(state => ({...state, textColor: value}));
+  setTextColor(textColor: string) {
+    set({textColor});
   },
   setBGImage: (bgImage: string) => {
     set({bgImage});
   },
-  setReset() {
-    set(state => ({
-      ...state,
+  Reset() {
+    set({
       title: DEFAULT_SETTING.TITLE,
       bgColor: '',
       textColor: DEFAULT_SETTING.DEFAULT_WHEEL_TEXT_COLOR,
       bgImage: ''
-    }));
+    });
   }
 }));

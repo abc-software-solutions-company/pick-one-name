@@ -14,7 +14,7 @@ interface Iprops {
 
 const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
   const {isZoom, setZoom} = useGlobal();
-  const {bgColor, title, textColor} = useSetting();
+  const {title, textColor} = useSetting();
 
   useEffect(() => {
     if (screenfull.isEnabled) {
@@ -44,11 +44,13 @@ const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
         })}
       >
         <p
-          className={cls('text-gray-950 rounded px-3 text-lg font-bold tracking-tight md:text-2xl lg:text-[32px]', {
-            'bg-white': isBGImage
-          })}
+          className={cls(
+            'text-gray-950 rounded bg-neutral-50 px-3 text-lg font-bold tracking-tight md:text-2xl lg:text-[32px]',
+            {
+              'bg-white': isBGImage
+            }
+          )}
           style={{
-            backgroundColor: bgColor,
             color: textColor
           }}
         >
@@ -56,8 +58,7 @@ const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
         </p>
       </div>
       <button
-        className="flex max-h-[32px] max-w-[32px] items-center justify-center rounded border-2 border-black p-1 hover:bg-blue-700 md:max-h-[56px] md:max-w-[56px] md:rounded-lg md:p-4"
-        style={{backgroundColor: bgColor, border: bgColor}}
+        className="flex max-h-[32px] max-w-[32px] items-center justify-center rounded border-2 border-black bg-transparent p-1 hover:bg-neutral-50 md:max-h-[56px] md:max-w-[56px] md:rounded-lg md:p-4"
         onClick={() => toggleFullScreen(!isZoom)}
       >
         {isZoom ? (

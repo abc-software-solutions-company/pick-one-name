@@ -34,7 +34,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
     generateNumberList,
     generateWheelNumbers
   } = useRandomNumber();
-  const {bgColor, textColor} = useSetting();
+  const {textColor} = useSetting();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const toast = useToast();
 
@@ -85,12 +85,10 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       className={className}
       button={
         <button
-          className="inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg border-2 border-black px-4 py-1 text-sm
-        font-semibold text-black hover:bg-blue-700 md:h-14 md:px-8 md:py-4 md:text-lg lg:w-[40%]"
+          className="inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg border-2 border-black bg-transparent px-4 py-1 text-sm
+        font-semibold text-black hover:bg-neutral-50 md:h-14 md:px-8 md:py-4 md:text-lg lg:w-[40%]"
           style={{
-            backgroundColor: bgColor,
-            color: textColor,
-            border: bgColor
+            color: textColor
           }}
           disabled={isAnimationStart || !isInputValid}
           onClick={handleClick}
