@@ -7,3 +7,4 @@ Host: https://www.pickonename.com
 
 # Sitemaps
 Sitemap: https://www.pickonename.com/sitemap.xml
+

@@ -1,8 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import {AnimationControls, motion} from 'framer-motion';
 
-import {useSetting} from '@/common/hooks/use-setting';
-
 import {IrotateWheelProps, IWheelNumbers} from '../type';
 
 interface IRotateProps {
@@ -23,7 +21,6 @@ const rotateWheel = {
 };
 
 const Rotaion: FC<IRotateProps> = ({position, numbers, controls, animationStart}) => {
-  const {bgColor} = useSetting();
   const spinCount = 8;
   const offset = (360 / 10) * position;
   const [endValue, setEndValue] = useState<number>(360 * spinCount - offset);
@@ -43,7 +40,6 @@ const Rotaion: FC<IRotateProps> = ({position, numbers, controls, animationStart}
       <div
         className="absolute left-1/2 top-1/2 z-10 h-[65px] w-[41px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-neutral-50
         p-4 px-2 lg:h-lg-number-box lg:w-lg-number-box 3xl:h-2xl-number-box 3xl:w-2xl-number-box"
-        style={{backgroundColor: bgColor}}
       ></div>
 
       <motion.div

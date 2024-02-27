@@ -1,40 +1,42 @@
+import {useState} from 'react';
 import {HexColorPicker} from 'react-colorful';
 
-import {DEFAULT_WHEEL_BG_COLOR, DEFAULT_WHEEL_TEXT_COLOR} from '@/components/common/constant/wheelColor.constant';
+import {DEFAULT_SETTING} from '@/components/common/constant/wheelColor.constant';
 
 import {useSetting} from '@/common/hooks/use-setting';
 
 import InputSetting from './input';
 
 const CustomSettingForm = () => {
-  const {
-    bgColor,
-    setBgColor,
-    isShowBgColorBox,
-    setIsShowBgColorBox,
-    isShowTextColorBox,
-    setisShowTextColorBox,
-    title,
-    setTitle,
-    hexBgColor,
-    setHexBgColor
-  } = useSetting();
+  const {bgColor, setBgColor, title, setTitle, textColor, setTextColor} = useSetting();
+
+  const [isShowBgColorBox, setIsShowBgColorBox] = useState(false);
+  const [isShowTextColorBox, setisShowTextColorBox] = useState(false);
 
   const handleBgColorBoxClick = () => {
     setIsShowBgColorBox(!isShowBgColorBox);
+    setisShowTextColorBox(false);
   };
 
   const handleTextColorBoxClick = () => {
     setisShowTextColorBox(!isShowTextColorBox);
+    setIsShowBgColorBox(false);
   };
 
   const handleChangeBgColor = (newColor: string) => {
     setBgColor(newColor);
-    setHexBgColor(newColor);
   };
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHexBgColor(e.target.value);
+
+  const handleChangeTextColor = (newColor: string) => {
+    setTextColor(newColor);
+  };
+
+  const handleInputBgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBgColor(e.target.value);
+  };
+
+  const handleInputTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTextColor(e.target.value);
   };
 
   return (
@@ -44,11 +46,11 @@ const CustomSettingForm = () => {
       <div className="relative">
         <InputSetting
           label="Màu nền"
-          placeholder={DEFAULT_WHEEL_BG_COLOR}
+          placeholder={DEFAULT_SETTING.DEFAULT_WHEEL_BG_COLOR}
           iconEnd="pen-line"
-          value={hexBgColor}
+          value={bgColor}
           onClick={handleBgColorBoxClick}
-          onChange={handleInputChange}
+          onChange={handleInputBgChange}
         />
         {isShowBgColorBox && (
           <div className="absolute top-0 right-0 z-[100] mt-25">
@@ -59,13 +61,15 @@ const CustomSettingForm = () => {
       <div className="relative">
         <InputSetting
           label="Màu chữ"
-          placeholder={DEFAULT_WHEEL_TEXT_COLOR}
+          placeholder={DEFAULT_SETTING.DEFAULT_WHEEL_TEXT_COLOR}
           iconEnd="pen-line"
+          value={textColor}
           onClick={handleTextColorBoxClick}
+          onChange={handleInputTextChange}
         />
         {isShowTextColorBox && (
           <div className="absolute top-0 right-0 z-[100] mt-25">
-            <HexColorPicker color={bgColor} onChange={handleChangeBgColor} />
+            <HexColorPicker color={textColor} onChange={handleChangeTextColor} />
           </div>
         )}
       </div>

@@ -1,33 +1,33 @@
 import {create} from 'zustand';
 
+import {DEFAULT_SETTING} from '@/components/common/constant/wheelColor.constant';
+
 type State = {
   isSettingOpen: boolean;
   isVisible: boolean;
   bgColor: string;
-  hexBgColor: string;
-  isShowBgColorBox: boolean;
-  isShowTextColorBox: boolean;
   title: string;
+  textColor: string;
+  bgImage?: string;
 };
 
 type Actions = {
   setIsSettingOpen: (isSettingOpen: boolean) => void;
   setVisible: (isVisible: boolean) => void;
   setBgColor: (bgColor: string) => void;
-  setHexBgColor: (hexBgColor: string) => void;
-  setIsShowBgColorBox: (isShowBgColorBox: boolean) => void;
   setTitle: (value: string) => void;
-  setisShowTextColorBox: (isShowTextColorBox: boolean) => void;
+  setTextColor: (value: string) => void;
+  setBGImage: (bgImage: string) => void;
+  Reset: () => void;
 };
 
 const initialState: State = {
   isSettingOpen: false,
   isVisible: true,
   bgColor: '',
-  hexBgColor: '',
-  isShowBgColorBox: false,
-  isShowTextColorBox: false,
-  title: 'Random Number'
+  title: 'Random Number',
+  textColor: '',
+  bgImage: ''
 };
 
 export const useSetting = create<State & Actions>()(set => ({
@@ -39,18 +39,23 @@ export const useSetting = create<State & Actions>()(set => ({
     set({isSettingOpen});
   },
   setBgColor(bgColor: string) {
-    set(state => ({...state, bgColor: bgColor}));
+    set({bgColor});
   },
-  setHexBgColor(hexBgColor: string) {
-    set(state => ({...state, hexBgColor: hexBgColor}));
+  setTitle(title: string) {
+    set({title});
   },
-  setIsShowBgColorBox(isShowBgColorBox: boolean) {
-    set({isShowBgColorBox});
+  setTextColor(textColor: string) {
+    set({textColor});
   },
-  setTitle(value: string) {
-    set(state => ({...state, title: value}));
+  setBGImage: (bgImage: string) => {
+    set({bgImage});
   },
-  setisShowTextColorBox(isShowTextColorBox: boolean) {
-    set({isShowTextColorBox});
+  Reset() {
+    set({
+      title: DEFAULT_SETTING.TITLE,
+      bgColor: '',
+      textColor: DEFAULT_SETTING.DEFAULT_WHEEL_TEXT_COLOR,
+      bgImage: ''
+    });
   }
 }));
