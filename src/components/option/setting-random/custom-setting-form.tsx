@@ -1,6 +1,6 @@
 import {HexColorPicker} from 'react-colorful';
 
-import {DEFAULT_WHEEL_BG_COLOR, DEFAULT_WHEEL_TEXT_COLOR} from '@/components/common/constant/wheelColor.constant';
+import {DEFAULT_COLOR} from '@/components/common/constant/wheelColor.constant';
 
 import {useSetting} from '@/common/hooks/use-setting';
 
@@ -22,10 +22,12 @@ const CustomSettingForm = () => {
 
   const handleBgColorBoxClick = () => {
     setIsShowBgColorBox(!isShowBgColorBox);
+    setisShowTextColorBox(false);
   };
 
   const handleTextColorBoxClick = () => {
     setisShowTextColorBox(!isShowTextColorBox);
+    setIsShowBgColorBox(false);
   };
 
   const handleChangeBgColor = (newColor: string) => {
@@ -51,7 +53,7 @@ const CustomSettingForm = () => {
       <div className="relative">
         <InputSetting
           label="Màu nền"
-          placeholder={DEFAULT_WHEEL_BG_COLOR}
+          placeholder={DEFAULT_COLOR.DEFAULT_WHEEL_BG_COLOR}
           iconEnd="pen-line"
           value={bgColor}
           onClick={handleBgColorBoxClick}
@@ -66,7 +68,7 @@ const CustomSettingForm = () => {
       <div className="relative">
         <InputSetting
           label="Màu chữ"
-          placeholder={DEFAULT_WHEEL_TEXT_COLOR}
+          placeholder={DEFAULT_COLOR.DEFAULT_WHEEL_TEXT_COLOR}
           iconEnd="pen-line"
           value={textColor}
           onClick={handleTextColorBoxClick}

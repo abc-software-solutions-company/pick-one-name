@@ -2,6 +2,8 @@ import React from 'react';
 
 import Icon from '@/core-ui/icon';
 
+import {DEFAULT_COLOR} from '@/components/common/constant/wheelColor.constant';
+
 import {useGlobal} from '@/common/hooks/use-global';
 import {useSetting} from '@/common/hooks/use-setting';
 import useUpload from '@/common/hooks/use-upload';
@@ -9,7 +11,7 @@ import useUpload from '@/common/hooks/use-upload';
 import CustomSettingForm from './custom-setting-form';
 
 const SettingForm: React.FC = () => {
-  const {setIsSettingOpen} = useSetting();
+  const {setIsSettingOpen, setTitle, setBgColor, setTextColor} = useSetting();
   const {setBGImage} = useGlobal();
   const {upload} = useUpload();
 
@@ -18,12 +20,18 @@ const SettingForm: React.FC = () => {
   };
 
   const handleReset = () => {
-    setTitle(TITLE);
-    setBgColor(DEFAULT_WHEEL_BG_COLOR);
-    setTextColor(DEFAULT_WHEEL_TEXT_COLOR);
+    setTitle(DEFAULT_COLOR.TITLE);
+    setBgColor('');
+    setTextColor(DEFAULT_COLOR.DEFAULT_WHEEL_TEXT_COLOR);
+    handleUpFile(null);
   };
 
   const handleUpFile = async (file: File | FileList | null | undefined) => {
+    if (file === null) {
+      setBGImage('');
+      localStorage.removeItem('backgroundImage');
+      return;
+    }
     const resp = await upload(file as File, 1).then(item => {
       return item;
     });

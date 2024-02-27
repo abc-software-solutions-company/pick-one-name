@@ -56,8 +56,8 @@ const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
         </p>
       </div>
       <button
-        className="flex max-h-[32px] max-w-[32px] items-center justify-center rounded bg-blue-600 p-1 text-black hover:bg-blue-700 md:max-h-[56px] md:max-w-[56px] md:rounded-lg md:p-4"
-        style={{backgroundColor: bgColor}}
+        className="flex max-h-[32px] max-w-[32px] items-center justify-center rounded border-2 border-black p-1 hover:bg-blue-700 md:max-h-[56px] md:max-w-[56px] md:rounded-lg md:p-4"
+        style={{backgroundColor: bgColor, border: bgColor}}
         onClick={() => toggleFullScreen(!isZoom)}
       >
         {isZoom ? (
