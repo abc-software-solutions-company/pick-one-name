@@ -61,7 +61,7 @@ const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
         onClick={() => toggleFullScreen(!isZoom)}
       >
         {isZoom ? (
-          <Icon name="ico-compress" className="text-black " style={{color: textColor}} />
+          <Icon name="ico-compress" className="text-black" style={{color: textColor}} />
         ) : (
           <Icon name="ico-expand" className="text-black" style={{color: textColor}} />
         )}

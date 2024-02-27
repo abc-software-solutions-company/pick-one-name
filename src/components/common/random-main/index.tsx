@@ -3,7 +3,7 @@ import cls from 'classnames';
 
 import Timer from '@/components/timer';
 
-import {useGlobal} from '@/common/hooks/use-global';
+import {useSetting} from '@/common/hooks/use-setting';
 
 import RandomMainTop from './random-main-top';
 
@@ -14,7 +14,7 @@ interface IRandomMainProps {
 }
 
 const RandomMain: FC<IRandomMainProps> = ({className, button, children}) => {
-  const {bgImage, setBGImage} = useGlobal();
+  const {bgImage, setBGImage} = useSetting();
 
   const containerRef = useRef<HTMLDivElement>(null);
 

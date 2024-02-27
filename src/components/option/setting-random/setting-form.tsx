@@ -2,28 +2,17 @@ import React from 'react';
 
 import Icon from '@/core-ui/icon';
 
-import {DEFAULT_COLOR} from '@/components/common/constant/wheelColor.constant';
-
-import {useGlobal} from '@/common/hooks/use-global';
 import {useSetting} from '@/common/hooks/use-setting';
 import useUpload from '@/common/hooks/use-upload';
 
 import CustomSettingForm from './custom-setting-form';
 
 const SettingForm: React.FC = () => {
-  const {setIsSettingOpen, setTitle, setBgColor, setTextColor} = useSetting();
-  const {setBGImage} = useGlobal();
+  const {setIsSettingOpen, setReset, setBGImage} = useSetting();
   const {upload} = useUpload();
 
   const handleCloseSettingModal = () => {
     setIsSettingOpen(false);
-  };
-
-  const handleReset = () => {
-    setTitle(DEFAULT_COLOR.TITLE);
-    setBgColor('');
-    setTextColor(DEFAULT_COLOR.DEFAULT_WHEEL_TEXT_COLOR);
-    handleUpFile(null);
   };
 
   const handleUpFile = async (file: File | FileList | null | undefined) => {
@@ -73,15 +62,15 @@ const SettingForm: React.FC = () => {
       </div>
       <div className="flex w-full items-center gap-2">
         <button
-          className=" flex grow justify-center gap-4 rounded-lg bg-blue-600 px-6 py-4 text-lg text-white"
+          className="flex grow justify-center gap-4 rounded-lg bg-blue-600 px-6 py-4 text-lg text-white"
           onClick={handleCloseSettingModal}
         >
           Hoàn thành
         </button>
         <button
-          className=" flex basis-1/3 items-center justify-center gap-2 py-2 px-3 text-sm text-black
+          className="flex basis-1/3 items-center justify-center gap-2 py-2 px-3 text-sm text-black
       md:px-8 md:py-4 md:text-xl md:font-medium"
-          onClick={handleReset}
+          onClick={setReset}
         >
           Đặt lại
         </button>

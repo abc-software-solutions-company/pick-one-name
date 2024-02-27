@@ -1,24 +1,17 @@
+import {useState} from 'react';
 import {HexColorPicker} from 'react-colorful';
 
-import {DEFAULT_COLOR} from '@/components/common/constant/wheelColor.constant';
+import {DEFAULT_SETTING} from '@/components/common/constant/wheelColor.constant';
 
 import {useSetting} from '@/common/hooks/use-setting';
 
 import InputSetting from './input';
 
 const CustomSettingForm = () => {
-  const {
-    bgColor,
-    setBgColor,
-    isShowBgColorBox,
-    setIsShowBgColorBox,
-    isShowTextColorBox,
-    setisShowTextColorBox,
-    title,
-    setTitle,
-    textColor,
-    setTextColor
-  } = useSetting();
+  const {bgColor, setBgColor, title, setTitle, textColor, setTextColor} = useSetting();
+
+  const [isShowBgColorBox, setIsShowBgColorBox] = useState(false);
+  const [isShowTextColorBox, setisShowTextColorBox] = useState(false);
 
   const handleBgColorBoxClick = () => {
     setIsShowBgColorBox(!isShowBgColorBox);
@@ -49,11 +42,11 @@ const CustomSettingForm = () => {
   return (
     <div className="flex flex-col gap-3">
       <InputSetting label="Tiêu đề" value={title} iconEnd="pen-line" onChange={e => setTitle(e.target.value)} />
-      <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" disable={true} />
+      <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" />
       <div className="relative">
         <InputSetting
           label="Màu nền"
-          placeholder={DEFAULT_COLOR.DEFAULT_WHEEL_BG_COLOR}
+          placeholder={DEFAULT_SETTING.DEFAULT_WHEEL_BG_COLOR}
           iconEnd="pen-line"
           value={bgColor}
           onClick={handleBgColorBoxClick}
@@ -68,7 +61,7 @@ const CustomSettingForm = () => {
       <div className="relative">
         <InputSetting
           label="Màu chữ"
-          placeholder={DEFAULT_COLOR.DEFAULT_WHEEL_TEXT_COLOR}
+          placeholder={DEFAULT_SETTING.DEFAULT_WHEEL_TEXT_COLOR}
           iconEnd="pen-line"
           value={textColor}
           onClick={handleTextColorBoxClick}
