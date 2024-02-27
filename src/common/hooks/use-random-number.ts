@@ -9,7 +9,6 @@ type State = {
   min: number;
   max: number;
   isDone: boolean;
-  isBGImage: boolean;
   isAnimationStart: boolean;
   isInputValid: boolean;
 };
@@ -17,7 +16,6 @@ type State = {
 type Actions = {
   setAnimationStart: (isAnimationStart: boolean) => void;
   setDone: (isDone: boolean) => void;
-  setBGImage: (isBGImage: boolean) => void;
   generateWheelNumbers: () => void;
   setMin: (minNumber: number) => void;
   setMax: (maxNumber: number) => void;
@@ -29,7 +27,6 @@ type Actions = {
 
 const initialState: State = {
   isAnimationStart: false,
-  isBGImage: false,
   isDone: false,
   wheelnumbers: [],
   randomNumberList: [],
@@ -43,9 +40,6 @@ export const useRandomNumber = create<State & Actions>()((set, get) => ({
   ...initialState,
   setAnimationStart: (isAnimationStart: boolean) => {
     set({isAnimationStart});
-  },
-  setBGImage: (isBGImage: boolean) => {
-    set({isBGImage});
   },
   setDone: (isDone: boolean) => {
     set({isDone});

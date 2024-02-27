@@ -34,6 +34,7 @@ const InputSetting: React.FC<IInputSettingProps> = ({
           <input
             type="text"
             placeholder={placeholder}
+            maxLength={25}
             value={value}
             onChange={onChange}
             disabled={disable}
