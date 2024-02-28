@@ -42,7 +42,7 @@ const RandomMain: FC<IRandomMainProps> = ({className, button, children}) => {
         'flex flex-col items-center justify-between rounded-2xl border border-gray-300 bg-neutral-50 bg-cover bg-center bg-no-repeat p-5 shadow'
       )}
     >
-      <RandomMainTop containerRef={containerRef} isBGImage={!!bgImage} />
+      <RandomMainTop containerRef={containerRef} />
       <div className="flex h-full w-full select-none gap-3">{children}</div>
       <div className="flex w-full flex-col items-center justify-center gap-2">
         {button}
