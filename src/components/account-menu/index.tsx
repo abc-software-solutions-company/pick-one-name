@@ -16,6 +16,7 @@ const AccountMenu: FC = () => {
   };
   const handleLogout = () => {
     handleClose();
+    localStorage.clear();
     signOut();
   };
   return (
