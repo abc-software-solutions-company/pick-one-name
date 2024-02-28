@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import classNames from 'classnames';
 
-import {ColorType, IconSizeType} from '@/core-ui/types';
+import {ColorType, IconSize} from '@/core-ui/types';
 
 import {IComponentBaseProps} from '@/common/interfaces/component.interface';
 
@@ -9,7 +9,7 @@ import Icon from '../icon';
 
 interface ILabelProps extends IComponentBaseProps {
   iconName?: string;
-  iconSize?: IconSizeType;
+  iconSize?: IconSize;
   text?: string;
   onClick?: () => void;
   color?: ColorType;
@@ -19,7 +19,7 @@ interface ILabelProps extends IComponentBaseProps {
 
 const Label: FC<ILabelProps> = ({
   iconName,
-  iconSize = 18,
+  iconSize = 24,
   text,
   className,
   iconClassName,
