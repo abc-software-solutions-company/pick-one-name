@@ -20,7 +20,7 @@ const RandomNumber: FC = () => {
       })}
     >
       <NumberWheel
-        className={cls('min-h-[250px] w-full md:min-h-[510px] md:gap-10 md:p-10 xl:basis-2/3 xl:px-21 xl:py-10', {
+        className={cls('min-h-[300px] w-full md:min-h-[510px] md:gap-10 md:p-10 xl:basis-2/3 xl:px-21 xl:py-10', {
           'grow xl:grow-0': !isVisible
         })}
       />

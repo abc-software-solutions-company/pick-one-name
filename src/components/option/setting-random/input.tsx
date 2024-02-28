@@ -1,3 +1,5 @@
+import {FC} from 'react';
+
 import Icon from '@/core-ui/icon';
 
 interface IInputSettingProps {
@@ -10,18 +12,10 @@ interface IInputSettingProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputSetting: React.FC<IInputSettingProps> = ({
-  label,
-  placeholder,
-  iconStart,
-  iconEnd,
-  value,
-  onClick,
-  onChange
-}) => {
+const InputSetting: FC<IInputSettingProps> = ({label, placeholder, iconStart, iconEnd, value, onClick, onChange}) => {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="text-2xl font-medium text-black">{label}</div>
+    <div className="flex flex-col gap-1 xl:gap-2">
+      <label className="font-bold text-black md:text-lg xl:text-xl 3xl:text-2xl">{label}</label>
       <div className="flex justify-between">
         <div className="relative w-full">
           {iconStart && (
@@ -32,10 +26,11 @@ const InputSetting: React.FC<IInputSettingProps> = ({
           <input
             type="text"
             placeholder={placeholder}
-            maxLength={25}
+            maxLength={20}
             value={value}
             onChange={onChange}
-            className="w-full flex-grow rounded-lg border border-slate-300 bg-neutral-50 py-4 px-2 text-lg"
+            onClick={onClick}
+            className="w-full flex-grow rounded-lg border border-slate-300 bg-neutral-50 py-3 px-2 md:text-lg xl:text-xl 3xl:text-2xl"
           />
           {iconEnd && (
             <div className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3">

@@ -60,6 +60,9 @@ const RandomMainTop: FC<Iprops> = ({isBGImage, containerRef}) => {
       <button
         className="flex max-h-[32px] max-w-[32px] items-center justify-center rounded border-2 border-black bg-transparent p-1 hover:bg-neutral-50 md:max-h-[56px] md:max-w-[56px] md:rounded-lg md:p-4"
         onClick={() => toggleFullScreen(!isZoom)}
+        style={{
+          borderColor: textColor
+        }}
       >
         {isZoom ? (
           <Icon name="ico-compress" className="text-black" style={{color: textColor}} />
