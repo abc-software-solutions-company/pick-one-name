@@ -1,5 +1,4 @@
 import React, {FC, useState} from 'react';
-import classNames from 'classnames';
 import {GameOperations, useGame} from '@/states/game';
 
 import {useSetting} from '@/common/hooks/use-setting';
@@ -11,11 +10,7 @@ import PlayerList from './list';
 import PlayerSuggest from './suggest';
 import PlayerToolbar from './toolbar';
 
-interface IProps {
-  className?: string;
-}
-
-const Players: FC<IProps> = ({className}) => {
+const Players: FC = () => {
   const [newPlayer, setNewPlayer] = useState('');
   const {setIsSettingOpen} = useSetting();
 
@@ -37,12 +32,7 @@ const Players: FC<IProps> = ({className}) => {
   const deleteAllPlayers = () => game.dispatch(game.toggleShowDeleteAllPlayer(true));
 
   return (
-    <div
-      className={classNames(
-        className,
-        'gap-4 rounded-lg border border-gray-300 bg-zinc-50 py-5 px-2 lg:gap-8 lg:rounded-3xl lg:px-8 lg:py-10'
-      )}
-    >
+    <>
       <div className="flex w-full flex-col gap-2 lg:gap-3">
         <PlayerToolbar
           value={newPlayer}
@@ -59,7 +49,7 @@ const Players: FC<IProps> = ({className}) => {
         <SettingButton onClick={() => setIsSettingOpen(true)} />
         <HideButton />
       </div>
-    </div>
+    </>
   );
 };
 

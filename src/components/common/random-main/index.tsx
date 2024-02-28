@@ -43,7 +43,7 @@ const RandomMain: FC<IRandomMainProps> = ({className, button, children}) => {
       )}
     >
       <RandomMainTop containerRef={containerRef} />
-      <div className="flex h-full w-full select-none gap-3">{children}</div>
+      <div className="flex h-full w-full select-none items-center justify-center gap-3">{children}</div>
       <div className="flex w-full flex-col items-center justify-center gap-2">
         {button}
         <Timer />

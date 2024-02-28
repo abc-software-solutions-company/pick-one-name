@@ -34,7 +34,7 @@ const LuckyWheel: FC<IWheelOfFortuneProps> = ({className, players, trigger, colo
 
   const runAnimation = (element: HTMLDivElement, winPlayer: IPlayer) => {
     const segmentSize = 360 / players.length;
-    const indicatorAngle = 55;
+    const indicatorAngle = 90;
     const winnerIndex = players.indexOf(winPlayer);
 
     const spead = 2;

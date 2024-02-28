@@ -5,6 +5,7 @@ import {useSetting} from '@/common/hooks/use-setting';
 
 import NumberWheel from '../number-wheel';
 import RandomOption from '../option';
+import RandomToolBar from '../random-toolbar';
 
 const RandomNumber: FC = () => {
   const {isVisible, setVisible} = useSetting();
@@ -24,7 +25,11 @@ const RandomNumber: FC = () => {
           'grow xl:grow-0': !isVisible
         })}
       />
-      {isVisible && <RandomOption className="w-full xl:basis-1/3" />}
+      {isVisible && (
+        <RandomToolBar className="w-full xl:basis-1/3">
+          <RandomOption />
+        </RandomToolBar>
+      )}
       {!isVisible && (
         <button
           className="-right-12 top-5 inline-flex h-fit max-w-[88px] items-center justify-center rounded-md 
