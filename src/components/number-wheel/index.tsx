@@ -34,7 +34,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
     generateNumberList,
     generateWheelNumbers
   } = useRandomNumber();
-  const {bgColor} = useSetting();
+  const {textColor} = useSetting();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const toast = useToast();
 
@@ -85,9 +85,11 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       className={className}
       button={
         <button
-          className="inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1 text-sm
-        font-semibold text-neutral-50 hover:bg-blue-700 md:h-14 md:px-8 md:py-4 md:text-lg lg:w-[40%]"
-          style={{backgroundColor: bgColor}}
+          className="inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg border-2 border-black bg-transparent px-4 py-1 text-sm
+        font-semibold text-black hover:bg-neutral-50 md:h-14 md:px-8 md:py-4 md:text-lg lg:w-[40%]"
+          style={{
+            color: textColor
+          }}
           disabled={isAnimationStart || !isInputValid}
           onClick={handleClick}
         >
@@ -97,7 +99,10 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
     >
       <div className="flex w-full items-center justify-center rounded-sm text-center">
         <div className="relative flex h-18 w-full items-center gap-3 overflow-hidden rounded-xl md:h-19 lg:h-lg-number-container 3xl:h-2xl-number-container">
-          <div className="wheel-container flex h-full w-full items-center justify-center gap-10 md:scale-175 lg:scale-150 lg:gap-14 3xl:gap-20">
+          <div
+            className="wheel-container flex h-full w-full items-center justify-center gap-10 md:scale-175 lg:scale-150 lg:gap-14 3xl:gap-20"
+            style={{color: textColor}}
+          >
             {randomNumberList.map((n, i) => (
               <Rotaion
                 key={i}

@@ -2,15 +2,13 @@ import React from 'react';
 
 import Icon from '@/core-ui/icon';
 
-import {useGlobal} from '@/common/hooks/use-global';
 import {useSetting} from '@/common/hooks/use-setting';
 import useUpload from '@/common/hooks/use-upload';
 
 import CustomSettingForm from './custom-setting-form';
 
 const SettingForm: React.FC = () => {
-  const {setIsSettingOpen} = useSetting();
-  const {setBGImage} = useGlobal();
+  const {setIsSettingOpen, Reset, setBGImage} = useSetting();
   const {upload} = useUpload();
 
   const handleCloseSettingModal = () => {
@@ -18,6 +16,11 @@ const SettingForm: React.FC = () => {
   };
 
   const handleUpFile = async (file: File | FileList | null | undefined) => {
+    if (file === null) {
+      setBGImage('');
+      localStorage.removeItem('backgroundImage');
+      return;
+    }
     const resp = await upload(file as File, 1).then(item => {
       return item;
     });
@@ -57,12 +60,19 @@ const SettingForm: React.FC = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex w-full items-center gap-2">
         <button
-          className="flex w-full justify-center gap-4 rounded-lg bg-blue-600 px-6 py-4 text-lg text-white"
+          className="flex grow justify-center gap-4 rounded-lg bg-blue-600 px-6 py-4 text-lg text-white"
           onClick={handleCloseSettingModal}
         >
           Hoàn thành
+        </button>
+        <button
+          className="flex basis-1/3 items-center justify-center gap-2 py-2 px-3 text-sm text-black
+      md:px-8 md:py-4 md:text-xl md:font-medium"
+          onClick={Reset}
+        >
+          Đặt lại
         </button>
       </div>
     </div>
