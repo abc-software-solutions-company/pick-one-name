@@ -1,6 +1,6 @@
 import {create} from 'zustand';
 
-import {DEFAULT_SETTING} from '@/components/common/constant/wheelColor.constant';
+import {DEFAULT_SETTING} from '@/components/common/constants/wheelColor.constant';
 
 type State = {
   isSettingOpen: boolean;

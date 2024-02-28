@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {HexColorPicker} from 'react-colorful';
 
-import {DEFAULT_SETTING} from '@/components/common/constant/wheelColor.constant';
+import {DEFAULT_SETTING} from '@/components/common/constants/wheelColor.constant';
 
 import {useSetting} from '@/common/hooks/use-setting';
 
