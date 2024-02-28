@@ -1,6 +1,6 @@
 import {HexColorPicker} from 'react-colorful';
 
-import {DEFAULT_WHEEL_BG_COLOR, DEFAULT_WHEEL_TEXT_COLOR} from '@/components/common/constant/wheelColor.constant';
+import {DEFAULT_WHEEL_BG_COLOR, DEFAULT_WHEEL_TEXT_COLOR} from '@/components/common/constants/wheelColor.constant';
 
 import {useSetting} from '@/common/hooks/use-setting';
 

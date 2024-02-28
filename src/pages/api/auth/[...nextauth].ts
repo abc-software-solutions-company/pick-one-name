@@ -1,9 +1,11 @@
 import NextAuth, {AuthOptions} from 'next-auth';
-// import CredentialsProvider from 'next-auth/providers/credentials';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import FacebookProvider from 'next-auth/providers/facebook';
 import GoogleProvider from 'next-auth/providers/google';
 
-import {loginOAuth} from '@/common/http/network/auth';
+import AuthApi from '@/modules/auth/api/auth.api';
+
+import {ENUM_O_AUTH_PROVIDER} from '@/common/constants/auth.constant';
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -14,6 +16,47 @@ export const authOptions: AuthOptions = {
     FacebookProvider({
       clientId: process.env.FACEBOOK_CLIENT_ID as string,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string
+    }),
+    CredentialsProvider({
+      name: 'Sign in',
+      credentials: {
+        id: {label: 'Id', type: 'string'},
+        email: {label: 'Email', type: 'email'},
+        password: {label: 'Password', type: 'password'},
+        name: {label: 'Name', type: 'string'}
+      },
+      authorize: async function (credentials) {
+        if (!credentials?.email && !credentials?.password && !credentials?.id && !credentials?.name) {
+          return null;
+        }
+
+        const {email, password} = credentials;
+
+        try {
+          let signInRes;
+          if (credentials?.email && credentials?.password) {
+            signInRes = await AuthApi.login({email, password});
+          }
+
+          if (signInRes?.data.user) {
+            return {
+              id: signInRes.data.user.id,
+              name: signInRes.data.user.fullName,
+              email: signInRes.data.user.email,
+              image: signInRes.data.user.avatar,
+              avatar: signInRes.data.user.avatar,
+              accessToken: signInRes.data.accessToken,
+              refreshToken: signInRes.data.refreshToken,
+              isVerified: signInRes.data.user.isVerified,
+              provider: signInRes.data.user.provider
+            };
+          }
+        } catch (error) {
+          throw new Error(JSON.stringify(error));
+        }
+
+        return null;
+      }
     })
   ],
   secret: process.env.NEXTAUTH_SECRET,
@@ -23,11 +66,12 @@ export const authOptions: AuthOptions = {
   callbacks: {
     signIn: async params => {
       const {user, account} = params;
+      if (account?.provider.toUpperCase() === ENUM_O_AUTH_PROVIDER.CREDENTIALS) return !!user;
 
       if (!account) return false;
 
-      if (account?.provider === 'google') {
-        const googleResponse = await loginOAuth('google', {token: account?.id_token});
+      if (account?.provider.toUpperCase() === ENUM_O_AUTH_PROVIDER.GOOGLE) {
+        const googleResponse = await AuthApi.loginOAuth('google', {token: account?.id_token});
 
         if (googleResponse.data.user) {
           user.id = googleResponse.data.user.id;
@@ -36,8 +80,8 @@ export const authOptions: AuthOptions = {
         }
       }
 
-      if (account?.provider === 'facebook') {
-        const facebookResponse = await loginOAuth('facebook', {token: account?.access_token});
+      if (account?.provider.toUpperCase() === ENUM_O_AUTH_PROVIDER.FACEBOOK) {
+        const facebookResponse = await AuthApi.loginOAuth('facebook', {token: account?.access_token});
 
         if (facebookResponse.data.user) {
           user.id = facebookResponse.data.user.id;

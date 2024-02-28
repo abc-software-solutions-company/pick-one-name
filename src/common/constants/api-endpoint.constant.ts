@@ -5,5 +5,6 @@ export const API_ENDPOINTS = {
   REFRESH_TOKEN: '/api/v1/refresh-tokens/refresh',
   SIGN_OUT: '/api/v1/auth/logout',
   SIGN_UP: '/api/v1/auth/signup',
-  MEDIA: '/api/v1/media'
+  MEDIA: '/api/v1/media',
+  USER: '/api/v1/users'
 };

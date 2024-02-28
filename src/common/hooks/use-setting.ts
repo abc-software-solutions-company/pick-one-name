@@ -49,6 +49,7 @@ export const useSetting = create<State & Actions>()(set => ({
   },
   setTitle(value: string) {
     set(state => ({...state, title: value}));
+    set({hexBgColor: ''});
   },
   setisShowTextColorBox(isShowTextColorBox: boolean) {
     set({isShowTextColorBox});
