@@ -38,8 +38,8 @@ const Rotaion: FC<IRotateProps> = ({position, numbers, controls, animationStart}
   return (
     <div className="user-select-none relative flex items-center overflow-visible perspective-1000">
       <div
-        className="absolute left-1/2 top-1/2 z-10 h-[55px] w-[41px] xs:w-[37px] md:h-[55px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-neutral-50
-        p-4 px-2 lg:h-lg-number-box lg:w-lg-number-box 3xl:h-2xl-number-box 3xl:w-2xl-number-box"
+        className="absolute left-1/2 top-1/2 z-10 h-[55px] w-[41px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-neutral-50 p-4 px-2
+        md:h-[55px] lg:h-lg-number-box lg:w-lg-number-box xs:w-[37px] 3xl:h-2xl-number-box 3xl:w-2xl-number-box"
       ></div>
 
       <motion.div
