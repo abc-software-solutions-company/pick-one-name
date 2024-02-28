@@ -98,9 +98,13 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
       }
     >
       <div className="flex w-full items-center justify-center rounded-sm text-center">
-        <div className="relative flex h-18 w-full items-center gap-3 overflow-hidden rounded-xl md:h-19 lg:h-lg-number-container 3xl:h-2xl-number-container">
+        <div
+          className="relative flex h-16 w-full items-center gap-3 overflow-hidden rounded-xl 
+        md:h-24 lg:h-lg-number-container xs:h-14 3xl:h-2xl-number-container"
+        >
           <div
-            className="wheel-container flex h-full w-full items-center justify-center gap-10 md:scale-175 lg:scale-150 lg:gap-14 3xl:gap-20"
+            className="wheel-container flex h-full w-full items-center justify-center 
+            gap-11 md:scale-175 lg:scale-150 lg:gap-14 xs:scale-100 xs:gap-10 3xl:gap-20"
             style={{color: textColor}}
           >
             {randomNumberList.map((n, i) => (
