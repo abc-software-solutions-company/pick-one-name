@@ -1,9 +1,10 @@
 import {useState} from 'react';
-import {HexColorPicker} from 'react-colorful';
 
-import {DEFAULT_SETTING} from '@/components/common/constants/wheelColor.constant';
+import ColorPicker from '@/core-ui/color-picker';
 
 import {useSetting} from '@/common/hooks/use-setting';
+
+import {DEFAULT_SETTING} from '@/common/constants/setting.constant';
 
 import InputSetting from './input';
 
@@ -19,7 +20,7 @@ const CustomSettingForm = () => {
   };
 
   const handleTextColorBoxClick = () => {
-    setisShowTextColorBox(!isShowTextColorBox);
+    setisShowTextColorBox(() => !isShowTextColorBox);
     setIsShowBgColorBox(false);
   };
 
@@ -40,7 +41,7 @@ const CustomSettingForm = () => {
   };
 
   return (
-    <div className="flex flex-col gap-3">
+    <>
       <InputSetting label="Tiêu đề" value={title} iconEnd="pen-line" onChange={e => setTitle(e.target.value)} />
       <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" />
       <div className="relative">
@@ -54,7 +55,7 @@ const CustomSettingForm = () => {
         />
         {isShowBgColorBox && (
           <div className="absolute top-0 right-0 z-[100] mt-25">
-            <HexColorPicker color={bgColor} onChange={handleChangeBgColor} />
+            <ColorPicker color={bgColor} isShow={!!isShowBgColorBox} onChange={handleChangeBgColor} />
           </div>
         )}
       </div>
@@ -69,11 +70,11 @@ const CustomSettingForm = () => {
         />
         {isShowTextColorBox && (
           <div className="absolute top-0 right-0 z-[100] mt-25">
-            <HexColorPicker color={textColor} onChange={handleChangeTextColor} />
+            <ColorPicker color={textColor} isShow={!!isShowTextColorBox} onChange={handleChangeTextColor} />
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 export default CustomSettingForm;

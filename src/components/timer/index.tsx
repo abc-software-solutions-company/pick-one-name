@@ -23,7 +23,7 @@ const Timer: FC = () => {
   return (
     <>
       {mounted && (
-        <p className="bg-neutral-50 text-sm font-semibold text-gray-900" style={{color: textColor}}>
+        <p className="rounded-sm bg-neutral-50 p-1 text-sm font-semibold text-gray-900" style={{color: textColor}}>
           {timer} UTC
         </p>
       )}
