@@ -15,7 +15,7 @@ interface IInputSettingProps {
 const InputSetting: FC<IInputSettingProps> = ({label, placeholder, iconStart, iconEnd, value, onClick, onChange}) => {
   return (
     <div className="flex flex-col gap-1 xl:gap-2">
-      <label className="font-bold text-black md:text-lg xl:text-xl 3xl:text-2xl">{label}</label>
+      <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">{label}</label>
       <div className="flex justify-between">
         <div className="relative w-full">
           {iconStart && (
@@ -30,7 +30,7 @@ const InputSetting: FC<IInputSettingProps> = ({label, placeholder, iconStart, ic
             value={value}
             onChange={onChange}
             onClick={onClick}
-            className="w-full flex-grow rounded-lg border border-slate-300 bg-neutral-50 py-3 px-2 md:text-lg xl:text-xl 3xl:text-2xl"
+            className="w-full flex-grow rounded-lg border border-slate-300 bg-neutral-50 py-3 px-2 text-sm lg:text-xl xl:text-xl"
           />
           {iconEnd && (
             <div className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3">

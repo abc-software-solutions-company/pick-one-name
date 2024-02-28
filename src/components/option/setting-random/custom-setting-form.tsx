@@ -2,9 +2,9 @@ import {useState} from 'react';
 
 import ColorPicker from '@/core-ui/color-picker';
 
-import {DEFAULT_SETTING} from '@/components/common/constants/wheelColor.constant';
-
 import {useSetting} from '@/common/hooks/use-setting';
+
+import {DEFAULT_SETTING} from '@/common/constants/setting.constant';
 
 import InputSetting from './input';
 

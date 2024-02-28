@@ -9,7 +9,7 @@ import SettingForm from './setting-form';
 const SettingGame: React.FC = () => {
   const {isSettingOpen} = useSetting();
 
-  return <div className="flex flex-col">{isSettingOpen ? <SettingForm /> : <RandomOption />}</div>;
+  return <>{isSettingOpen ? <SettingForm /> : <RandomOption />}</>;
 };
 
 export default SettingGame;
