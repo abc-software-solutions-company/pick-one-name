@@ -41,7 +41,7 @@ export const authOptions: AuthOptions = {
           if (signInRes?.data.user) {
             return {
               id: signInRes.data.user.id,
-              name: signInRes.data.user.fullName,
+              name: signInRes.data.user.name,
               email: signInRes.data.user.email,
               image: signInRes.data.user.avatar,
               avatar: signInRes.data.user.avatar,
@@ -51,7 +51,7 @@ export const authOptions: AuthOptions = {
               provider: signInRes.data.user.provider
             };
           }
-        } catch (error) {
+        } catch (error: any) {
           throw new Error(JSON.stringify(error));
         }
 
