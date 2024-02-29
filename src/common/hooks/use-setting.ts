@@ -8,7 +8,7 @@ type State = {
   bgColor: string;
   title: string;
   textColor: string;
-  bgImage?: string;
+  bgImage: string;
 };
 
 type Actions = {
@@ -18,19 +18,21 @@ type Actions = {
   setTitle: (value: string) => void;
   setTextColor: (value: string) => void;
   setBGImage: (bgImage: string) => void;
-  Reset: () => void;
+  updateLocal: () => void;
+  loadLocal: () => void;
+  reset: () => void;
 };
 
 const initialState: State = {
   isSettingOpen: false,
   isVisible: true,
   bgColor: '',
-  title: 'Random Number',
+  title: 'Quay số may mắn',
   textColor: '',
   bgImage: ''
 };
 
-export const useSetting = create<State & Actions>()(set => ({
+export const useSetting = create<State & Actions>()((set, get) => ({
   ...initialState,
   setVisible: (isVisible: boolean) => {
     set({isVisible});
@@ -50,7 +52,23 @@ export const useSetting = create<State & Actions>()(set => ({
   setBGImage: (bgImage: string) => {
     set({bgImage});
   },
-  Reset() {
+  updateLocal() {
+    localStorage.setItem('bgColor', get().bgColor);
+    localStorage.setItem('textColor', get().textColor);
+    localStorage.setItem('title', get().title);
+    localStorage.setItem('bgImage', get().bgImage);
+  },
+  loadLocal() {
+    const bgColor = localStorage.getItem('bgColor');
+    const textColor = localStorage.getItem('textColor');
+    const title = localStorage.getItem('title');
+    const bgImage = localStorage.getItem('bgImage');
+    bgColor && set({bgColor});
+    textColor && set({textColor});
+    title && set({title});
+    bgImage && set({bgImage});
+  },
+  reset() {
     set({
       title: DEFAULT_SETTING.TITLE,
       bgColor: '',
