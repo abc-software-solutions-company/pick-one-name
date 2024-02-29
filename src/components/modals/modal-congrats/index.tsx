@@ -5,6 +5,8 @@ import {IPlayer} from '@/localdb/models/player.model';
 import Button from '@/core-ui/button';
 import {Modal} from '@/core-ui/modal';
 
+import {useSetting} from '@/common/hooks/use-setting';
+
 import styles from './modal-congrats.module.scss';
 
 interface ICongratsProps {
@@ -16,6 +18,8 @@ interface ICongratsProps {
 }
 
 const Congrats: FC<ICongratsProps> = ({className, player, open, onClose, onHidePlayer}) => {
+  const {textColor, bgColor} = useSetting();
+
   if (!open) return null;
 
   return (
@@ -26,9 +30,16 @@ const Congrats: FC<ICongratsProps> = ({className, player, open, onClose, onHideP
       onClose={onClose!}
     >
       <Modal.Header text="" />
-      <Modal.Body className="relative -mt-12">
-        <h2 className="heading">Xin chúc mừng</h2>
-        <h1 className="player">{player?.name}</h1>
+      <Modal.Body className="relative -mt-12 flex w-full flex-col items-center">
+        <h3 className="text-2xl font-bold text-blue-300 md:text-[40px] lg:text-5xl" style={{color: textColor}}>
+          Chúc mừng bạn
+        </h3>
+        <h3
+          className="my-2 text-3xl font-bold tracking-wide text-zinc-900 md:my-8 md:text-[40px] lg:text-5xl"
+          style={{color: textColor}}
+        >
+          {player?.name}
+        </h3>
         <div className="animation">
           <lottie-player src={'/congrats.json'} background="transparent" speed="1" loop autoplay></lottie-player>
         </div>
@@ -39,12 +50,20 @@ const Congrats: FC<ICongratsProps> = ({className, player, open, onClose, onHideP
             className="bg-blue-600 px-5 text-zinc-50 sm:w-full md:px-3"
             variant="outlined"
             text="ĐÓNG"
+            style={{
+              backgroundColor: bgColor,
+              color: textColor
+            }}
             onClick={onClose}
           />
           <Button
             className="w-full bg-blue-600 text-zinc-50"
             variant="outlined"
             text="ẨN NGƯỜI CHƠI NÀY"
+            style={{
+              backgroundColor: bgColor,
+              color: textColor
+            }}
             onClick={onHidePlayer}
           />
         </div>

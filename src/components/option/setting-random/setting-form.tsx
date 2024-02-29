@@ -8,7 +8,7 @@ import useUpload from '@/common/hooks/use-upload';
 import CustomSettingForm from './custom-setting-form';
 
 const SettingForm: React.FC = () => {
-  const {setIsSettingOpen, reset, setBGImage} = useSetting();
+  const {setIsSettingOpen, reset, setBGImage, updateLocal} = useSetting();
   const {upload} = useUpload();
 
   const handleCloseSettingModal = () => {
@@ -18,7 +18,7 @@ const SettingForm: React.FC = () => {
   const handleUpFile = async (file: File | FileList | null | undefined) => {
     if (file === null) {
       setBGImage('');
-      localStorage.removeItem('bgImage');
+      updateLocal();
       return;
     }
     const resp = await upload(file as File, 1).then(item => {
@@ -26,7 +26,7 @@ const SettingForm: React.FC = () => {
     });
     if (resp?.url) {
       setBGImage(resp?.url);
-      localStorage.setItem('bgImage', resp?.url);
+      updateLocal();
     }
   };
 
