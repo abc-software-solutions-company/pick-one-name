@@ -51,10 +51,11 @@ const AuthWelcome: React.FC = () => {
       <div className="absolute -bottom-[105px] -left-11 md:-bottom-72 md:-left-32 lg:-bottom-1/3 lg:-left-28">
         <Eclipse />
       </div>
-      <div className="absolute -left-20 -bottom-[85px] md:-left-1/4 md:-bottom-64 lg:-left-1/4 lg:-bottom-1/4">
+      <div className="absolute -left-20 -bottom-[85px] md:-left-52 md:-bottom-64 lg:-left-72 lg:-bottom-1/4">
         <Eclipse />
       </div>
     </div>
   );
 };
+
 export default AuthWelcome;
