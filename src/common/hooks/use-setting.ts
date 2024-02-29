@@ -54,7 +54,7 @@ export const useSetting = create<State & Actions>()(set => ({
     set({
       title: DEFAULT_SETTING.TITLE,
       bgColor: '',
-      textColor: DEFAULT_SETTING.DEFAULT_WHEEL_TEXT_COLOR,
+      textColor: '',
       bgImage: ''
     });
   }

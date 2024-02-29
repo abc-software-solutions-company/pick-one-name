@@ -18,6 +18,7 @@ interface IButtonProps {
   size?: Size;
   loadingPosition?: XPosition;
   variant?: Variant;
+  style?: React.CSSProperties;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 }
 
@@ -32,6 +33,7 @@ const Button: FC<IButtonProps> = ({
   size,
   type = 'button',
   variant,
+  style,
   loadingPosition,
   onClick,
   disabled = false,
@@ -60,7 +62,7 @@ const Button: FC<IButtonProps> = ({
   );
 
   return (
-    <Tag {...props} {...rest}>
+    <Tag {...props} {...rest} style={style}>
       {loading && loadingPosition === 'start' && <Loading className="loading mr-2" />}
       {startIcon && <span className="icon mr-2">{startIcon}</span>}
       {content}
