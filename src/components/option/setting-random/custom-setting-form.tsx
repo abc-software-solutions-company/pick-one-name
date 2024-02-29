@@ -9,7 +9,7 @@ import {DEFAULT_SETTING} from '@/common/constants/setting.constant';
 import InputSetting from './input';
 
 const CustomSettingForm = () => {
-  const {bgColor, setBgColor, title, setTitle, textColor, setTextColor} = useSetting();
+  const {bgColor, title, setBgColor, setTitle, textColor, setTextColor} = useSetting();
 
   const [isShowBgColorBox, setIsShowBgColorBox] = useState(false);
   const [isShowTextColorBox, setisShowTextColorBox] = useState(false);
@@ -26,23 +26,32 @@ const CustomSettingForm = () => {
 
   const handleChangeBgColor = (newColor: string) => {
     setBgColor(newColor);
+    localStorage.setItem('bgColor', newColor);
   };
 
   const handleChangeTextColor = (newColor: string) => {
     setTextColor(newColor);
+    localStorage.setItem('textColor', newColor);
   };
 
   const handleInputBgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBgColor(e.target.value);
+    localStorage.setItem('bgColor', e.target.value);
   };
 
   const handleInputTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTextColor(e.target.value);
+    localStorage.setItem('textColor', e.target.value);
+  };
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+    localStorage.setItem('title', e.target.value);
   };
 
   return (
     <>
-      <InputSetting label="Tiêu đề" value={title} iconEnd="pen-line" onChange={e => setTitle(e.target.value)} />
+      <InputSetting label="Tiêu đề" value={title} iconEnd="pen-line" onChange={handleTitleChange} />
       <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" />
       <div className="relative">
         <InputSetting

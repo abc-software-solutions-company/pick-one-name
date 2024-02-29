@@ -14,21 +14,13 @@ interface IRandomMainProps {
 }
 
 const RandomMain: FC<IRandomMainProps> = ({className, button, children}) => {
-  const {bgImage, setBGImage, bgColor} = useSetting();
+  const {bgImage, loadLocal, bgColor} = useSetting();
 
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (localStorage.getItem('backgroundImage')) {
-      setBGImage(localStorage.getItem('backgroundImage')!);
-    }
+    loadLocal();
   }, []);
-
-  useEffect(() => {
-    if (localStorage.getItem('backgroundImage')) {
-      setBGImage(localStorage.getItem('backgroundImage')!);
-    }
-  }, [setBGImage]);
 
   return (
     <div

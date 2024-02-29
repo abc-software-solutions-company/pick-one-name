@@ -8,7 +8,7 @@ import useUpload from '@/common/hooks/use-upload';
 import CustomSettingForm from './custom-setting-form';
 
 const SettingForm: React.FC = () => {
-  const {setIsSettingOpen, Reset, setBGImage} = useSetting();
+  const {setIsSettingOpen, reset, setBGImage} = useSetting();
   const {upload} = useUpload();
 
   const handleCloseSettingModal = () => {
@@ -18,7 +18,7 @@ const SettingForm: React.FC = () => {
   const handleUpFile = async (file: File | FileList | null | undefined) => {
     if (file === null) {
       setBGImage('');
-      localStorage.removeItem('backgroundImage');
+      localStorage.removeItem('bgImage');
       return;
     }
     const resp = await upload(file as File, 1).then(item => {
@@ -26,7 +26,7 @@ const SettingForm: React.FC = () => {
     });
     if (resp?.url) {
       setBGImage(resp?.url);
-      localStorage.setItem('backgroundImage', resp?.url);
+      localStorage.setItem('bgImage', resp?.url);
     }
   };
 
@@ -69,7 +69,7 @@ const SettingForm: React.FC = () => {
         </button>
         <button
           className="flex basis-1/3 items-center justify-center gap-2 py-2 px-3 text-sm text-black md:px-6 md:py-4 md:text-lg lg:text-xl xl:text-xl"
-          onClick={Reset}
+          onClick={reset}
         >
           Đặt lại
         </button>
