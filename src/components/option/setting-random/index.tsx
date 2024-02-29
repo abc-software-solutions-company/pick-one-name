@@ -1,15 +1,17 @@
-import React from 'react';
+import {FC, ReactNode} from 'react';
 
 import {useSetting} from '@/common/hooks/use-setting';
 
-import RandomOption from '..';
-
 import SettingForm from './setting-form';
 
-const SettingGame: React.FC = () => {
+interface ISettingGame {
+  partial?: ReactNode;
+}
+
+const SettingGame: FC<ISettingGame> = ({partial}) => {
   const {isSettingOpen} = useSetting();
 
-  return <>{isSettingOpen ? <SettingForm /> : <RandomOption />}</>;
+  return <>{isSettingOpen ? <SettingForm /> : partial}</>;
 };
 
 export default SettingGame;

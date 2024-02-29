@@ -1,9 +1,9 @@
 .wheel-decide {
   @apply relative z-[0] box-content rounded-full;
-  @apply my-6 h-[250px] w-[250px] sm:h-[310px] sm:w-[310px] md:my-8 md:h-[460px] md:w-[460px] 3xl:h-[510px] 3xl:w-[510px];
+  @apply my-6 h-[250px] w-[250px] sm:h-[310px] sm:w-[310px] md:my-8 md:h-[350px] md:w-[350px] xl:h-[420px] xl:w-[420px] 3xl:h-[610px] 3xl:w-[610px];
   @apply shadow-[0_0_3px_rgb(255,255,255,0.5)];
   @apply after:absolute after:inset-0 after:z-[-1] after:content-[''];
-  @apply after:-m-[10px] after:rounded-full after:md:-m-[35px];
+  @apply after:-m-[15px] after:rounded-full after:md:-m-[25px] after:2xl:-m-[35px];
   @apply after:shadow-[0_0_0_3px_rgba(146,83,177,0.8),0_0_0_3px_rgba(255,255,255,0.8)];
   @apply after:bg-[linear-gradient(225deg,#1813fd_16%,#081bc3_51.91%,#040c59_87.83%)];
 }
