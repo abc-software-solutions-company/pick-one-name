@@ -54,13 +54,13 @@ const SignupForm: React.FC<ISignupFormProps> = () => {
   };
 
   return (
-    <div className="flex h-full flex-col justify-center lg:p-4 lg:py-40 xl:py-20 2xl:px-11">
-      <form className="h-full p-6 md:p-6 2xl:p-8" onSubmit={handleSubmit(onSubmit)}>
+    <div className="flex h-full flex-col items-center justify-center p-4 2xl:px-11">
+      <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
         <div className={classNames('mb-8 flex flex-col gap-2')}>
           <p className="flex w-full justify-start text-5xl text-blue-600">Đăng ký</p>
           <p className="text-base text-gray-500">Chào mừng bạn đến với chúng tôi</p>
         </div>
-        <div className="mb-2 flex flex-col gap-4 lg:mb-8">
+        <div className="mb-2 flex flex-col gap-2 lg:mb-8 xl:gap-4">
           <div>
             <InputPon
               className={`w-full rounded-lg ${
@@ -97,7 +97,7 @@ const SignupForm: React.FC<ISignupFormProps> = () => {
         <button type="submit" className="w-full rounded-lg bg-blue-600 p-4 text-white" disabled={isSubmitting}>
           Đăng ký
         </button>
-        <div className=" mb-6 mt-6 flex w-full justify-center text-lg lg:mb-8">
+        <div className="mb-6 mt-6 flex w-full justify-center text-lg xl:mb-8">
           Bạn chưa có tài khoản?
           <p className="ml-1 cursor-pointer text-lg text-blue-600" onClick={() => route.push('/login')}>
             Đăng nhập
