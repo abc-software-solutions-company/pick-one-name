@@ -1,5 +1,5 @@
-import React, {FC, ReactNode} from 'react';
 import classnames from 'classnames';
+import React, {FC, ReactNode} from 'react';
 
 import styles from './style.module.scss';
 
