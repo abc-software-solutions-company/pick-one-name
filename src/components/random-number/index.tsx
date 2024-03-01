@@ -32,11 +32,11 @@ const RandomNumber: FC = () => {
       )}
       {!isVisible && (
         <button
-          className="-right-12 top-5 inline-flex h-fit max-w-[88px] items-center justify-center rounded-md 
-                  bg-blue-600 py-4 px-8 xl:absolute xl:-right-18 xl:-rotate-90 xl:rounded-tl-xl xl:rounded-tr-xl 3xl:-right-32"
+          className="-right-12 top-5 inline-flex h-9 max-w-[103px] items-center justify-center rounded-md bg-blue-600 
+                  py-4 px-8 md:h-14  xl:absolute xl:-right-18 xl:-rotate-90 xl:rounded-tl-xl xl:rounded-tr-xl 3xl:-right-32"
           onClick={() => setVisible(true)}
         >
-          <p className="text-lg text-slate-50">Hiện</p>
+          <p className=" text-sm text-slate-50 md:text-lg lg:text-lg">Hiện</p>
         </button>
       )}
     </div>

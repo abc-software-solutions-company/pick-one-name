@@ -46,19 +46,19 @@ const RandomMainTop: FC<Iprops> = ({containerRef}) => {
           'bg-opacity-50': !!bgImage || !!bgColor
         })}
       >
-        <div
+        <p
+          style={{
+            color: textColor
+          }}
           className={cls(
             'text-gray-950 rounded bg-neutral-50 px-3 text-lg font-bold tracking-tight md:text-2xl lg:text-[32px]',
             {
               'bg-white': !!bgImage || !!bgColor
             }
           )}
-          style={{
-            color: textColor
-          }}
         >
           {title}
-        </div>
+        </p>
       </div>
       <button
         className="flex max-h-[32px] max-w-[32px] items-center justify-center rounded border-2 border-black bg-transparent p-1 hover:bg-neutral-50 md:max-h-[56px] md:max-w-[56px] md:rounded-lg md:p-4"

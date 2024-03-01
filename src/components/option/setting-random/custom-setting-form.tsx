@@ -9,7 +9,7 @@ import {DEFAULT_SETTING} from '@/common/constants/setting.constant';
 import InputSetting from './input';
 
 const CustomSettingForm = () => {
-  const {bgColor, title, setBgColor, setTitle, textColor, setTextColor} = useSetting();
+  const {bgColor, title, textColor, setBgColor, setTitle, updateLocal, setTextColor} = useSetting();
 
   const [isShowBgColorBox, setIsShowBgColorBox] = useState(false);
   const [isShowTextColorBox, setisShowTextColorBox] = useState(false);
@@ -26,27 +26,27 @@ const CustomSettingForm = () => {
 
   const handleChangeBgColor = (newColor: string) => {
     setBgColor(newColor);
-    localStorage.setItem('bgColor', newColor);
+    updateLocal();
   };
 
   const handleChangeTextColor = (newColor: string) => {
     setTextColor(newColor);
-    localStorage.setItem('textColor', newColor);
+    updateLocal();
   };
 
   const handleInputBgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBgColor(e.target.value);
-    localStorage.setItem('bgColor', e.target.value);
+    updateLocal();
   };
 
   const handleInputTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTextColor(e.target.value);
-    localStorage.setItem('textColor', e.target.value);
+    updateLocal();
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
-    localStorage.setItem('title', e.target.value);
+    updateLocal();
   };
 
   return (
@@ -56,7 +56,7 @@ const CustomSettingForm = () => {
       <div className="relative">
         <InputSetting
           label="Màu nền"
-          placeholder={DEFAULT_SETTING.DEFAULT_WHEEL_BG_COLOR}
+          placeholder={DEFAULT_SETTING.BG_COLOR}
           iconEnd="pen-line"
           value={bgColor}
           onClick={handleBgColorBoxClick}
@@ -71,7 +71,7 @@ const CustomSettingForm = () => {
       <div className="relative">
         <InputSetting
           label="Màu chữ"
-          placeholder={DEFAULT_SETTING.DEFAULT_WHEEL_TEXT_COLOR}
+          placeholder={DEFAULT_SETTING.TEXT_COLOR}
           iconEnd="pen-line"
           value={textColor}
           onClick={handleTextColorBoxClick}

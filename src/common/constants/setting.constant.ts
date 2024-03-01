@@ -1,5 +1,5 @@
 export const DEFAULT_SETTING = {
-  DEFAULT_WHEEL_BG_COLOR: '#fafafa',
-  DEFAULT_WHEEL_TEXT_COLOR: '#111111',
-  TITLE: 'Random Number' || 'Random Wheel'
+  BG_COLOR: '#fafafa',
+  TEXT_COLOR: '#030712',
+  TITLE: 'Vòng quay may mắn'
 };

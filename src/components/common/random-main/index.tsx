@@ -31,7 +31,7 @@ const RandomMain: FC<IRandomMainProps> = ({className, button, children}) => {
       }}
       className={cls(
         className,
-        'flex flex-col items-center justify-between rounded-2xl border border-gray-300 bg-neutral-50 bg-cover bg-center bg-no-repeat p-5 shadow'
+        'flex flex-col items-center justify-between rounded-2xl border border-gray-300 bg-neutral-50 bg-cover bg-center bg-no-repeat p-5 shadow-[0_0_4px_0_#797979]'
       )}
     >
       <RandomMainTop containerRef={containerRef} />

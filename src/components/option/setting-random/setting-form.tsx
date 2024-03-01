@@ -8,7 +8,7 @@ import useUpload from '@/common/hooks/use-upload';
 import CustomSettingForm from './custom-setting-form';
 
 const SettingForm: React.FC = () => {
-  const {setIsSettingOpen, reset, setBGImage} = useSetting();
+  const {setIsSettingOpen, reset, setBGImage, updateLocal} = useSetting();
   const {upload} = useUpload();
 
   const handleCloseSettingModal = () => {
@@ -18,7 +18,7 @@ const SettingForm: React.FC = () => {
   const handleUpFile = async (file: File | FileList | null | undefined) => {
     if (file === null) {
       setBGImage('');
-      localStorage.removeItem('bgImage');
+      updateLocal();
       return;
     }
     const resp = await upload(file as File, 1).then(item => {
@@ -26,7 +26,7 @@ const SettingForm: React.FC = () => {
     });
     if (resp?.url) {
       setBGImage(resp?.url);
-      localStorage.setItem('bgImage', resp?.url);
+      updateLocal();
     }
   };
 
@@ -52,7 +52,7 @@ const SettingForm: React.FC = () => {
             />
             <label
               htmlFor="file-upload"
-              className="flex w-full cursor-pointer justify-center gap-4 rounded-lg border border-blue-600 px-6 py-3 text-sm text-blue-600 lg:text-xl xl:text-xl"
+              className="flex h-9 w-full cursor-pointer items-center justify-center gap-4 rounded-lg border border-blue-600 px-6 py-3 text-sm text-blue-600 md:h-12 lg:h-[50px] lg:text-xl xl:text-xl"
             >
               Tải ảnh lên
               <Icon name="ico-upload" />
@@ -62,7 +62,7 @@ const SettingForm: React.FC = () => {
       </div>
       <div className="flex w-full items-center gap-2">
         <button
-          className="flex grow justify-center gap-4 rounded-lg bg-blue-600 px-6 py-4 text-sm text-white lg:text-xl xl:text-xl"
+          className="flex h-9 grow items-center justify-center gap-4 rounded-lg bg-blue-600 px-6 py-4 text-sm text-white md:h-12 lg:h-[50px] lg:text-xl xl:text-xl"
           onClick={handleCloseSettingModal}
         >
           Hoàn thành

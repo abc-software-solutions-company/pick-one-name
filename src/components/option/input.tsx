@@ -12,7 +12,7 @@ const InputNumber = ({label, value, onChange}: IInputNumberProps) => {
   const {isAnimationStart} = useRandomNumber();
   return (
     <div className="flex flex-col gap-1 lg:gap-4">
-      <label className="items-start text-xl font-bold text-black 3xl:text-2xl">{label}</label>
+      <label className="items-start text-sm font-bold text-black md:text-xl 3xl:text-2xl">{label}</label>
       <input
         disabled={isAnimationStart}
         value={value}

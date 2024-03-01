@@ -15,7 +15,7 @@ const RandomOption: FC = () => {
   return (
     <>
       <div className="flex flex-col gap-2 lg:gap-4 3xl:gap-8">
-        <p className="text-center text-2xl font-bold 3xl:text-3xl">Chọn số ngẫu nhiên</p>
+        <p className="text-center text-lg font-bold md:text-2xl 3xl:text-3xl">Chọn số ngẫu nhiên</p>
         <InputNumber label="Tối thiểu" value={min} onChange={setMin} />
         <InputNumber label="Tối đa (max 9.999.999)" value={max} onChange={setMax} />
       </div>
