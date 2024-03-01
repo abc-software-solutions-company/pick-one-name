@@ -1,15 +1,7 @@
 .wheel-decide__indicator {
-  @apply absolute -left-[50px] top-1/2 -translate-y-1/2;
-  @apply scale-50 md:scale-75 2xl:scale-90;
+  @apply absolute -left-[11px] top-[18px] md:left-[10px] md:top-[62px];
+  @apply -rotate-[55deg] scale-75 md:scale-100;
   path {
     filter: drop-shadow(0 0 1px rgba(56, 56, 56, 0.5));
   }
 }
-
-// .wheel-decide__indicator {
-//   @apply absolute -left-[11px] top-[18px] md:-left-[30px] md:top-1/2;
-//   @apply scale-75 md:scale-100;
-//   path {
-//     filter: drop-shadow(0 0 1px rgba(56, 56, 56, 0.5));
-//   }
-// }
