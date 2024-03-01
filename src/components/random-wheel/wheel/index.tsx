@@ -10,6 +10,8 @@ import LuckyWheel from '@/components/lucky-wheel';
 import ConfirmBox from '@/components/modals/modal-confirm';
 import Congrats from '@/components/modals/modal-congrats';
 
+import {useSetting} from '@/common/hooks/use-setting';
+
 interface IProps {
   className?: string;
 }
@@ -17,6 +19,7 @@ interface IProps {
 const Wheel: FC<IProps> = ({className}) => {
   const game = useGame();
   const toast = useToast();
+  const {textColor} = useSetting();
   const visiblePlayers = game.state.players.items.filter(x => x.visible);
 
   const ToggleDeleteAllPlayers = (value: boolean) => game.dispatch(game.toggleShowDeleteAllPlayer(value));
@@ -55,8 +58,12 @@ const Wheel: FC<IProps> = ({className}) => {
       className={className}
       button={
         <Button
-          className="inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-1 text-sm
-          font-semibold text-neutral-50 hover:bg-blue-700 disabled:bg-slate-500 disabled:text-slate-400 md:h-14 md:py-4 md:px-8 md:text-lg lg:w-[40%]"
+          className="inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg border-2 border-black bg-transparent px-4 py-1
+        text-sm font-semibold text-black hover:bg-neutral-50 md:h-14 md:px-8 md:py-4 md:text-lg lg:w-[40%] lg:text-xl xl:text-xl"
+          style={{
+            color: textColor,
+            borderColor: textColor
+          }}
           variant="contained"
           text="Quay"
           onClick={run}

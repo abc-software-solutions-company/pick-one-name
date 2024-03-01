@@ -1,6 +1,8 @@
 import {create} from 'zustand';
 
-import {DEFAULT_SETTING} from '@/common/constants/setting.constant';
+import {DEFAULT_SETTING} from '../constants';
+import {TDefaultSetting} from '../types';
+import {getLocal, removeLocal, setLocal} from '../utils';
 
 type State = {
   isSettingOpen: boolean;
@@ -26,9 +28,9 @@ type Actions = {
 const initialState: State = {
   isSettingOpen: false,
   isVisible: true,
-  bgColor: '',
-  title: 'Quay số may mắn',
-  textColor: '',
+  bgColor: DEFAULT_SETTING.BG_COLOR,
+  title: DEFAULT_SETTING.TITLE,
+  textColor: DEFAULT_SETTING.TEXT_COLOR,
   bgImage: ''
 };
 
@@ -53,27 +55,27 @@ export const useSetting = create<State & Actions>()((set, get) => ({
     set({bgImage});
   },
   updateLocal() {
-    localStorage.setItem('bgColor', get().bgColor);
-    localStorage.setItem('textColor', get().textColor);
-    localStorage.setItem('title', get().title);
-    localStorage.setItem('bgImage', get().bgImage);
+    setLocal('game-setting', {
+      title: get().title,
+      bgColor: get().bgColor,
+      textColor: get().textColor,
+      bgImage: get().bgImage
+    } as TDefaultSetting);
   },
   loadLocal() {
-    const bgColor = localStorage.getItem('bgColor');
-    const textColor = localStorage.getItem('textColor');
-    const title = localStorage.getItem('title');
-    const bgImage = localStorage.getItem('bgImage');
-    bgColor && set({bgColor});
-    textColor && set({textColor});
-    title && set({title});
-    bgImage && set({bgImage});
+    const gameSetting = getLocal('game-setting') as TDefaultSetting;
+    gameSetting.title && set({title: gameSetting.title});
+    gameSetting.bgColor && set({bgColor: gameSetting.bgColor});
+    gameSetting.textColor && set({textColor: gameSetting.textColor});
+    gameSetting.bgImage && set({bgImage: gameSetting.bgImage});
   },
   reset() {
     set({
       title: DEFAULT_SETTING.TITLE,
-      bgColor: '',
-      textColor: '',
+      bgColor: DEFAULT_SETTING.BG_COLOR,
+      textColor: DEFAULT_SETTING.TEXT_COLOR,
       bgImage: ''
     });
+    removeLocal('game-setting');
   }
 }));
