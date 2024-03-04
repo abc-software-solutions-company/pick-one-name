@@ -1,6 +1,5 @@
 'use client';
 import {FC, MouseEvent, useEffect, useState} from 'react';
-import Image from 'next/image';
 import {useRouter} from 'next/router';
 import {motion, useAnimation} from 'framer-motion';
 
@@ -18,24 +17,10 @@ interface IProps {
 const Header: FC<IProps> = () => {
   const controls = useAnimation();
   const pathName = useRouter().pathname;
-  const [width, setWidth] = useState(0);
   const [activeEl, setActiveEL] = useState<IPropsActiveEl>({
     width: 0,
     position: 0
   });
-
-  const updateWidth = () => {
-    const newWidth = window.innerWidth;
-    setWidth(newWidth);
-  };
-  useEffect(() => {
-    window.addEventListener('resize', updateWidth);
-    updateWidth();
-
-    return () => {
-      window.removeEventListener('resize', updateWidth);
-    };
-  }, []);
 
   useEffect(() => {
     //* Step 1: Đặt vị trí - độ dài underline = với phần tử có class active
@@ -91,12 +76,6 @@ const Header: FC<IProps> = () => {
           onClick={handleSlidingMenu}
           onHover={handleSlidingMenu}
           onBlur={handleBlurMenu}
-        />
-        <Image
-          width={width < 768 ? '142' : '213'}
-          height={width < 768 ? '22' : '32'}
-          src={'/images/logo.png'}
-          alt="logo"
         />
         <HeaderRight />
       </div>

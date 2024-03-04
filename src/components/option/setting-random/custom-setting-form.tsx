@@ -52,22 +52,7 @@ const CustomSettingForm = () => {
   return (
     <>
       <InputSetting label="Tiêu đề" value={title} iconEnd="pen-line" onChange={handleTitleChange} />
-      <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" />
-      <div className="relative">
-        <InputSetting
-          label="Màu nền"
-          placeholder={DEFAULT_SETTING.BG_COLOR}
-          iconEnd="pen-line"
-          value={bgColor}
-          onClick={handleBgColorBoxClick}
-          onChange={handleInputBgChange}
-        />
-        {isShowBgColorBox && (
-          <div className="absolute top-0 right-0 z-[100] mt-25">
-            <ColorPicker color={bgColor} isShow={!!isShowBgColorBox} onChange={handleChangeBgColor} />
-          </div>
-        )}
-      </div>
+      {/* <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" /> */}
       <div className="relative">
         <InputSetting
           label="Màu chữ"
@@ -80,6 +65,21 @@ const CustomSettingForm = () => {
         {isShowTextColorBox && (
           <div className="absolute top-0 right-0 z-[100] mt-25">
             <ColorPicker color={textColor} isShow={!!isShowTextColorBox} onChange={handleChangeTextColor} />
+          </div>
+        )}
+      </div>
+      <div className="relative">
+        <InputSetting
+          label="Màu nền"
+          placeholder={DEFAULT_SETTING.BG_COLOR}
+          iconEnd="pen-line"
+          value={bgColor}
+          onClick={handleBgColorBoxClick}
+          onChange={handleInputBgChange}
+        />
+        {isShowBgColorBox && (
+          <div className="absolute top-0 right-0 z-[100] mt-25">
+            <ColorPicker color={bgColor} isShow={!!isShowBgColorBox} onChange={handleChangeBgColor} />
           </div>
         )}
       </div>
