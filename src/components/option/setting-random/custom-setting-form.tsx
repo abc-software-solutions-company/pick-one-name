@@ -14,12 +14,12 @@ const CustomSettingForm = () => {
   const [isShowBgColorBox, setIsShowBgColorBox] = useState(false);
   const [isShowTextColorBox, setisShowTextColorBox] = useState(false);
 
-  const handleBgColorPickerClick = () => {
+  const toggleBgColorPicker = () => {
     setIsShowBgColorBox(!isShowBgColorBox);
     setisShowTextColorBox(false);
   };
 
-  const handleTextColorPickerClick = () => {
+  const toggleTextColorPicker = () => {
     setisShowTextColorBox(() => !isShowTextColorBox);
     setIsShowBgColorBox(false);
   };
@@ -59,7 +59,7 @@ const CustomSettingForm = () => {
           placeholder={DEFAULT_SETTING.TEXT_COLOR}
           iconEnd="pen-line"
           value={textColor}
-          onClick={handleTextColorPickerClick}
+          onClick={toggleTextColorPicker}
           onChange={handleInputTextChange}
         />
         {isShowTextColorBox && (
@@ -74,7 +74,7 @@ const CustomSettingForm = () => {
           placeholder={DEFAULT_SETTING.BG_COLOR}
           iconEnd="pen-line"
           value={bgColor}
-          onClick={handleBgColorPickerClick}
+          onClick={toggleBgColorPicker}
           onChange={handleInputBgChange}
         />
         {isShowBgColorBox && (
