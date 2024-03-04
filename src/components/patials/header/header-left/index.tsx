@@ -4,8 +4,6 @@ import Link from 'next/link';
 import cls from 'classnames';
 import {linksList} from '@/utils/const';
 
-import {useRandomNumber} from '@/common/hooks/use-random-number';
-
 import {TypeMouseEvent} from '../type';
 
 interface IPropsHeaderLeft {
@@ -16,12 +14,6 @@ interface IPropsHeaderLeft {
 }
 
 const HeaderLeft: FC<IPropsHeaderLeft> = ({pathName, onClick = () => {}, onHover = () => {}, onBlur = () => {}}) => {
-  const {isAnimationStart} = useRandomNumber();
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    if (isAnimationStart) e.preventDefault();
-    onClick(e, 'click');
-  };
-
   return (
     <div className="hidden w-auto items-center gap-8 lg:flex">
       {linksList.map(link => (
@@ -31,7 +23,7 @@ const HeaderLeft: FC<IPropsHeaderLeft> = ({pathName, onClick = () => {}, onHover
           className={cls('cursor-pointer text-lg font-semibold leading-6 hover:text-gray-300 hover:no-underline', {
             active: link.href === pathName
           })}
-          onClick={handleClick}
+          onClick={e => onClick(e, 'click')}
           onMouseEnter={e => onHover(e, 'hover')}
           onMouseLeave={e => onBlur(e)}
         >
