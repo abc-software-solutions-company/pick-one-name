@@ -17,17 +17,17 @@ const HeaderLeft: FC<IPropsHeaderLeft> = ({pathName, onClick = () => {}, onHover
   return (
     <div className="hidden w-auto items-center gap-8 lg:flex">
       {linksList.map(link => (
-        <Link href={link.href} key={link.href}>
-          <span
-            className={cls('cursor-pointer text-lg font-semibold leading-6 hover:text-gray-300 hover:no-underline', {
-              active: link.href === pathName
-            })}
-            onClick={e => onClick(e, 'click')}
-            onMouseEnter={e => onHover(e, 'hover')}
-            onMouseLeave={e => onBlur(e)}
-          >
-            {link.title}
-          </span>
+        <Link
+          href={link.href}
+          key={link.href}
+          className={cls('cursor-pointer text-lg font-semibold leading-6 hover:text-gray-300 hover:no-underline', {
+            active: link.href === pathName
+          })}
+          onClick={e => onClick(e, 'click')}
+          onMouseEnter={e => onHover(e, 'hover')}
+          onMouseLeave={e => onBlur(e)}
+        >
+          {link.title}
         </Link>
       ))}
     </div>

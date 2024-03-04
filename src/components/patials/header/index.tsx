@@ -2,9 +2,12 @@
 import {FC, MouseEvent, useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 import {motion, useAnimation} from 'framer-motion';
+import {useGame} from '@/states/game';
 
 import SoundController from '@/components/sound-controller';
 import SoundManager from '@/components/sound-manager';
+
+import {useRandomNumber} from '@/common/hooks/use-random-number';
 
 import HeaderLeft from './header-left';
 import HeaderRight from './header-right';
@@ -17,6 +20,9 @@ interface IProps {
 const Header: FC<IProps> = () => {
   const controls = useAnimation();
   const pathName = useRouter().pathname;
+  const {isAnimationStart} = useRandomNumber();
+  const game = useGame();
+
   const [activeEl, setActiveEL] = useState<IPropsActiveEl>({
     width: 0,
     position: 0
@@ -34,6 +40,10 @@ const Header: FC<IProps> = () => {
   }, [pathName]);
 
   const handleSlidingMenu = (e: MouseEvent<HTMLSpanElement>, type: TypeMouseEvent) => {
+    if (isAnimationStart || game.state.isSpinning) {
+      e.preventDefault();
+      return;
+    }
     //* Step 2: Đặt lại vị trí - độ dài underline khi click hoặc hover
     const linkPostion = e.currentTarget?.getBoundingClientRect().left;
     const linkWidth = e.currentTarget?.getBoundingClientRect().width;
