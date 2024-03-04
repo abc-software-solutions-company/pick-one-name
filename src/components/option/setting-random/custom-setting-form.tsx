@@ -11,17 +11,17 @@ import InputSetting from './input';
 const CustomSettingForm = () => {
   const {bgColor, title, textColor, setBgColor, setTitle, updateLocal, setTextColor} = useSetting();
 
-  const [isShowBgColorBox, setIsShowBgColorBox] = useState(false);
-  const [isShowTextColorBox, setisShowTextColorBox] = useState(false);
+  const [isShowBgColorPicker, setIsShowBgColorPicker] = useState(false);
+  const [isShowTextColorPicker, setisShowTextColorPicker] = useState(false);
 
   const toggleBgColorPicker = () => {
-    setIsShowBgColorBox(!isShowBgColorBox);
-    setisShowTextColorBox(false);
+    setIsShowBgColorPicker(!isShowBgColorPicker);
+    setisShowTextColorPicker(false);
   };
 
   const toggleTextColorPicker = () => {
-    setisShowTextColorBox(() => !isShowTextColorBox);
-    setIsShowBgColorBox(false);
+    setisShowTextColorPicker(() => !isShowTextColorPicker);
+    setIsShowBgColorPicker(false);
   };
 
   const handleChangeBgColor = (newColor: string) => {
@@ -62,9 +62,9 @@ const CustomSettingForm = () => {
           onClick={toggleTextColorPicker}
           onChange={handleInputTextChange}
         />
-        {isShowTextColorBox && (
+        {isShowTextColorPicker && (
           <div className="absolute top-0 right-0 z-[100] mt-25">
-            <ColorPicker color={textColor} isShow={!!isShowTextColorBox} onChange={handleChangeTextColor} />
+            <ColorPicker color={textColor} isShow={!!isShowTextColorPicker} onChange={handleChangeTextColor} />
           </div>
         )}
       </div>
@@ -77,9 +77,9 @@ const CustomSettingForm = () => {
           onClick={toggleBgColorPicker}
           onChange={handleInputBgChange}
         />
-        {isShowBgColorBox && (
+        {isShowBgColorPicker && (
           <div className="absolute top-0 right-0 z-[100] mt-25">
-            <ColorPicker color={bgColor} isShow={!!isShowBgColorBox} onChange={handleChangeBgColor} />
+            <ColorPicker color={bgColor} isShow={!!isShowBgColorPicker} onChange={handleChangeBgColor} />
           </div>
         )}
       </div>
