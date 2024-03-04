@@ -1,1 +1,5 @@
-- 3/4/2024 ["Tiêu đề", "Màu nền", "Màu chữ", "Hình nền"]
+### 3/4/2024 
+- Title
+- Background color
+- Text color
+- Background image
