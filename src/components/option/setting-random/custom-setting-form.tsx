@@ -11,17 +11,17 @@ import InputSetting from './input';
 const CustomSettingForm = () => {
   const {bgColor, title, textColor, setBgColor, setTitle, updateLocal, setTextColor} = useSetting();
 
-  const [isShowBgColorBox, setIsShowBgColorBox] = useState(false);
-  const [isShowTextColorBox, setisShowTextColorBox] = useState(false);
+  const [isShowBgColorPicker, setIsShowBgColorPicker] = useState(false);
+  const [isShowTextColorPicker, setisShowTextColorPicker] = useState(false);
 
-  const handleBgColorBoxClick = () => {
-    setIsShowBgColorBox(!isShowBgColorBox);
-    setisShowTextColorBox(false);
+  const toggleBgColorPicker = () => {
+    setIsShowBgColorPicker(!isShowBgColorPicker);
+    setisShowTextColorPicker(false);
   };
 
-  const handleTextColorBoxClick = () => {
-    setisShowTextColorBox(() => !isShowTextColorBox);
-    setIsShowBgColorBox(false);
+  const toggleTextColorPicker = () => {
+    setisShowTextColorPicker(() => !isShowTextColorPicker);
+    setIsShowBgColorPicker(false);
   };
 
   const handleChangeBgColor = (newColor: string) => {
@@ -52,34 +52,34 @@ const CustomSettingForm = () => {
   return (
     <>
       <InputSetting label="Tiêu đề" value={title} iconEnd="pen-line" onChange={handleTitleChange} />
-      <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" />
-      <div className="relative">
-        <InputSetting
-          label="Màu nền"
-          placeholder={DEFAULT_SETTING.BG_COLOR}
-          iconEnd="pen-line"
-          value={bgColor}
-          onClick={handleBgColorBoxClick}
-          onChange={handleInputBgChange}
-        />
-        {isShowBgColorBox && (
-          <div className="absolute top-0 right-0 z-[100] mt-25">
-            <ColorPicker color={bgColor} isShow={!!isShowBgColorBox} onChange={handleChangeBgColor} />
-          </div>
-        )}
-      </div>
+      {/* <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" /> */}
       <div className="relative">
         <InputSetting
           label="Màu chữ"
           placeholder={DEFAULT_SETTING.TEXT_COLOR}
           iconEnd="pen-line"
           value={textColor}
-          onClick={handleTextColorBoxClick}
+          onClick={toggleTextColorPicker}
           onChange={handleInputTextChange}
         />
-        {isShowTextColorBox && (
+        {isShowTextColorPicker && (
           <div className="absolute top-0 right-0 z-[100] mt-25">
-            <ColorPicker color={textColor} isShow={!!isShowTextColorBox} onChange={handleChangeTextColor} />
+            <ColorPicker color={textColor} isShow={!!isShowTextColorPicker} onChange={handleChangeTextColor} />
+          </div>
+        )}
+      </div>
+      <div className="relative">
+        <InputSetting
+          label="Màu nền"
+          placeholder={DEFAULT_SETTING.BG_COLOR}
+          iconEnd="pen-line"
+          value={bgColor}
+          onClick={toggleBgColorPicker}
+          onChange={handleInputBgChange}
+        />
+        {isShowBgColorPicker && (
+          <div className="absolute top-0 right-0 z-[100] mt-25">
+            <ColorPicker color={bgColor} isShow={!!isShowBgColorPicker} onChange={handleChangeBgColor} />
           </div>
         )}
       </div>

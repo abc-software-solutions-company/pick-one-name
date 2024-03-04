@@ -38,9 +38,9 @@ const RandomMainTop: FC<Iprops> = ({containerRef}) => {
 
   return (
     <div className="flex w-full items-center justify-between">
-      <div className="w-10 md:w-[56px]"></div>
+      <div className="w-10 max-w-[32px] md:w-[56px]"></div>
       <div
-        className={cls('flex max-h-9 items-center justify-center px-1 py-3 md:max-h-[52px] md:p-3 lg:max-h-14', {
+        className={cls('flex items-center justify-center p-2 md:p-3', {
           'rounded-lg': !!bgImage || !!bgColor,
           'bg-neutral-50': !!bgImage || !!bgColor,
           'bg-opacity-50': !!bgImage || !!bgColor
@@ -51,7 +51,7 @@ const RandomMainTop: FC<Iprops> = ({containerRef}) => {
             color: textColor
           }}
           className={cls(
-            'text-gray-950 rounded bg-neutral-50 px-3 text-lg font-bold tracking-tight md:text-2xl lg:text-[32px]',
+            'text-gray-950 whitespace-nowrap rounded bg-neutral-50 px-2 text-center text-lg font-bold tracking-tight md:px-3 md:py-1 md:text-2xl lg:text-[32px]',
             {
               'bg-neutral-50': !!bgImage || !!bgColor
             }
