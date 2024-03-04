@@ -100,8 +100,8 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
     >
       <div className="flex w-full items-center justify-center rounded-sm text-center">
         <div
-          className="relative flex h-16 w-full items-center gap-3 overflow-hidden rounded-xl 
-        md:h-24 lg:h-lg-number-container xs:h-14 3xl:h-2xl-number-container"
+          className="relative flex h-14 w-full items-center gap-3 overflow-hidden rounded-xl 
+        md:h-24 lg:h-lg-number-container 3xl:h-2xl-number-container"
         >
           <div
             className="wheel-container flex h-full w-full items-center justify-center 
