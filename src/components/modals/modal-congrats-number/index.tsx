@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import classnames from 'classnames';
 
-import Button from '@/core-ui/button';
 import {Modal} from '@/core-ui/modal';
 
 import {useSetting} from '@/common/hooks/use-setting';
@@ -16,7 +15,7 @@ interface ICongratsNumberProps {
 }
 
 const CongratsNumber: FC<ICongratsNumberProps> = ({className, number, open, onClose}) => {
-  const {textColor, bgColor} = useSetting();
+  const {textColor} = useSetting();
   if (!open) return null;
 
   return (
@@ -31,22 +30,22 @@ const CongratsNumber: FC<ICongratsNumberProps> = ({className, number, open, onCl
           Chúc mừng bạn
         </h3>
         <h3
-          className="text-3xl font-bold tracking-wide text-zinc-900 md:text-[40px] lg:text-5xl"
+          className="text-center text-5xl font-bold tracking-wide text-zinc-900 md:text-6xl lg:text-7xl"
           style={{color: textColor}}
         >
           {number}
         </h3>
-        <Button
-          className="relative z-20 w-full max-w-1/2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-neutral-50
-          md:max-w-xs md:px-14 md:py-4 md:text-lg"
+        <button
+          className="relative z-20 w-full max-w-1/2 rounded-lg border-2 bg-transparent px-4 py-2 text-sm
+          font-semibold md:max-w-xs md:px-14 md:py-4 md:text-lg"
           style={{
-            backgroundColor: bgColor,
-            color: textColor
+            color: textColor,
+            borderColor: textColor
           }}
-          color="primary"
-          text="Xong"
           onClick={onClose}
-        />
+        >
+          Xong
+        </button>
         <div className="animation">
           <lottie-player src={'/congrats.json'} background="transparent" speed="1" loop autoplay></lottie-player>
         </div>

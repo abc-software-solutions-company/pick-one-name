@@ -53,7 +53,7 @@ const RandomMainTop: FC<Iprops> = ({containerRef}) => {
           className={cls(
             'text-gray-950 rounded bg-neutral-50 px-3 text-lg font-bold tracking-tight md:text-2xl lg:text-[32px]',
             {
-              'bg-white': !!bgImage || !!bgColor
+              'bg-neutral-50': !!bgImage || !!bgColor
             }
           )}
         >

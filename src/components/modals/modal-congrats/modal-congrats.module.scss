@@ -6,7 +6,7 @@
     @apply mb-10 mt-4 text-center text-h1 text-zinc-900;
   }
   .abc-modal-content {
-    @apply bg-white;
+    @apply bg-white py-4;
   }
   .animation {
     @apply absolute left-1/2 top-1/2 z-10 w-[120%] -translate-x-1/2 -translate-y-1/2;
