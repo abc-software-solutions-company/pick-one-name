@@ -11,7 +11,7 @@ const SettingButton: React.FC<ISettingButtonProps> = ({onClick}) => {
         text-slate-50 hover:bg-blue-700 md:h-12 lg:h-14 lg:rounded-lg lg:py-4 lg:px-8 lg:text-xl"
       onClick={onClick}
     >
-      Cài đặt
+      Tùy chỉnh
     </button>
   );
 };
