@@ -2,12 +2,16 @@ import React from 'react';
 
 import Icon from '@/core-ui/icon';
 
+import {useGlobal} from '@/common/hooks/use-global';
 import {useSetting} from '@/common/hooks/use-setting';
+
+import ConfirmBox from '../modals/modal-confirm';
 
 import CustomSettingForm from './custom-setting-form';
 
 const SettingForm: React.FC = () => {
   const {setIsSettingOpen, reset} = useSetting();
+  const {confirm, configConfirmBox} = useGlobal();
 
   const handleCloseSettingModal = () => {
     setIsSettingOpen(false);
@@ -36,6 +40,13 @@ const SettingForm: React.FC = () => {
           Đặt lại
         </button>
       </div>
+      <ConfirmBox
+        open={confirm.show}
+        message={confirm.message}
+        headerText="Thông báo"
+        onYes={() => configConfirmBox({show: false, message: ''})}
+        onNo={() => configConfirmBox({show: false, message: ''})}
+      />
     </div>
   );
 };

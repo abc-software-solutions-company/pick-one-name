@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {useSession} from 'next-auth/react';
 
 import ColorPicker from '@/core-ui/color-picker';
 import ColorPickerIcon from '@/core-ui/color-picker-icon';
@@ -6,15 +7,19 @@ import Icon from '@/core-ui/icon';
 import InputPon from '@/core-ui/input-pon';
 import Switcher from '@/core-ui/switcher';
 
+import {useGlobal} from '@/common/hooks/use-global';
 import {useSetting} from '@/common/hooks/use-setting';
 import useUpload from '@/common/hooks/use-upload';
 
+import {ENUM_PLAN} from '@/common/constants';
 import {DEFAULT_SETTING} from '@/common/constants/setting.constant';
 
 const CustomSettingForm = () => {
+  const {upload} = useUpload();
+  const {data: session} = useSession();
+  const {configConfirmBox} = useGlobal();
   const {text, button, background, isTextFrame, updateLocal, setBackground, setButton, setText, toggleTextFrame} =
     useSetting();
-  const {upload} = useUpload();
 
   const [showColorPicker, setShowColorPicker] = useState({
     background: false,
@@ -67,6 +72,15 @@ const CustomSettingForm = () => {
     }
   };
 
+  const handleClickWhenNotPremium = () => {
+    if (!session?.user?.id || session?.user.plan === ENUM_PLAN.FREE) {
+      configConfirmBox({
+        show: true,
+        message: 'Tính năng này chỉ áp dụng với tài khoản premium!!!'
+      });
+    }
+  };
+
   const handleToggleTextFrame = () => {
     toggleTextFrame(!isTextFrame);
     updateLocal();
@@ -79,7 +93,7 @@ const CustomSettingForm = () => {
         <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">Tiêu đề</label>
         <div className="flex items-center gap-1 xl:gap-2">
           <InputPon
-            className="focus:border-2 focus:border-black"
+            className="rounded-lg border p-2 text-sm focus:border-2 focus:border-black md:py-3 md:px-2 md:text-lg"
             value={text.value}
             onChange={handleTitleChange}
             placeholder="Vòng quay may mắn"
@@ -93,7 +107,7 @@ const CustomSettingForm = () => {
         </div>
       </div>
       <div className="flex items-center gap-2">
-        <Switcher onChange={handleToggleTextFrame} />
+        <Switcher checked={isTextFrame} onChange={handleToggleTextFrame} />
         <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">Khung chữ</label>
       </div>
 
@@ -101,7 +115,7 @@ const CustomSettingForm = () => {
         <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">Nút</label>
         <div className="flex items-center gap-1 xl:gap-2">
           <InputPon
-            className="focus:border-2 focus:border-black"
+            className="rounded-lg border border-gray-300 bg-neutral-50 p-2 text-sm focus:border-2 focus:border-black md:py-3 md:px-2 md:text-lg"
             value={button.value}
             placeholder={DEFAULT_SETTING.BUTTON_VALUE}
             onChange={handleInputButtonChange}
@@ -118,24 +132,21 @@ const CustomSettingForm = () => {
       <div className="relative flex flex-col gap-1 xl:gap-2">
         <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">Nền</label>
         <div className="flex items-center gap-1 xl:gap-2">
-          <div className="flex flex-grow rounded border border-slate-300">
+          <label
+            htmlFor="file-upload"
+            className="flex w-full flex-grow cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-300 px-6 py-2 text-sm text-blue-600 md:py-3 lg:text-xl"
+            onClick={handleClickWhenNotPremium}
+          >
             <input
               hidden
               accept="image/*"
               id="file-upload"
-              type="file"
-              onChange={e => {
-                handleUpFile(e.currentTarget?.files?.[0]);
-              }}
+              type={!session?.user?.id || session?.user.plan === ENUM_PLAN.FREE ? 'hidden' : 'file'}
+              onChange={e => handleUpFile(e.currentTarget?.files?.[0])}
             />
-            <label
-              htmlFor="file-upload"
-              className="flex h-9 w-full cursor-pointer items-center justify-center gap-4 rounded-lg px-6 py-2 text-sm text-blue-600 lg:text-lg"
-            >
-              Tải ảnh lên
-              <Icon name="ico-upload" />
-            </label>
-          </div>
+            Tải ảnh lên
+            <Icon name="ico-upload" />
+          </label>
           <ColorPickerIcon onClick={() => toggleColorPicker('background')} color={background.color} />
           {showColorPicker.background && (
             <div className="absolute top-0 right-0 z-20 mt-20">
