@@ -1,10 +1,10 @@
-interface IInputInforForm {
+interface IInputUpdateUserProfile{
   label: string;
   placeholder: string;
   type: string;
 }
 
-const InputInforForm: React.FC<IInputInforForm> = ({label, type, placeholder}) => {
+const InputUpdateUserProfile: React.FC<IInputUpdateUserProfile> = ({label, type, placeholder}) => {
   return (
     <div className="mb-4">
       <div className="text-gray-950 mb-4 text-lg font-bold md:text-lg xl:text-2xl">{label}</div>
@@ -17,4 +17,4 @@ const InputInforForm: React.FC<IInputInforForm> = ({label, type, placeholder}) =
   );
 };
 
-export default InputInforForm;
+export default InputUpdateUserProfile;
