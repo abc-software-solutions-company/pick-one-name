@@ -65,7 +65,7 @@ export default function DrawerNavbar(props: Props) {
       <CssBaseline />
       <AppBar
         component="nav"
-        className="relative top-0 w-full border-b border-gray-300 bg-neutral-50 px-5 py-2 text-dark-950 shadow-none md:max-h-21 md:py-4 md:px-5 lg:px-[50px] 3xl:px-[100px]"
+        className="relative w-full border-b border-gray-300 bg-neutral-50 px-5 py-2 text-dark-950 shadow-none md:max-h-21 md:py-4 md:px-5 lg:px-[50px] 3xl:px-[100px]"
       >
         <div className="flex items-center">
           <IconButton aria-label="open drawer" className="p-1 lg:hidden" onClick={handleDrawerToggle}>
@@ -74,23 +74,21 @@ export default function DrawerNavbar(props: Props) {
           <Header />
         </div>
       </AppBar>
-      <nav>
-        <Drawer
-          className="lg:hidden"
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true
-          }}
-          sx={{
-            '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth}
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
+      <Drawer
+        className="lg:hidden"
+        container={container}
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true
+        }}
+        sx={{
+          '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth}
+        }}
+      >
+        {drawer}
+      </Drawer>
     </>
   );
 }
