@@ -1,6 +1,10 @@
 export type TDefaultSetting = {
-  title: string;
-  bgColor: string;
-  textColor: string;
-  bgImage: string;
+  background: TAttrSetting;
+  text: TAttrSetting;
+  button: TAttrSetting;
+};
+
+export type TAttrSetting = {
+  value: string;
+  color: string;
 };

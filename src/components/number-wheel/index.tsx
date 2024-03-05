@@ -34,7 +34,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
     generateNumberList,
     generateWheelNumbers
   } = useRandomNumber();
-  const {textColor} = useSetting();
+  const {text, button} = useSetting();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const toast = useToast();
 
@@ -88,13 +88,13 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
           className="inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg border-2 border-black bg-transparent px-4 py-1
         text-sm font-semibold text-black hover:bg-neutral-50 md:h-14 md:px-8 md:py-4 md:text-lg lg:w-[40%] lg:text-xl xl:text-xl"
           style={{
-            color: textColor,
-            borderColor: textColor
+            color: button.color,
+            borderColor: button.color
           }}
           disabled={isAnimationStart || !isInputValid}
           onClick={handleClick}
         >
-          Quay
+          {button.value}
         </button>
       }
     >
@@ -106,7 +106,7 @@ const NumberWheel: FC<INumberWheelProps> = ({className}) => {
           <div
             className="wheel-container flex h-full w-full items-center justify-center 
             gap-11 md:scale-175 lg:scale-150 lg:gap-14 xs:scale-100 xs:gap-10 3xl:gap-20"
-            style={{color: textColor}}
+            style={{color: text.color}}
           >
             {randomNumberList.map((n, i) => (
               <Rotaion

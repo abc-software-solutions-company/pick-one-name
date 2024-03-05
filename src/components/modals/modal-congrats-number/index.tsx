@@ -15,7 +15,7 @@ interface ICongratsNumberProps {
 }
 
 const CongratsNumber: FC<ICongratsNumberProps> = ({className, number, open, onClose}) => {
-  const {textColor} = useSetting();
+  const {button, text} = useSetting();
   if (!open) return null;
 
   return (
@@ -26,12 +26,12 @@ const CongratsNumber: FC<ICongratsNumberProps> = ({className, number, open, onCl
       onClose={onClose!}
     >
       <Modal.Body className="relative flex flex-col items-center justify-center gap-5 md:gap-8">
-        <h3 className="text-2xl font-bold text-blue-300 md:text-[40px] lg:text-5xl" style={{color: textColor}}>
+        <h3 className="text-2xl font-bold text-blue-300 md:text-[40px] lg:text-5xl" style={{color: text.color}}>
           Chúc mừng bạn
         </h3>
         <h3
           className="text-center text-5xl font-bold tracking-wide text-zinc-900 md:text-6xl lg:text-7xl"
-          style={{color: textColor}}
+          style={{color: text.color}}
         >
           {number}
         </h3>
@@ -39,8 +39,8 @@ const CongratsNumber: FC<ICongratsNumberProps> = ({className, number, open, onCl
           className="relative z-20 w-full max-w-1/2 rounded-lg border-2 bg-transparent px-4 py-2 text-sm
           font-semibold md:max-w-xs md:px-14 md:py-4 md:text-lg"
           style={{
-            color: textColor,
-            borderColor: textColor
+            color: button.color,
+            borderColor: button.color
           }}
           onClick={onClose}
         >
