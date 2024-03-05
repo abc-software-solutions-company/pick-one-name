@@ -1,5 +1,3 @@
-import {transaltion} from './translation';
-
 const linksList = [
   {
     href: '/',
@@ -13,28 +11,16 @@ const linksList = [
 
 const findUsList = [
   {
-    icon: 'ico-discord',
-    href: ''
-  },
-  {
     icon: 'ico-facebook-fill',
-    href: transaltion.footer.facebook
+    href: 'https://www.facebook.com/abcsoftwaresolutionscompany?utm_source=abcsoftwarecompany.com&utm_medium=banner&utm_campaign=n%2Fa'
   },
   {
     icon: 'ico-linkedin-fill',
-    href: transaltion.footer.linkedin
+    href: 'https://www.linkedin.com/company/abc-software-solutions-company/?utm_source=abcsoftwarecompany.com&utm_medium=banner&utm_campaign=n/a'
   }
 ];
 
 const infoList = [
-  {
-    title: 'About',
-    href: 'about'
-  },
-  {
-    title: 'Privacy policy',
-    href: 'privacy-policy'
-  },
   {
     title: 'Term of service',
     href: 'term-of-service'

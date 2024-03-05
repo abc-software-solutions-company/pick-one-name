@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {transaltion} from '@/utils/translation';
+import Link from 'next/link';
 
 import FooterLeft from './footer-left';
 import FooterRight from './footer-right';
@@ -11,7 +11,12 @@ const Footer: FC = () => {
         <FooterLeft />
         <FooterRight />
       </div>
-      <p className="lead font-poppins text-center text-xs font-medium text-blue-500">{transaltion.footer.createdBy}</p>
+      <Link
+        href={'https://abcsoftwarecompany.com/'}
+        className="lead font-poppins text-center text-xs font-medium text-blue-500"
+      >
+        Created by ABC Software Solutions Company
+      </Link>
     </div>
   );
 };
