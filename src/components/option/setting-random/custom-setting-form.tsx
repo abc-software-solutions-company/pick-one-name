@@ -13,7 +13,6 @@ import InputSetting from './input';
 const CustomSettingForm = () => {
   const {text, button, background, updateLocal, setBackground, setButton, setText} = useSetting();
   const {upload} = useUpload();
-  const [backgroundValue, setBackgroundValue] = useState('');
 
   const [showColorPicker, setShowColorPicker] = useState({
     background: false,
@@ -62,8 +61,6 @@ const CustomSettingForm = () => {
       return;
     }
 
-    setBackgroundValue(file?.name || '');
-
     const resp = await upload(file as File, 1).then(item => {
       return item;
     });
@@ -109,7 +106,7 @@ const CustomSettingForm = () => {
         <div className="relative flex-grow">
           <InputSetting
             label="Nền"
-            value={backgroundValue}
+            value={background.value}
             color={background.color}
             placeholder={'Mặc định'}
             onClick={() => toggleColorPicker('background')}
