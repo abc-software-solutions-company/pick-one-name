@@ -13,7 +13,7 @@ interface Iprops {
 
 const RandomMainTop: FC<Iprops> = ({containerRef}) => {
   const {isZoom, setZoom} = useGlobal();
-  const {text, background, button, loadLocal} = useSetting();
+  const {text, background, button, isTextFrame, loadLocal} = useSetting();
 
   useEffect(() => {
     loadLocal();
@@ -43,7 +43,8 @@ const RandomMainTop: FC<Iprops> = ({containerRef}) => {
         className={cls('flex items-center justify-center p-2 md:p-3', {
           'rounded-lg': !!background.value || !!background.color,
           'bg-neutral-50': !!background.value || !!background.color,
-          'bg-opacity-50': !!background.value || !!background.color
+          'bg-opacity-50': !!background.value || !!background.color,
+          'bg-inherit': !isTextFrame
         })}
       >
         <p
@@ -53,7 +54,8 @@ const RandomMainTop: FC<Iprops> = ({containerRef}) => {
           className={cls(
             'text-gray-950 whitespace-nowrap rounded bg-neutral-50 px-2 text-center text-lg font-bold tracking-tight md:px-3 md:py-1 md:text-2xl lg:text-[32px]',
             {
-              'bg-neutral-50': !!background.value || !!background.color
+              'bg-neutral-50': !!background.value || !!background.color,
+              'bg-inherit': !isTextFrame
             }
           )}
         >
