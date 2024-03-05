@@ -8,7 +8,7 @@ interface IColorPickerIcon {
 const ColorPickerIcon: FC<IColorPickerIcon> = ({color, onClick}) => {
   return (
     <div
-      className="h-8 w-8 rounded border-2"
+      className="h-8 w-8 cursor-pointer rounded border-2"
       style={{
         backgroundColor: color
       }}
