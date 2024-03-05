@@ -1,5 +1,4 @@
-import InputUpdateUserProfile from "./input";
-
+import InputUpdateUserProfile from './input';
 
 const InforForm = () => {
   return (

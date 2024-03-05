@@ -1,4 +1,4 @@
-interface IInputUpdateUserProfile{
+interface IInputUpdateUserProfile {
   label: string;
   placeholder: string;
   type: string;
