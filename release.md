@@ -9,6 +9,6 @@
 ### 5/3/2024
 
     - Update setting game UI
-        + title - change text color
-        + button - change button color
-        + background - change background color, image
+        + Title - Change text color
+        + Button - Change button color
+        + Background - Change background color, image
