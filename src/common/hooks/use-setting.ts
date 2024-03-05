@@ -7,6 +7,7 @@ import {getLocal, removeLocal, setLocal} from '../utils';
 type State = {
   isSettingOpen: boolean;
   isVisible: boolean;
+  isTextFrame: boolean;
   background: TAttrSetting;
   text: TAttrSetting;
   button: TAttrSetting;
@@ -15,6 +16,7 @@ type State = {
 type Actions = {
   setIsSettingOpen: (isSettingOpen: boolean) => void;
   setVisible: (isVisible: boolean) => void;
+  toggleTextFrame: (isShow: boolean) => void;
   setBackground: (type: 'color' | 'value', value: string) => void;
   setText: (type: 'color' | 'value', value: string) => void;
   setButton: (type: 'color' | 'value', value: string) => void;
@@ -26,6 +28,7 @@ type Actions = {
 const initialState: State = {
   isSettingOpen: false,
   isVisible: true,
+  isTextFrame: true,
   background: {
     color: DEFAULT_SETTING.BG_COLOR,
     value: ''
@@ -48,6 +51,9 @@ export const useSetting = create<State & Actions>()((set, get) => ({
   setIsSettingOpen(isSettingOpen: boolean) {
     set({isSettingOpen});
   },
+  toggleTextFrame: (isShow: boolean) => {
+    set({isTextFrame: isShow});
+  },
   setBackground: (type: 'color' | 'value', value: string) => {
     set({background: {...get().background, [type]: value}});
   },
@@ -59,6 +65,7 @@ export const useSetting = create<State & Actions>()((set, get) => ({
   },
   updateLocal() {
     setLocal('game-setting', {
+      isTextFrame: get().isTextFrame,
       text: {
         color: get().text.color,
         value: get().text.value
@@ -75,12 +82,14 @@ export const useSetting = create<State & Actions>()((set, get) => ({
   },
   loadLocal() {
     const gameSetting = getLocal('game-setting') as TDefaultSetting;
+    gameSetting.isTextFrame && set({isTextFrame: gameSetting.isTextFrame});
     gameSetting.text && set({text: gameSetting.text});
     gameSetting.background && set({background: gameSetting.background});
     gameSetting.button && set({button: gameSetting.button});
   },
   reset() {
     set({
+      isTextFrame: true,
       background: {
         color: DEFAULT_SETTING.BG_COLOR,
         value: ''

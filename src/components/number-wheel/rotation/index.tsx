@@ -1,5 +1,8 @@
 import React, {FC, useEffect, useState} from 'react';
+import classNames from 'classnames';
 import {AnimationControls, motion} from 'framer-motion';
+
+import {useSetting} from '@/common/hooks/use-setting';
 
 import {IrotateWheelProps, IWheelNumbers} from '../type';
 
@@ -21,9 +24,14 @@ const rotateWheel = {
 };
 
 const Rotaion: FC<IRotateProps> = ({position, numbers, controls, animationStart}) => {
+  const {isTextFrame, loadLocal} = useSetting();
   const spinCount = 8;
   const offset = (360 / 10) * position;
   const [endValue, setEndValue] = useState<number>(360 * spinCount - offset);
+
+  useEffect(() => {
+    loadLocal();
+  }, []);
 
   useEffect(() => {
     if (animationStart) {
@@ -38,8 +46,12 @@ const Rotaion: FC<IRotateProps> = ({position, numbers, controls, animationStart}
   return (
     <div className="user-select-none relative flex items-center overflow-visible perspective-1000">
       <div
-        className="absolute left-1/2 top-1/2 z-10 h-[55px] w-[41px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-neutral-50 p-4 px-2
-        md:h-[55px] lg:h-lg-number-box lg:w-lg-number-box xs:w-[37px] 3xl:h-2xl-number-box 3xl:w-2xl-number-box"
+        className={classNames(
+          'absolute left-1/2 top-1/2 z-10 h-[55px] w-[41px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-neutral-50 p-4 px-2 md:h-[55px] lg:h-lg-number-box lg:w-lg-number-box xs:w-[37px] 3xl:h-2xl-number-box 3xl:w-2xl-number-box',
+          {
+            'bg-inherit': !isTextFrame
+          }
+        )}
       ></div>
 
       <motion.div
