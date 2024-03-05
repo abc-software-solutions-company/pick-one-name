@@ -6,7 +6,7 @@ import {useTimer} from '@/common/hooks/use-timer';
 const Timer: FC = () => {
   const {timer, setTimer} = useTimer();
   const [mounted, setMounted] = useState(false);
-  const {textColor} = useSetting();
+  const {button} = useSetting();
 
   useEffect(() => {
     setMounted(true);
@@ -23,7 +23,7 @@ const Timer: FC = () => {
   return (
     <>
       {mounted && (
-        <p className="rounded-sm p-1 text-sm font-semibold text-gray-900" style={{color: textColor}}>
+        <p className="rounded-sm p-1 text-sm font-semibold text-gray-900" style={{color: button.color}}>
           {timer} UTC
         </p>
       )}

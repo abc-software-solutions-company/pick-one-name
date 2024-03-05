@@ -14,7 +14,7 @@ interface IRandomMainProps {
 }
 
 const RandomMain: FC<IRandomMainProps> = ({className, button, children}) => {
-  const {bgImage, loadLocal, bgColor} = useSetting();
+  const {background, loadLocal} = useSetting();
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -26,8 +26,8 @@ const RandomMain: FC<IRandomMainProps> = ({className, button, children}) => {
     <div
       ref={containerRef}
       style={{
-        backgroundImage: `url("${bgImage}")`,
-        backgroundColor: bgColor
+        backgroundImage: `url("${background.value}")`,
+        backgroundColor: background.color
       }}
       className={cls(
         className,

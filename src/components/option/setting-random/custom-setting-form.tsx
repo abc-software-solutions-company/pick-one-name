@@ -1,87 +1,144 @@
 import {useState} from 'react';
 
 import ColorPicker from '@/core-ui/color-picker';
+import Icon from '@/core-ui/icon';
 
 import {useSetting} from '@/common/hooks/use-setting';
+import useUpload from '@/common/hooks/use-upload';
 
 import {DEFAULT_SETTING} from '@/common/constants/setting.constant';
 
 import InputSetting from './input';
 
 const CustomSettingForm = () => {
-  const {bgColor, title, textColor, setBgColor, setTitle, updateLocal, setTextColor} = useSetting();
+  const {text, button, background, updateLocal, setBackground, setButton, setText} = useSetting();
+  const {upload} = useUpload();
 
-  const [isShowBgColorPicker, setIsShowBgColorPicker] = useState(false);
-  const [isShowTextColorPicker, setisShowTextColorPicker] = useState(false);
+  const [showColorPicker, setShowColorPicker] = useState({
+    background: false,
+    text: false,
+    button: false
+  });
 
-  const toggleBgColorPicker = () => {
-    setIsShowBgColorPicker(!isShowBgColorPicker);
-    setisShowTextColorPicker(false);
-  };
-
-  const toggleTextColorPicker = () => {
-    setisShowTextColorPicker(() => !isShowTextColorPicker);
-    setIsShowBgColorPicker(false);
+  const toggleColorPicker = (colorType: 'background' | 'text' | 'button') => {
+    setShowColorPicker(prev => ({...prev, [colorType]: !prev[colorType]}));
   };
 
   const handleChangeBgColor = (newColor: string) => {
-    setBgColor(newColor);
+    setBackground('color', newColor);
     updateLocal();
   };
 
   const handleChangeTextColor = (newColor: string) => {
-    setTextColor(newColor);
+    setText('color', newColor);
+    updateLocal();
+  };
+
+  const handleChangeButtonColor = (newColor: string) => {
+    setButton('color', newColor);
     updateLocal();
   };
 
   const handleInputBgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBgColor(e.target.value);
+    setBackground('color', e.target.value);
     updateLocal();
   };
 
-  const handleInputTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTextColor(e.target.value);
+  const handleInputButtonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setButton('value', e.target.value);
     updateLocal();
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+    setText('value', e.target.value);
     updateLocal();
+  };
+
+  const handleUpFile = async (file: File | null | undefined) => {
+    if (file === null) {
+      setBackground('value', '');
+      updateLocal();
+      return;
+    }
+
+    const resp = await upload(file as File, 1).then(item => {
+      return item;
+    });
+    if (resp?.url) {
+      setBackground('value', resp?.url);
+      updateLocal();
+    }
   };
 
   return (
     <>
-      <InputSetting label="Tiêu đề" value={title} iconEnd="pen-line" onChange={handleTitleChange} />
       {/* <InputSetting label="Giao diện" placeholder="Mặc định" iconEnd="angle-down" /> */}
       <div className="relative">
         <InputSetting
-          label="Màu chữ"
-          placeholder={DEFAULT_SETTING.TEXT_COLOR}
-          iconEnd="pen-line"
-          value={textColor}
-          onClick={toggleTextColorPicker}
-          onChange={handleInputTextChange}
+          label="Tiêu đề"
+          value={text.value}
+          color={text.color}
+          onChange={handleTitleChange}
+          onClick={() => toggleColorPicker('text')}
         />
-        {isShowTextColorPicker && (
-          <div className="absolute top-0 right-0 z-[100] mt-25">
-            <ColorPicker color={textColor} isShow={!!isShowTextColorPicker} onChange={handleChangeTextColor} />
+        {showColorPicker.text && (
+          <div className="absolute top-0 right-0 z-20 mt-20 xl:mt-25">
+            <ColorPicker color={text.color} isShow={!!showColorPicker.text} onChange={handleChangeTextColor} />
           </div>
         )}
       </div>
       <div className="relative">
         <InputSetting
-          label="Màu nền"
-          placeholder={DEFAULT_SETTING.BG_COLOR}
-          iconEnd="pen-line"
-          value={bgColor}
-          onClick={toggleBgColorPicker}
-          onChange={handleInputBgChange}
+          label="Nút"
+          color={button.color}
+          value={button.value}
+          placeholder={DEFAULT_SETTING.BUTTON_VALUE}
+          onChange={handleInputButtonChange}
+          onClick={() => toggleColorPicker('button')}
         />
-        {isShowBgColorPicker && (
-          <div className="absolute top-0 right-0 z-[100] mt-25">
-            <ColorPicker color={bgColor} isShow={!!isShowBgColorPicker} onChange={handleChangeBgColor} />
+        {showColorPicker.button && (
+          <div className="absolute top-0 right-0 z-20 mt-20 xl:mt-25">
+            <ColorPicker color={button.color} isShow={!!showColorPicker.button} onChange={handleChangeButtonColor} />
           </div>
         )}
+      </div>
+      <div className="flex items-end justify-start gap-2">
+        <div className="relative flex-grow">
+          <InputSetting
+            label="Nền"
+            value={background.value}
+            color={background.color}
+            placeholder={'Mặc định'}
+            onClick={() => toggleColorPicker('background')}
+            onChange={handleInputBgChange}
+          />
+          {showColorPicker.background && (
+            <div className="absolute top-0 right-0 z-20 mt-20 xl:mt-25">
+              <ColorPicker
+                color={background.color}
+                isShow={!!showColorPicker.background}
+                onChange={handleChangeBgColor}
+              />
+            </div>
+          )}
+        </div>
+        <div className="flex items-end">
+          <input
+            hidden
+            accept="image/*"
+            id="file-upload"
+            type="file"
+            onChange={e => {
+              handleUpFile(e.currentTarget?.files?.[0]);
+            }}
+          />
+          <label
+            htmlFor="file-upload"
+            className="flex h-9 w-full cursor-pointer items-center justify-center gap-4 rounded-lg px-6 py-3 text-sm text-blue-600 md:h-12 lg:h-[50px] lg:text-xl xl:text-xl"
+          >
+            <Icon name="ico-upload" />
+          </label>
+        </div>
       </div>
     </>
   );

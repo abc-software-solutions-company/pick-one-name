@@ -1,25 +1,23 @@
 import {create} from 'zustand';
 
 import {DEFAULT_SETTING} from '../constants';
-import {TDefaultSetting} from '../types';
+import {TAttrSetting, TDefaultSetting} from '../types';
 import {getLocal, removeLocal, setLocal} from '../utils';
 
 type State = {
   isSettingOpen: boolean;
   isVisible: boolean;
-  bgColor: string;
-  title: string;
-  textColor: string;
-  bgImage: string;
+  background: TAttrSetting;
+  text: TAttrSetting;
+  button: TAttrSetting;
 };
 
 type Actions = {
   setIsSettingOpen: (isSettingOpen: boolean) => void;
   setVisible: (isVisible: boolean) => void;
-  setBgColor: (bgColor: string) => void;
-  setTitle: (value: string) => void;
-  setTextColor: (value: string) => void;
-  setBGImage: (bgImage: string) => void;
+  setBackground: (type: 'color' | 'value', value: string) => void;
+  setText: (type: 'color' | 'value', value: string) => void;
+  setButton: (type: 'color' | 'value', value: string) => void;
   updateLocal: () => void;
   loadLocal: () => void;
   reset: () => void;
@@ -28,10 +26,18 @@ type Actions = {
 const initialState: State = {
   isSettingOpen: false,
   isVisible: true,
-  bgColor: DEFAULT_SETTING.BG_COLOR,
-  title: DEFAULT_SETTING.TITLE,
-  textColor: DEFAULT_SETTING.TEXT_COLOR,
-  bgImage: ''
+  background: {
+    color: DEFAULT_SETTING.BG_COLOR,
+    value: ''
+  },
+  text: {
+    color: DEFAULT_SETTING.COLOR,
+    value: DEFAULT_SETTING.TITLE
+  },
+  button: {
+    color: DEFAULT_SETTING.COLOR,
+    value: DEFAULT_SETTING.BUTTON_VALUE
+  }
 };
 
 export const useSetting = create<State & Actions>()((set, get) => ({
@@ -42,39 +48,51 @@ export const useSetting = create<State & Actions>()((set, get) => ({
   setIsSettingOpen(isSettingOpen: boolean) {
     set({isSettingOpen});
   },
-  setBgColor(bgColor: string) {
-    set({bgColor});
+  setBackground: (type: 'color' | 'value', value: string) => {
+    set({background: {...get().background, [type]: value}});
   },
-  setTitle(title: string) {
-    set({title});
+  setText: (type: 'color' | 'value', value: string) => {
+    set({text: {...get().text, [type]: value}});
   },
-  setTextColor(textColor: string) {
-    set({textColor});
-  },
-  setBGImage: (bgImage: string) => {
-    set({bgImage});
+  setButton: (type: 'color' | 'value', value: string) => {
+    set({button: {...get().button, [type]: value}});
   },
   updateLocal() {
     setLocal('game-setting', {
-      title: get().title,
-      bgColor: get().bgColor,
-      textColor: get().textColor,
-      bgImage: get().bgImage
+      text: {
+        color: get().text.color,
+        value: get().text.value
+      },
+      background: {
+        color: get().background.color,
+        value: get().background.value
+      },
+      button: {
+        color: get().button.color,
+        value: get().button.value
+      }
     } as TDefaultSetting);
   },
   loadLocal() {
     const gameSetting = getLocal('game-setting') as TDefaultSetting;
-    gameSetting.title && set({title: gameSetting.title});
-    gameSetting.bgColor && set({bgColor: gameSetting.bgColor});
-    gameSetting.textColor && set({textColor: gameSetting.textColor});
-    gameSetting.bgImage && set({bgImage: gameSetting.bgImage});
+    gameSetting.text && set({text: gameSetting.text});
+    gameSetting.background && set({background: gameSetting.background});
+    gameSetting.button && set({button: gameSetting.button});
   },
   reset() {
     set({
-      title: DEFAULT_SETTING.TITLE,
-      bgColor: DEFAULT_SETTING.BG_COLOR,
-      textColor: DEFAULT_SETTING.TEXT_COLOR,
-      bgImage: ''
+      background: {
+        color: DEFAULT_SETTING.BG_COLOR,
+        value: ''
+      },
+      text: {
+        color: DEFAULT_SETTING.COLOR,
+        value: DEFAULT_SETTING.TITLE
+      },
+      button: {
+        color: DEFAULT_SETTING.COLOR,
+        value: DEFAULT_SETTING.BUTTON_VALUE
+      }
     });
     removeLocal('game-setting');
   }

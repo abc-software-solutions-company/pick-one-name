@@ -13,7 +13,7 @@ interface Iprops {
 
 const RandomMainTop: FC<Iprops> = ({containerRef}) => {
   const {isZoom, setZoom} = useGlobal();
-  const {title, textColor, bgImage, bgColor, loadLocal} = useSetting();
+  const {text, background, button, loadLocal} = useSetting();
 
   useEffect(() => {
     loadLocal();
@@ -41,36 +41,36 @@ const RandomMainTop: FC<Iprops> = ({containerRef}) => {
       <div className="w-10 max-w-[32px] md:w-[56px]"></div>
       <div
         className={cls('flex items-center justify-center p-2 md:p-3', {
-          'rounded-lg': !!bgImage || !!bgColor,
-          'bg-neutral-50': !!bgImage || !!bgColor,
-          'bg-opacity-50': !!bgImage || !!bgColor
+          'rounded-lg': !!background.value || !!background.color,
+          'bg-neutral-50': !!background.value || !!background.color,
+          'bg-opacity-50': !!background.value || !!background.color
         })}
       >
         <p
           style={{
-            color: textColor
+            color: text.color
           }}
           className={cls(
             'text-gray-950 whitespace-nowrap rounded bg-neutral-50 px-2 text-center text-lg font-bold tracking-tight md:px-3 md:py-1 md:text-2xl lg:text-[32px]',
             {
-              'bg-neutral-50': !!bgImage || !!bgColor
+              'bg-neutral-50': !!background.value || !!background.color
             }
           )}
         >
-          {title}
+          {text.value}
         </p>
       </div>
       <button
         className="flex max-h-[32px] max-w-[32px] items-center justify-center rounded border-2 border-black bg-transparent p-1 hover:bg-neutral-50 md:max-h-[56px] md:max-w-[56px] md:rounded-lg md:p-4"
         onClick={() => toggleFullScreen(!isZoom)}
         style={{
-          borderColor: textColor
+          borderColor: button.color
         }}
       >
         {isZoom ? (
-          <Icon name="ico-compress" className="text-black" style={{color: textColor}} />
+          <Icon name="ico-compress" className="text-black" style={{color: button.color}} />
         ) : (
-          <Icon name="ico-expand" className="text-black" style={{color: textColor}} />
+          <Icon name="ico-expand" className="text-black" style={{color: button.color}} />
         )}
       </button>
     </div>

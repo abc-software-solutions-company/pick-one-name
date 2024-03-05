@@ -1,5 +1,6 @@
 export const DEFAULT_SETTING = {
+  BUTTON_VALUE: 'Quay',
   BG_COLOR: '#fafafa',
-  TEXT_COLOR: '#030712',
+  COLOR: '#030712',
   TITLE: 'Vòng quay may mắn'
 };

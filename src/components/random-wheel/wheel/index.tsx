@@ -19,7 +19,7 @@ interface IProps {
 const Wheel: FC<IProps> = ({className}) => {
   const game = useGame();
   const toast = useToast();
-  const {textColor} = useSetting();
+  const {text, button} = useSetting();
   const visiblePlayers = game.state.players.items.filter(x => x.visible);
 
   const ToggleDeleteAllPlayers = (value: boolean) => game.dispatch(game.toggleShowDeleteAllPlayer(value));
@@ -61,11 +61,11 @@ const Wheel: FC<IProps> = ({className}) => {
           className="inline-flex h-9 w-full items-center justify-center gap-2 rounded-lg border-2 border-black bg-transparent px-4 py-1
         text-sm font-semibold text-black hover:bg-neutral-50 md:h-14 md:px-8 md:py-4 md:text-lg lg:w-[40%] lg:text-xl xl:text-xl"
           style={{
-            color: textColor,
-            borderColor: textColor
+            color: text.color,
+            borderColor: text.color
           }}
           variant="contained"
-          text="Quay"
+          text={button.value}
           onClick={run}
           disabled={game.state.isSpinning || visiblePlayers.length < 2}
         />
