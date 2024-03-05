@@ -25,8 +25,8 @@ const AccountMenu: FC = () => {
     signOut();
   };
 
-  const handleInfor = () => {
-    route.push('/information');
+  const handleGoToPersonalPage = () => {
+    route.push('/my-profile');
   };
   return (
     <>
@@ -82,7 +82,7 @@ const AccountMenu: FC = () => {
           <Avatar src={session?.user.avatar} /> <p className="font-nunito font-semibold">{session?.user.name}</p>
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleInfor}>
+        <MenuItem onClick={handleGoToPersonalPage}>
           <ListItemIcon>
             <Icon name="ico-user" />
           </ListItemIcon>
