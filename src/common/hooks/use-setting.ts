@@ -8,6 +8,7 @@ type State = {
   isSettingOpen: boolean;
   isVisible: boolean;
   isTextFrame: boolean;
+  isNumberFrame: boolean;
   background: TAttrSetting;
   text: TAttrSetting;
   button: TAttrSetting;
@@ -17,6 +18,7 @@ type Actions = {
   setIsSettingOpen: (isSettingOpen: boolean) => void;
   setVisible: (isVisible: boolean) => void;
   toggleTextFrame: (isShow: boolean) => void;
+  toggleNumberFrame: (isShow: boolean) => void;
   setBackground: (type: 'color' | 'value', value: string) => void;
   setText: (type: 'color' | 'value', value: string) => void;
   setButton: (type: 'color' | 'value', value: string) => void;
@@ -29,6 +31,7 @@ const initialState: State = {
   isSettingOpen: false,
   isVisible: true,
   isTextFrame: true,
+  isNumberFrame: true,
   background: {
     color: DEFAULT_SETTING.BG_COLOR,
     value: ''
@@ -54,6 +57,9 @@ export const useSetting = create<State & Actions>()((set, get) => ({
   toggleTextFrame: (isShow: boolean) => {
     set({isTextFrame: isShow});
   },
+  toggleNumberFrame: (isShow: boolean) => {
+    set({isNumberFrame: isShow});
+  },
   setBackground: (type: 'color' | 'value', value: string) => {
     set({background: {...get().background, [type]: value}});
   },
@@ -66,6 +72,7 @@ export const useSetting = create<State & Actions>()((set, get) => ({
   updateLocal() {
     setLocal('game-setting', {
       isTextFrame: get().isTextFrame,
+      isNumberFrame: get().isNumberFrame,
       text: {
         color: get().text.color,
         value: get().text.value
@@ -83,6 +90,7 @@ export const useSetting = create<State & Actions>()((set, get) => ({
   loadLocal() {
     const gameSetting = getLocal('game-setting') as TDefaultSetting;
     gameSetting.isTextFrame && set({isTextFrame: gameSetting.isTextFrame});
+    gameSetting.isNumberFrame && set({isNumberFrame: gameSetting.isNumberFrame});
     gameSetting.text && set({text: gameSetting.text});
     gameSetting.background && set({background: gameSetting.background});
     gameSetting.button && set({button: gameSetting.button});
@@ -90,6 +98,7 @@ export const useSetting = create<State & Actions>()((set, get) => ({
   reset() {
     set({
       isTextFrame: true,
+      isNumberFrame: true,
       background: {
         color: DEFAULT_SETTING.BG_COLOR,
         value: ''
