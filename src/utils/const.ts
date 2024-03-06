@@ -1,4 +1,4 @@
-import {transaltion} from './translation';
+import {FACEBOOK_URL, LINKEDIN_URL} from '@/common/constants';
 
 const linksList = [
   {
@@ -13,28 +13,16 @@ const linksList = [
 
 const findUsList = [
   {
-    icon: 'ico-discord',
-    href: ''
-  },
-  {
     icon: 'ico-facebook-fill',
-    href: transaltion.footer.facebook
+    href: FACEBOOK_URL
   },
   {
     icon: 'ico-linkedin-fill',
-    href: transaltion.footer.linkedin
+    href: LINKEDIN_URL
   }
 ];
 
 const infoList = [
-  {
-    title: 'About',
-    href: 'about'
-  },
-  {
-    title: 'Privacy policy',
-    href: 'privacy-policy'
-  },
   {
     title: 'Term of service',
     href: 'term-of-service'

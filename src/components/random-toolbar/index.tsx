@@ -3,7 +3,7 @@ import cln from 'classnames';
 
 import {useSetting} from '@/common/hooks/use-setting';
 
-import SettingGame from '../option/setting-random';
+import SettingGame from '../setting-random';
 
 interface IRandomToolBar {
   className?: string;

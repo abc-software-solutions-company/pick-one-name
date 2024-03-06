@@ -10,11 +10,23 @@ interface IProps {
   className?: string;
   message?: string;
   open?: boolean;
+  headerText?: string;
+  buttonLeftText?: string;
+  buttonRightText?: string;
   onYes?: () => void;
   onNo?: () => void;
 }
 
-const ConfirmBox: FC<IProps> = ({className, message, open, onYes, onNo}) => {
+const ConfirmBox: FC<IProps> = ({
+  className,
+  message,
+  open,
+  headerText = 'Xác nhận',
+  buttonLeftText = 'Xác nhận',
+  buttonRightText = 'Hủy',
+  onYes,
+  onNo
+}) => {
   if (!open) return null;
 
   return (
@@ -24,14 +36,14 @@ const ConfirmBox: FC<IProps> = ({className, message, open, onYes, onNo}) => {
       open={open}
       onClose={onNo!}
     >
-      <Modal.Header text="Xác nhận" />
+      <Modal.Header text={headerText} />
       <Modal.Body>
         <p className="text-center">{message}</p>
       </Modal.Body>
       <Modal.Footer>
         <div className="buttons horizontal">
-          <Button className="w-full bg-blue-600" variant="outlined" text="Xác nhận" onClick={onYes} />
-          <Button className="w-full bg-blue-600" variant="outlined" text="Hủy" onClick={onNo} />
+          <Button className="w-full bg-blue-600" variant="outlined" text={buttonLeftText} onClick={onYes} />
+          <Button className="w-full bg-blue-600" variant="outlined" text={buttonRightText} onClick={onNo} />
         </div>
       </Modal.Footer>
     </Modal>
