@@ -11,7 +11,7 @@ type State = {
 type Actions = {
   setZoom: (isZoom: boolean) => void;
   toggleMusic: (isMusic: boolean) => void;
-  configConfirmBox: (confilm: TConfirmBox) => void;
+  configConfirmBox: (confirm: TConfirmBox) => void;
 };
 
 const initialState: State = {isZoom: false, isMusic: true, confirm: {show: false, message: ''}};
@@ -24,7 +24,7 @@ export const useGlobal = create<State & Actions>()(set => ({
   toggleMusic: (isMusic: boolean) => {
     set({isMusic});
   },
-  configConfirmBox: (confilm: TConfirmBox) => {
-    set({confirm: confilm});
+  configConfirmBox: (confirm: TConfirmBox) => {
+    set({confirm: confirm});
   }
 }));
