@@ -1,5 +1,6 @@
 export type TDefaultSetting = {
   isTextFrame?: boolean;
+  isNumberFrame?: boolean;
   background: TAttrSetting;
   text: TAttrSetting;
   button: TAttrSetting;

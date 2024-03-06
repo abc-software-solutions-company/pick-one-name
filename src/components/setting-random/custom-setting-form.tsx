@@ -19,8 +19,19 @@ const CustomSettingForm = () => {
   const {upload} = useUpload();
   const {data: session} = useSession();
   const {configConfirmBox} = useGlobal();
-  const {text, button, background, isTextFrame, updateLocal, setBackground, setButton, setText, toggleTextFrame} =
-    useSetting();
+  const {
+    text,
+    button,
+    background,
+    isTextFrame,
+    isNumberFrame,
+    updateLocal,
+    setBackground,
+    setButton,
+    setText,
+    toggleTextFrame,
+    toggleNumberFrame
+  } = useSetting();
 
   const [showColorPicker, setShowColorPicker] = useState({
     background: false,
@@ -82,8 +93,9 @@ const CustomSettingForm = () => {
     }
   };
 
-  const handleToggleTextFrame = () => {
-    toggleTextFrame(!isTextFrame);
+  const handleToggleSwitcher = (type: 'text' | 'number') => {
+    type === 'text' && toggleTextFrame(!isTextFrame);
+    type === 'number' && toggleNumberFrame(!isNumberFrame);
     updateLocal();
   };
 
@@ -107,9 +119,15 @@ const CustomSettingForm = () => {
           )}
         </div>
       </div>
-      <div className="flex items-center gap-2">
-        <Switcher checked={isTextFrame} onChange={handleToggleTextFrame} />
-        <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">Khung chữ</label>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Switcher checked={isTextFrame} onChange={() => handleToggleSwitcher('text')} />
+          <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">Khung chữ</label>
+        </div>
+        <div className="mr-9 flex items-center gap-2">
+          <Switcher checked={isNumberFrame} onChange={() => handleToggleSwitcher('number')} />
+          <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">Khung số</label>
+        </div>
       </div>
 
       <div className="relative flex flex-col gap-1 xl:gap-2">
