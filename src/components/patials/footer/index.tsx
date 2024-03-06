@@ -1,6 +1,8 @@
 import {FC} from 'react';
 import Link from 'next/link';
 
+import {ABC_URL} from '@/common/constants';
+
 import FooterLeft from './footer-left';
 import FooterRight from './footer-right';
 
@@ -11,10 +13,7 @@ const Footer: FC = () => {
         <FooterLeft />
         <FooterRight />
       </div>
-      <Link
-        href={'https://abcsoftwarecompany.com/'}
-        className="lead font-poppins text-center text-xs font-medium text-blue-500"
-      >
+      <Link href={ABC_URL} className="lead font-poppins text-center text-xs font-medium text-blue-500">
         Created by ABC Software Solutions Company
       </Link>
     </div>
