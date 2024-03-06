@@ -1,4 +1,4 @@
-import {FIND_US} from '@/common/constants';
+import {FACEBOOK_URL, LINKEDIN_URL} from '@/common/constants';
 
 const linksList = [
   {
@@ -14,11 +14,11 @@ const linksList = [
 const findUsList = [
   {
     icon: 'ico-facebook-fill',
-    href: FIND_US.FACEBOOK_URL
+    href: FACEBOOK_URL
   },
   {
     icon: 'ico-linkedin-fill',
-    href: FIND_US.LINKEDIN_URL
+    href: LINKEDIN_URL
   }
 ];
 
