@@ -140,13 +140,16 @@ const CustomSettingForm = () => {
             className="flex w-full flex-grow cursor-pointer items-center justify-center gap-2 rounded-lg border border-orange-600 px-6 py-2 text-sm text-orange-600 md:py-3 lg:text-xl"
             onClick={handleClickWhenNotPremium}
           >
-            <input
-              hidden
-              accept="image/*"
-              id="file-upload"
-              type={!session?.user?.id || session?.user.plan === ENUM_PLAN.FREE ? 'hidden' : 'file'}
-              onChange={e => handleUpFile(e.currentTarget?.files?.[0])}
-            />
+            {session?.user?.id && session?.user.plan !== ENUM_PLAN.FREE && (
+              <input
+                hidden
+                accept="image/*"
+                id="file-upload"
+                type={'file'}
+                onChange={e => handleUpFile(e.currentTarget?.files?.[0])}
+              />
+            )}
+
             <div className="flex flex-grow items-center justify-center gap-2">
               <span>Tải ảnh lên</span>
               <Icon name="ico-upload" />
