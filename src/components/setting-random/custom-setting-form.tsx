@@ -73,7 +73,7 @@ const CustomSettingForm = () => {
     }
   };
 
-  const handleClickWhenNotPremium = () => {
+  const handleCheckPremium = () => {
     if (!session?.user?.id || session?.user.plan === ENUM_PLAN.FREE) {
       configConfirmBox({
         show: true,
@@ -138,7 +138,7 @@ const CustomSettingForm = () => {
           <label
             htmlFor="file-upload"
             className="flex w-full flex-grow cursor-pointer items-center justify-center gap-2 rounded-lg border border-orange-600 px-6 py-2 text-sm text-orange-600 md:py-3 lg:text-xl"
-            onClick={handleClickWhenNotPremium}
+            onClick={handleCheckPremium}
           >
             {session?.user?.id && session?.user.plan !== ENUM_PLAN.FREE && (
               <input
