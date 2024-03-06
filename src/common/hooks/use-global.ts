@@ -1,17 +1,17 @@
 import {create} from 'zustand';
 
-import {TConfilmBox} from '../types/global.type';
+import {TConfirmBox} from '../types/global.type';
 
 type State = {
   isZoom: boolean;
   isMusic: boolean;
-  confirm: TConfilmBox;
+  confirm: TConfirmBox;
 };
 
 type Actions = {
   setZoom: (isZoom: boolean) => void;
   toggleMusic: (isMusic: boolean) => void;
-  configConfirmBox: (confilm: TConfilmBox) => void;
+  configConfirmBox: (confilm: TConfirmBox) => void;
 };
 
 const initialState: State = {isZoom: false, isMusic: true, confirm: {show: false, message: ''}};
@@ -24,7 +24,7 @@ export const useGlobal = create<State & Actions>()(set => ({
   toggleMusic: (isMusic: boolean) => {
     set({isMusic});
   },
-  configConfirmBox: (confilm: TConfilmBox) => {
+  configConfirmBox: (confilm: TConfirmBox) => {
     set({confirm: confilm});
   }
 }));

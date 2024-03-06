@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import Image from 'next/image';
 import {useSession} from 'next-auth/react';
 
 import ColorPicker from '@/core-ui/color-picker';
@@ -76,7 +77,7 @@ const CustomSettingForm = () => {
     if (!session?.user?.id || session?.user.plan === ENUM_PLAN.FREE) {
       configConfirmBox({
         show: true,
-        message: 'Tính năng này chỉ áp dụng với tài khoản premium!!!'
+        message: 'Tính năng này chỉ áp dụng với tài khoản Premium!!!'
       });
     }
   };
@@ -130,11 +131,13 @@ const CustomSettingForm = () => {
       </div>
 
       <div className="relative flex flex-col gap-1 xl:gap-2">
-        <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">Nền</label>
+        <section>
+          <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">Nền</label>
+        </section>
         <div className="flex items-center gap-1 xl:gap-2">
           <label
             htmlFor="file-upload"
-            className="flex w-full flex-grow cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-300 px-6 py-2 text-sm text-blue-600 md:py-3 lg:text-xl"
+            className="flex w-full flex-grow cursor-pointer items-center justify-center gap-2 rounded-lg border border-orange-600 px-6 py-2 text-sm text-orange-600 md:py-3 lg:text-xl"
             onClick={handleClickWhenNotPremium}
           >
             <input
@@ -144,8 +147,11 @@ const CustomSettingForm = () => {
               type={!session?.user?.id || session?.user.plan === ENUM_PLAN.FREE ? 'hidden' : 'file'}
               onChange={e => handleUpFile(e.currentTarget?.files?.[0])}
             />
-            Tải ảnh lên
-            <Icon name="ico-upload" />
+            <div className="flex flex-grow items-center justify-center gap-2">
+              <span>Tải ảnh lên</span>
+              <Icon name="ico-upload" />
+            </div>
+            <Image src={'/images/crown.png'} alt="premium" width={20} height={20} />
           </label>
           <ColorPickerIcon onClick={() => toggleColorPicker('background')} color={background.color} />
           {showColorPicker.background && (
