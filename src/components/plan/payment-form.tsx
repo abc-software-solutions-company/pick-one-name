@@ -16,10 +16,9 @@ interface IPaymentFormProps {
 export interface IFormPaymentData {
   fullName: string;
   email: string;
-  phoneNumber: string;
 }
 
-const defaultValues: IFormPaymentData = {email: '', fullName: '', phoneNumber: ''};
+const defaultValues: IFormPaymentData = {email: '', fullName: ''};
 
 const PaymentForm: FC<IPaymentFormProps> = ({submitNum}) => {
   const form = useForm<IFormPaymentData>({resolver: zodResolver(paymentValidator), defaultValues});
@@ -31,7 +30,6 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum}) => {
   useEffect(() => {
     if (submitNum) {
       formRef.current?.requestSubmit();
-      console.log('🚀 ~ useEffect ~ isSubmit:::', submitNum);
     }
   }, [submitNum]);
 
@@ -49,31 +47,31 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum}) => {
       <h3 className="text-center text-lg font-bold md:text-left md:text-xl">Hoàn thành thông tin đăng kí bên dưới</h3>
       <div className="flex flex-col gap-9">
         <div className="flex items-center">
-          <label className="min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4">Tên đầy đủ</label>
+          <label className="min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4">
+            Tên đầy đủ <span className="text-red-600">*</span>
+          </label>
           <div className="flex flex-grow flex-col md:basis-3/4">
             <InputPon className={`${errors.fullName && 'focus:border-red-600'} text-lg `} {...register('fullName')} />
-            {errors.fullName && <Label className="mt-1 text-red-600" text={errors.fullName.message} />}
+            {errors.fullName && <Label className="mt-1" color="danger" text={errors.fullName.message} />}
           </div>
         </div>
         <div className="flex items-center">
-          <label className="min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4">Email</label>
+          <label className="min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4">
+            Email <span className="text-red-600">*</span>
+          </label>
           <div className="flex flex-grow flex-col md:basis-3/4">
             <InputPon
               type="email"
               className={`${errors.email && 'focus:border-red-600'} text-lg`}
               {...register('email')}
             />
-            {errors.email && <Label className="mt-1 text-red-600" text={errors.email.message} />}
+            {errors.email && <Label className="mt-1" color="danger" text={errors.email.message} />}
           </div>
         </div>
         <div className="flex items-center">
           <label className="min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4">Số điện thoại</label>
           <div className="flex flex-grow flex-col md:basis-3/4">
-            <InputPon
-              className={`${errors.phoneNumber && 'focus:border-red-600'} text-lg`}
-              {...register('phoneNumber')}
-            />
-            {errors.phoneNumber && <Label className="mt-1 text-red-600" text={errors.phoneNumber.message} />}
+            <InputPon className={`text-lg`} />
           </div>
         </div>
       </div>
