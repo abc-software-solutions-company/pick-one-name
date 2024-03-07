@@ -26,7 +26,7 @@ const PaymentQR: FC<IPaymentQRProps> = ({price = 5000, qrSize = 289}) => {
           width: `${qrSize}px`
         }}
       >
-        <Image src="/images/qr-code-payment.png" alt="qr" fill />
+        <Image src="/images/qr-code-payment.jpeg" alt="qr" fill />
       </div>
       <div className="flex flex-col gap-6">
         <span className="font-bold">{QR_BANK_NAME}</span>

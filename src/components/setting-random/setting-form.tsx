@@ -1,4 +1,5 @@
 import React from 'react';
+import {useRouter} from 'next/router';
 
 import Icon from '@/core-ui/icon';
 
@@ -10,6 +11,7 @@ import ConfirmBox from '../modals/modal-confirm';
 import CustomSettingForm from './custom-setting-form';
 
 const SettingForm: React.FC = () => {
+  const route = useRouter();
   const {setIsSettingOpen, reset} = useSetting();
   const {confirm, configConfirmBox} = useGlobal();
 
@@ -43,8 +45,9 @@ const SettingForm: React.FC = () => {
       <ConfirmBox
         open={confirm.show}
         message={confirm.message}
+        buttonLeftText="Nâng cấp"
         headerText="Thông báo"
-        onYes={() => configConfirmBox({show: false, message: ''})}
+        onYes={() => route.push('/plan')}
         onNo={() => configConfirmBox({show: false, message: ''})}
       />
     </div>
