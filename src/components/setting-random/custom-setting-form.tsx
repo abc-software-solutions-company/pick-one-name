@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import Image from 'next/image';
+import {usePathname} from 'next/navigation';
 import {useSession} from 'next-auth/react';
 
 import ColorPicker from '@/core-ui/color-picker';
@@ -16,6 +17,7 @@ import {ENUM_PLAN} from '@/common/constants';
 import {DEFAULT_SETTING} from '@/common/constants/setting.constant';
 
 const CustomSettingForm = () => {
+  const path = usePathname();
   const {upload} = useUpload();
   const {data: session} = useSession();
   const {configConfirmBox} = useGlobal();
@@ -124,10 +126,12 @@ const CustomSettingForm = () => {
           <Switcher checked={isTextFrame} onChange={() => handleToggleSwitcher('text')} />
           <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">Khung chữ</label>
         </div>
-        <div className="mr-9 flex items-center gap-2">
-          <Switcher checked={isNumberFrame} onChange={() => handleToggleSwitcher('number')} />
-          <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">Khung số</label>
-        </div>
+        {path === '/' && (
+          <div className="mr-9 flex items-center gap-2">
+            <Switcher checked={isNumberFrame} onChange={() => handleToggleSwitcher('number')} />
+            <label className="text-sm font-bold text-black lg:text-xl xl:text-xl">Khung số</label>
+          </div>
+        )}
       </div>
 
       <div className="relative flex flex-col gap-1 xl:gap-2">

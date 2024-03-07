@@ -7,3 +7,5 @@ export const QR_BANK_NAME = 'Ngân hàng TMCP Tiên Phong ( TP Bank )';
 export const QR_BANK_ACCOUNT = 'PHẠM THỊ MỘNG HÒA';
 export const QR_BANK_NUMBER = '12221102018';
 export const FACEBOOK_PON_URL = 'https://www.facebook.com/phanmemquaysomayman';
+export const CONTACT_PHONE_NUMBER = '077 455 6377';
+export const WEBSTITE_EMAIL = 'vongquaymayman@gmail.com';
