@@ -1,4 +1,5 @@
 import {FC, useState} from 'react';
+import {useRouter} from 'next/router';
 import {signOut, useSession} from 'next-auth/react';
 import {Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip} from '@mui/material';
 
@@ -8,16 +9,24 @@ const AccountMenu: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const {data: session} = useSession();
   const open = Boolean(anchorEl);
+  const route = useRouter();
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const handleLogout = () => {
     handleClose();
     localStorage.clear();
     signOut();
+  };
+
+  const handleGoToMyProfilePage = () => {
+    route.push('/my-profile');
   };
   return (
     <>
@@ -71,6 +80,13 @@ const AccountMenu: FC = () => {
       >
         <MenuItem onClick={handleClose}>
           <Avatar src={session?.user.avatar} /> <p className="font-nunito font-semibold">{session?.user.name}</p>
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={handleGoToMyProfilePage}>
+          <ListItemIcon>
+            <Icon name="ico-user" />
+          </ListItemIcon>
+          <p className="font-nunito font-semibold">Thông tin cá nhân</p>
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleLogout}>

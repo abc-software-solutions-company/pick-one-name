@@ -9,7 +9,7 @@ interface IDefaultLayoutProps {
 
 export default function LayoutDefault({children}: PropsWithChildren<IDefaultLayoutProps>) {
   return (
-    <div className="box-border flex h-full flex-col">
+    <div className="flex h-full flex-col">
       <DrawerNavbar />
       <main>{children}</main>
       <Footer />
