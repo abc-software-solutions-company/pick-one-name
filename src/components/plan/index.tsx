@@ -2,11 +2,12 @@ import React, {FC, useState} from 'react';
 
 import {usePlan} from '@/common/hooks/use-plan';
 
-import PaymentDetail from './detail';
+import PaymentDetail from '../payment/detail';
+import PaymentForm from '../payment/payment-form';
+import PremiumPlan from '../payment/premium-plan';
+import PaymentQR from '../payment/qr';
+
 import PaymentInstruction from './instruction';
-import PaymentForm from './payment-form';
-import PremiumPlan from './premium-plan';
-import PaymentQR from './qr';
 
 const Plan: FC = () => {
   const {plan, updatePlan} = usePlan();

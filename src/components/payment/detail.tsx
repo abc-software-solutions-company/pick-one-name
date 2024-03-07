@@ -12,7 +12,7 @@ const PaymentDetail: FC<IPaymentDetailProps> = ({price = 5000, days = 3}) => {
   });
 
   return (
-    <div className="flex w-full grow flex-col gap-4 rounded-lg p-6 shadow-[0_0_2px_0_rgba(0,0,0,0.25)]">
+    <div className="flex w-full grow flex-col justify-center gap-4 rounded-lg p-6 shadow-[0_0_2px_0_rgba(0,0,0,0.25)]">
       <div className="flex w-full">
         <p className="flex flex-col md:basis-1/4">
           <span className="min-w-[110px] whitespace-nowrap font-bold">Gói premium</span>
