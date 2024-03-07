@@ -23,16 +23,16 @@ const findUsList = [
 ];
 
 const infoList = [
+  // {
+  //   title: 'Term of service',
+  //   href: 'term-of-service'
+  // },
+  // {
+  //   title: 'Contact',
+  //   href: 'contact'
+  // },
   {
-    title: 'Term of service',
-    href: 'term-of-service'
-  },
-  {
-    title: 'Contact',
-    href: 'contact'
-  },
-  {
-    title: 'Plan',
+    title: 'Nâng cấp tài khoản',
     href: '/plan'
   }
 ];

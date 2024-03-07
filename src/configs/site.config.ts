@@ -1,6 +1,6 @@
 import {merge} from 'lodash-es';
 
-const WEBSITE_NAME = 'Pick One Name';
+const WEBSITE_NAME = 'Quay số may mắn';
 const WEBSITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 const COMPANY_NAME = 'ABC Software Solutions';
 const COMPANY_URL = 'https://abcsoftwarecompany.com';

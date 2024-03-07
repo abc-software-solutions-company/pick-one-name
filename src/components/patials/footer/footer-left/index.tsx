@@ -32,7 +32,7 @@ const FooterLeft: FC = () => {
       </div>
       <div className="flex w-full flex-col items-center gap-2 font-semibold leading-5 md:flex-row md:justify-start md:gap-6 3xl:gap-8">
         {infoList.map(item => (
-          <Link href={item.href} key={item.title} className="cursor-pointer">
+          <Link href={item.href} key={item.title} className="cursor-pointer hover:underline">
             <span className="cursor-pointer text-sm">{item.title}</span>
           </Link>
         ))}

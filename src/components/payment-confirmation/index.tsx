@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import {usePlan} from '@/common/hooks/use-plan';
 
-import {FACEBOOK_PON_URL} from '@/common/constants';
+import {CONTACT_PHONE_NUMBER, FACEBOOK_PON_URL, WEBSTITE_EMAIL} from '@/common/constants';
 
 import PaymentDetail from '../payment/detail';
 import PaymentForm from '../payment/payment-form';
@@ -39,10 +39,10 @@ const PaymentConfirmation: FC = () => {
           Nếu gặp bất kỳ khó khăn nào, hãy liên hệ với chúng tôi để được trợ giúp
         </div>
         <div className="font-['Nunito'] text-base font-bold leading-9 text-black md:text-lg xl:text-3xl">
-          0355109382
+          {CONTACT_PHONE_NUMBER}
         </div>
         <div className="font-['Nunito'] text-base font-normal leading-normal text-black md:text-lg xl:text-xl">
-          vongquaymayman@gmail.com
+          {WEBSTITE_EMAIL}
         </div>
         <Link
           href={FACEBOOK_PON_URL}
