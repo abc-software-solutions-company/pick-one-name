@@ -19,6 +19,7 @@ type State = {
 type Actions = {
   updatePlan: (plan: TPlan) => void;
   updateCustomer: (customer: TCustomer) => void;
+  loadCustomer: () => void;
 };
 
 const initialState: State = {
@@ -33,12 +34,15 @@ const initialState: State = {
   }
 };
 
-export const usePlan = create<State & Actions>()(set => ({
+export const usePlan = create<State & Actions>()((set, get) => ({
   ...initialState,
   updatePlan: (plan: TPlan) => {
     set(state => ({...state, plan}));
   },
   updateCustomer: (customer: TCustomer) => {
     set(state => ({...state, customer}));
+  },
+  loadCustomer: () => {
+    set({customer: get().customer});
   }
 }));

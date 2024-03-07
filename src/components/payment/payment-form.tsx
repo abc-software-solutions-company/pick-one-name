@@ -32,10 +32,14 @@ const defaultValues: IFormPaymentData = {email: '', fullName: '', phoneNumber: '
 const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
   const form = useForm<IFormPaymentData>({resolver: zodResolver(paymentValidator), defaultValues});
   const route = useRouter();
-  const {plan, customer, updateCustomer} = usePlan();
+  const {plan, customer, updateCustomer, loadCustomer} = usePlan();
   const formRef = useRef<HTMLFormElement>(null);
   const {register, handleSubmit, formState} = form;
   const {errors} = formState;
+
+  useEffect(() => {
+    loadCustomer();
+  }, []);
 
   useEffect(() => {
     if (submitNum) {
@@ -98,6 +102,7 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
               disabled={disabled}
               value={customer.fullName}
               className={`${errors.fullName && 'focus:border-red-600'} text-lg `}
+              placeholder="Họ và tên..."
               {...register('fullName', {
                 onChange: e => handleChange('fullName', e)
               })}
@@ -117,6 +122,7 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
             <InputPon
               value={customer.email}
               disabled={disabled}
+              placeholder="Email..."
               type="email"
               className={`${errors.email && 'focus:border-red-600'} text-lg`}
               {...register('email', {
@@ -139,6 +145,7 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
             <InputPon
               value={customer.phoneNumber}
               disabled={disabled}
+              placeholder="Số điện thoại..."
               className={`text-lg`}
               {...register('phoneNumber', {
                 value: customer.phoneNumber,
