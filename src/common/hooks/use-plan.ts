@@ -13,7 +13,7 @@ type Actions = {
   updatePlan: (plan: TPlan) => void;
 };
 
-const initialState: State = {plan: {day: 0, price: 0}};
+const initialState: State = {plan: {day: 1, price: 5000}};
 
 export const usePlan = create<State & Actions>()(set => ({
   ...initialState,

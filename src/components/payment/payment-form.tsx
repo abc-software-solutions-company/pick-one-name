@@ -8,6 +8,10 @@ import Label from '@/core-ui/label';
 
 import {paymentValidator} from '@/modules/payment/validations/payment.validator';
 
+import {usePlan} from '@/common/hooks/use-plan';
+
+import {sendNotificationGoogleChat} from '@/common/utils/google-chat-webhook.util';
+
 interface IPaymentFormProps {
   className?: string;
   submitNum?: number;
@@ -24,6 +28,7 @@ const defaultValues: IFormPaymentData = {email: '', fullName: ''};
 const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
   const form = useForm<IFormPaymentData>({resolver: zodResolver(paymentValidator), defaultValues});
   const route = useRouter();
+  const {plan} = usePlan();
   const formRef = useRef<HTMLFormElement>(null);
   const {register, handleSubmit, formState} = form;
   const {errors} = formState;
@@ -34,8 +39,24 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
     }
   }, [submitNum]);
 
-  const pay: SubmitHandler<IFormPaymentData> = async () => {
-    route.push('/');
+  const onSendPaymentNotification = async (data: IFormPaymentData) => {
+    const content = {
+      time: `<b>Time</b>: ${new Date().toString()}`,
+      fullName: `<b>User Name</b>: ${data.fullName}`,
+      email: `<b>Email</b>: ${data.email}`,
+      plan: `<b>Plan</b>: ${plan.day} ngày`
+    };
+
+    await sendNotificationGoogleChat({
+      content: Object.values(content).join('\n'),
+      title: 'Payment Notification',
+      url: process.env.NEXT_PUBLIC_WEBHOOKS_PAYMENT as string
+    });
+  };
+
+  const pay: SubmitHandler<IFormPaymentData> = async data => {
+    onSendPaymentNotification(data);
+    route.push('/confirm');
   };
 
   return (
