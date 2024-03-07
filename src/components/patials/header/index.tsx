@@ -29,14 +29,16 @@ const Header: FC<IProps> = () => {
   });
 
   useEffect(() => {
-    //* Step 1: Đặt vị trí - độ dài underline = với phần tử có class active
-    const activePosition = document.querySelector('.active');
-    setActiveEL(() => {
-      return {
-        width: activePosition?.getBoundingClientRect().width,
-        position: activePosition?.getBoundingClientRect().left
-      };
-    });
+    if (pathName === '/' || pathName === '/wheel') {
+      //* Step 1: Đặt vị trí - độ dài underline = với phần tử có class active
+      const activePosition = document.querySelector('.active');
+      setActiveEL(() => {
+        return {
+          width: activePosition?.getBoundingClientRect().width,
+          position: activePosition?.getBoundingClientRect().left
+        };
+      });
+    }
   }, [pathName]);
 
   const handleSlidingMenu = (e: MouseEvent<HTMLSpanElement>, type: TypeMouseEvent) => {
