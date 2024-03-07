@@ -22,9 +22,7 @@ const PaymentQR: FC<IPaymentQRProps> = ({price = 5000}) => {
         <Image src="/images/qr-code-payment.png" alt="qr" fill />
       </div>
       <div className="flex flex-col gap-6">
-        <p>
-          Ngân hàng: <span className="font-bold">{QR_BANK_NAME}</span>
-        </p>
+        <span className="font-bold">{QR_BANK_NAME}</span>
         <p>
           Tên tài khoản: <span className="font-bold"> {QR_BANK_ACCOUNT}</span>
         </p>
