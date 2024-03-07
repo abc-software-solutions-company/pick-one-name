@@ -21,12 +21,14 @@ interface IPaymentFormProps {
 export interface IFormPaymentData {
   fullName: string;
   email: string;
+  phoneNumber: string;
 }
 
-const defaultValues: IFormPaymentData = {email: '', fullName: ''};
+const defaultValues: IFormPaymentData = {email: '', fullName: '', phoneNumber: ''};
 
 const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
   const form = useForm<IFormPaymentData>({resolver: zodResolver(paymentValidator), defaultValues});
+  // const {customer, updateCustomer} = usePlan();
   const route = useRouter();
   const {plan} = usePlan();
   const formRef = useRef<HTMLFormElement>(null);
@@ -40,10 +42,12 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
   }, [submitNum]);
 
   const onSendPaymentNotification = async (data: IFormPaymentData) => {
+    console.log('🚀 ~ onSendPaymentNotification ~ data:', data);
     const content = {
       time: `<b>Time</b>: ${new Date().toString()}`,
       fullName: `<b>User Name</b>: ${data.fullName}`,
       email: `<b>Email</b>: ${data.email}`,
+      phoneNumber: `<b>SDT</b>: ${data.phoneNumber ?? 'Không có số điện thoại'}`,
       plan: `<b>Plan</b>: ${plan.day} ngày`
     };
 
@@ -55,7 +59,9 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
   };
 
   const pay: SubmitHandler<IFormPaymentData> = async data => {
+    console.log('🚀 ~ data:', data);
     onSendPaymentNotification(data);
+
     route.push('/confirm');
   };
 
@@ -77,6 +83,8 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
           <div className="flex flex-grow flex-col md:basis-3/4">
             <InputPon
               disabled={disabled}
+              // value={customer?.name}
+              // onKeyDown={()=>updateCustomer(customer.name)}
               className={`${errors.fullName && 'focus:border-red-600'} text-lg `}
               {...register('fullName')}
             />
@@ -100,7 +108,7 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
         <div className="flex items-center">
           <label className="min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4">Số điện thoại</label>
           <div className="flex flex-grow flex-col md:basis-3/4">
-            <InputPon disabled={disabled} className={`text-lg`} />
+            <InputPon disabled={disabled} className={`text-lg`} {...register('phoneNumber')} />
           </div>
         </div>
       </div>
