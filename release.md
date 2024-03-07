@@ -12,3 +12,8 @@
         + Title - Change text color
         + Button - Change button color
         + Background - Change background color, image
+
+### 7/3/2024
+
+    - Add plan page
+    - Notification after payment
