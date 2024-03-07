@@ -38,10 +38,6 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
   const {errors} = formState;
 
   useEffect(() => {
-    console.log(customer);
-  }, []);
-
-  useEffect(() => {
     if (submitNum) {
       formRef.current?.requestSubmit();
     }
@@ -65,11 +61,11 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
       plan: `<b>Plan</b>: ${plan.day} ngày`
     };
 
-    await sendNotificationGoogleChat({
-      content: Object.values(content).join('\n'),
-      title: 'Payment Notification',
-      url: process.env.NEXT_PUBLIC_WEBHOOKS_PAYMENT as string
-    });
+    // await sendNotificationGoogleChat({
+    //   content: Object.values(content).join('\n'),
+    //   title: 'Payment Notification',
+    //   url: process.env.NEXT_PUBLIC_WEBHOOKS_PAYMENT as string
+    // });
   };
 
   const pay: SubmitHandler<IFormPaymentData> = async data => {

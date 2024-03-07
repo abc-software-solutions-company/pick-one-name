@@ -30,6 +30,10 @@ const infoList = [
   {
     title: 'Contact',
     href: 'contact'
+  },
+  {
+    title: 'Plan',
+    href: '/plan'
   }
 ];
 export {findUsList, infoList, linksList};
