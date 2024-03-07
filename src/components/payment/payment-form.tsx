@@ -1,5 +1,6 @@
-import {FC, useEffect, useRef} from 'react';
+import {ChangeEvent, FC, useEffect, useRef} from 'react';
 import {useRouter} from 'next/router';
+import cls from 'classnames';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 
@@ -18,6 +19,8 @@ interface IPaymentFormProps {
   disabled?: boolean;
 }
 
+type TFormPropsState = 'fullName' | 'email' | 'phoneNumber';
+
 export interface IFormPaymentData {
   fullName: string;
   email: string;
@@ -28,12 +31,15 @@ const defaultValues: IFormPaymentData = {email: '', fullName: '', phoneNumber: '
 
 const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
   const form = useForm<IFormPaymentData>({resolver: zodResolver(paymentValidator), defaultValues});
-  // const {customer, updateCustomer} = usePlan();
   const route = useRouter();
-  const {plan} = usePlan();
+  const {plan, customer, updateCustomer} = usePlan();
   const formRef = useRef<HTMLFormElement>(null);
   const {register, handleSubmit, formState} = form;
   const {errors} = formState;
+
+  useEffect(() => {
+    console.log(customer);
+  }, []);
 
   useEffect(() => {
     if (submitNum) {
@@ -41,8 +47,16 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
     }
   }, [submitNum]);
 
+  const handleChange = (type: TFormPropsState, e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    updateCustomer({
+      ...customer,
+      [type]: value
+    });
+  };
+
   const onSendPaymentNotification = async (data: IFormPaymentData) => {
-    console.log('🚀 ~ onSendPaymentNotification ~ data:', data);
     const content = {
       time: `<b>Time</b>: ${new Date().toString()}`,
       fullName: `<b>User Name</b>: ${data.fullName}`,
@@ -59,7 +73,6 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
   };
 
   const pay: SubmitHandler<IFormPaymentData> = async data => {
-    console.log('🚀 ~ data:', data);
     onSendPaymentNotification(data);
 
     route.push('/confirm');
@@ -77,38 +90,65 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
       )}
       <div className="flex flex-col gap-9">
         <div className="flex items-center">
-          <label className="min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4">
+          <label
+            className={cls('min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4', {
+              'xl:hidden 3xl:block': disabled
+            })}
+          >
             Tên đầy đủ {!disabled && <span className="text-red-600">*</span>}
           </label>
           <div className="flex flex-grow flex-col md:basis-3/4">
             <InputPon
               disabled={disabled}
-              // value={customer?.name}
-              // onKeyDown={()=>updateCustomer(customer.name)}
+              value={customer.fullName}
               className={`${errors.fullName && 'focus:border-red-600'} text-lg `}
-              {...register('fullName')}
+              {...register('fullName', {
+                onChange: e => handleChange('fullName', e)
+              })}
             />
             {errors.fullName && <Label className="mt-1" color="danger" text={errors.fullName.message} />}
           </div>
         </div>
         <div className="flex items-center">
-          <label className="min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4">
+          <label
+            className={cls('min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4', {
+              'xl:hidden 3xl:block': disabled
+            })}
+          >
             Email {!disabled && <span className="text-red-600">*</span>}
           </label>
           <div className="flex flex-grow flex-col md:basis-3/4">
             <InputPon
+              value={customer.email}
               disabled={disabled}
               type="email"
               className={`${errors.email && 'focus:border-red-600'} text-lg`}
-              {...register('email')}
+              {...register('email', {
+                value: customer.email,
+                onChange: e => handleChange('email', e)
+              })}
             />
             {errors.email && <Label className="mt-1" color="danger" text={errors.email.message} />}
           </div>
         </div>
         <div className="flex items-center">
-          <label className="min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4">Số điện thoại</label>
+          <label
+            className={cls('min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4', {
+              'xl:hidden 3xl:block': disabled
+            })}
+          >
+            Số điện thoại
+          </label>
           <div className="flex flex-grow flex-col md:basis-3/4">
-            <InputPon disabled={disabled} className={`text-lg`} {...register('phoneNumber')} />
+            <InputPon
+              value={customer.phoneNumber}
+              disabled={disabled}
+              className={`text-lg`}
+              {...register('phoneNumber', {
+                value: customer.phoneNumber,
+                onChange: e => handleChange('phoneNumber', e)
+              })}
+            />
           </div>
         </div>
       </div>
