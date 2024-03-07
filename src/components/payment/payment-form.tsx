@@ -11,6 +11,7 @@ import {paymentValidator} from '@/modules/payment/validations/payment.validator'
 interface IPaymentFormProps {
   className?: string;
   submitNum?: number;
+  disabled?: boolean;
 }
 
 export interface IFormPaymentData {
@@ -20,7 +21,7 @@ export interface IFormPaymentData {
 
 const defaultValues: IFormPaymentData = {email: '', fullName: ''};
 
-const PaymentForm: FC<IPaymentFormProps> = ({submitNum}) => {
+const PaymentForm: FC<IPaymentFormProps> = ({submitNum, disabled = false}) => {
   const form = useForm<IFormPaymentData>({resolver: zodResolver(paymentValidator), defaultValues});
   const route = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
@@ -44,23 +45,30 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum}) => {
       ref={formRef}
       onSubmit={handleSubmit(pay)}
     >
-      <h3 className="text-center text-lg font-bold md:text-left md:text-xl">Hoàn thành thông tin đăng kí bên dưới</h3>
+      {!disabled && (
+        <h3 className="text-center text-lg font-bold md:text-left md:text-xl">Hoàn thành thông tin đăng kí bên dưới</h3>
+      )}
       <div className="flex flex-col gap-9">
         <div className="flex items-center">
           <label className="min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4">
-            Tên đầy đủ <span className="text-red-600">*</span>
+            Tên đầy đủ {!disabled && <span className="text-red-600">*</span>}
           </label>
           <div className="flex flex-grow flex-col md:basis-3/4">
-            <InputPon className={`${errors.fullName && 'focus:border-red-600'} text-lg `} {...register('fullName')} />
+            <InputPon
+              disabled={disabled}
+              className={`${errors.fullName && 'focus:border-red-600'} text-lg `}
+              {...register('fullName')}
+            />
             {errors.fullName && <Label className="mt-1" color="danger" text={errors.fullName.message} />}
           </div>
         </div>
         <div className="flex items-center">
           <label className="min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4">
-            Email <span className="text-red-600">*</span>
+            Email {!disabled && <span className="text-red-600">*</span>}
           </label>
           <div className="flex flex-grow flex-col md:basis-3/4">
             <InputPon
+              disabled={disabled}
               type="email"
               className={`${errors.email && 'focus:border-red-600'} text-lg`}
               {...register('email')}
@@ -71,7 +79,7 @@ const PaymentForm: FC<IPaymentFormProps> = ({submitNum}) => {
         <div className="flex items-center">
           <label className="min-w-[110px] whitespace-nowrap font-bold text-dark-950 md:basis-1/4">Số điện thoại</label>
           <div className="flex flex-grow flex-col md:basis-3/4">
-            <InputPon className={`text-lg`} />
+            <InputPon disabled={disabled} className={`text-lg`} />
           </div>
         </div>
       </div>

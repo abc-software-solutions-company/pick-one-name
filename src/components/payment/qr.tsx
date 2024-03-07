@@ -7,18 +7,25 @@ import Copy from '../copy';
 
 interface IPaymentQRProps {
   price?: number;
+  qrSize?: number;
 }
 
-const PaymentQR: FC<IPaymentQRProps> = ({price = 5000}) => {
+const PaymentQR: FC<IPaymentQRProps> = ({price = 5000, qrSize = 289}) => {
   const formattedPrice = price.toLocaleString('vi-VN', {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0
   });
 
   return (
-    <div className="flex w-full flex-col items-center gap-4 rounded-lg p-6 py-6 shadow-[0_0_2px_0_rgba(0,0,0,0.25)]">
+    <div className="flex w-full grow flex-col items-center gap-4 rounded-lg p-6 py-6 shadow-[0_0_2px_0_rgba(0,0,0,0.25)]">
       <h3 className="text-center text-xl font-bold">Hãy thanh toán {formattedPrice} VND cho tài khoản sau</h3>
-      <div className="relative h-72 w-72">
+      <div
+        className="relative"
+        style={{
+          height: `${qrSize}px`,
+          width: `${qrSize}px`
+        }}
+      >
         <Image src="/images/qr-code-payment.png" alt="qr" fill />
       </div>
       <div className="flex flex-col gap-6">
