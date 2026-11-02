@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "cypress": "^10.1.0"
+  },
+  "resolutions": {
+    "form-data": "^2.5.4"
   }
 }
